@@ -17,10 +17,31 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $admin = User::firstOrCreate(
+            ['email' => 'admin@nihongo.com'],
+            [
+                'name' => 'Admin Sensei',
+                'password' => bcrypt('password'),
+                'role' => 'admin',
+            ]
+        );
+
+        $student = User::firstOrCreate(
+            ['email' => 'student@nihongo.com'],
+            [
+                'name' => 'Budi Pelajar',
+                'password' => bcrypt('password'),
+                'role' => 'student',
+            ]
+        );
+
+        // Seed sample progress for student if empty
+        if ($student->quizzes()->count() === 0) {
+            $student->quizzes()->create(['score' => 8, 'total' => 10, 'category' => 'Vocabulary']);
+            $student->quizzes()->create(['score' => 9, 'total' => 10, 'category' => 'Kanji']);
+            $student->notes()->create(['date' => 'Senin, 19 Mei 2026', 'content' => 'Hari ini belajar Hiragana dan Katakana dasar. Sangat menyenangkan!']);
+            $student->certifications()->create(['category' => 'n5', 'level' => 1, 'passed' => true, 'score' => 100]);
+        }
 
         $this->call([
             KanaSeeder::class,

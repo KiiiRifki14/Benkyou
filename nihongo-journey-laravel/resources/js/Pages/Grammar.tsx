@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import Layout from '@/Components/Layout';
 interface ExampleType {
   jp: string;
   romaji: string;
@@ -62,3 +63,5 @@ export default function Grammar({ grammarData = [] }: { grammarData: GrammarType
     </motion.div>
   );
 }
+
+Grammar.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;

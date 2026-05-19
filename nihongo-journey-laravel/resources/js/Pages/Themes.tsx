@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Palette, Lock, CheckCircle2, Cat } from 'lucide-react';
 import { certificationCategories } from '../data/certification';
+import Layout from '@/Components/Layout';
 
 export const THEMES = {
   default: { id: 'default', name: 'Original (Klasik)', props: { '--color-washi': '#F5F2EB', '--color-ink': '#1C1C1C', '--color-ink-light': '#4A4A4A', '--color-japan-red': '#BE0029', '--color-sakura': '#FFB7C5', '--color-matcha': '#C5E1A5' } },
@@ -126,3 +127,5 @@ export default function Themes() {
     </motion.div>
   );
 }
+
+Themes.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;

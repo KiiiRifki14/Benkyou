@@ -1,9 +1,13 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { BookOpen, PenTool, List } from 'lucide-react';
+import Layout from '@/Components/Layout';
 
 export default function Home() {
+  const { auth } = usePage().props as any;
+  const user = auth?.user;
+
   const features = [
     {
       href: '/kana',
@@ -65,7 +69,7 @@ export default function Home() {
     >
       <header className="space-y-4">
         <h1 className="font-serif text-4xl md:text-5xl font-light text-[var(--color-ink)]">
-          Selamat datang kembali, <span className="text-[var(--color-japan-red)] block sm:inline mt-2 sm:mt-0">RANI HAYATI</span>
+          Selamat datang kembali, <span className="text-[var(--color-japan-red)] block sm:inline mt-2 sm:mt-0">{user ? user.name.toUpperCase() : 'PELAJAR'}</span>
         </h1>
         <p className="text-base md:text-lg text-[var(--color-ink-light)] max-w-2xl">
           Lanjutkan perjalananmu menguasai bahasa Jepang. Konsistensi adalah kunci kefasihan.
@@ -125,3 +129,5 @@ export default function Home() {
     </motion.div>
   );
 }
+
+Home.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;

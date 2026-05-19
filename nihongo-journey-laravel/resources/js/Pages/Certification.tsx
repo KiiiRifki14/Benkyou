@@ -2,8 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { certificationCategories, CertificationCategory, CertificationLevel, CertificationQuestion } from '../data/certification';
 import { Trophy, Award, BookOpen, AlertCircle, RefreshCw, Volume2, Send, CheckCircle2, XCircle, Type, Headphones, Eye, Lock, Unlock, ArrowLeft, Image as ImageIcon } from 'lucide-react';
+import Layout from '@/Components/Layout';
+import { usePage } from '@inertiajs/react';
 
 export default function Certification() {
+  const { auth } = usePage().props as any;
+  const user = auth?.user;
+
   const [selectedCategory, setSelectedCategory] = useState<CertificationCategory | null>(null);
   const [selectedLevel, setSelectedLevel] = useState<CertificationLevel | null>(null);
   const [unlockedLevels, setUnlockedLevels] = useState<Record<string, number[]>>(() => {
@@ -344,7 +349,7 @@ export default function Certification() {
                  <>
                    <div className="font-serif text-lg md:text-2xl mb-2 text-[var(--color-ink)]">SERTIFIKAT MODUL</div>
                    <div className="text-[10px] md:text-sm text-[var(--color-ink-light)] mb-4 px-2">Sertifikat ini diberikan secara bangga kepada:</div>
-                   <div className="font-serif text-2xl md:text-4xl font-bold mb-4 tracking-wide text-gray-800">RANI HAYATI</div>
+                   <div className="font-serif text-2xl md:text-4xl font-bold mb-4 tracking-wide text-gray-800">{user ? user.name.toUpperCase() : 'PELAJAR'}</div>
                    <div className="text-xs md:text-sm text-[var(--color-ink-light)] mb-2 px-4 md:px-6">Telah berhasil menguasai {selectedCategory.title} - {selectedLevel.title}.</div>
                  </>
                )}
@@ -554,3 +559,5 @@ export default function Certification() {
     </div>
   );
 }
+
+Certification.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;

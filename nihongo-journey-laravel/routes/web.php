@@ -5,13 +5,22 @@ use App\Http\Controllers\KanaController;
 use App\Http\Controllers\KanjiController;
 use App\Http\Controllers\VocabularyController;
 use App\Http\Controllers\GrammarController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
+})->name('welcome');
+
+Route::get('/home', function () {
     return Inertia::render('Home');
 })->name('home');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -26,7 +35,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // Nihongo Journey Routes
-Route::redirect('/home', '/');
 
 Route::get('/kana', [KanaController::class, 'index'])->name('kana.index');
 Route::get('/kanji', [KanjiController::class, 'index'])->name('kanji.index');
@@ -48,3 +56,5 @@ Route::get('/notes', function () {
 Route::get('/themes', function () {
     return Inertia::render('Themes');
 })->name('themes');
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');

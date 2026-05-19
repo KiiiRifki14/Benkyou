@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
+import Layout from '@/Components/Layout';
 interface KanaCharacter {
   id?: number;
   category: string;
@@ -96,3 +97,5 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
     </motion.div>
   );
 }
+
+Kana.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;

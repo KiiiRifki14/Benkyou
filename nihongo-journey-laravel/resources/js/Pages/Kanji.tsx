@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import Layout from '@/Components/Layout';
 interface KanjiType {
   id?: number;
   kanji: string;
@@ -36,3 +37,5 @@ export default function Kanji({ kanjiData = [] }: { kanjiData: KanjiType[] }) {
     </motion.div>
   );
 }
+
+Kanji.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;

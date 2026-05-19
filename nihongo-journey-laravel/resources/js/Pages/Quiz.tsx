@@ -4,6 +4,7 @@ import { vocabulary } from '../data/vocabulary';
 import { kanji } from '../data/kanji';
 import { grammar } from '../data/grammar';
 import { CheckCircle2, XCircle, RefreshCw, ChevronRight } from 'lucide-react';
+import Layout from '@/Components/Layout';
 
 interface Question {
   text: string;
@@ -206,4 +207,6 @@ export default function Quiz() {
     </div>
   );
 }
+
+Quiz.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;
 

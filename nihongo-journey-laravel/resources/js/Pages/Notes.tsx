@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Book, Plus, Trash2 } from 'lucide-react';
+import Layout from '@/Components/Layout';
 
 interface Note {
   id: string;
@@ -121,3 +122,5 @@ export default function Notes() {
     </motion.div>
   );
 }
+
+Notes.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;

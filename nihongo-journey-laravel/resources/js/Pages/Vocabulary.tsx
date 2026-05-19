@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Volume2 } from 'lucide-react';
+import Layout from '@/Components/Layout';
 
 interface VocabularyType {
   id?: number;
@@ -108,3 +109,5 @@ export default function Vocabulary({ vocabularyData = [] }: { vocabularyData: Vo
     </motion.div>
   );
 }
+
+Vocabulary.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;
