@@ -1,27 +1,34 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { vocabulary } from '../data/vocabulary';
 import { Volume2 } from 'lucide-react';
 
-export default function Vocabulary() {
+interface VocabularyType {
+  id?: number;
+  word: string;
+  romaji: string;
+  meaning: string;
+  type: string;
+}
+
+export default function Vocabulary({ vocabularyData = [] }: { vocabularyData: VocabularyType[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
 
   const nextCard = () => {
     setIsFlipped(false);
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % vocabulary.length);
+      setCurrentIndex((prev) => (prev + 1) % vocabularyData.length);
     }, 150);
   };
 
   const prevCard = () => {
     setIsFlipped(false);
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev - 1 + vocabulary.length) % vocabulary.length);
+      setCurrentIndex((prev) => (prev - 1 + vocabularyData.length) % vocabularyData.length);
     }, 150);
   };
 
-  const currentWord = vocabulary[currentIndex];
+  const currentWord = vocabularyData[currentIndex];
 
   return (
     <motion.div
@@ -89,7 +96,7 @@ export default function Vocabulary() {
           Sebelum
         </button>
         <span className="text-[var(--color-ink-light)] font-medium text-sm sm:text-base px-2 truncate">
-          {currentIndex + 1} / {vocabulary.length}
+          {currentIndex + 1} / {vocabularyData.length}
         </span>
         <button 
           onClick={nextCard}

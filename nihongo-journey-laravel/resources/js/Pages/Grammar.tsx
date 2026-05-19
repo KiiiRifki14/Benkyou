@@ -1,8 +1,20 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { grammar } from '../data/grammar';
+interface ExampleType {
+  jp: string;
+  romaji: string;
+  en: string;
+}
 
-export default function Grammar() {
+interface GrammarType {
+  id?: number;
+  title: string;
+  description: string;
+  examples: ExampleType[];
+  notes: string;
+}
+
+export default function Grammar({ grammarData = [] }: { grammarData: GrammarType[] }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -16,7 +28,7 @@ export default function Grammar() {
       </header>
 
       <div className="space-y-8">
-        {grammar.map((lesson) => (
+        {grammarData.map((lesson) => (
           <div key={lesson.id} className="bg-white rounded-3xl p-6 sm:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-[#E5E5E5]">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-10 h-10 rounded-full flex-shrink-0 bg-[var(--color-washi)] flex items-center justify-center font-serif text-xl text-[var(--color-matcha-dark)]">

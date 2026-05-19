@@ -101,10 +101,6 @@ export default function Home() {
           </Link>
         ))}
       </section>
-    </motion.div>
-  );
-}
-
       <section className="bg-[var(--color-ink)] text-white rounded-3xl p-6 sm:p-10 relative overflow-hidden">
         <div className="absolute -right-10 -top-10 text-[10rem] sm:text-[12rem] font-jp opacity-5 select-none pointer-events-none">
           日本
@@ -118,12 +114,12 @@ export default function Home() {
               <span className="text-base sm:text-lg text-gray-300">bunga sakura</span>
             </div>
           </div>
-          <button
-            onClick={() => setPage('vocabulary')}
-            className="w-full sm:w-auto px-6 py-3 rounded-full bg-white text-[var(--color-ink)] font-medium text-sm hover:bg-[var(--color-washi)] transition-colors"
+          <Link
+            href="/vocabulary"
+            className="w-full sm:w-auto px-6 py-3 rounded-full bg-white text-[var(--color-ink)] font-medium text-sm hover:bg-[var(--color-washi)] transition-colors inline-block text-center"
           >
             Lihat lebih banyak kata
-          </button>
+          </Link>
         </div>
       </section>
     </motion.div>

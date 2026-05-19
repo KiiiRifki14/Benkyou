@@ -1,8 +1,14 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { kanji } from '../data/kanji';
+interface KanjiType {
+  id?: number;
+  kanji: string;
+  romaji: string;
+  meaning: string;
+  level: string;
+}
 
-export default function Kanji() {
+export default function Kanji({ kanjiData = [] }: { kanjiData: KanjiType[] }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -16,7 +22,7 @@ export default function Kanji() {
       </header>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-        {kanji.map((item, index) => (
+        {kanjiData.map((item, index) => (
           <div 
             key={index} 
             className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-[var(--color-japan-red)] text-center flex flex-col justify-center"

@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { 
-  hiraganaBasic, hiraganaDakuten, hiraganaYoon,
-  katakanaBasic, katakanaDakuten, katakanaYoon,
-  KanaCharacter
-} from '../data/kana';
+interface KanaCharacter {
+  id?: number;
+  category: string;
+  romaji: string;
+  kana: string;
+}
 
-export default function Kana() {
+export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
   const [activeTab, setActiveTab] = useState<'hiragana' | 'katakana'>('hiragana');
   
-  const basicData = activeTab === 'hiragana' ? hiraganaBasic : katakanaBasic;
-  const dakutenData = activeTab === 'hiragana' ? hiraganaDakuten : katakanaDakuten;
-  const yoonData = activeTab === 'hiragana' ? hiraganaYoon : katakanaYoon;
+  const basicData = kanaData.filter(k => k.category === (activeTab === 'hiragana' ? 'hiragana' : 'katakana'));
+  const dakutenData = kanaData.filter(k => k.category === (activeTab === 'hiragana' ? 'dakuten' : 'katakana-dakuten'));
+  const yoonData = kanaData.filter(k => k.category === (activeTab === 'hiragana' ? 'yoon' : 'katakana-yoon'));
 
   const renderGrid = (data: KanaCharacter[], cols: number = 5) => (
     <div className={`grid ${cols === 3 ? 'grid-cols-3 sm:grid-cols-6 md:grid-cols-9' : 'grid-cols-5 md:grid-cols-10'} gap-2 sm:gap-3 lg:gap-4`}>

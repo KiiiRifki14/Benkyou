@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vocabulary extends Model
 {
-    //
+    protected $fillable = ['word', 'romaji', 'meaning', 'type'];
 }

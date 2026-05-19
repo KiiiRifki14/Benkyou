@@ -10,13 +10,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+    return Inertia::render('Home');
+})->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -31,9 +26,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // Nihongo Journey Routes
-Route::get('/home', function () {
-    return Inertia::render('Home');
-})->name('home');
+Route::redirect('/home', '/');
 
 Route::get('/kana', [KanaController::class, 'index'])->name('kana.index');
 Route::get('/kanji', [KanjiController::class, 'index'])->name('kanji.index');
