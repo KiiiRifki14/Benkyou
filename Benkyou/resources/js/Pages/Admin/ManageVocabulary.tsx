@@ -1,35 +1,35 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Plus, Edit2, Trash2, Search, Languages } from 'lucide-react';
+import { Plus, Edit2, Trash2, Search, List } from 'lucide-react';
 import Layout from '@/Components/Layout';
 import { router } from '@inertiajs/react';
 
-interface Kanji {
+interface Vocabulary {
   id: number;
-  kanji: string;
+  word: string;
   romaji: string;
   meaning: string;
-  level: string;
+  type: string;
 }
 
-interface ManageKanjiProps {
-  kanjisData: Kanji[];
+interface ManageVocabularyProps {
+  vocabulariesData: Vocabulary[];
 }
 
-export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
+export default function ManageVocabulary({ vocabulariesData = [] }: ManageVocabularyProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [processing, setProcessing] = useState(false);
-  const [crudModal, setCrudModal] = useState<{ mode: 'add' | 'edit'; item?: Kanji } | null>(null);
-  const [kanjiForm, setKanjiForm] = useState({ kanji: '', romaji: '', meaning: '', level: 'N5' });
+  const [crudModal, setCrudModal] = useState<{ mode: 'add' | 'edit'; item?: Vocabulary } | null>(null);
+  const [vocabForm, setVocabForm] = useState({ word: '', romaji: '', meaning: '', type: 'noun' });
 
-  const filteredKanjis = kanjisData.filter(k => 
-    k.kanji.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    k.romaji.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    k.meaning.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredVocabs = vocabulariesData.filter(v => 
+    v.word.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    v.romaji.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    v.meaning.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const openCrud = (mode: 'add' | 'edit', item?: Kanji) => {
-    setKanjiForm(mode === 'edit' && item ? { kanji: item.kanji, romaji: item.romaji, meaning: item.meaning, level: item.level } : { kanji: '', romaji: '', meaning: '', level: 'N5' });
+  const openCrud = (mode: 'add' | 'edit', item?: Vocabulary) => {
+    setVocabForm(mode === 'edit' && item ? { word: item.word, romaji: item.romaji, meaning: item.meaning, type: item.type } : { word: '', romaji: '', meaning: '', type: 'noun' });
     setCrudModal({ mode, item });
   };
 
@@ -39,12 +39,12 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
     setProcessing(true);
     
     if (crudModal.mode === 'edit' && crudModal.item) {
-      router.put(`/admin/kanji/${crudModal.item.id}`, kanjiForm, {
+      router.put(`/admin/vocabulary/${crudModal.item.id}`, vocabForm, {
         onSuccess: () => { setCrudModal(null); setProcessing(false); },
         onError: () => setProcessing(false)
       });
     } else {
-      router.post('/admin/kanji', kanjiForm, {
+      router.post('/admin/vocabulary', vocabForm, {
         onSuccess: () => { setCrudModal(null); setProcessing(false); },
         onError: () => setProcessing(false)
       });
@@ -53,7 +53,7 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
 
   const handleDelete = (id: number) => {
     if (confirm('Apakah Anda yakin ingin menghapus data ini secara permanen?')) {
-      router.delete(`/admin/kanji/${id}`);
+      router.delete(`/admin/vocabulary/${id}`);
     }
   };
 
@@ -67,10 +67,10 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
       <header className="border-b border-[#E5E5E5] pb-6 flex justify-between items-end gap-4">
         <div>
           <div className="flex items-center gap-3 mb-2">
-            <Languages className="text-[var(--color-japan-red)]" size={36} />
-            <h1 className="font-serif text-4xl font-bold text-[var(--color-ink)]">Kelola Kanji</h1>
+            <List className="text-[var(--color-japan-red)]" size={36} />
+            <h1 className="font-serif text-4xl font-bold text-[var(--color-ink)]">Kelola Kosakata</h1>
           </div>
-          <p className="text-[var(--color-ink-light)]">Tambah, ubah, dan hapus data karakter Kanji Nihongo Journey.</p>
+          <p className="text-[var(--color-ink-light)]">Tambah, ubah, dan hapus data Kosakata Benkyou.</p>
         </div>
       </header>
 
@@ -99,27 +99,27 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[var(--color-washi)] text-[var(--color-ink-light)] text-xs font-bold uppercase tracking-wider border-b border-[#E5E5E5]">
-                <th className="py-4 px-6">Karakter Kanji</th>
+                <th className="py-4 px-6">Kata Jepang</th>
                 <th className="py-4 px-6">Cara Baca (Romaji)</th>
                 <th className="py-4 px-6">Arti / Makna</th>
-                <th className="py-4 px-6 text-center">Level</th>
+                <th className="py-4 px-6 text-center">Golongan Kata</th>
                 <th className="py-4 px-6 text-center">Aksi</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E5E5E5] text-sm">
-              {filteredKanjis.map((k) => (
-                <tr key={k.id} className="hover:bg-gray-50/50 transition-colors">
-                  <td className="py-4 px-6 font-jp font-bold text-3xl text-gray-800">{k.kanji}</td>
-                  <td className="py-4 px-6 font-mono font-bold text-base text-[var(--color-japan-red)]">{k.romaji}</td>
-                  <td className="py-4 px-6 font-medium">{k.meaning}</td>
+              {filteredVocabs.map((v) => (
+                <tr key={v.id} className="hover:bg-gray-50/50 transition-colors">
+                  <td className="py-4 px-6 font-jp font-bold text-2xl text-gray-800">{v.word}</td>
+                  <td className="py-4 px-6 font-mono font-bold text-base text-[var(--color-japan-red)]">{v.romaji}</td>
+                  <td className="py-4 px-6 font-medium">{v.meaning}</td>
                   <td className="py-4 px-6 text-center">
-                    <span className="px-3 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200 text-xs font-bold">
-                      {k.level}
+                    <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-[10px] font-bold tracking-wider uppercase">
+                      {v.type}
                     </span>
                   </td>
                   <td className="py-4 px-6 text-center space-x-2">
-                    <button onClick={() => openCrud('edit', k)} className="p-2 text-blue-600 hover:bg-blue-50 rounded-xl transition-colors"><Edit2 size={16} /></button>
-                    <button onClick={() => handleDelete(k.id)} className="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-colors"><Trash2 size={16} /></button>
+                    <button onClick={() => openCrud('edit', v)} className="p-2 text-blue-600 hover:bg-blue-50 rounded-xl transition-colors"><Edit2 size={16} /></button>
+                    <button onClick={() => handleDelete(v.id)} className="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-colors"><Trash2 size={16} /></button>
                   </td>
                 </tr>
               ))}
@@ -133,20 +133,20 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
           <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full flex flex-col overflow-hidden border border-[#E5E5E5]">
             <div className="p-6 border-b border-[#E5E5E5] flex justify-between items-center bg-[var(--color-washi)]">
               <h3 className="font-serif text-2xl font-bold text-[var(--color-ink)]">
-                {crudModal.mode === 'add' ? 'Tambah' : 'Edit'} Karakter Kanji
+                {crudModal.mode === 'add' ? 'Tambah' : 'Edit'} Kosakata
               </h3>
               <button onClick={() => setCrudModal(null)} className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-500 hover:text-black shadow-sm font-bold">✕</button>
             </div>
 
             <form onSubmit={handleCrudSubmit} className="p-6 space-y-4">
               <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Karakter Kanji</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Kata Jepang (Karakter / Kanji)</label>
                 <input 
                   type="text" 
                   required
-                  value={kanjiForm.kanji} 
-                  onChange={(e) => setKanjiForm({ ...kanjiForm, kanji: e.target.value })}
-                  placeholder="Contoh: 日"
+                  value={vocabForm.word} 
+                  onChange={(e) => setVocabForm({ ...vocabForm, word: e.target.value })}
+                  placeholder="Contoh: 猫 (ねこ)"
                   className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
                 />
               </div>
@@ -155,35 +155,35 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
                 <input 
                   type="text" 
                   required
-                  value={kanjiForm.romaji} 
-                  onChange={(e) => setKanjiForm({ ...kanjiForm, romaji: e.target.value })}
-                  placeholder="Contoh: hi, nichi"
+                  value={vocabForm.romaji} 
+                  onChange={(e) => setVocabForm({ ...vocabForm, romaji: e.target.value })}
+                  placeholder="Contoh: neko"
                   className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
                 />
               </div>
               <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Arti / Makna</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Arti / Terjemahan</label>
                 <input 
                   type="text" 
                   required
-                  value={kanjiForm.meaning} 
-                  onChange={(e) => setKanjiForm({ ...kanjiForm, meaning: e.target.value })}
-                  placeholder="Contoh: Hari, Matahari"
+                  value={vocabForm.meaning} 
+                  onChange={(e) => setVocabForm({ ...vocabForm, meaning: e.target.value })}
+                  placeholder="Contoh: Kucing"
                   className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
                 />
               </div>
               <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Tingkat Kesulitan (JLPT)</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Golongan Kata</label>
                 <select 
-                  value={kanjiForm.level} 
-                  onChange={(e) => setKanjiForm({ ...kanjiForm, level: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
+                  value={vocabForm.type} 
+                  onChange={(e) => setVocabForm({ ...vocabForm, type: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none text-sm"
                 >
-                  <option value="N5">N5 (Sangat Dasar)</option>
-                  <option value="N4">N4 (Dasar)</option>
-                  <option value="N3">N3 (Menengah)</option>
-                  <option value="N2">N2 (Lanjutan)</option>
-                  <option value="N1">N1 (Sangat Ahli)</option>
+                  <option value="noun">Noun (Kata Benda)</option>
+                  <option value="verb">Verb (Kata Kerja)</option>
+                  <option value="adjective">Adjective (Kata Sifat)</option>
+                  <option value="greeting">Greeting (Salam)</option>
+                  <option value="adverb">Adverb (Kata Keterangan)</option>
                 </select>
               </div>
 
@@ -199,4 +199,4 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
   );
 }
 
-ManageKanji.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;
+ManageVocabulary.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;

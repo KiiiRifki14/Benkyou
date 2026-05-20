@@ -60,7 +60,7 @@ export default function Welcome({ auth }) {
 
   return (
     <>
-      <Head title="Nihongo Journey - Platform Belajar Bahasa Jepang Premium" />
+      <Head title="Benkyou - Platform Belajar Bahasa Jepang Premium" />
 
       <div className="min-h-screen bg-[var(--color-washi)] text-[var(--color-ink)] font-sans selection:bg-[var(--color-japan-red)] selection:text-white relative overflow-hidden">
         
@@ -78,11 +78,8 @@ export default function Welcome({ auth }) {
               <div className="flex items-center gap-2">
                 <div>
                   <h1 className="font-serif font-bold text-xl leading-tight group-hover:text-[var(--color-japan-red)] transition-colors">
-                    Nihongo
+                    Benkyou
                   </h1>
-                  <p className="text-[10px] text-[var(--color-ink-light)] tracking-widest uppercase">
-                    Journey
-                  </p>
                 </div>
                 <Cat className="text-[var(--color-japan-red)] opacity-80 group-hover:scale-110 transition-transform" size={22} />
               </div>
@@ -268,7 +265,7 @@ export default function Welcome({ auth }) {
                 </div>
 
                 <div className="text-center text-[10px] text-[var(--color-ink-light)] tracking-widest uppercase">
-                  Kartu Pintar Nihongo Journey
+                  Kartu Pintar Benkyou
                 </div>
               </div>
             </div>
@@ -285,7 +282,7 @@ export default function Welcome({ auth }) {
           <div className="max-w-7xl mx-auto space-y-16">
             <div className="text-center space-y-4 max-w-3xl mx-auto">
               <h2 className="font-serif text-4xl font-bold">Kisah Sukses Pejuang JLPT</h2>
-              <p className="text-[var(--color-ink-light)]">Ribuan pelajar telah membuktikan keefektifan metode belajar Nihongo Journey.</p>
+              <p className="text-[var(--color-ink-light)]">Ribuan pelajar telah membuktikan keefektifan metode belajar Benkyou.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -352,7 +349,7 @@ export default function Welcome({ auth }) {
               <div className="w-8 h-8 rounded-full bg-[var(--color-japan-red)] flex items-center justify-center text-white font-jp font-bold text-base shadow-sm">
                 日
               </div>
-              <span className="font-serif font-bold text-lg">Nihongo Journey</span>
+              <span className="font-serif font-bold text-lg">Benkyou</span>
             </div>
 
             <p className="text-xs text-[var(--color-ink-light)] flex items-center justify-center gap-1.5">

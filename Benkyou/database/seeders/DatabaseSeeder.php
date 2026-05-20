@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $admin = User::firstOrCreate(
-            ['email' => 'admin@nihongo.com'],
+            ['email' => 'admin@benkyou.com'],
             [
                 'name' => 'Admin Sensei',
                 'password' => bcrypt('password'),
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         );
 
         $student = User::firstOrCreate(
-            ['email' => 'student@nihongo.com'],
+            ['email' => 'student@benkyou.com'],
             [
                 'name' => 'Budi Pelajar',
                 'password' => bcrypt('password'),

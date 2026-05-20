@@ -20,7 +20,7 @@ export const applyTheme = (themeId: string) => {
   Object.entries(t.props).forEach(([key, value]) => {
     root.style.setProperty(key, value as string);
   });
-  localStorage.setItem('nihongo_theme', themeId);
+  localStorage.setItem('benkyou_theme', themeId);
 };
 
 import { usePage } from '@inertiajs/react';
@@ -33,7 +33,7 @@ export default function Themes() {
   const [unlocked, setUnlocked] = useState<string[]>(['default']);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('nihongo_theme') || 'default';
+    const savedTheme = localStorage.getItem('benkyou_theme') || 'default';
     setActiveTheme(savedTheme);
 
     if (user?.role === 'admin') {

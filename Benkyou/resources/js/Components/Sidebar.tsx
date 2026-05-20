@@ -55,11 +55,8 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                 <Link href="/" className="shrink-0 flex items-center gap-4 group">
                     <div>
                         <h1 className="font-serif font-bold text-xl leading-tight group-hover:text-[var(--color-japan-red)] transition-colors">
-                            Nihongo
+                            Benkyou
                         </h1>
-                        <p className="text-xs text-[var(--color-ink-light)] tracking-widest uppercase">
-                            Journey
-                        </p>
                     </div>
                     <Cat
                         className="text-[var(--color-japan-red)] opacity-80 group-hover:scale-110 transition-transform"

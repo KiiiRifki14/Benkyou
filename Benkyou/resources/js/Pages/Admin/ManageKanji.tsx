@@ -1,34 +1,35 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Plus, Edit2, Trash2, Search, PenTool } from 'lucide-react';
+import { Plus, Edit2, Trash2, Search, Languages } from 'lucide-react';
 import Layout from '@/Components/Layout';
 import { router } from '@inertiajs/react';
 
-interface Kana {
+interface Kanji {
   id: number;
-  category: string;
+  kanji: string;
   romaji: string;
-  kana: string;
+  meaning: string;
+  level: string;
 }
 
-interface ManageKanaProps {
-  kanasData: Kana[];
+interface ManageKanjiProps {
+  kanjisData: Kanji[];
 }
 
-export default function ManageKana({ kanasData = [] }: ManageKanaProps) {
+export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [processing, setProcessing] = useState(false);
-  const [crudModal, setCrudModal] = useState<{ mode: 'add' | 'edit'; item?: Kana } | null>(null);
-  const [kanaForm, setKanaForm] = useState({ category: 'hiragana', romaji: '', kana: '' });
+  const [crudModal, setCrudModal] = useState<{ mode: 'add' | 'edit'; item?: Kanji } | null>(null);
+  const [kanjiForm, setKanjiForm] = useState({ kanji: '', romaji: '', meaning: '', level: 'N5' });
 
-  const filteredKanas = kanasData.filter(k => 
-    k.kana.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  const filteredKanjis = kanjisData.filter(k => 
+    k.kanji.toLowerCase().includes(searchTerm.toLowerCase()) ||
     k.romaji.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    k.category.toLowerCase().includes(searchTerm.toLowerCase())
+    k.meaning.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const openCrud = (mode: 'add' | 'edit', item?: Kana) => {
-    setKanaForm(mode === 'edit' && item ? { category: item.category, romaji: item.romaji, kana: item.kana } : { category: 'hiragana', romaji: '', kana: '' });
+  const openCrud = (mode: 'add' | 'edit', item?: Kanji) => {
+    setKanjiForm(mode === 'edit' && item ? { kanji: item.kanji, romaji: item.romaji, meaning: item.meaning, level: item.level } : { kanji: '', romaji: '', meaning: '', level: 'N5' });
     setCrudModal({ mode, item });
   };
 
@@ -38,12 +39,12 @@ export default function ManageKana({ kanasData = [] }: ManageKanaProps) {
     setProcessing(true);
     
     if (crudModal.mode === 'edit' && crudModal.item) {
-      router.put(`/admin/kana/${crudModal.item.id}`, kanaForm, {
+      router.put(`/admin/kanji/${crudModal.item.id}`, kanjiForm, {
         onSuccess: () => { setCrudModal(null); setProcessing(false); },
         onError: () => setProcessing(false)
       });
     } else {
-      router.post('/admin/kana', kanaForm, {
+      router.post('/admin/kanji', kanjiForm, {
         onSuccess: () => { setCrudModal(null); setProcessing(false); },
         onError: () => setProcessing(false)
       });
@@ -52,7 +53,7 @@ export default function ManageKana({ kanasData = [] }: ManageKanaProps) {
 
   const handleDelete = (id: number) => {
     if (confirm('Apakah Anda yakin ingin menghapus data ini secara permanen?')) {
-      router.delete(`/admin/kana/${id}`);
+      router.delete(`/admin/kanji/${id}`);
     }
   };
 
@@ -66,10 +67,10 @@ export default function ManageKana({ kanasData = [] }: ManageKanaProps) {
       <header className="border-b border-[#E5E5E5] pb-6 flex justify-between items-end gap-4">
         <div>
           <div className="flex items-center gap-3 mb-2">
-            <PenTool className="text-[var(--color-japan-red)]" size={36} />
-            <h1 className="font-serif text-4xl font-bold text-[var(--color-ink)]">Kelola Kana</h1>
+            <Languages className="text-[var(--color-japan-red)]" size={36} />
+            <h1 className="font-serif text-4xl font-bold text-[var(--color-ink)]">Kelola Kanji</h1>
           </div>
-          <p className="text-[var(--color-ink-light)]">Tambah, ubah, dan hapus data Hiragana dan Katakana Nihongo Journey.</p>
+          <p className="text-[var(--color-ink-light)]">Tambah, ubah, dan hapus data karakter Kanji Benkyou.</p>
         </div>
       </header>
 
@@ -98,20 +99,22 @@ export default function ManageKana({ kanasData = [] }: ManageKanaProps) {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[var(--color-washi)] text-[var(--color-ink-light)] text-xs font-bold uppercase tracking-wider border-b border-[#E5E5E5]">
-                <th className="py-4 px-6">Huruf Kana</th>
-                <th className="py-4 px-6">Romaji</th>
-                <th className="py-4 px-6">Kategori</th>
+                <th className="py-4 px-6">Karakter Kanji</th>
+                <th className="py-4 px-6">Cara Baca (Romaji)</th>
+                <th className="py-4 px-6">Arti / Makna</th>
+                <th className="py-4 px-6 text-center">Level</th>
                 <th className="py-4 px-6 text-center">Aksi</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E5E5E5] text-sm">
-              {filteredKanas.map((k) => (
+              {filteredKanjis.map((k) => (
                 <tr key={k.id} className="hover:bg-gray-50/50 transition-colors">
-                  <td className="py-4 px-6 font-jp font-bold text-2xl text-[var(--color-japan-red)]">{k.kana}</td>
-                  <td className="py-4 px-6 font-mono font-bold text-base">{k.romaji}</td>
-                  <td className="py-4 px-6">
-                    <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-medium uppercase tracking-wider">
-                      {k.category}
+                  <td className="py-4 px-6 font-jp font-bold text-3xl text-gray-800">{k.kanji}</td>
+                  <td className="py-4 px-6 font-mono font-bold text-base text-[var(--color-japan-red)]">{k.romaji}</td>
+                  <td className="py-4 px-6 font-medium">{k.meaning}</td>
+                  <td className="py-4 px-6 text-center">
+                    <span className="px-3 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200 text-xs font-bold">
+                      {k.level}
                     </span>
                   </td>
                   <td className="py-4 px-6 text-center space-x-2">
@@ -130,31 +133,20 @@ export default function ManageKana({ kanasData = [] }: ManageKanaProps) {
           <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full flex flex-col overflow-hidden border border-[#E5E5E5]">
             <div className="p-6 border-b border-[#E5E5E5] flex justify-between items-center bg-[var(--color-washi)]">
               <h3 className="font-serif text-2xl font-bold text-[var(--color-ink)]">
-                {crudModal.mode === 'add' ? 'Tambah' : 'Edit'} Huruf Kana
+                {crudModal.mode === 'add' ? 'Tambah' : 'Edit'} Karakter Kanji
               </h3>
               <button onClick={() => setCrudModal(null)} className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-500 hover:text-black shadow-sm font-bold">✕</button>
             </div>
 
             <form onSubmit={handleCrudSubmit} className="p-6 space-y-4">
               <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Kategori Kana</label>
-                <select 
-                  value={kanaForm.category} 
-                  onChange={(e) => setKanaForm({ ...kanaForm, category: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
-                >
-                  <option value="hiragana">Hiragana</option>
-                  <option value="katakana">Katakana</option>
-                </select>
-              </div>
-              <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Huruf Jepang (Karakter)</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Karakter Kanji</label>
                 <input 
                   type="text" 
                   required
-                  value={kanaForm.kana} 
-                  onChange={(e) => setKanaForm({ ...kanaForm, kana: e.target.value })}
-                  placeholder="Contoh: あ"
+                  value={kanjiForm.kanji} 
+                  onChange={(e) => setKanjiForm({ ...kanjiForm, kanji: e.target.value })}
+                  placeholder="Contoh: 日"
                   className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
                 />
               </div>
@@ -163,11 +155,36 @@ export default function ManageKana({ kanasData = [] }: ManageKanaProps) {
                 <input 
                   type="text" 
                   required
-                  value={kanaForm.romaji} 
-                  onChange={(e) => setKanaForm({ ...kanaForm, romaji: e.target.value })}
-                  placeholder="Contoh: a"
+                  value={kanjiForm.romaji} 
+                  onChange={(e) => setKanjiForm({ ...kanjiForm, romaji: e.target.value })}
+                  placeholder="Contoh: hi, nichi"
                   className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
                 />
+              </div>
+              <div>
+                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Arti / Makna</label>
+                <input 
+                  type="text" 
+                  required
+                  value={kanjiForm.meaning} 
+                  onChange={(e) => setKanjiForm({ ...kanjiForm, meaning: e.target.value })}
+                  placeholder="Contoh: Hari, Matahari"
+                  className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Tingkat Kesulitan (JLPT)</label>
+                <select 
+                  value={kanjiForm.level} 
+                  onChange={(e) => setKanjiForm({ ...kanjiForm, level: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
+                >
+                  <option value="N5">N5 (Sangat Dasar)</option>
+                  <option value="N4">N4 (Dasar)</option>
+                  <option value="N3">N3 (Menengah)</option>
+                  <option value="N2">N2 (Lanjutan)</option>
+                  <option value="N1">N1 (Sangat Ahli)</option>
+                </select>
               </div>
 
               <div className="pt-4 border-t flex justify-end gap-2">
@@ -182,4 +199,4 @@ export default function ManageKana({ kanasData = [] }: ManageKanaProps) {
   );
 }
 
-ManageKana.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;
+ManageKanji.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;

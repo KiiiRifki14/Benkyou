@@ -38,7 +38,7 @@ export default function ManageGrammar({ grammarsData = [] }: ManageGrammarProps)
       try {
         parsedExamples = typeof item.examples === 'string' ? JSON.parse(item.examples) : item.examples;
       } catch(e) {
-        parsedExamples = item.examples || [{ jp: '', romaji: '', en: '' }];
+        parsedExamples = [{ jp: '', romaji: '', en: '' }];
       }
       setGrammarForm({
         title: item.title,
@@ -94,7 +94,7 @@ export default function ManageGrammar({ grammarsData = [] }: ManageGrammarProps)
             <BookOpen className="text-[var(--color-japan-red)]" size={36} />
             <h1 className="font-serif text-4xl font-bold text-[var(--color-ink)]">Kelola Tata Bahasa</h1>
           </div>
-          <p className="text-[var(--color-ink-light)]">Tambah, ubah, dan hapus pola Tata Bahasa (Grammar) Nihongo Journey.</p>
+          <p className="text-[var(--color-ink-light)]">Tambah, ubah, dan hapus pola Tata Bahasa (Grammar) Benkyou.</p>
         </div>
       </header>
 

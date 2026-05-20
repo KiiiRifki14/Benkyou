@@ -51,7 +51,7 @@ export default function Dashboard({ usersData = [], stats }: DashboardProps) {
             <ShieldAlert className="text-[var(--color-japan-red)] animate-pulse" size={36} />
             <h1 className="font-serif text-4xl font-bold text-[var(--color-ink)]">Pusat Administrator</h1>
           </div>
-          <p className="text-[var(--color-ink-light)]">Kelola data pembelajaran secara real-time dan awasi progres pengguna Nihongo Journey.</p>
+          <p className="text-[var(--color-ink-light)]">Kelola data pembelajaran secara real-time dan awasi progres pengguna Benkyou.</p>
         </div>
         <div className="bg-[var(--color-japan-red)]/10 text-[var(--color-japan-red)] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-[var(--color-japan-red)]/20 shadow-sm shrink-0">
           Administrator Sensei

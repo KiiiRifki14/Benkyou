@@ -1,35 +1,34 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Plus, Edit2, Trash2, Search, List } from 'lucide-react';
+import { Plus, Edit2, Trash2, Search, PenTool } from 'lucide-react';
 import Layout from '@/Components/Layout';
 import { router } from '@inertiajs/react';
 
-interface Vocabulary {
+interface Kana {
   id: number;
-  word: string;
+  category: string;
   romaji: string;
-  meaning: string;
-  type: string;
+  kana: string;
 }
 
-interface ManageVocabularyProps {
-  vocabulariesData: Vocabulary[];
+interface ManageKanaProps {
+  kanasData: Kana[];
 }
 
-export default function ManageVocabulary({ vocabulariesData = [] }: ManageVocabularyProps) {
+export default function ManageKana({ kanasData = [] }: ManageKanaProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [processing, setProcessing] = useState(false);
-  const [crudModal, setCrudModal] = useState<{ mode: 'add' | 'edit'; item?: Vocabulary } | null>(null);
-  const [vocabForm, setVocabForm] = useState({ word: '', romaji: '', meaning: '', type: 'noun' });
+  const [crudModal, setCrudModal] = useState<{ mode: 'add' | 'edit'; item?: Kana } | null>(null);
+  const [kanaForm, setKanaForm] = useState({ category: 'hiragana', romaji: '', kana: '' });
 
-  const filteredVocabs = vocabulariesData.filter(v => 
-    v.word.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    v.romaji.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    v.meaning.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredKanas = kanasData.filter(k => 
+    k.kana.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    k.romaji.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    k.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const openCrud = (mode: 'add' | 'edit', item?: Vocabulary) => {
-    setVocabForm(mode === 'edit' && item ? { word: item.word, romaji: item.romaji, meaning: item.meaning, type: item.type } : { word: '', romaji: '', meaning: '', type: 'noun' });
+  const openCrud = (mode: 'add' | 'edit', item?: Kana) => {
+    setKanaForm(mode === 'edit' && item ? { category: item.category, romaji: item.romaji, kana: item.kana } : { category: 'hiragana', romaji: '', kana: '' });
     setCrudModal({ mode, item });
   };
 
@@ -39,12 +38,12 @@ export default function ManageVocabulary({ vocabulariesData = [] }: ManageVocabu
     setProcessing(true);
     
     if (crudModal.mode === 'edit' && crudModal.item) {
-      router.put(`/admin/vocabulary/${crudModal.item.id}`, vocabForm, {
+      router.put(`/admin/kana/${crudModal.item.id}`, kanaForm, {
         onSuccess: () => { setCrudModal(null); setProcessing(false); },
         onError: () => setProcessing(false)
       });
     } else {
-      router.post('/admin/vocabulary', vocabForm, {
+      router.post('/admin/kana', kanaForm, {
         onSuccess: () => { setCrudModal(null); setProcessing(false); },
         onError: () => setProcessing(false)
       });
@@ -53,7 +52,7 @@ export default function ManageVocabulary({ vocabulariesData = [] }: ManageVocabu
 
   const handleDelete = (id: number) => {
     if (confirm('Apakah Anda yakin ingin menghapus data ini secara permanen?')) {
-      router.delete(`/admin/vocabulary/${id}`);
+      router.delete(`/admin/kana/${id}`);
     }
   };
 
@@ -67,10 +66,10 @@ export default function ManageVocabulary({ vocabulariesData = [] }: ManageVocabu
       <header className="border-b border-[#E5E5E5] pb-6 flex justify-between items-end gap-4">
         <div>
           <div className="flex items-center gap-3 mb-2">
-            <List className="text-[var(--color-japan-red)]" size={36} />
-            <h1 className="font-serif text-4xl font-bold text-[var(--color-ink)]">Kelola Kosakata</h1>
+            <PenTool className="text-[var(--color-japan-red)]" size={36} />
+            <h1 className="font-serif text-4xl font-bold text-[var(--color-ink)]">Kelola Kana</h1>
           </div>
-          <p className="text-[var(--color-ink-light)]">Tambah, ubah, dan hapus data Kosakata Nihongo Journey.</p>
+          <p className="text-[var(--color-ink-light)]">Tambah, ubah, dan hapus data Hiragana dan Katakana Benkyou.</p>
         </div>
       </header>
 
@@ -99,27 +98,25 @@ export default function ManageVocabulary({ vocabulariesData = [] }: ManageVocabu
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[var(--color-washi)] text-[var(--color-ink-light)] text-xs font-bold uppercase tracking-wider border-b border-[#E5E5E5]">
-                <th className="py-4 px-6">Kata Jepang</th>
-                <th className="py-4 px-6">Cara Baca (Romaji)</th>
-                <th className="py-4 px-6">Arti / Makna</th>
-                <th className="py-4 px-6 text-center">Golongan Kata</th>
+                <th className="py-4 px-6">Huruf Kana</th>
+                <th className="py-4 px-6">Romaji</th>
+                <th className="py-4 px-6">Kategori</th>
                 <th className="py-4 px-6 text-center">Aksi</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E5E5E5] text-sm">
-              {filteredVocabs.map((v) => (
-                <tr key={v.id} className="hover:bg-gray-50/50 transition-colors">
-                  <td className="py-4 px-6 font-jp font-bold text-2xl text-gray-800">{v.word}</td>
-                  <td className="py-4 px-6 font-mono font-bold text-base text-[var(--color-japan-red)]">{v.romaji}</td>
-                  <td className="py-4 px-6 font-medium">{v.meaning}</td>
-                  <td className="py-4 px-6 text-center">
-                    <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-[10px] font-bold tracking-wider uppercase">
-                      {v.type}
+              {filteredKanas.map((k) => (
+                <tr key={k.id} className="hover:bg-gray-50/50 transition-colors">
+                  <td className="py-4 px-6 font-jp font-bold text-2xl text-[var(--color-japan-red)]">{k.kana}</td>
+                  <td className="py-4 px-6 font-mono font-bold text-base">{k.romaji}</td>
+                  <td className="py-4 px-6">
+                    <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-medium uppercase tracking-wider">
+                      {k.category}
                     </span>
                   </td>
                   <td className="py-4 px-6 text-center space-x-2">
-                    <button onClick={() => openCrud('edit', v)} className="p-2 text-blue-600 hover:bg-blue-50 rounded-xl transition-colors"><Edit2 size={16} /></button>
-                    <button onClick={() => handleDelete(v.id)} className="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-colors"><Trash2 size={16} /></button>
+                    <button onClick={() => openCrud('edit', k)} className="p-2 text-blue-600 hover:bg-blue-50 rounded-xl transition-colors"><Edit2 size={16} /></button>
+                    <button onClick={() => handleDelete(k.id)} className="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-colors"><Trash2 size={16} /></button>
                   </td>
                 </tr>
               ))}
@@ -133,20 +130,31 @@ export default function ManageVocabulary({ vocabulariesData = [] }: ManageVocabu
           <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full flex flex-col overflow-hidden border border-[#E5E5E5]">
             <div className="p-6 border-b border-[#E5E5E5] flex justify-between items-center bg-[var(--color-washi)]">
               <h3 className="font-serif text-2xl font-bold text-[var(--color-ink)]">
-                {crudModal.mode === 'add' ? 'Tambah' : 'Edit'} Kosakata
+                {crudModal.mode === 'add' ? 'Tambah' : 'Edit'} Huruf Kana
               </h3>
               <button onClick={() => setCrudModal(null)} className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-500 hover:text-black shadow-sm font-bold">✕</button>
             </div>
 
             <form onSubmit={handleCrudSubmit} className="p-6 space-y-4">
               <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Kata Jepang (Karakter / Kanji)</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Kategori Kana</label>
+                <select 
+                  value={kanaForm.category} 
+                  onChange={(e) => setKanaForm({ ...kanaForm, category: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
+                >
+                  <option value="hiragana">Hiragana</option>
+                  <option value="katakana">Katakana</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Huruf Jepang (Karakter)</label>
                 <input 
                   type="text" 
                   required
-                  value={vocabForm.word} 
-                  onChange={(e) => setVocabForm({ ...vocabForm, word: e.target.value })}
-                  placeholder="Contoh: 猫 (ねこ)"
+                  value={kanaForm.kana} 
+                  onChange={(e) => setKanaForm({ ...kanaForm, kana: e.target.value })}
+                  placeholder="Contoh: あ"
                   className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
                 />
               </div>
@@ -155,36 +163,11 @@ export default function ManageVocabulary({ vocabulariesData = [] }: ManageVocabu
                 <input 
                   type="text" 
                   required
-                  value={vocabForm.romaji} 
-                  onChange={(e) => setVocabForm({ ...vocabForm, romaji: e.target.value })}
-                  placeholder="Contoh: neko"
+                  value={kanaForm.romaji} 
+                  onChange={(e) => setKanaForm({ ...kanaForm, romaji: e.target.value })}
+                  placeholder="Contoh: a"
                   className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
                 />
-              </div>
-              <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Arti / Terjemahan</label>
-                <input 
-                  type="text" 
-                  required
-                  value={vocabForm.meaning} 
-                  onChange={(e) => setVocabForm({ ...vocabForm, meaning: e.target.value })}
-                  placeholder="Contoh: Kucing"
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none"
-                />
-              </div>
-              <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-[var(--color-ink-light)] block mb-1">Golongan Kata</label>
-                <select 
-                  value={vocabForm.type} 
-                  onChange={(e) => setVocabForm({ ...vocabForm, type: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#E5E5E5] focus:ring-2 focus:ring-[var(--color-japan-red)] outline-none text-sm"
-                >
-                  <option value="noun">Noun (Kata Benda)</option>
-                  <option value="verb">Verb (Kata Kerja)</option>
-                  <option value="adjective">Adjective (Kata Sifat)</option>
-                  <option value="greeting">Greeting (Salam)</option>
-                  <option value="adverb">Adverb (Kata Keterangan)</option>
-                </select>
               </div>
 
               <div className="pt-4 border-t flex justify-end gap-2">
@@ -199,4 +182,4 @@ export default function ManageVocabulary({ vocabulariesData = [] }: ManageVocabu
   );
 }
 
-ManageVocabulary.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;
+ManageKana.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;

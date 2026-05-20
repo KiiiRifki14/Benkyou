@@ -24,7 +24,7 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <GuestLayout>
-            <Head title="Masuk - Nihongo Journey" />
+            <Head title="Masuk - Benkyou" />
 
             <div className="text-center mb-8 space-y-2">
                 <h2 className="font-serif text-3xl font-bold text-[var(--color-ink)]">Selamat Datang Kembali</h2>

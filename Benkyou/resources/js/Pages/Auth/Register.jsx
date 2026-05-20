@@ -24,7 +24,7 @@ export default function Register() {
 
     return (
         <GuestLayout>
-            <Head title="Daftar Akun - Nihongo Journey" />
+            <Head title="Daftar Akun - Benkyou" />
 
             <div className="text-center mb-8 space-y-2">
                 <h2 className="font-serif text-3xl font-bold text-[var(--color-ink)]">Mulai Perjalananmu</h2>

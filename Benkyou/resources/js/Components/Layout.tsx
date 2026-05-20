@@ -58,11 +58,8 @@ export default function Layout({ children }: LayoutProps) {
                         </div>
                         <div>
                             <h1 className="font-serif font-bold text-lg leading-none">
-                                Nihongo
+                                Benkyou
                             </h1>
-                            <p className="text-[10px] text-[var(--color-ink-light)] tracking-widest uppercase mt-0.5">
-                                Journey
-                            </p>
                         </div>
                     </div>
                     <button

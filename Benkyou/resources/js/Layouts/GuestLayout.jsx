@@ -25,11 +25,8 @@ export default function GuestLayout({ children }) {
                     <div className="flex items-center gap-2">
                         <div>
                             <h1 className="font-serif font-bold text-3xl tracking-tight leading-none group-hover:text-[var(--color-japan-red)] transition-colors">
-                                Nihongo
+                                Benkyou
                             </h1>
-                            <p className="text-xs text-[var(--color-ink-light)] tracking-widest uppercase mt-1">
-                                Journey
-                            </p>
                         </div>
                         <Cat className="text-[var(--color-japan-red)] opacity-80 group-hover:scale-110 transition-transform" size={28} />
                     </div>
@@ -60,7 +57,7 @@ export default function GuestLayout({ children }) {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="mt-8 text-xs text-[var(--color-ink-light)] text-center z-10 font-medium"
             >
-                <p>Nihongo Journey • Platform Belajar Bahasa Jepang Eksklusif</p>
+                <p>Benkyou • Platform Belajar Bahasa Jepang Eksklusif</p>
                 <Link href="/" className="underline hover:text-[var(--color-japan-red)] transition-colors mt-2 inline-block">Kembali ke Halaman Utama</Link>
             </motion.div>
 

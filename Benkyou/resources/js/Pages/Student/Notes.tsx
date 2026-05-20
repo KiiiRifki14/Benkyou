@@ -15,7 +15,7 @@ export default function Notes() {
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('nihongo_notes');
+      const saved = localStorage.getItem('benkyou_notes');
       if (saved) {
         setNotes(JSON.parse(saved));
       }
@@ -42,14 +42,14 @@ export default function Notes() {
 
     const updated = [note, ...notes];
     setNotes(updated);
-    localStorage.setItem('nihongo_notes', JSON.stringify(updated));
+    localStorage.setItem('benkyou_notes', JSON.stringify(updated));
     setNewNote('');
   };
 
   const deleteNote = (id: string) => {
     const updated = notes.filter(n => n.id !== id);
     setNotes(updated);
-    localStorage.setItem('nihongo_notes', JSON.stringify(updated));
+    localStorage.setItem('benkyou_notes', JSON.stringify(updated));
   };
 
   return (
