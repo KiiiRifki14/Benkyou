@@ -26,41 +26,24 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
     const { auth } = usePage().props as any;
     const user = auth?.user;
 
-    const navItems = [
-        { id: "home", label: "Beranda", icon: Home, href: "/home" },
-        { id: "kana", label: "Kana", icon: PenTool, href: "/kana" },
-        { id: "kanji", label: "Kanji", icon: Languages, href: "/kanji" },
-        {
-            id: "vocabulary",
-            label: "Kosakata",
-            icon: List,
-            href: "/vocabulary",
-        },
-        {
-            id: "grammar",
-            label: "Tata Bahasa",
-            icon: BookOpen,
-            href: "/grammar",
-        },
-        {
-            id: "quiz",
-            label: "Latihan Harian",
-            icon: CheckCircle,
-            href: "/quiz",
-        },
-        {
-            id: "certification",
-            label: "Sertifikasi",
-            icon: GraduationCap,
-            href: "/certification",
-        },
-        { id: "notes", label: "Catatan Pribadi", icon: Book, href: "/notes" },
-        {
-            id: "themes",
-            label: "Tema Aplikasi",
-            icon: Palette,
-            href: "/themes",
-        },
+    const navItems = user?.role === 'admin' ? [
+        { id: "home", label: "Beranda / Siswa", icon: Home, href: "/admin" },
+        { id: "kana", label: "Kelola Kana", icon: PenTool, href: "/admin/kana" },
+        { id: "kanji", label: "Kelola Kanji", icon: Languages, href: "/admin/kanji" },
+        { id: "vocabulary", label: "Kelola Kosakata", icon: List, href: "/admin/vocabulary" },
+        { id: "grammar", label: "Kelola Tata Bahasa", icon: BookOpen, href: "/admin/grammar" },
+        { id: "question", label: "Kelola Kuis & Sertif", icon: CheckCircle, href: "/admin/question" },
+        { id: "themes", label: "Tema Aplikasi", icon: Palette, href: "/student/themes" },
+    ] : [
+        { id: "home", label: "Beranda", icon: Home, href: "/student/home" },
+        { id: "kana", label: "Kana", icon: PenTool, href: "/student/kana" },
+        { id: "kanji", label: "Kanji", icon: Languages, href: "/student/kanji" },
+        { id: "vocabulary", label: "Kosakata", icon: List, href: "/student/vocabulary" },
+        { id: "grammar", label: "Tata Bahasa", icon: BookOpen, href: "/student/grammar" },
+        { id: "quiz", label: "Latihan Harian", icon: CheckCircle, href: "/student/quiz" },
+        { id: "certification", label: "Sertifikasi", icon: GraduationCap, href: "/student/certification" },
+        { id: "notes", label: "Catatan Pribadi", icon: Book, href: "/student/notes" },
+        { id: "themes", label: "Tema Aplikasi", icon: Palette, href: "/student/themes" },
     ];
 
     return (

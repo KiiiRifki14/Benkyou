@@ -10,49 +10,49 @@ export default function Home() {
 
   const features = [
     {
-      href: '/kana',
+      href: '/student/kana',
       title: 'Kana',
       description: 'Kuasai alfabet dasar: Hiragana dan Katakana.',
       icon: 'あ',
       borderColor: 'hover:border-[var(--color-sakura)]'
     },
     {
-      href: '/kanji',
+      href: '/student/kanji',
       title: 'Kanji',
       description: 'Pelajari karakter Kanji dari level dasar ke tingkat lanjut.',
       icon: '漢',
       borderColor: 'hover:border-[#F5A623]'
     },
     {
-      href: '/vocabulary',
+      href: '/student/vocabulary',
       title: 'Kosakata',
       description: 'Perbanyak perbendaharaan kata dengan kosakata esensial.',
       icon: 'list',
       borderColor: 'hover:border-[var(--color-matcha)]'
     },
     {
-      href: '/grammar',
+      href: '/student/grammar',
       title: 'Tata Bahasa',
       description: 'Pelajari struktur kalimat, tata bahasa, dan partikel.',
       icon: 'grammar',
       borderColor: 'hover:border-[#4A90E2]'
     },
     {
-      href: '/quiz',
+      href: '/student/quiz',
       title: 'Kuis Singkat',
       description: 'Uji seberapa jauh kemampuan bahasa Jepang kamu.',
       icon: '?',
       borderColor: 'hover:border-[#9B51E0]'
     },
     {
-      href: '/certification',
+      href: '/student/certification',
       title: 'Sertifikasi',
       description: 'Ikuti ujian level N5 hingga N1 untuk menguji dirimu.',
       icon: '★',
       borderColor: 'hover:border-[var(--color-japan-red)]'
     },
     {
-      href: '/notes',
+      href: '/student/notes',
       title: 'Catatan',
       description: 'Catat poin penting dari pelajaran yang sedang disimak.',
       icon: 'notes',
@@ -119,7 +119,7 @@ export default function Home() {
             </div>
           </div>
           <Link
-            href="/vocabulary"
+            href="/student/vocabulary"
             className="w-full sm:w-auto px-6 py-3 rounded-full bg-white text-[var(--color-ink)] font-medium text-sm hover:bg-[var(--color-washi)] transition-colors inline-block text-center"
           >
             Lihat lebih banyak kata

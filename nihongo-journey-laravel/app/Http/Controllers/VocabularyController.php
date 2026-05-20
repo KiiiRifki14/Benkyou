@@ -10,7 +10,7 @@ class VocabularyController extends Controller
     public function index()
     {
         $vocabularies = Vocabulary::all();
-        return Inertia::render('Vocabulary', [
+        return Inertia::render('Student/Vocabulary', [
             'vocabularyData' => $vocabularies
         ]);
     }

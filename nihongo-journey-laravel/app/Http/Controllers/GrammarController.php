@@ -10,7 +10,7 @@ class GrammarController extends Controller
     public function index()
     {
         $grammars = Grammar::all();
-        return Inertia::render('Grammar', [
+        return Inertia::render('Student/Grammar', [
             'grammarData' => $grammars
         ]);
     }

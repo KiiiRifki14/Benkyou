@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Palette, Lock, CheckCircle2, Cat } from 'lucide-react';
-import { certificationCategories } from '../data/certification';
+import { certificationCategories } from '../../data/certification';
 import Layout from '@/Components/Layout';
 
 export const THEMES = {
@@ -23,13 +23,23 @@ export const applyTheme = (themeId: string) => {
   localStorage.setItem('nihongo_theme', themeId);
 };
 
+import { usePage } from '@inertiajs/react';
+
 export default function Themes() {
+  const { auth } = usePage().props as any;
+  const user = auth?.user;
+
   const [activeTheme, setActiveTheme] = useState('default');
   const [unlocked, setUnlocked] = useState<string[]>(['default']);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('nihongo_theme') || 'default';
     setActiveTheme(savedTheme);
+
+    if (user?.role === 'admin') {
+      setUnlocked(Object.keys(THEMES));
+      return;
+    }
 
     let unlockedKeys = ['default'];
     let progress: Record<string, number[]> = {n5:[1],n4:[1],n3:[1],n2:[1],n1:[1]};
@@ -51,7 +61,7 @@ export default function Themes() {
       }
     });
     setUnlocked(unlockedKeys);
-  }, []);
+  }, [user]);
 
   const handleSelectTheme = (themeId: string) => {
     if (unlocked.includes(themeId)) {

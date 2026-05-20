@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { vocabulary } from '../data/vocabulary';
-import { kanji } from '../data/kanji';
-import { grammar } from '../data/grammar';
+import { vocabulary } from '../../data/vocabulary';
+import { kanji } from '../../data/kanji';
+import { grammar } from '../../data/grammar';
 import { CheckCircle2, XCircle, RefreshCw, ChevronRight } from 'lucide-react';
 import Layout from '@/Components/Layout';
 
@@ -14,7 +14,17 @@ interface Question {
   explanation?: string;
 }
 
-export default function Quiz() {
+interface DatabaseQuestion {
+  id: number;
+  type: string;
+  question_type: string;
+  question: string;
+  options: string[] | string;
+  answer: string | string[];
+  explanation?: string;
+}
+
+export default function Quiz({ questionsData = [] }: { questionsData?: DatabaseQuestion[] }) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -23,8 +33,39 @@ export default function Quiz() {
   const [answered, setAnswered] = useState(false);
 
   useEffect(() => {
-    generateQuestions();
-  }, []);
+    if (questionsData && questionsData.length > 0) {
+      const formatted = questionsData.map(q => {
+        let parsedOptions = [];
+        try {
+          parsedOptions = typeof q.options === 'string' ? JSON.parse(q.options) : q.options;
+        } catch(e) {
+          parsedOptions = q.options || [];
+        }
+
+        let parsedAnswer = '';
+        try {
+          parsedAnswer = typeof q.answer === 'string' ? JSON.parse(q.answer) : q.answer;
+          if (Array.isArray(parsedAnswer)) {
+            parsedAnswer = parsedAnswer[0];
+          }
+        } catch(e) {
+          parsedAnswer = (q.answer as string) || '';
+        }
+
+        return {
+          text: q.question,
+          options: parsedOptions,
+          answer: parsedAnswer,
+          category: 'Latihan Harian',
+          explanation: q.explanation
+        };
+      });
+      setQuestions(formatted);
+      resetState();
+    } else {
+      generateQuestions();
+    }
+  }, [questionsData]);
 
   const generateQuestions = () => {
     const mixedQuestions: Question[] = [];

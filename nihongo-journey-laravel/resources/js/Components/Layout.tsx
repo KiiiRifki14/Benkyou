@@ -12,7 +12,13 @@ export default function Layout({ children }: LayoutProps) {
     const { url } = usePage();
 
     // Determine current page based on URL
-    const currentPage = url.split("/")[1] || "home";
+    const parts = url.split("/");
+    let currentPage = "home";
+    if (parts.length > 2 && (parts[1] === 'student' || parts[1] === 'admin')) {
+        currentPage = parts[2] || "home";
+    } else {
+        currentPage = parts[1] || "home";
+    }
 
     return (
         <div className="flex h-screen bg-[var(--color-washi)] overflow-hidden">

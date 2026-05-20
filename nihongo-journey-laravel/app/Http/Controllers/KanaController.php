@@ -10,7 +10,7 @@ class KanaController extends Controller
     public function index()
     {
         $kanas = Kana::all();
-        return Inertia::render('Kana', [
+        return Inertia::render('Student/Kana', [
             'kanaData' => $kanas
         ]);
     }

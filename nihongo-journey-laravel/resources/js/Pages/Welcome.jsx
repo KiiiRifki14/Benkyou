@@ -97,7 +97,7 @@ export default function Welcome({ auth }) {
             <div className="flex items-center gap-3">
               {auth?.user ? (
                 <Link
-                  href="/home"
+                  href="/dashboard"
                   className="px-6 py-2.5 rounded-full bg-[var(--color-japan-red)] text-white text-sm font-bold hover:opacity-90 transition-all shadow-md hover:shadow-[var(--color-japan-red)]/20 flex items-center gap-2"
                 >
                   Dasbor Belajar <ArrowRight size={16} />
@@ -144,7 +144,7 @@ export default function Welcome({ auth }) {
 
             <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href={auth?.user ? "/home" : "/register"}
+                href={auth?.user ? "/dashboard" : "/register"}
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-[var(--color-japan-red)] text-white font-bold text-base hover:opacity-90 transition-all shadow-lg hover:shadow-[var(--color-japan-red)]/30 hover:-translate-y-0.5 flex items-center justify-center gap-3 group"
               >
                 Mulai Petualanganmu <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
@@ -329,7 +329,7 @@ export default function Welcome({ auth }) {
               </p>
               <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
                 <Link
-                  href={auth?.user ? "/home" : "/register"}
+                  href={auth?.user ? "/dashboard" : "/register"}
                   className="px-8 py-4 rounded-full bg-[var(--color-japan-red)] text-white font-bold text-base hover:opacity-90 transition-all shadow-lg hover:shadow-[var(--color-japan-red)]/30 hover:-translate-y-0.5 flex items-center justify-center gap-2"
                 >
                   Daftar Gratis Sekarang <ArrowRight size={20} />

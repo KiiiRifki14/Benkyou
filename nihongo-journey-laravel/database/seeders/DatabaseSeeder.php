@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
             KanjiSeeder::class,
             VocabularySeeder::class,
             GrammarSeeder::class,
+            QuestionSeeder::class,
         ]);
     }
 }

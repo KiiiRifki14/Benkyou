@@ -10,7 +10,7 @@ class KanjiController extends Controller
     public function index()
     {
         $kanjis = Kanji::all();
-        return Inertia::render('Kanji', [
+        return Inertia::render('Student/Kanji', [
             'kanjiData' => $kanjis
         ]);
     }

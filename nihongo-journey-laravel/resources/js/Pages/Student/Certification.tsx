@@ -1,16 +1,108 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { certificationCategories, CertificationCategory, CertificationLevel, CertificationQuestion } from '../data/certification';
+import { certificationCategories, CertificationCategory, CertificationLevel, CertificationQuestion } from '../../data/certification';
 import { Trophy, Award, BookOpen, AlertCircle, RefreshCw, Volume2, Send, CheckCircle2, XCircle, Type, Headphones, Eye, Lock, Unlock, ArrowLeft, Image as ImageIcon } from 'lucide-react';
 import Layout from '@/Components/Layout';
 import { usePage } from '@inertiajs/react';
 
-export default function Certification() {
+interface DatabaseQuestion {
+  id: number;
+  type: string;
+  question_type: string;
+  question: string;
+  options: string[] | string;
+  answer: string | string[];
+  explanation?: string;
+  context?: string;
+  spokenText?: string;
+  speechLang?: string;
+  imageUrl?: string;
+  level_id: number;
+}
+
+export default function Certification({ questionsData = [] }: { questionsData?: DatabaseQuestion[] }) {
   const { auth } = usePage().props as any;
   const user = auth?.user;
 
+  const [categories, setCategories] = useState<CertificationCategory[]>(certificationCategories);
   const [selectedCategory, setSelectedCategory] = useState<CertificationCategory | null>(null);
   const [selectedLevel, setSelectedLevel] = useState<CertificationLevel | null>(null);
+
+  useEffect(() => {
+    if (questionsData && questionsData.length > 0) {
+      const mappedCategories = certificationCategories.map(cat => {
+        const catQuestions = questionsData.filter(q => q.type === cat.id);
+        
+        if (catQuestions.length === 0) return cat;
+
+        const levelsMap: Record<number, any[]> = {};
+        catQuestions.forEach(q => {
+          let parsedOptions = [];
+          try {
+            parsedOptions = typeof q.options === 'string' ? JSON.parse(q.options) : q.options;
+          } catch(e) {
+            parsedOptions = q.options || [];
+          }
+
+          let parsedAnswer: string | string[] = '';
+          try {
+            parsedAnswer = typeof q.answer === 'string' ? JSON.parse(q.answer) : q.answer;
+          } catch(e) {
+            parsedAnswer = q.answer || '';
+          }
+
+          if (!levelsMap[q.level_id]) {
+            levelsMap[q.level_id] = [];
+          }
+          levelsMap[q.level_id].push({
+            type: q.question_type,
+            category: q.question_type === 'typing' ? 'Kanji' : 'Vocabulary',
+            question: q.question,
+            options: parsedOptions,
+            answer: parsedAnswer,
+            explanation: q.explanation || '',
+            context: q.context,
+            spokenText: q.spokenText,
+            speechLang: q.speechLang,
+            imageUrl: q.imageUrl
+          });
+        });
+
+        const newLevels = Object.keys(levelsMap).map(lvlIdStr => {
+          const lvlId = parseInt(lvlIdStr);
+          return {
+            id: lvlId,
+            title: `${cat.id.toUpperCase()} Level ${lvlId}`,
+            description: `Ujian ${cat.id.toUpperCase()} Level ${lvlId} - Terdiri dari ${levelsMap[lvlId].length} soal dari database.`,
+            passingScore: 70,
+            questions: levelsMap[lvlId]
+          };
+        }).sort((a, b) => a.id - b.id);
+
+        return {
+          ...cat,
+          levels: newLevels.length > 0 ? newLevels : cat.levels
+        };
+      });
+      setCategories(mappedCategories);
+    }
+  }, [questionsData]);
+
+  // Update selected category when categories state changes
+  useEffect(() => {
+    if (selectedCategory) {
+      const updatedCat = categories.find(c => c.id === selectedCategory.id);
+      if (updatedCat) {
+        setSelectedCategory(updatedCat);
+        if (selectedLevel) {
+          const updatedLvl = updatedCat.levels.find(l => l.id === selectedLevel.id);
+          if (updatedLvl) {
+            setSelectedLevel(updatedLvl);
+          }
+        }
+      }
+    }
+  }, [categories]);
   const [unlockedLevels, setUnlockedLevels] = useState<Record<string, number[]>>(() => {
     try {
       const saved = localStorage.getItem('unlockedCertificationLevels');
@@ -186,7 +278,7 @@ export default function Certification() {
         </header>
         
         <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-          {certificationCategories.map((cat) => {
+          {categories.map((cat) => {
              const unlocked = unlockedLevels[cat.id];
              const isCompleted = unlocked.includes(cat.levels.length + 1);
              // We can check if they actually passed level 10 somehow, but if 10 is unlocked, it means 1-9 are done. Wait, to pass level 10, there's no level 11.
