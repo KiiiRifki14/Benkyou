@@ -14,42 +14,41 @@ export default function Notes() {
   const [newNote, setNewNote] = useState('');
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem('benkyou_notes');
-      if (saved) {
-        setNotes(JSON.parse(saved));
-      }
-    } catch (e) {
-      console.error('Failed to parse notes from local storage:', e);
-    }
+    // Fetch from API instead of localStorage
+    window.axios.get('/student/notes/api')
+      .then(res => setNotes(res.data))
+      .catch(err => console.error('Failed to fetch notes:', err));
   }, []);
 
   const saveNote = () => {
     if (!newNote.trim()) return;
     
-    const note: Note = {
-      id: Date.now().toString(),
-      date: new Date().toLocaleDateString('id-ID', {
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      }),
-      content: newNote
-    };
+    const dateStr = new Date().toLocaleDateString('id-ID', {
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
 
-    const updated = [note, ...notes];
-    setNotes(updated);
-    localStorage.setItem('benkyou_notes', JSON.stringify(updated));
-    setNewNote('');
+    window.axios.post('/student/notes/api', {
+      date: dateStr,
+      content: newNote
+    })
+    .then(res => {
+      setNotes([res.data.note, ...notes]);
+      setNewNote('');
+    })
+    .catch(err => console.error('Failed to save note:', err));
   };
 
   const deleteNote = (id: string) => {
-    const updated = notes.filter(n => n.id !== id);
-    setNotes(updated);
-    localStorage.setItem('benkyou_notes', JSON.stringify(updated));
+    window.axios.delete(`/student/notes/api/${id}`)
+      .then(() => {
+        setNotes(notes.filter(n => n.id !== id));
+      })
+      .catch(err => console.error('Failed to delete note:', err));
   };
 
   return (

@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
             VocabularySeeder::class,
             GrammarSeeder::class,
             QuestionSeeder::class,
+            JLPTN5QuestionsSeeder::class,
         ]);
     }
 }

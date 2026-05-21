@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserCertification::class);
     }
+
+    public function preference()
+    {
+        return $this->hasOne(UserPreference::class);
+    }
 }

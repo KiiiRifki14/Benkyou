@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -22,7 +23,9 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::get('/dashboard', function () {
-    if (auth()->user()->role === 'admin') {
+    /** @var \App\Models\User|null $user */
+    $user = \App\Models\User::find(Auth::id());
+    if ($user && $user->role === 'admin') {
         return redirect()->route('admin.dashboard');
     }
     return redirect()->route('student.home');
@@ -41,12 +44,12 @@ Route::prefix('student')->middleware(['auth'])->group(function () {
     Route::get('/home', function () {
         return Inertia::render('Student/Home');
     })->name('student.home');
-    
+
     Route::get('/kana', [KanaController::class, 'index'])->name('student.kana');
     Route::get('/kanji', [KanjiController::class, 'index'])->name('student.kanji');
     Route::get('/vocabulary', [VocabularyController::class, 'index'])->name('student.vocabulary');
     Route::get('/grammar', [GrammarController::class, 'index'])->name('student.grammar');
-    
+
     Route::get('/quiz', function () {
         return Inertia::render('Student/Quiz', [
             'questionsData' => \App\Models\Question::where('type', 'quiz')->get()
@@ -64,20 +67,31 @@ Route::prefix('student')->middleware(['auth'])->group(function () {
     })->name('student.notes');
 
     Route::get('/themes', function () {
-        return Inertia::render('Student/Themes');
+        /** @var \App\Models\User|null $user */
+        $user = \App\Models\User::with(['preference', 'certifications'])->find(Auth::id());
+        return Inertia::render('Student/Themes', [
+            'userTheme' => $user?->preference?->theme_id ?? 'default',
+            'userCertifications' => $user?->certifications ?? [],
+        ]);
     })->name('student.themes');
+
+    // API endpoints for frontend
+    Route::post('/preferences', [App\Http\Controllers\UserPreferenceController::class, 'update'])->name('student.preferences.update');
+    Route::get('/notes/api', [App\Http\Controllers\UserNoteController::class, 'index'])->name('student.notes.api.index');
+    Route::post('/notes/api', [App\Http\Controllers\UserNoteController::class, 'store'])->name('student.notes.api.store');
+    Route::delete('/notes/api/{note}', [App\Http\Controllers\UserNoteController::class, 'destroy'])->name('student.notes.api.destroy');
 });
 
 // Admin Prefixed Routes & CRUD Operations
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
-    
+
     Route::get('/kana', [AdminController::class, 'kanaView'])->name('admin.kana');
     Route::get('/kanji', [AdminController::class, 'kanjiView'])->name('admin.kanji');
     Route::get('/vocabulary', [AdminController::class, 'vocabularyView'])->name('admin.vocabulary');
     Route::get('/grammar', [AdminController::class, 'grammarView'])->name('admin.grammar');
     Route::get('/question', [AdminController::class, 'questionView'])->name('admin.question');
-    
+
     // Kana CRUD
     Route::post('/kana', [AdminController::class, 'storeKana'])->name('admin.kana.store');
     Route::put('/kana/{id}', [AdminController::class, 'updateKana'])->name('admin.kana.update');

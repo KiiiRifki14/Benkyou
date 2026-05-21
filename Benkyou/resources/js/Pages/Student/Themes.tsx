@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Palette, Lock, CheckCircle2, Cat } from 'lucide-react';
-import { certificationCategories } from '../../data/certification';
+import { Palette, Lock, Cat } from 'lucide-react';
+import { usePage } from '@inertiajs/react';
 import Layout from '@/Components/Layout';
 
 export const THEMES = {
@@ -20,21 +20,19 @@ export const applyTheme = (themeId: string) => {
   Object.entries(t.props).forEach(([key, value]) => {
     root.style.setProperty(key, value as string);
   });
-  localStorage.setItem('benkyou_theme', themeId);
 };
 
-import { usePage } from '@inertiajs/react';
 
 export default function Themes() {
-  const { auth } = usePage().props as any;
+  const { auth, userTheme, userCertifications } = usePage().props as any;
   const user = auth?.user;
 
-  const [activeTheme, setActiveTheme] = useState('default');
+  const [activeTheme, setActiveTheme] = useState(userTheme || 'default');
   const [unlocked, setUnlocked] = useState<string[]>(['default']);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('benkyou_theme') || 'default';
-    setActiveTheme(savedTheme);
+    // Apply the saved theme from database on load
+    applyTheme(userTheme || 'default');
 
     if (user?.role === 'admin') {
       setUnlocked(Object.keys(THEMES));
@@ -42,31 +40,29 @@ export default function Themes() {
     }
 
     let unlockedKeys = ['default'];
-    let progress: Record<string, number[]> = {n5:[1],n4:[1],n3:[1],n2:[1],n1:[1]};
-    try {
-      progress = JSON.parse(localStorage.getItem('unlockedCertificationLevels') || '{"n5":[1],"n4":[1],"n3":[1],"n2":[1],"n1":[1]}');
-    } catch (e) {
-      console.error('Failed to parse progress from local storage:', e);
-    }
-    
-    certificationCategories.forEach(cat => {
-      const catProgress = progress[cat.id] || [];
-      // Theme unlocks when you finish the final level (its ID + 1 gets added to progress array length)
-      if (catProgress.includes(cat.levels.length + 1)) {
-        if (cat.id === 'n5') unlockedKeys.push('sakura');
-        if (cat.id === 'n4') unlockedKeys.push('matcha');
-        if (cat.id === 'n3') unlockedKeys.push('fuji');
-        if (cat.id === 'n2') unlockedKeys.push('autumn');
-        if (cat.id === 'n1') unlockedKeys.push('midnight');
+    const certList: { category: string; passed: boolean }[] = userCertifications || [];
+
+    certList.forEach(cert => {
+      if (cert.passed) {
+        if (cert.category === 'n5') unlockedKeys.push('sakura');
+        if (cert.category === 'n4') unlockedKeys.push('matcha');
+        if (cert.category === 'n3') unlockedKeys.push('fuji');
+        if (cert.category === 'n2') unlockedKeys.push('autumn');
+        if (cert.category === 'n1') unlockedKeys.push('midnight');
       }
     });
+
     setUnlocked(unlockedKeys);
-  }, [user]);
+  }, [user, userTheme, userCertifications]);
 
   const handleSelectTheme = (themeId: string) => {
     if (unlocked.includes(themeId)) {
       setActiveTheme(themeId);
       applyTheme(themeId);
+      
+      // Save to backend
+      window.axios.post('/student/preferences', { theme_id: themeId })
+        .catch(err => console.error('Failed to save theme preference:', err));
     }
   };
 

@@ -13,7 +13,11 @@
         <!-- Scripts -->
         @routes
         @viteReactRefresh
-        @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
+        @php
+            $component = $page['component'];
+            $extension = file_exists(resource_path("js/Pages/{$component}.tsx")) ? 'tsx' : 'jsx';
+        @endphp
+        @vite(['resources/js/app.jsx', "resources/js/Pages/{$component}.{$extension}"])
         @inertiaHead
     </head>
     <body class="font-sans antialiased">

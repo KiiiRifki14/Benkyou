@@ -62,52 +62,8 @@ class QuestionSeeder extends Seeder
         // and allow admin to edit/add/delete them!
         $nLevels = ['n5', 'n4', 'n3', 'n2', 'n1'];
         
-        $n5Questions = [
-            [
-                'level_id' => 1,
-                'question_type' => 'multiple-choice',
-                'question' => 'Lengkapi kalimat: "私_____学生です。"',
-                'options' => ['は', 'が', 'を', 'に'],
-                'answer' => 'は',
-                'explanation' => 'Partikel は (wa) menandakan subjek atau topik kalimat.',
-            ],
-            [
-                'level_id' => 1,
-                'question_type' => 'multiple-choice',
-                'question' => 'Lengkapi kalimat: "犬_____います。"',
-                'options' => ['が', 'を', 'は', 'で'],
-                'answer' => 'が',
-                'explanation' => 'Untuk menunjukkan keberadaan makhluk hidup digunakan partikel が + います.',
-            ],
-            [
-                'level_id' => 1,
-                'question_type' => 'typing',
-                'question' => 'Ketik dalam romaji cara baca dari Kanji "水" (Air):',
-                'answer' => ['mizu', 'MIZU'],
-                'explanation' => 'Kanji 水 artinya air dan dibaca "mizu".',
-            ],
-            [
-                'level_id' => 2,
-                'question_type' => 'multiple-choice',
-                'question' => 'Apa arti dari Kanji "車"?',
-                'options' => ['Mobil', 'Kereta', 'Buku', 'Gunung'],
-                'answer' => 'Mobil',
-                'explanation' => 'Kanji 車 dibaca "kuruma" yang berarti Mobil.',
-            ],
-            [
-                'level_id' => 2,
-                'question_type' => 'multiple-choice',
-                'question' => 'Lengkapi kalimat: "リンゴ_____食べます。"',
-                'options' => ['を', 'が', 'に', 'は'],
-                'answer' => 'を',
-                'explanation' => 'Partikel を (wo) menandakan objek langsung dari kata kerja tindakan.',
-            ]
-        ];
+        // N5 Questions are now seeded via JLPTN5QuestionsSeeder from the Markdown file.
 
-        foreach ($n5Questions as $q) {
-            $q['type'] = 'n5';
-            Question::create($q);
-        }
 
         $n4Questions = [
             [

@@ -15,6 +15,8 @@ import {
     LogIn,
     UserPlus,
     ShieldAlert,
+    LayoutDashboard,
+    ChevronRight,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -26,15 +28,32 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
     const { auth } = usePage().props as any;
     const user = auth?.user;
 
-    const navItems = user?.role === 'admin' ? [
-        { id: "home", label: "Beranda / Siswa", icon: Home, href: "/admin" },
-        { id: "kana", label: "Kelola Kana", icon: PenTool, href: "/admin/kana" },
-        { id: "kanji", label: "Kelola Kanji", icon: Languages, href: "/admin/kanji" },
-        { id: "vocabulary", label: "Kelola Kosakata", icon: List, href: "/admin/vocabulary" },
-        { id: "grammar", label: "Kelola Tata Bahasa", icon: BookOpen, href: "/admin/grammar" },
-        { id: "question", label: "Kelola Kuis & Sertif", icon: CheckCircle, href: "/admin/question" },
-        { id: "themes", label: "Tema Aplikasi", icon: Palette, href: "/student/themes" },
-    ] : [
+    const adminNavGroups = [
+        {
+            label: "Ikhtisar",
+            items: [
+                { id: "admin", label: "Dashboard Admin", icon: LayoutDashboard, href: "/admin" },
+            ],
+        },
+        {
+            label: "Kelola Konten",
+            items: [
+                { id: "kana", label: "Huruf Kana", icon: PenTool, href: "/admin/kana" },
+                { id: "kanji", label: "Karakter Kanji", icon: Languages, href: "/admin/kanji" },
+                { id: "vocabulary", label: "Kosakata", icon: List, href: "/admin/vocabulary" },
+                { id: "grammar", label: "Tata Bahasa", icon: BookOpen, href: "/admin/grammar" },
+                { id: "question", label: "Kuis & Sertifikasi", icon: CheckCircle, href: "/admin/question" },
+            ],
+        },
+        {
+            label: "Pengaturan",
+            items: [
+                { id: "themes", label: "Tema Aplikasi", icon: Palette, href: "/student/themes" },
+            ],
+        },
+    ];
+
+    const studentNavItems = [
         { id: "home", label: "Beranda", icon: Home, href: "/student/home" },
         { id: "kana", label: "Kana", icon: PenTool, href: "/student/kana" },
         { id: "kanji", label: "Kanji", icon: Languages, href: "/student/kanji" },
@@ -46,6 +65,111 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
         { id: "themes", label: "Tema Aplikasi", icon: Palette, href: "/student/themes" },
     ];
 
+    const isAdmin = user?.role === 'admin';
+
+    // Generate avatar initials
+    const getInitials = (name: string) => {
+        if (!name) return '?';
+        const parts = name.trim().split(' ');
+        if (parts.length === 1) return parts[0][0].toUpperCase();
+        return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    };
+
+    if (isAdmin) {
+        return (
+            <div className="flex flex-col h-full" style={{ background: 'linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%)' }}>
+                {/* Logo */}
+                <div className="px-5 py-6 border-b border-white/10">
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-jp font-bold text-xl shadow-lg shrink-0 transition-transform group-hover:scale-105"
+                            style={{ background: 'linear-gradient(135deg, #bc002d, #e53e3e)' }}>
+                            日
+                        </div>
+                        <div>
+                            <h1 className="font-serif font-bold text-lg leading-tight text-white group-hover:text-red-300 transition-colors">
+                                Benkyou
+                            </h1>
+                            <p className="text-[10px] font-bold uppercase tracking-widest text-white/40">Admin Panel</p>
+                        </div>
+                        <Cat className="ml-auto text-white/20 group-hover:text-red-400 transition-colors shrink-0" size={20} />
+                    </Link>
+                </div>
+
+                {/* Navigation Groups */}
+                <nav className="flex-1 px-3 py-4 space-y-5 overflow-y-auto">
+                    {adminNavGroups.map((group) => (
+                        <div key={group.label}>
+                            <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 px-3 mb-1.5">
+                                {group.label}
+                            </p>
+                            <div className="space-y-0.5">
+                                {group.items.map((item) => {
+                                    const Icon = item.icon;
+                                    const isActive = currentPage === item.id || (item.id === 'admin' && currentPage === 'home');
+                                    return (
+                                        <Link
+                                            key={item.id}
+                                            href={item.href}
+                                            onClick={onNavigate}
+                                            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group ${
+                                                isActive
+                                                    ? "bg-white/15 text-white shadow-sm"
+                                                    : "text-white/50 hover:bg-white/8 hover:text-white/80"
+                                            }`}
+                                            style={isActive ? { boxShadow: '0 0 0 1px rgba(255,255,255,0.1)' } : {}}
+                                        >
+                                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all duration-200 ${
+                                                isActive
+                                                    ? 'bg-[#bc002d] text-white shadow-md'
+                                                    : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white/70'
+                                            }`}
+                                                style={isActive ? { boxShadow: '0 4px 12px rgba(188,0,45,0.4)' } : {}}>
+                                                <Icon size={15} />
+                                            </div>
+                                            <span className="font-medium text-sm truncate">{item.label}</span>
+                                            {isActive && (
+                                                <ChevronRight size={14} className="ml-auto text-white/40 shrink-0" />
+                                            )}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    ))}
+                </nav>
+
+                {/* User Footer */}
+                <div className="px-3 py-4 border-t border-white/10">
+                    <div className="flex items-center gap-3 px-3 py-3 rounded-xl bg-white/5">
+                        <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0"
+                            style={{ background: 'linear-gradient(135deg, #bc002d, #e53e3e)' }}>
+                            {getInitials(user?.name || '')}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-sm font-bold text-white truncate leading-tight">{user?.name}</p>
+                            <p className="text-[10px] text-white/40 truncate">{user?.email}</p>
+                        </div>
+                        <Link
+                            href="/logout"
+                            method="post"
+                            as="button"
+                            className="w-8 h-8 flex items-center justify-center rounded-lg text-white/30 hover:text-red-400 hover:bg-red-500/10 transition-all shrink-0"
+                            title="Keluar"
+                        >
+                            <LogOut size={15} />
+                        </Link>
+                    </div>
+                    <div className="mt-2 px-3">
+                        <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-white/25">
+                            <ShieldAlert size={10} /> Administrator Sensei
+                        </span>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // Student sidebar (light theme)
     return (
         <>
             <div className="p-6 md:p-8 flex items-center gap-3">
@@ -66,7 +190,7 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
             </div>
 
             <nav className="flex-1 px-4 py-2 space-y-1.5 overflow-y-auto">
-                {navItems.map((item) => {
+                {studentNavItems.map((item) => {
                     const Icon = item.icon;
                     const isActive = currentPage === item.id;
                     return (
@@ -80,15 +204,8 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                                     : "text-[var(--color-ink-light)] hover:bg-[var(--color-washi)] hover:text-[var(--color-ink)]"
                             }`}
                         >
-                            <Icon
-                                size={20}
-                                className={
-                                    isActive ? "stroke-2" : "stroke-[1.5]"
-                                }
-                            />
-                            <span className="font-medium text-left truncate">
-                                {item.label}
-                            </span>
+                            <Icon size={20} className={isActive ? "stroke-2" : "stroke-[1.5]"} />
+                            <span className="font-medium text-left truncate">{item.label}</span>
                             {isActive && (
                                 <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[var(--color-japan-red)] shrink-0" />
                             )}
