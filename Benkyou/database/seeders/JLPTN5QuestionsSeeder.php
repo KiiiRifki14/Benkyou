@@ -51,6 +51,24 @@ class JLPTN5QuestionsSeeder extends Seeder
                 $explanation = $this->extractField($chunk, '/Penjelasan:\s*(.*?)(?=Soal\s+\d+|LEVEL\s+\d+|$)/is');
                 $level = $this->extractField($chunk, '/Level\s*\/\s*Tahap\s*\(Ujian\):\s*(\d+)/i');
 
+                // Fallback: if context label wasn't present, try to detect an unlabeled Japanese paragraph
+                if (empty($context)) {
+                    // If the extracted rawQuestion contains a newline followed by Japanese text, split there
+                    if (preg_match("/^(.*?)(?:\\r?\\n+)([\\p{Hiragana}\\p{Katakana}\\p{Han}].*)$/us", $rawQuestion, $m)) {
+                        $rawQuestion = trim($m[1]);
+                        $context = trim($m[2]);
+                    } else {
+                        // Otherwise, look for text after the question inside the chunk before options/answer/explanation
+                        if (!empty($rawQuestion) && preg_match('/'.preg_quote($rawQuestion,'/').'(.+?)(?:Pilihan\\s*1:|Pilihan\\s*\\d+:|Jawaban\\s*Benar:|Penjelasan:|$)/isu', $chunk, $mm)) {
+                            $possible = trim($mm[1]);
+                            if ($possible !== '' && preg_match('/[\\p{Hiragana}\\p{Katakana}\\p{Han}]/u', $possible)) {
+                                $context = trim($possible);
+                                $rawQuestion = trim($rawQuestion);
+                            }
+                        }
+                    }
+                }
+
                 $options = [];
                 if (preg_match('/Pilihan\s*1:\s*(.*?)\s*Pilihan\s*2:\s*(.*?)\s*Pilihan\s*3:\s*(.*?)\s*Pilihan\s*4:\s*(.*?)(?:Jawaban\s*Benar:|Penjelasan:|$)/is', $chunk, $optionMatches)) {
                     $options = array_map('trim', array_slice($optionMatches, 1, 4));
@@ -106,44 +124,15 @@ class JLPTN5QuestionsSeeder extends Seeder
                 $q['question'] = trim($q['question']);
             }
 
-            // if multiple-choice with options, shuffle options but preserve correct answer as value
+            // if multiple-choice with options, keep options order as in source (no seeder-time shuffling)
             if (!empty($q['options']) && is_array($q['options'])) {
                 $originalOptions = $q['options'];
                 $correct = is_array($q['answer']) ? $q['answer'][0] ?? null : $q['answer'];
 
                 // normalize whitespace for comparison
                 $normalized = fn($s) => mb_strtolower(trim((string)$s));
-
-                // shuffle
-                $shuffled = $originalOptions;
-                shuffle($shuffled);
-
-                // if the correct answer text isn't present (rare), try to detect by equality
-                $found = false;
-                foreach ($shuffled as $opt) {
-                    if ($normalized($opt) === $normalized($correct)) {
-                        $found = true;
-                        break;
-                    }
-                }
-
-                // if not found, attempt to find in original options and pick its shuffled equivalent
-                if (!$found && $correct !== null) {
-                    foreach ($originalOptions as $origOpt) {
-                        if ($normalized($origOpt) === $normalized($correct)) {
-                            // try to ensure correct appears in shuffled (fallback: replace first)
-                            if (!in_array($origOpt, $shuffled, true)) {
-                                $shuffled[0] = $origOpt;
-                            }
-                            $found = true;
-                            break;
-                        }
-                    }
-                }
-
-                $q['options'] = array_values($shuffled);
-
-                // set answer to the correct option text (ensure it matches one of the options)
+                // preserve original options order
+                $q['options'] = array_values($originalOptions);
                 if ($correct !== null) {
                     $q['answer'] = $correct;
                 }
@@ -161,7 +150,7 @@ class JLPTN5QuestionsSeeder extends Seeder
 
         $insertedCount = 0;
         foreach ($grouped as $lvl => $questions) {
-            shuffle($questions); // randomize order within the same level
+            // preserve canonical order from source; runtime shuffling happens in the frontend
             foreach ($questions as $questionData) {
                 Question::create($questionData);
                 $insertedCount++;
@@ -189,7 +178,7 @@ class JLPTN5QuestionsSeeder extends Seeder
         }
 
         if (str_contains($rawType, 'membaca') || str_contains($rawType, 'reading')) {
-            return 'multiple-choice';
+            return 'reading';
         }
 
         if (!empty($options)) {
