@@ -17,18 +17,31 @@ interface Question {
   speechLang?: string;
   imageUrl?: string;
   level_id?: number;
+  extra_attributes?: {
+    essay_keywords?: string[];
+    essay_rubric?: string;
+  };
 }
 
 interface ManageQuestionProps {
   questionsData: Question[];
 }
 
+const categoryMap: Record<string, string> = {
+  n5: 'Level 1 - Kohai',
+  n4: 'Level 2 - Senpai',
+  n3: 'Level 3 - Sensei',
+  n2: 'Level 4 - Tensai',
+  n1: 'Level 5 - Legend',
+  quiz: 'Latihan Harian'
+};
+
 const ROWS_PER_PAGE = 20;
 
 export default function ManageQuestion({ questionsData = [] }: ManageQuestionProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<'semua' | 'quiz' | 'n5' | 'n4' | 'n3' | 'n2' | 'n1'>('semua');
-  const [activeQuestionType, setActiveQuestionType] = useState<'semua' | 'multiple-choice' | 'typing' | 'reading' | 'listening' | 'image'>('semua');
+  const [activeQuestionType, setActiveQuestionType] = useState<'semua' | 'multiple-choice' | 'typing' | 'reading' | 'listening' | 'image' | 'essay'>('semua');
   const [currentPage, setCurrentPage] = useState(1);
   const [processing, setProcessing] = useState(false);
   const [crudModal, setCrudModal] = useState<{ mode: 'add' | 'edit'; item?: Question } | null>(null);
@@ -43,7 +56,11 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
     spokenText: '',
     speechLang: 'ja-JP',
     imageUrl: '',
-    level_id: 1
+    level_id: 1,
+    extra_attributes: {
+      essay_keywords: '',
+      essay_rubric: ''
+    }
   });
   const [deleteConfirm, setDeleteConfirm] = useState<Question | null>(null);
 
@@ -106,7 +123,11 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
         spokenText: item.spokenText || '',
         speechLang: item.speechLang || 'ja-JP',
         imageUrl: item.imageUrl || '',
-        level_id: item.level_id || 1
+        level_id: item.level_id || 1,
+        extra_attributes: {
+          essay_keywords: item.extra_attributes?.essay_keywords?.join(', ') || '',
+          essay_rubric: item.extra_attributes?.essay_rubric || ''
+        }
       });
     } else {
       setQuestionForm({
@@ -120,7 +141,11 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
         spokenText: '',
         speechLang: 'ja-JP',
         imageUrl: '',
-        level_id: 1
+        level_id: 1,
+        extra_attributes: {
+          essay_keywords: '',
+          essay_rubric: ''
+        }
       });
     }
     setCrudModal({ mode, item });
@@ -148,15 +173,21 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
       return;
     }
 
-    if (questionForm.question_type !== 'typing' && cleanOptions.length < 2) {
+    if (questionForm.question_type !== 'typing' && questionForm.question_type !== 'essay' && cleanOptions.length < 2) {
       window.alert('Masukkan minimal 2 pilihan jawaban untuk soal pilihan ganda atau reading.');
       return;
     }
 
+    let finalExtra = {
+      essay_rubric: questionForm.extra_attributes.essay_rubric,
+      essay_keywords: questionForm.extra_attributes.essay_keywords.split(',').map(s => s.trim()).filter(s => s)
+    };
+
     const data = {
       ...questionForm,
       options: cleanOptions,
-      answer: cleanAnswer
+      answer: cleanAnswer,
+      extra_attributes: finalExtra
     };
 
     setProcessing(true);
@@ -201,7 +232,7 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
             <CheckCircle2 className="text-[#bc002d]" size={28} />
             Kelola Kuis & Sertifikasi
           </h1>
-          <p className="text-slate-500 text-sm mt-0.5">Tambah, ubah, dan hapus pertanyaan kuis latihan harian dan ujian sertifikasi JLPT.</p>
+          <p className="text-slate-500 text-sm mt-0.5">Tambah, ubah, dan hapus pertanyaan kuis latihan harian dan misi petualangan.</p>
         </div>
         <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border text-[#bc002d] border-red-100 bg-red-50 shrink-0">
           {questionsData.length} Pertanyaan
@@ -237,11 +268,11 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
             {([
               { id: 'semua', label: 'Semua' },
               { id: 'quiz', label: 'Latihan Harian (Quiz)' },
-              { id: 'n5', label: 'Sertifikasi N5' },
-              { id: 'n4', label: 'Sertifikasi N4' },
-              { id: 'n3', label: 'Sertifikasi N3' },
-              { id: 'n2', label: 'Sertifikasi N2' },
-              { id: 'n1', label: 'Sertifikasi N1' }
+              { id: 'n5', label: 'Level 1 - Kohai' },
+              { id: 'n4', label: 'Level 2 - Senpai' },
+              { id: 'n3', label: 'Level 3 - Sensei' },
+              { id: 'n2', label: 'Level 4 - Tensai' },
+              { id: 'n1', label: 'Level 5 - Legend' }
             ] as const).map((chip) => (
               <button
                 key={chip.id}
@@ -268,7 +299,8 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
               { id: 'typing', label: 'Ketik Jawaban (Typing)' },
               { id: 'reading', label: 'Membaca (Reading)' },
               { id: 'listening', label: 'Mendengar (Listening)' },
-              { id: 'image', label: 'Gambar (Image)' }
+              { id: 'image', label: 'Gambar (Image)' },
+              { id: 'essay', label: 'Esai (Essay)' }
             ] as const).map((chip) => (
               <button
                 key={chip.id}
@@ -336,7 +368,7 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
                           ? 'bg-amber-50 text-amber-600 border border-amber-100'
                           : 'bg-indigo-50 text-indigo-600 border border-indigo-100'
                       }`}>
-                        {q.type.toLowerCase() === 'quiz' ? 'Latihan' : `Sertif ${q.type.toUpperCase()}`}
+                        {q.type.toLowerCase() === 'quiz' ? 'Latihan' : (categoryMap[q.type.toLowerCase()] || q.type.toUpperCase())}
                       </span>
                     </td>
                     <td className="py-4 px-6 text-center font-bold text-slate-500 font-mono">
@@ -442,11 +474,11 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#bc002d]/30 focus:border-[#bc002d] outline-none text-sm transition-all"
                     >
                       <option value="quiz">Latihan Harian (Quiz)</option>
-                      <option value="n5">Sertifikasi N5</option>
-                      <option value="n4">Sertifikasi N4</option>
-                      <option value="n3">Sertifikasi N3</option>
-                      <option value="n2">Sertifikasi N2</option>
-                      <option value="n1">Sertifikasi N1</option>
+                      <option value="n5">Level 1 - Kohai</option>
+                      <option value="n4">Level 2 - Senpai</option>
+                      <option value="n3">Level 3 - Sensei</option>
+                      <option value="n2">Level 4 - Tensai</option>
+                      <option value="n1">Level 5 - Legend</option>
                     </select>
                   </div>
                   <div>
@@ -461,6 +493,7 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
                       <option value="reading">Membaca (reading)</option>
                       <option value="listening">Mendengar (listening)</option>
                       <option value="image">Gambar (image)</option>
+                      <option value="essay">Esai (essay)</option>
                     </select>
                   </div>
                 </div>
@@ -491,6 +524,38 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#bc002d]/30 focus:border-[#bc002d] outline-none text-sm transition-all"
                   />
                 </div>
+
+                {questionForm.question_type === 'essay' && (
+                  <div className="p-4 bg-orange-50 rounded-xl border border-orange-100 space-y-4 mt-2">
+                    <h4 className="text-orange-800 font-bold">Konfigurasi Penilaian Esai (Gemini AI)</h4>
+                    <div>
+                      <label className="text-xs font-bold uppercase tracking-wider text-orange-600 block mb-1">Kata Kunci Utama (Pisahkan dengan koma)</label>
+                      <input 
+                        type="text"
+                        value={questionForm.extra_attributes.essay_keywords}
+                        onChange={(e) => setQuestionForm({ 
+                            ...questionForm, 
+                            extra_attributes: { ...questionForm.extra_attributes, essay_keywords: e.target.value } 
+                        })}
+                        placeholder="contoh: anime, jepang, otaku"
+                        className="w-full px-4 py-2.5 rounded-xl border border-orange-200 focus:ring-2 focus:ring-orange-300 outline-none text-sm transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs font-bold uppercase tracking-wider text-orange-600 block mb-1">Rubrik Penilaian</label>
+                      <textarea 
+                        rows={2}
+                        value={questionForm.extra_attributes.essay_rubric}
+                        onChange={(e) => setQuestionForm({ 
+                            ...questionForm, 
+                            extra_attributes: { ...questionForm.extra_attributes, essay_rubric: e.target.value } 
+                        })}
+                        placeholder="contoh: Jawaban harus masuk akal dan menggunakan tata bahasa yang benar."
+                        className="w-full px-4 py-2.5 rounded-xl border border-orange-200 focus:ring-2 focus:ring-orange-300 outline-none text-sm transition-all"
+                      />
+                    </div>
+                  </div>
+                )}
 
                 {questionForm.question_type === 'reading' && (
                   <div>
@@ -543,7 +608,7 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
                   </div>
                 )}
 
-                {questionForm.question_type !== 'typing' && (
+                {questionForm.question_type !== 'typing' && questionForm.question_type !== 'essay' && (
                   <div className="space-y-2 p-4 border border-slate-100 rounded-xl bg-slate-50/50">
                     <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block">Pilihan Jawaban</label>
                     {questionForm.options.map((option, idx) => (
@@ -566,19 +631,21 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
                   </div>
                 )}
 
-                <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">
-                    {questionForm.question_type === 'typing' ? 'Jawaban Benar (Gunakan koma jika ada beberapa kemungkinan)' : 'Jawaban Benar (Harus persis sama dengan salah satu pilihan)'}
-                  </label>
-                  <input 
-                    type="text" 
-                    required
-                    value={questionForm.answer} 
-                    onChange={(e) => setQuestionForm({ ...questionForm, answer: e.target.value })}
-                    placeholder={questionForm.question_type === 'typing' ? 'Contoh: neko, ねこ' : 'Contoh: 猫'}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#bc002d]/30 focus:border-[#bc002d] outline-none text-sm transition-all"
-                  />
-                </div>
+                {questionForm.question_type !== 'essay' && (
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">
+                      {questionForm.question_type === 'typing' ? 'Jawaban Benar (Gunakan koma jika ada beberapa kemungkinan)' : 'Jawaban Benar (Harus persis sama dengan salah satu pilihan)'}
+                    </label>
+                    <input 
+                      type="text" 
+                      required
+                      value={questionForm.answer} 
+                      onChange={(e) => setQuestionForm({ ...questionForm, answer: e.target.value })}
+                      placeholder={questionForm.question_type === 'typing' ? 'Contoh: neko, ねこ' : 'Contoh: 猫'}
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#bc002d]/30 focus:border-[#bc002d] outline-none text-sm transition-all"
+                    />
+                  </div>
+                )}
 
                 <div>
                   <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">Penjelasan (Opsional)</label>

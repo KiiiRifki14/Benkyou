@@ -75,6 +75,13 @@ Route::prefix('student')->middleware(['auth'])->group(function () {
         ->name('student.missions.start')
         ->where(['level' => 'n[1-5]', 'subLevel' => '[0-9]+']);
 
+    Route::post('/missions/{level}/{subLevel}/submit', [MissionController::class, 'submitScore'])
+        ->name('student.missions.submit')
+        ->where(['level' => 'n[1-5]', 'subLevel' => '[0-9]+']);
+
+    Route::post('/missions/essay/{question}/grade', [MissionController::class, 'gradeEssayEndpoint'])
+        ->name('student.missions.grade-essay');
+
     Route::get('/notes', function () {
         return Inertia::render('Student/Notes');
     })->name('student.notes');

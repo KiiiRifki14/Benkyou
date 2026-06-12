@@ -60,7 +60,7 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
         { id: "vocabulary", label: "Kosakata", icon: List, href: "/student/vocabulary" },
         { id: "grammar", label: "Tata Bahasa", icon: BookOpen, href: "/student/grammar" },
         { id: "quiz", label: "Latihan Harian", icon: CheckCircle, href: "/student/quiz" },
-        { id: "certification", label: "Sertifikasi", icon: GraduationCap, href: "/student/certification" },
+        { id: "missions", label: "My Journey", icon: GraduationCap, href: "/student/missions" },
         { id: "notes", label: "Catatan Pribadi", icon: Book, href: "/student/notes" },
         { id: "themes", label: "Tema Aplikasi", icon: Palette, href: "/student/themes" },
     ];

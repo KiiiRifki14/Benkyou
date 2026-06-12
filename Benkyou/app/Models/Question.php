@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -44,11 +46,15 @@ class Question extends Model
     // Casts
     // ──────────────────────────────────────────────
 
-    protected $casts = [
-        'options'          => 'array',
-        'answer'           => 'json',   // string or string[] (typing aliases)
-        'extra_attributes' => 'array',  // dynamic JSON bag (essay rubric, keywords, etc.)
-    ];
+    protected function casts(): array
+    {
+        return [
+            'options'          => 'array',
+            'answer'           => 'array',
+            'extra_attributes' => 'array',
+            'level_id'         => 'integer',
+        ];
+    }
 
     // ──────────────────────────────────────────────
     // Constants — Question Types

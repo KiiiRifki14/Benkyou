@@ -18,8 +18,8 @@ export default function Kanji({ kanjiData = [] }: { kanjiData: KanjiType[] }) {
       className="space-y-8"
     >
       <header className="border-b border-[#E5E5E5] pb-6">
-        <h1 className="font-serif text-4xl font-light mb-2">Kanji N5</h1>
-        <p className="text-[var(--color-ink-light)]">Karakter dasar untuk JLPT level N5.</p>
+        <h1 className="font-serif text-4xl font-light mb-2">Kamus Kanji</h1>
+        <p className="text-[var(--color-ink-light)]">Karakter dasar bahasa Jepang untuk misi petualanganmu.</p>
       </header>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">

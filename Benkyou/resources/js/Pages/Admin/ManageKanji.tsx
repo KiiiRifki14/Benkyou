@@ -18,6 +18,14 @@ interface ManageKanjiProps {
 
 const ROWS_PER_PAGE = 20;
 
+const kanjiLevelMap: Record<string, string> = {
+  N5: 'Level 1 - Kohai',
+  N4: 'Level 2 - Senpai',
+  N3: 'Level 3 - Sensei',
+  N2: 'Level 4 - Tensai',
+  N1: 'Level 5 - Legend'
+};
+
 export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeLevel, setActiveLevel] = useState<'semua' | 'N5' | 'N4' | 'N3' | 'N2' | 'N1'>('semua');
@@ -138,11 +146,11 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
         <div className="flex flex-wrap gap-1.5 border-t border-slate-50 pt-4">
           {([
             { id: 'semua', label: 'Semua' },
-            { id: 'N5', label: 'JLPT N5' },
-            { id: 'N4', label: 'JLPT N4' },
-            { id: 'N3', label: 'JLPT N3' },
-            { id: 'N2', label: 'JLPT N2' },
-            { id: 'N1', label: 'JLPT N1' }
+            { id: 'N5', label: 'Level 1 - Kohai' },
+            { id: 'N4', label: 'Level 2 - Senpai' },
+            { id: 'N3', label: 'Level 3 - Sensei' },
+            { id: 'N2', label: 'Level 4 - Tensai' },
+            { id: 'N1', label: 'Level 5 - Legend' }
           ] as const).map((chip) => (
             <button
               key={chip.id}
@@ -194,7 +202,7 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
                     <td className="py-3.5 px-6 font-medium text-slate-600">{k.meaning}</td>
                     <td className="py-3.5 px-6 text-center">
                       <span className={`px-2.5 py-1 rounded-lg text-[10px] font-bold tracking-wider uppercase ${getLevelBadgeStyles(k.level)}`}>
-                        {k.level}
+                        {kanjiLevelMap[k.level.toUpperCase()] || k.level}
                       </span>
                     </td>
                     <td className="py-3.5 px-6 text-center space-x-1.5">
@@ -322,17 +330,17 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">Tingkat Kesulitan (JLPT)</label>
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">Tingkat Kesulitan</label>
                   <select 
                     value={kanjiForm.level} 
                     onChange={(e) => setKanjiForm({ ...kanjiForm, level: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#bc002d]/30 focus:border-[#bc002d] outline-none text-sm transition-all"
                   >
-                    <option value="N5">N5 (Sangat Dasar)</option>
-                    <option value="N4">N4 (Dasar)</option>
-                    <option value="N3">N3 (Menengah)</option>
-                    <option value="N2">N2 (Lanjutan)</option>
-                    <option value="N1">N1 (Sangat Ahli)</option>
+                    <option value="N5">Level 1 - Kohai</option>
+                    <option value="N4">Level 2 - Senpai</option>
+                    <option value="N3">Level 3 - Sensei</option>
+                    <option value="N2">Level 4 - Tensai</option>
+                    <option value="N1">Level 5 - Legend</option>
                   </select>
                 </div>
 
