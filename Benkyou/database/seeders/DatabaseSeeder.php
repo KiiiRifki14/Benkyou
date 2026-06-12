@@ -50,6 +50,7 @@ class DatabaseSeeder extends Seeder
             GrammarSeeder::class,
             QuestionSeeder::class,
             JLPTN5QuestionsSeeder::class,
+            QuizSistemSeeder::class,
         ]);
     }
 }

@@ -129,7 +129,6 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
   const handleCrudSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!crudModal) return;
-    setProcessing(true);
 
     let cleanOptions = questionForm.options;
     let cleanAnswer: string | string[] = questionForm.answer;
@@ -144,21 +143,36 @@ export default function ManageQuestion({ questionsData = [] }: ManageQuestionPro
       cleanAnswer = questionForm.answer.split(',').map(s => s.trim());
     }
 
+    if (questionForm.question_type === 'reading' && questionForm.context.trim() === '') {
+      window.alert('Untuk soal reading, isi Konteks / Paragraf Bacaan terlebih dahulu.');
+      return;
+    }
+
+    if (questionForm.question_type !== 'typing' && cleanOptions.length < 2) {
+      window.alert('Masukkan minimal 2 pilihan jawaban untuk soal pilihan ganda atau reading.');
+      return;
+    }
+
     const data = {
       ...questionForm,
       options: cleanOptions,
       answer: cleanAnswer
     };
 
+    setProcessing(true);
+    const finish = () => setProcessing(false);
+
     if (crudModal.mode === 'edit' && crudModal.item) {
       router.put(`/admin/question/${crudModal.item.id}`, data, {
-        onSuccess: () => { setCrudModal(null); setProcessing(false); },
-        onError: () => setProcessing(false)
+        onSuccess: () => { setCrudModal(null); finish(); },
+        onError: finish,
+        onFinish: finish,
       });
     } else {
       router.post('/admin/question', data, {
-        onSuccess: () => { setCrudModal(null); setProcessing(false); },
-        onError: () => setProcessing(false)
+        onSuccess: () => { setCrudModal(null); finish(); },
+        onError: finish,
+        onFinish: finish,
       });
     }
   };

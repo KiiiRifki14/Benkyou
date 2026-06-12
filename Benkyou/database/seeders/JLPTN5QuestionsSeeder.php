@@ -7,226 +7,158 @@ use App\Models\Question;
 
 class JLPTN5QuestionsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $sourceDir = base_path('Bank Soal');
-        $sourceFiles = glob($sourceDir . DIRECTORY_SEPARATOR . '*.md');
+        // ---------- 1️⃣ Parsing Typing & Reading ----------
+        $reTyPath = base_path('Bank Soal/Database Bank Soal JLPT N5 - RE&TY.md');
+        if (file_exists($reTyPath)) {
+            $reTyContent = file_get_contents($reTyPath);
+            $blocks = preg_split('/(?=Soal\s+\d+)/i', $reTyContent);
+            array_shift($blocks);               // buang header
 
-        if (!$sourceFiles) {
-            $this->command->error('No markdown source files found in Bank Soal directory: ' . $sourceDir);
+            $typingCount = 0;
+            $readingCount = 0;
+            $failedCount = 0;
+
+            foreach ($blocks as $block) {
+                $block = trim($block);
+                if (empty($block)) continue;
+
+                // Tipe soal
+                if (!preg_match('/Tipe\s+Soal:\s*(.*?)(?=Level\s*\/)/is', $block, $typeMatch)) {
+                    $this->command->warn('Tidak dapat menemukan Tipe Soal pada blok: '.substr($block,0,80));
+                    $failedCount++;
+                    continue;
+                }
+                $tipeSoal = strtolower(trim($typeMatch[1]));
+
+                // ---------------- Typing ----------------
+                if (stripos($tipeSoal, 'typing') !== false || stripos($tipeSoal, 'ketik') !== false) {
+                    $pattern = '/Soal\s+(\d+)\s*'
+                             . 'Kategori:\s*(.*?)\s*'
+                             . 'Tipe\s+Soal:\s*(.*?)\s*'
+                             . 'Level\s*\/\s*Tahap\s*\(Ujian\):\s*(\d+)\s*'
+                             . 'Pertanyaan:\s*(.*?)\s*'
+                             . 'Jawaban\s+Benar\s*(?:\(Gunakan\s+koma\s+jika\s+ada\s+beberapa\s+kemungkinan\))?:\s*(.*?)\s*'
+                             . 'Penjelasan:\s*(.*)$/s';
+                    if (preg_match($pattern, $block, $m)) {
+                        $answers = array_values(array_filter(array_map('trim', explode(',', $m[6]))));
+                        Question::create([
+                            'type'          => 'n5',
+                            'question_type' => 'typing',
+                            'level_id'      => (int) $m[4],
+                            'question'      => trim($m[5]),
+                            'answer'        => $answers,
+                            'explanation'   => trim($m[7]),
+                            'options'       => null,
+                            'context'       => null,
+                        ]);
+                        $typingCount++;
+                    } else {
+                        $this->command->warn('Parse Typing gagal: '.substr($block,0,100));
+                        $failedCount++;
+                    }
+                    continue;
+                }
+
+                // ---------------- Reading ----------------
+                if (stripos($tipeSoal, 'reading') !== false || stripos($tipeSoal, 'membaca') !== false) {
+                    $pattern = '/Soal\s+(\d+)\s*'
+                             . 'Kategori:\s*(.*?)\s*'
+                             . 'Tipe\s+Soal:\s*(.*?)\s*'
+                             . 'Level\s*\/\s*Tahap\s*\(Ujian\):\s*(\d+)\s*'
+                             . 'Pertanyaan:\s*(.*?)\s*'
+                             . 'Konteks\s*\/\s*Paragraf\s*Bacaan:\s*(.*?)\s*'
+                             . 'Pilihan\s*1:\s*(.*?)\s*'
+                             . 'Pilihan\s*2:\s*(.*?)\s*'
+                             . 'Pilihan\s*3:\s*(.*?)\s*'
+                             . 'Pilihan\s*4:\s*(.*?)\s*'
+                             . 'Jawaban\s+Benar\s*:\s*(.*?)\s*'
+                             . 'Penjelasan:\s*(.*?)$/s';
+                    if (preg_match($pattern, $block, $m)) {
+                        $options = [trim($m[7]), trim($m[8]), trim($m[9]), trim($m[10])];
+                        Question::create([
+                            'type'          => 'n5',
+                            'question_type' => 'reading',
+                            'level_id'      => (int) $m[4],
+                            'question'      => trim($m[5]),
+                            'context'       => trim($m[6]),
+                            'options'       => $options,
+                            'answer'        => trim($m[11]),
+                            'explanation'   => trim($m[12]),
+                        ]);
+                        $readingCount++;
+                    } else {
+                        $this->command->warn('Parse Reading gagal: '.substr($block,0,100));
+                        $failedCount++;
+                    }
+                    continue;
+                }
+
+                // ---------------- Unknown ----------------
+                $this->command->warn("Tipe tidak dikenali: '{$tipeSoal}'");
+                $failedCount++;
+            }
+
+            $this->command->info('--- Typing & Reading selesai ---');
+            $this->command->info("✔ Typing  : {$typingCount}");
+            $this->command->info("✔ Reading : {$readingCount}");
+        }
+
+        // ---------- 2️⃣ Parsing Pilihan Ganda (PG) ----------
+        $pgPath = base_path('Bank Soal/Database Bank Soal JLPT N5.md');
+        if (!file_exists($pgPath)) {
+            $this->command->error("File PG tidak ditemukan: {$pgPath}");
             return;
         }
 
-        $typesToDelete = [];
-        $questionsToInsert = [];
+        $pgContent = file_get_contents($pgPath);
+        $pgBlocks = preg_split('/(?=Soal\s+\d+)/i', $pgContent);
+        array_shift($pgBlocks); // buang header
 
-        foreach ($sourceFiles as $filePath) {
-            $content = file_get_contents($filePath);
-            $content = str_replace(["\r\n", "\r"], "\n", $content);
-            $chunks = preg_split('/(?=Soal\s+\d+)/i', $content);
+        $pgCount = 0;
+        foreach ($pgBlocks as $block) {
+            $block = trim($block);
+            if (empty($block)) continue;
 
-            if (!$chunks || count($chunks) === 0) {
-                $this->command->error("Failed to split questions from {$filePath}");
-                continue;
-            }
+            // Pola umum PG – gunakan contoh level‑1 yang ada di file
+            $pattern = '/Soal\s+(\d+)\s*'
+                     . 'Kategori:\s*(.*?)\s*'
+                     . 'Level\s*\/\s*Tahap\s*\(Ujian\):\s*(\d+)\s*'
+                     . 'Pertanyaan:\s*(.*?)\s*'
+                     . 'Pilihan\s*1:\s*(.*?)\s*'
+                     . 'Pilihan\s*2:\s*(.*?)\s*'
+                     . 'Pilihan\s*3:\s*(.*?)\s*'
+                     . 'Pilihan\s*4:\s*(.*?)\s*'
+                     . 'Jawaban\s+Benar:\s*(.*?)\s*'
+                     . 'Penjelasan:\s*(.*)$/s';
 
-            foreach ($chunks as $chunk) {
-                if (trim($chunk) === '') {
-                    continue;
-                }
-
-                if (!preg_match('/Soal\s+(\d+)/i', $chunk, $numberMatch)) {
-                    continue;
-                }
-
-                $category = $this->extractField($chunk, '/Kategori:\s*(.*?)(?:Level\s*\/|Tipe\s*Soal:|Pertanyaan:|$)/is');
-                $questionTypeRaw = $this->extractField($chunk, '/Tipe\s*Soal:\s*(.*?)\s*(?:Level\s*\/|Pertanyaan:|$)/is');
-                $rawQuestion = $this->extractField($chunk, '/Pertanyaan:\s*(.*?)(?:Konteks\s*\/\s*Paragraf Bacaan:|Konteks:|Pilihan\s*1:|Jawaban\s*Benar:|Penjelasan:|$)/is');
-                $context = $this->extractField($chunk, '/Konteks\s*\/\s*Paragraf Bacaan:\s*(.*?)(?:Pilihan\s*1:|Jawaban\s*Benar:|Penjelasan:|$)/is');
-                $context = $context ?: $this->extractField($chunk, '/Konteks:\s*(.*?)(?:Pilihan\s*1:|Jawaban\s*Benar:|Penjelasan:|$)/is');
-                $answer = $this->extractField($chunk, '/Jawaban\s*Benar(?:\s*\(.*?\))?\s*:\s*(.*?)(?:Penjelasan:|$)/is');
-                $explanation = $this->extractField($chunk, '/Penjelasan:\s*(.*?)(?=Soal\s+\d+|LEVEL\s+\d+|$)/is');
-                $level = $this->extractField($chunk, '/Level\s*\/\s*Tahap\s*\(Ujian\):\s*(\d+)/i');
-
-                $options = [];
-                if (preg_match('/Pilihan\s*1:\s*(.*?)\s*Pilihan\s*2:\s*(.*?)\s*Pilihan\s*3:\s*(.*?)\s*Pilihan\s*4:\s*(.*?)(?:Jawaban\s*Benar:|Penjelasan:|$)/is', $chunk, $optionMatches)) {
-                    $options = array_map('trim', array_slice($optionMatches, 1, 4));
-                }
-
-                $type = $this->normalizeCategory($category);
-                $typesToDelete[] = $type;
-                $questionType = $this->normalizeQuestionType($questionTypeRaw, $options);
-
-                if (empty($rawQuestion) || empty($answer)) {
-                    continue;
-                }
-
-                if ($questionType === 'typing') {
-                    $answers = array_filter(array_map('trim', preg_split('/\s*,\s*/', $answer)), fn ($value) => $value !== '');
-                    $answer = count($answers) > 1 ? array_values($answers) : ($answers[0] ?? trim($answer));
-                } else {
-                    $answer = trim($answer);
-                }
-
-                $questionsToInsert[] = [
-                    'type' => $type,
-                    'question_type' => $questionType,
-                    'question' => trim($rawQuestion),
-                    'options' => $options ?: null,
-                    'answer' => $answer,
-                    'explanation' => trim($explanation) ?: null,
-                    'context' => trim($context) ?: null,
-                    'level_id' => is_numeric($level) ? (int)$level : null,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
+            if (preg_match($pattern, $block, $m)) {
+                $options = [trim($m[5]), trim($m[6]), trim($m[7]), trim($m[8])];
+                Question::create([
+                    'type'          => 'n5',
+                    'question_type' => 'pg',
+                    'level_id'      => (int) $m[3],
+                    'question'      => trim($m[4]),
+                    'options'       => $options,
+                    'answer'        => trim($m[9]),
+                    'explanation'   => trim($m[10]),
+                    'context'       => null,
+                ]);
+                $pgCount++;
+            } else {
+                $this->command->warn('Parse PG gagal: '.substr($block,0,80));
             }
         }
 
-        $typesToDelete = array_unique(array_filter($typesToDelete));
-        if (!empty($typesToDelete)) {
-            $deletedCount = Question::whereIn('type', $typesToDelete)->delete();
-            $this->command->info("Deleted {$deletedCount} old questions for types: " . implode(', ', $typesToDelete));
-        }
-
-        // Post-process questions before insert:
-        // - remove any inline 'Jawaban' fragments from the question text (common in typing items)
-        // - shuffle multiple-choice options so the correct answer is not always first
-        // - group by level_id and shuffle order within each level
-
-        // clean question text helper
-        $cleanQuestions = [];
-        foreach ($questionsToInsert as $q) {
-            // remove any trailing 'Jawaban' blocks accidentally included in the question
-            if (!empty($q['question'])) {
-                $q['question'] = preg_replace('/\s*Jawaban(?:\s*Benar)?(?:\s*\(.*?\))?\s*:\s*.*$/is', '', $q['question']);
-                $q['question'] = trim($q['question']);
-            }
-
-            // if multiple-choice with options, shuffle options but preserve correct answer as value
-            if (!empty($q['options']) && is_array($q['options'])) {
-                $originalOptions = $q['options'];
-                $correct = is_array($q['answer']) ? $q['answer'][0] ?? null : $q['answer'];
-
-                // normalize whitespace for comparison
-                $normalized = fn($s) => mb_strtolower(trim((string)$s));
-
-                // shuffle
-                $shuffled = $originalOptions;
-                shuffle($shuffled);
-
-                // if the correct answer text isn't present (rare), try to detect by equality
-                $found = false;
-                foreach ($shuffled as $opt) {
-                    if ($normalized($opt) === $normalized($correct)) {
-                        $found = true;
-                        break;
-                    }
-                }
-
-                // if not found, attempt to find in original options and pick its shuffled equivalent
-                if (!$found && $correct !== null) {
-                    foreach ($originalOptions as $origOpt) {
-                        if ($normalized($origOpt) === $normalized($correct)) {
-                            // try to ensure correct appears in shuffled (fallback: replace first)
-                            if (!in_array($origOpt, $shuffled, true)) {
-                                $shuffled[0] = $origOpt;
-                            }
-                            $found = true;
-                            break;
-                        }
-                    }
-                }
-
-                $q['options'] = array_values($shuffled);
-
-                // set answer to the correct option text (ensure it matches one of the options)
-                if ($correct !== null) {
-                    $q['answer'] = $correct;
-                }
-            }
-
-            $cleanQuestions[] = $q;
-        }
-
-        // group by level_id and shuffle within each group
-        $grouped = [];
-        foreach ($cleanQuestions as $q) {
-            $lvl = isset($q['level_id']) && $q['level_id'] !== null ? (string)$q['level_id'] : '_nolvl_';
-            $grouped[$lvl][] = $q;
-        }
-
-        $insertedCount = 0;
-        foreach ($grouped as $lvl => $questions) {
-            shuffle($questions); // randomize order within the same level
-            foreach ($questions as $questionData) {
-                Question::create($questionData);
-                $insertedCount++;
-            }
-        }
-
-        $this->command->info("Successfully inserted {$insertedCount} questions from Bank Soal directory.");
-    }
-
-    private function extractField(string $text, string $pattern): string
-    {
-        if (preg_match($pattern, $text, $matches)) {
-            return trim($matches[1]);
-        }
-
-        return '';
-    }
-
-    private function normalizeQuestionType(string $rawType, array $options): string
-    {
-        $rawType = strtolower(trim($rawType));
-
-        if (str_contains($rawType, 'ketik') || str_contains($rawType, 'typing')) {
-            return 'typing';
-        }
-
-        if (str_contains($rawType, 'membaca') || str_contains($rawType, 'reading')) {
-            return 'multiple-choice';
-        }
-
-        if (!empty($options)) {
-            return 'multiple-choice';
-        }
-
-        return $rawType !== '' ? preg_replace('/[^a-z0-9]+/', '-', $rawType) : 'multiple-choice';
-    }
-
-    private function normalizeCategory(string $category): string
-    {
-        $category = strtolower(trim($category));
-
-        if (preg_match('/\bn5\b|jlpt\s*n5|sertifikasi\s*n5|n5\b/i', $category)) {
-            return 'n5';
-        }
-
-        if (preg_match('/\bn4\b|jlpt\s*n4|sertifikasi\s*n4|n4\b/i', $category)) {
-            return 'n4';
-        }
-
-        if (preg_match('/\bn3\b|jlpt\s*n3|sertifikasi\s*n3|n3\b/i', $category)) {
-            return 'n3';
-        }
-
-        if (preg_match('/\bn2\b|jlpt\s*n2|sertifikasi\s*n2|n2\b/i', $category)) {
-            return 'n2';
-        }
-
-        if (preg_match('/\bn1\b|jlpt\s*n1|sertifikasi\s*n1|n1\b/i', $category)) {
-            return 'n1';
-        }
-
-        if (preg_match('/quiz|pilihan ganda|multiple-choice/i', $category)) {
-            return 'quiz';
-        }
-
-        return 'n5';
+        // ---------- Ringkasan ----------
+        $total = $typingCount + $readingCount + $pgCount;
+        $this->command->info('─────────────────────────────────────────────');
+        $this->command->info('Selesai! Berhasil insert:');
+        $this->command->info("  ✔ Typing  : {$typingCount} soal");
+        $this->command->info("  ✔ Reading : {$readingCount} soal");
+        $this->command->info("  ✔ PG      : {$pgCount} soal");
+        $this->command->info("  Total    : {$total} soal");
+        $this->command->info('─────────────────────────────────────────────');
     }
 }
