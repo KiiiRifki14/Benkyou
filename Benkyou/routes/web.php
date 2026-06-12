@@ -6,6 +6,7 @@ use App\Http\Controllers\KanjiController;
 use App\Http\Controllers\VocabularyController;
 use App\Http\Controllers\GrammarController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MissionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -61,6 +62,18 @@ Route::prefix('student')->middleware(['auth'])->group(function () {
             'questionsData' => \App\Models\Question::whereIn('type', ['n5', 'n4', 'n3', 'n2', 'n1'])->get()
         ]);
     })->name('student.certification');
+
+    // ── Missions (Titles / Gelar System) ─────────────
+    Route::get('/missions', [MissionController::class, 'index'])
+        ->name('student.missions');
+
+    Route::get('/missions/{level}', [MissionController::class, 'showLevel'])
+        ->name('student.missions.level')
+        ->where('level', 'n[1-5]');
+
+    Route::get('/missions/{level}/{subLevel}/start', [MissionController::class, 'startMission'])
+        ->name('student.missions.start')
+        ->where(['level' => 'n[1-5]', 'subLevel' => '[0-9]+']);
 
     Route::get('/notes', function () {
         return Inertia::render('Student/Notes');
