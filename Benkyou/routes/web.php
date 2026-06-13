@@ -7,6 +7,8 @@ use App\Http\Controllers\VocabularyController;
 use App\Http\Controllers\GrammarController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MissionController;
+use App\Http\Controllers\LandingSettingController;
+use App\Models\LandingSetting;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,6 +18,7 @@ Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
+        'landingSettings' => LandingSetting::pluck('value', 'key')->toArray()
     ]);
 })->name('welcome');
 
@@ -111,6 +114,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/vocabulary', [AdminController::class, 'vocabularyView'])->name('admin.vocabulary');
     Route::get('/grammar', [AdminController::class, 'grammarView'])->name('admin.grammar');
     Route::get('/question', [AdminController::class, 'questionView'])->name('admin.question');
+
+    // Landing Page CMS
+    Route::get('/landing', [LandingSettingController::class, 'edit'])->name('admin.landing');
+    Route::post('/landing', [LandingSettingController::class, 'update'])->name('admin.landing.update');
 
     // Kana CRUD
     Route::post('/kana', [AdminController::class, 'storeKana'])->name('admin.kana.store');

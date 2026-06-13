@@ -29,7 +29,7 @@ import {
   ArrowUp
 } from 'lucide-react';
 
-export default function Welcome({ auth }) {
+export default function Welcome({ auth, landingSettings = {} }) {
   const [activeTab, setActiveTab] = useState('pemula');
   const [activeAspect, setActiveAspect] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -57,28 +57,31 @@ export default function Welcome({ auth }) {
 
   const tabContents = {
     pemula: {
-      title: 'Pondasi Kokoh Bahasa Jepang (N5 - N4)',
-      subtitle: 'Bangun rasa percaya diri dari coretan pertama.',
-      desc1: 'Benkyou memperkenalkan keterampilan penting membaca dan menulis Kana (Hiragana & Katakana) serta tata bahasa dasar Jepang secara terstruktur. Metode ini memberikan fondasi yang sangat kuat sebelum siswa melangkah ke tingkat yang lebih rumit.',
-      desc2: 'Program Pemula difokuskan pada penguasaan kosa kata praktis sehari-hari, cara membaca yang tepat dengan panduan audio, serta pengenalan huruf Kanji dasar. Dengan lembar kuis yang dirancang khusus, belajar terasa menyenangkan dan tidak membebani.',
-      badge: 'Level Pemula (N5 - N4)',
-      stats: '120 Kanji • 800 Kosakata • 40 Modul Dasar'
+      name: landingSettings['tab1_name'] || 'Tingkat Pemula',
+      title: landingSettings['tab1_title'] || 'Pondasi Kokoh Bahasa Jepang (N5 - N4)',
+      subtitle: landingSettings['tab1_subtitle'] || 'Bangun rasa percaya diri dari coretan pertama.',
+      desc1: landingSettings['tab1_desc1'] || 'Benkyou memperkenalkan keterampilan penting membaca dan menulis Kana (Hiragana & Katakana) serta tata bahasa dasar Jepang secara terstruktur. Metode ini memberikan fondasi yang sangat kuat sebelum siswa melangkah ke tingkat yang lebih rumit.',
+      desc2: landingSettings['tab1_desc2'] || 'Program Pemula difokuskan pada penguasaan kosa kata praktis sehari-hari, cara membaca yang tepat dengan panduan audio, serta pengenalan huruf Kanji dasar. Dengan lembar kuis yang dirancang khusus, belajar terasa menyenangkan dan tidak membebani.',
+      badge: 'Level Pemula',
+      stats: landingSettings['tab1_stats'] || '120 Kanji • 800 Kosakata • 40 Modul Dasar'
     },
     menengah: {
-      title: 'Kemandirian & Pemecahan Masalah (N3)',
-      subtitle: 'Mulai memahami bacaan dan percakapan kompleks.',
-      desc1: 'Pada tingkat ini, siswa diajak untuk membaca teks yang lebih panjang dan memahami tata bahasa tingkat menengah. Benkyou melatih siswa agar mampu menganalisis kalimat secara mandiri dan memperluas perbendaharaan Kanji mereka.',
-      desc2: 'Siswa dibekali dengan modul latihan membaca mandiri yang dinamis. Kemampuan berpikir kritis dalam menyusun struktur kalimat akan berkembang pesat, mempersiapkan mereka untuk studi lanjutan maupun kebutuhan dunia kerja profesional.',
-      badge: 'Level Menengah (N3)',
-      stats: '650 Kanji • 3,500 Kosakata • 60 Modul Menengah'
+      name: landingSettings['tab2_name'] || 'Tingkat Menengah',
+      title: landingSettings['tab2_title'] || 'Kemandirian & Pemecahan Masalah (N3)',
+      subtitle: landingSettings['tab2_subtitle'] || 'Mulai memahami bacaan dan percakapan kompleks.',
+      desc1: landingSettings['tab2_desc1'] || 'Pada tingkat ini, siswa diajak untuk membaca teks yang lebih panjang dan memahami tata bahasa tingkat menengah. Benkyou melatih siswa agar mampu menganalisis kalimat secara mandiri dan memperluas perbendaharaan Kanji mereka.',
+      desc2: landingSettings['tab2_desc2'] || 'Siswa dibekali dengan modul latihan membaca mandiri yang dinamis. Kemampuan berpikir kritis dalam menyusun struktur kalimat akan berkembang pesat, mempersiapkan mereka untuk studi lanjutan maupun kebutuhan dunia kerja profesional.',
+      badge: 'Level Menengah',
+      stats: landingSettings['tab2_stats'] || '650 Kanji • 3,500 Kosakata • 60 Modul Menengah'
     },
     lanjut: {
-      title: 'Kefasihan Tingkat Tinggi & Profesional (N2 - N1)',
-      subtitle: 'Kuasai bahasa Jepang tingkat bisnis dan akademis.',
-      desc1: 'Program Lanjutan dirancang untuk mengantarkan siswa pada tingkat kefasihan penuh. Siswa akan mempelajari ribuan Kanji tingkat lanjut, idiom, serta tata bahasa kompleks yang digunakan dalam berita, literatur, dan lingkungan kerja formal.',
-      desc2: 'Melalui stimulasi ujian sertifikasi JLPT tiruan yang interaktif dan berbatas waktu, siswa dilatih untuk memiliki kecepatan dan akurasi tinggi dalam memahami wacana panjang serta audio percakapan bisnis penutur asli.',
-      badge: 'Level Lanjutan (N2 - N1)',
-      stats: '2,000 Kanji • 10,000 Kosakata • 80 Ujian Simulasi'
+      name: landingSettings['tab3_name'] || 'Tingkat Lanjutan',
+      title: landingSettings['tab3_title'] || 'Kefasihan Tingkat Tinggi & Profesional (N2 - N1)',
+      subtitle: landingSettings['tab3_subtitle'] || 'Kuasai bahasa Jepang tingkat bisnis dan akademis.',
+      desc1: landingSettings['tab3_desc1'] || 'Program Lanjutan dirancang untuk mengantarkan siswa pada tingkat kefasihan penuh. Siswa akan mempelajari ribuan Kanji tingkat lanjut, idiom, serta tata bahasa kompleks yang digunakan dalam berita, literatur, dan lingkungan kerja formal.',
+      desc2: landingSettings['tab3_desc2'] || 'Melalui stimulasi ujian sertifikasi JLPT tiruan yang interaktif dan berbatas waktu, siswa dilatih untuk memiliki kecepatan dan akurasi tinggi dalam memahami wacana panjang serta audio percakapan bisnis penutur asli.',
+      badge: 'Level Lanjutan',
+      stats: landingSettings['tab3_stats'] || '2,000 Kanji • 10,000 Kosakata • 80 Ujian Simulasi'
     }
   };
 
@@ -288,25 +291,27 @@ export default function Welcome({ auth }) {
           <div className="absolute top-1/4 left-10 w-72 h-72 rounded-full bg-rose-200/20 blur-3xl pointer-events-none" />
           <div className="absolute bottom-10 right-1/3 w-96 h-96 rounded-full bg-orange-200/20 blur-3xl pointer-events-none" />
           
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[calc(100dvh-120px)] items-center relative py-12 lg:py-0">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[85dvh] lg:min-h-[90dvh] items-center relative pt-20 pb-16 lg:pt-12 lg:pb-12">
             
             {/* Left Content Column */}
-            <div className="lg:col-span-6 p-6 sm:p-8 lg:p-16 space-y-7 z-10">
+            <div className="lg:col-span-6 px-6 sm:px-8 lg:px-16 py-6 lg:py-10 space-y-7 z-10">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--color-japan-red)]/10 text-[var(--color-japan-red)] text-[11px] font-extrabold uppercase tracking-widest border border-red-200/40">
                 <span className="flex h-2 w-2 relative">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-japan-red)] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-japan-red)]"></span>
                 </span>
-                Platform Pembelajaran Mandiri
+                {landingSettings['hero_badge'] || 'Yuk Belajar Bareng!'}
               </div>
               
-              <h2 className="font-fredoka text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-[var(--color-ink)] leading-[1.1]">
-                Ajak diri Anda untuk <br />
-                <span className="text-[var(--color-japan-red)] font-bold">memulai sekarang!</span>
-              </h2>
+              <h2 
+                className="font-fredoka text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-[var(--color-ink)] leading-[1.1]"
+                dangerouslySetInnerHTML={{ 
+                  __html: landingSettings['hero_title'] || 'Ayo mulai perjalanan bahasamu hari ini, <br /><span class="text-[var(--color-japan-red)] font-bold">buat kamu!</span>'
+                }}
+              />
               
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-xl">
-                Temukan potensi terbaik dalam penguasaan bahasa Jepang Anda hari ini melalui bimbingan kurikulum digital mandiri yang terstruktur dari Benkyou.
+                {landingSettings['hero_subtitle'] || 'Temukan cara paling asyik dan santai buat belajar bahasa Jepang bareng aku.'}
               </p>
               
               <div className="pt-3 flex flex-wrap gap-4 items-center">
@@ -314,7 +319,7 @@ export default function Welcome({ auth }) {
                   href={auth?.user ? "/dashboard" : "/register"}
                   className="px-8 py-3.5 rounded-full bg-[var(--color-japan-red)] text-white font-bold hover:bg-red-700 transition-all shadow-lg hover:shadow-red-600/20 flex items-center gap-2 text-sm"
                 >
-                  Daftar Sekarang <ChevronRight size={18} />
+                  {landingSettings['hero_cta_text'] || 'Mulai Belajar'} <ChevronRight size={18} />
                 </Link>
                 
                 <button
@@ -352,8 +357,8 @@ export default function Welcome({ auth }) {
                     🇯🇵
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider leading-none">Standar Kelulusan</p>
-                    <p className="text-sm font-fredoka font-semibold text-green-800 mt-1">JLPT N5 s/d N1</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider leading-none">Cocok Buat</p>
+                    <p className="text-sm font-fredoka font-semibold text-green-800 mt-1">Pemula s/d Mahir</p>
                   </div>
                 </div>
 
@@ -372,11 +377,11 @@ export default function Welcome({ auth }) {
         <section id="manfaat" className="py-24 px-6 max-w-7xl mx-auto">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <h2 className="font-fredoka text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
-              Program & Manfaatnya
+              {landingSettings['program_title'] || 'Program & Manfaatnya'}
             </h2>
             <div className="under-heading-wave" />
             <p className="text-sm sm:text-base text-gray-500 max-w-lg mx-auto">
-              Metode Benkyou dirancang untuk membimbing siswa belajar pada tingkatan yang paling tepat berdasarkan kemampuan masing-masing.
+              {landingSettings['program_subtitle'] || 'Metode Benkyou dirancang untuk membimbing siswa belajar pada tingkatan yang paling tepat berdasarkan kemampuan masing-masing.'}
             </p>
           </div>
 
@@ -393,9 +398,9 @@ export default function Welcome({ auth }) {
                       : 'border-transparent text-gray-400 hover:text-gray-600'
                   }`}
                 >
-                  {key === 'pemula' && 'Tingkat Pemula'}
-                  {key === 'menengah' && 'Tingkat Menengah'}
-                  {key === 'lanjut' && 'Tingkat Lanjutan'}
+                  {key === 'pemula' && (landingSettings['tab1_name'] || 'Tingkat Pemula')}
+                  {key === 'menengah' && (landingSettings['tab2_name'] || 'Tingkat Menengah')}
+                  {key === 'lanjut' && (landingSettings['tab3_name'] || 'Tingkat Lanjutan')}
                 </button>
               ))}
             </div>
@@ -484,11 +489,11 @@ export default function Welcome({ auth }) {
           <div className="max-w-7xl mx-auto space-y-16">
             <div className="text-center space-y-2 max-w-2xl mx-auto">
               <h2 className="font-fredoka text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
-                Program Belajar yang Tersedia
+                {landingSettings['modul_title'] || 'Program Belajar yang Tersedia'}
               </h2>
               <div className="under-heading-wave" />
               <p className="text-sm sm:text-base text-gray-500 max-w-lg mx-auto">
-                Pilih fokus program belajar Anda atau ikuti semuanya secara simultan untuk hasil yang komprehensif.
+                {landingSettings['modul_subtitle'] || 'Pilih fokus program belajar Anda atau ikuti semuanya secara simultan untuk hasil yang komprehensif.'}
               </p>
             </div>
 
@@ -562,11 +567,11 @@ export default function Welcome({ auth }) {
         <section id="metode" className="py-24 px-6 max-w-7xl mx-auto space-y-16">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <h2 className="font-fredoka text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
-              Metode Benkyou Memiliki Empat Aspek Penting
+              {landingSettings['method_title'] || 'Metode Benkyou Memiliki Empat Aspek Penting'}
             </h2>
             <div className="under-heading-wave" />
             <p className="text-sm text-gray-500 font-medium">
-              Klik panel kartu untuk membaca selengkapnya
+              {landingSettings['method_subtitle'] || 'Klik panel kartu untuk membaca selengkapnya'}
             </p>
           </div>
 
@@ -773,11 +778,11 @@ export default function Welcome({ auth }) {
           <div className="max-w-7xl mx-auto space-y-16">
             <div className="text-center space-y-2 max-w-2xl mx-auto">
               <h2 className="font-fredoka text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
-                Kisah Sukses Siswa Benkyou
+                {landingSettings['testi_title'] || 'Kisah Sukses Siswa Benkyou'}
               </h2>
               <div className="under-heading-wave" />
               <p className="text-sm sm:text-base text-gray-500 max-w-lg mx-auto">
-                Dengarkan cerita langsung dari para pembelajar yang berhasil menguasai bahasa Jepang secara mandiri bersama Benkyou.
+                {landingSettings['testi_subtitle'] || 'Dengarkan cerita langsung dari para pembelajar yang berhasil menguasai bahasa Jepang secara mandiri bersama Benkyou.'}
               </p>
             </div>
 

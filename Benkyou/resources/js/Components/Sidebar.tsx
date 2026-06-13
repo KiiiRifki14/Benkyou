@@ -17,6 +17,7 @@ import {
     ShieldAlert,
     LayoutDashboard,
     ChevronRight,
+    LayoutTemplate,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -43,6 +44,7 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                 { id: "vocabulary", label: "Kosakata", icon: List, href: "/admin/vocabulary" },
                 { id: "grammar", label: "Tata Bahasa", icon: BookOpen, href: "/admin/grammar" },
                 { id: "question", label: "Kuis & Sertifikasi", icon: CheckCircle, href: "/admin/question" },
+                { id: "landing", label: "Landing Page", icon: LayoutTemplate, href: "/admin/landing" },
             ],
         },
         {
