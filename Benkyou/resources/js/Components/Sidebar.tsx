@@ -65,7 +65,8 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
         { id: "themes", label: "Tema Aplikasi", icon: Palette, href: "/student/themes" },
     ];
 
-    const isAdmin = user?.role === 'admin';
+    const { url } = usePage();
+    const isAdminRoute = url.startsWith('/admin');
 
     // Generate avatar initials
     const getInitials = (name: string) => {
@@ -75,7 +76,7 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
         return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
     };
 
-    if (isAdmin) {
+    if (isAdminRoute) {
         return (
             <div className="flex flex-col h-full" style={{ background: 'linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%)' }}>
                 {/* Logo */}

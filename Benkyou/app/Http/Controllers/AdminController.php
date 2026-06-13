@@ -11,13 +11,14 @@ use App\Models\Kanji;
 use App\Models\Vocabulary;
 use App\Models\Grammar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class AdminController extends Controller
 {
     private function checkAdmin()
     {
-        if (!auth()->check() || auth()->user()->role !== 'admin') {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
             abort(403, 'Akses ditolak. Anda bukan Administrator.');
         }
     }
@@ -96,7 +97,7 @@ class AdminController extends Controller
         return back();
     }
 
-    public function updateKana(Request $request, $id)
+    public function updateKana(Request $request, int $id)
     {
         $this->checkAdmin();
         $validated = $request->validate([
@@ -108,7 +109,7 @@ class AdminController extends Controller
         return back();
     }
 
-    public function deleteKana($id)
+    public function deleteKana(int $id)
     {
         $this->checkAdmin();
         Kana::findOrFail($id)->delete();
@@ -129,7 +130,7 @@ class AdminController extends Controller
         return back();
     }
 
-    public function updateKanji(Request $request, $id)
+    public function updateKanji(Request $request, int $id)
     {
         $this->checkAdmin();
         $validated = $request->validate([
@@ -142,7 +143,7 @@ class AdminController extends Controller
         return back();
     }
 
-    public function deleteKanji($id)
+    public function deleteKanji(int $id)
     {
         $this->checkAdmin();
         Kanji::findOrFail($id)->delete();
@@ -163,7 +164,7 @@ class AdminController extends Controller
         return back();
     }
 
-    public function updateVocabulary(Request $request, $id)
+    public function updateVocabulary(Request $request, int $id)
     {
         $this->checkAdmin();
         $validated = $request->validate([
@@ -176,7 +177,7 @@ class AdminController extends Controller
         return back();
     }
 
-    public function deleteVocabulary($id)
+    public function deleteVocabulary(int $id)
     {
         $this->checkAdmin();
         Vocabulary::findOrFail($id)->delete();
@@ -197,7 +198,7 @@ class AdminController extends Controller
         return back();
     }
 
-    public function updateGrammar(Request $request, $id)
+    public function updateGrammar(Request $request, int $id)
     {
         $this->checkAdmin();
         $validated = $request->validate([
@@ -210,7 +211,7 @@ class AdminController extends Controller
         return back();
     }
 
-    public function deleteGrammar($id)
+    public function deleteGrammar(int $id)
     {
         $this->checkAdmin();
         Grammar::findOrFail($id)->delete();
@@ -233,12 +234,13 @@ class AdminController extends Controller
             'speechLang' => 'nullable|string',
             'imageUrl' => 'nullable|string',
             'level_id' => 'nullable|integer',
+            'extra_attributes' => 'nullable|array',
         ]);
         \App\Models\Question::create($validated);
         return back();
     }
 
-    public function updateQuestion(Request $request, $id)
+    public function updateQuestion(Request $request, int $id)
     {
         $this->checkAdmin();
         $validated = $request->validate([
@@ -253,12 +255,13 @@ class AdminController extends Controller
             'speechLang' => 'nullable|string',
             'imageUrl' => 'nullable|string',
             'level_id' => 'nullable|integer',
+            'extra_attributes' => 'nullable|array',
         ]);
         \App\Models\Question::findOrFail($id)->update($validated);
         return back();
     }
 
-    public function deleteQuestion($id)
+    public function deleteQuestion(int $id)
     {
         $this->checkAdmin();
         \App\Models\Question::findOrFail($id)->delete();

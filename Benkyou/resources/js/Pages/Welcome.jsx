@@ -288,7 +288,7 @@ export default function Welcome({ auth }) {
           <div className="absolute top-1/4 left-10 w-72 h-72 rounded-full bg-rose-200/20 blur-3xl pointer-events-none" />
           <div className="absolute bottom-10 right-1/3 w-96 h-96 rounded-full bg-orange-200/20 blur-3xl pointer-events-none" />
           
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[580px] items-center relative py-12 lg:py-0">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[calc(100dvh-120px)] items-center relative py-12 lg:py-0">
             
             {/* Left Content Column */}
             <div className="lg:col-span-6 p-6 sm:p-8 lg:p-16 space-y-7 z-10">

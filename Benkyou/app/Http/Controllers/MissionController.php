@@ -28,7 +28,7 @@ class MissionController extends Controller
             'title'    => 'Kohai',
             'subtitle' => 'Junior yang baru belajar',
             'goal'     => 'Bisa baca menu Sushi 🍣',
-            'emoji'    => '🌱',
+            'emoji'    => '🔰',
             'reward'   => 'Tema Sakura terbuka!',
         ],
         'n4' => [
@@ -37,7 +37,7 @@ class MissionController extends Controller
             'title'    => 'Senpai',
             'subtitle' => 'Senior yang mulai jago',
             'goal'     => 'Berani pesen Takoyaki sendiri 🐙',
-            'emoji'    => '⚡',
+            'emoji'    => '🌸',
             'reward'   => 'Tema Matcha terbuka!',
         ],
         'n3' => [
@@ -46,7 +46,7 @@ class MissionController extends Controller
             'title'    => 'Sensei',
             'subtitle' => 'Guru, sudah bisa ngajarin',
             'goal'     => 'Paham lirik lagu J-Pop 🎵',
-            'emoji'    => '🎓',
+            'emoji'    => '⛩️',
             'reward'   => 'Tema Gunung Fuji terbuka!',
         ],
         'n2' => [
@@ -55,7 +55,7 @@ class MissionController extends Controller
             'title'    => 'Tensai',
             'subtitle' => 'Jenius!',
             'goal'     => 'Siap nonton Anime tanpa Subtitle 📺',
-            'emoji'    => '🧠',
+            'emoji'    => '🦊',
             'reward'   => 'Tema Autumn terbuka!',
         ],
         'n1' => [
@@ -64,7 +64,7 @@ class MissionController extends Controller
             'title'    => 'Shogun',
             'subtitle' => 'Legend — Penguasa Bahasa Jepang',
             'goal'     => 'Siap diajak jalan-jalan ke Jepang! ✈️',
-            'emoji'    => '👑',
+            'emoji'    => '🏯',
             'reward'   => 'Midnight Theme terbuka!',
         ],
     ];
@@ -266,7 +266,7 @@ class MissionController extends Controller
         ]);
 
         $score = (int) $request->input('score');
-        $passed = $score >= 80;
+        $passed = $score >= 70;
         
         $certification = UserCertification::updateOrCreate(
             ['user_id' => $request->user()->id, 'category' => $level, 'level' => $subLevel],
@@ -290,74 +290,11 @@ class MissionController extends Controller
         ]);
     }
 
+
     /**
-     * Menilai jawaban esai pengguna menggunakan Gemini API secara otomatis.
+     * Menilai jawaban esai pengguna menggunakan kecocokan kata kunci (tanpa AI pihak ketiga).
      */
     public function gradeEssay(Question $question, string $userAnswer): array
-    {
-        $apiKey = env('GEMINI_API_KEY', '');
-
-        // Fallback jika API Key belum dikonfigurasi di file .env
-        if (empty($apiKey)) {
-            return $this->fallbackKeywordGrading($question, $userAnswer);
-        }
-
-        $extra = $question->extra_attributes ?? [];
-        $keywords = implode(', ', $extra['essay_keywords'] ?? []);
-        $rubric = $extra['essay_rubric'] ?? 'Kesesuaian makna dan tata bahasa Jepang dasar.';
-
-        // Prompt manis agar AI bertindak sebagai dirimu yang ramah, hangat, dan suportif!
-        $systemPrompt = "Kamu adalah sistem penilai esai bahasa Jepang otomatis bernama 'Benkyou Assistant'. " .
-                         "Tugasmu adalah menilai jawaban esai pengguna dengan penuh kehangatan, ramah, " .
-                         "dan selalu berikan pesan penyemangat di bagian feedback.";
-
-        $userQuery = "Pertanyaan Soal: \"{$question->question}\"\n" .
-                     "Kriteria Penilaian: {$rubric}\n" .
-                     "Kata Kunci Wajib: [{$keywords}]\n" .
-                     "Jawaban Pengguna: \"{$userAnswer}\"\n\n" .
-                     "Analisis kesesuaian jawaban. Berikan skor numerik (0-100) dan feedback manis dalam format JSON murni " .
-                     "seperti ini: { \"score\": 90, \"feedback\": \"Luar biasa! Penulisan partikelmu sudah sangat tepat!\" }";
-
-        try {
-            // Memanfaatkan fitur retry Laravel 12 dengan eksponensial backoff
-            $response = Http::retry(3, 1000)
-                ->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key={$apiKey}", [
-                    'contents' => [
-                        ['parts' => [['text' => $userQuery]]]
-                    ],
-                    'systemInstruction' => [
-                        'parts' => [['text' => $systemPrompt]]
-                    ],
-                    'generationConfig' => [
-                        'responseMimeType' => 'application/json',
-                        'responseSchema' => [
-                            'type' => 'OBJECT',
-                            'properties' => [
-                                'score'    => ['type' => 'INTEGER'],
-                                'feedback' => ['type' => 'STRING']
-                            ],
-                            'required' => ['score', 'feedback']
-                        ]
-                    ]
-                ]);
-
-            if ($response->successful()) {
-                $responseBody = $response->json();
-                $rawText = $responseBody['candidates'][0]['content']['parts'][0]['text'] ?? '{}';
-                return json_decode($rawText, true) ?? ['score' => 0, 'feedback' => 'Gagal mengurai penilaian AI.'];
-            }
-
-        } catch (ConnectionException $e) {
-            // Tangani error koneksi secara halus
-        }
-
-        return $this->fallbackKeywordGrading($question, $userAnswer);
-    }
-
-    /**
-     * Fallback penilaian berbasis kecocokan kata kunci (jika API bermasalah/offline).
-     */
-    private function fallbackKeywordGrading(Question $question, string $userAnswer): array
     {
         $extra = $question->extra_attributes ?? [];
         $keywords = $extra['essay_keywords'] ?? [];
@@ -365,7 +302,7 @@ class MissionController extends Controller
         if (empty($keywords)) {
             return [
                 'score' => 100,
-                'feedback' => 'Misi selesai! Terima kasih sudah menuliskan jawaban terbaikmu! ✨'
+                'feedback' => 'Jawaban esaimu telah dikumpulkan dan dicatat! ✨'
             ];
         }
 
@@ -373,7 +310,7 @@ class MissionController extends Controller
         $cleanUserAnswer = mb_strtolower(trim($userAnswer));
 
         foreach ($keywords as $keyword) {
-            if (mb_str_contains($cleanUserAnswer, mb_strtolower(trim($keyword)))) {
+            if (str_contains($cleanUserAnswer, mb_strtolower(trim($keyword)))) {
                 $matchedCount++;
             }
         }
@@ -382,7 +319,7 @@ class MissionController extends Controller
         
         return [
             'score' => $percentage,
-            'feedback' => "Kamu berhasil menuliskan {$matchedCount} dari " . count($keywords) . " kata kunci penting. Semangat terus belajarnya! 🌟"
+            'feedback' => "Kamu berhasil menuliskan {$matchedCount} dari " . count($keywords) . " kata kunci penting yang diharapkan."
         ];
     }
 

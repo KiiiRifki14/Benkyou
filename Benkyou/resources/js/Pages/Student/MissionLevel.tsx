@@ -2,7 +2,9 @@ import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import Layout from '@/Components/Layout';
 import { motion } from 'motion/react';
-import { ArrowLeft, Play, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Play, CheckCircle, Lock } from 'lucide-react';
+
+declare function route(name: string, params?: any, absolute?: boolean): string;
 
 interface SubLevel {
     id: number;
@@ -48,7 +50,8 @@ export default function MissionLevel({ meta, subLevels, userCerts }: MissionLeve
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {subLevels.map((sub, idx) => {
-                    const isPassed = userCerts[sub.id] === true;
+                    const isPassed = !!userCerts[sub.id];
+                    const isUnlocked = idx === 0 || !!userCerts[subLevels[idx - 1].id];
 
                     return (
                         <motion.div 
@@ -56,11 +59,11 @@ export default function MissionLevel({ meta, subLevels, userCerts }: MissionLeve
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.1 }}
-                            className="bg-white rounded-3xl border border-[#E5E5E5] p-6 md:p-8 flex flex-col justify-between hover:border-[var(--color-ink)] transition-colors"
+                            className={`bg-white rounded-3xl border border-[#E5E5E5] p-6 md:p-8 flex flex-col justify-between transition-colors ${isUnlocked ? 'hover:border-[var(--color-ink)]' : 'opacity-70 grayscale'}`}
                         >
                             <div className="mb-8">
                                 <div className="flex justify-between items-start mb-2">
-                                    <h3 className="font-bold text-xl text-[var(--color-ink)]">Tahap {sub.id}</h3>
+                                    <h3 className={`font-bold text-xl ${isUnlocked ? 'text-[var(--color-ink)]' : 'text-gray-400'}`}>Tahap {sub.id}</h3>
                                     {isPassed ? (
                                         <span className="flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full bg-green-50 text-green-600 border border-green-200">
                                             <CheckCircle size={14} /> Tuntas
@@ -74,12 +77,18 @@ export default function MissionLevel({ meta, subLevels, userCerts }: MissionLeve
                                 <p className="text-[var(--color-ink-light)] text-sm">{sub.questionCount} Tantangan Ujian</p>
                             </div>
 
-                            <Link 
-                                href={route('student.missions.start', { level: meta.id, subLevel: sub.id })}
-                                className="w-full inline-flex justify-center items-center gap-2 bg-[var(--color-ink)] hover:bg-black text-white rounded-full px-6 py-3 font-medium transition-colors"
-                            >
-                                <Play size={18} fill="currentColor" className="scale-75" /> {isPassed ? 'Ulangi Tahap' : 'Mulai Tahap Ini'}
-                            </Link>
+                            {isUnlocked ? (
+                                <Link 
+                                    href={route('student.missions.start', { level: meta.id, subLevel: sub.id })}
+                                    className="w-full inline-flex justify-center items-center gap-2 bg-[var(--color-ink)] hover:bg-black text-white rounded-full px-6 py-3 font-medium transition-colors"
+                                >
+                                    <Play size={18} fill="currentColor" className="scale-75" /> {isPassed ? 'Ulangi Tahap' : 'Mulai Tahap Ini'}
+                                </Link>
+                            ) : (
+                                <div className="w-full inline-flex justify-center items-center gap-2 bg-gray-100 text-gray-400 rounded-full px-6 py-3 font-medium cursor-not-allowed">
+                                    <Lock size={18} /> Terkunci
+                                </div>
+                            )}
                         </motion.div>
                     );
                 })}

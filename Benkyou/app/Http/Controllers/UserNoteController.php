@@ -11,7 +11,9 @@ class UserNoteController extends Controller
 {
     public function index()
     {
-        $notes = Auth::user()->notes()->orderBy('created_at', 'desc')->get();
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $notes = $user->notes()->orderBy('created_at', 'desc')->get();
         return response()->json($notes);
     }
 
@@ -22,7 +24,9 @@ class UserNoteController extends Controller
             'content' => 'required|string',
         ]);
 
-        $note = Auth::user()->notes()->create([
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $note = $user->notes()->create([
             'date' => $request->date,
             'content' => $request->content,
         ]);
