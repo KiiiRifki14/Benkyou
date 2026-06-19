@@ -15,10 +15,21 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
+    // Fetch admin-written notes for the landing page "Catatan Kecil" section
+    $student = \App\Models\User::where('role', 'student')->first();
+    $adminNotes = $student
+        ? \App\Models\UserNote::where('user_id', $student->id)
+            ->whereNotNull('author_id')
+            ->orderBy('created_at', 'desc')
+            ->limit(4)
+            ->get(['title', 'content', 'date'])
+        : collect();
+
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'landingSettings' => LandingSetting::pluck('value', 'key')->toArray()
+        'landingSettings' => LandingSetting::pluck('value', 'key')->toArray(),
+        'adminNotes' => $adminNotes,
     ]);
 })->name('welcome');
 
@@ -100,9 +111,24 @@ Route::prefix('student')->middleware(['auth'])->group(function () {
 
     // API endpoints for frontend
     Route::post('/preferences', [App\Http\Controllers\UserPreferenceController::class, 'update'])->name('student.preferences.update');
+
+    // API endpoint for notes (read-only for student)
     Route::get('/notes/api', [App\Http\Controllers\UserNoteController::class, 'index'])->name('student.notes.api.index');
-    Route::post('/notes/api', [App\Http\Controllers\UserNoteController::class, 'store'])->name('student.notes.api.store');
-    Route::delete('/notes/api/{note}', [App\Http\Controllers\UserNoteController::class, 'destroy'])->name('student.notes.api.destroy');
+
+    // Quiz activity logging
+    Route::post('/quiz/log', function (\Illuminate\Http\Request $request) {
+        $request->validate([
+            'score' => 'required|numeric|min:0',
+            'total' => 'required|numeric|min:1',
+            'category' => 'nullable|string',
+        ]);
+        App\Services\ActivityLogger::quizCompleted(
+            (int) $request->input('score'),
+            (int) $request->input('total'),
+            $request->input('category', 'Latihan Harian')
+        );
+        return response()->json(['logged' => true]);
+    })->name('student.quiz.log');
 });
 
 // Admin Prefixed Routes & CRUD Operations
@@ -143,4 +169,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/question', [AdminController::class, 'storeQuestion'])->name('admin.question.store');
     Route::put('/question/{id}', [AdminController::class, 'updateQuestion'])->name('admin.question.update');
     Route::delete('/question/{id}', [AdminController::class, 'deleteQuestion'])->name('admin.question.delete');
+
+    // Notes (Catatan Kecil — from admin to student)
+    Route::get('/notes', [AdminController::class, 'notesView'])->name('admin.notes');
+    Route::post('/notes', [AdminController::class, 'storeNote'])->name('admin.notes.store');
+    Route::put('/notes/{id}', [AdminController::class, 'updateNote'])->name('admin.notes.update');
+    Route::delete('/notes/{id}', [AdminController::class, 'deleteNote'])->name('admin.notes.delete');
+
+    // Activity Monitor
+    Route::get('/activity', [AdminController::class, 'activityView'])->name('admin.activity');
 });

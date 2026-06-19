@@ -267,4 +267,131 @@ class AdminController extends Controller
         \App\Models\Question::findOrFail($id)->delete();
         return back();
     }
+
+    // ──────────────────────────────────────────────
+    // Notes CRUD (Catatan Kecil — from you to her)
+    // ──────────────────────────────────────────────
+
+    public function notesView()
+    {
+        $this->checkAdmin();
+
+        $student = User::where('role', 'student')->first();
+
+        $notes = $student
+            ? UserNote::where('user_id', $student->id)
+                ->orderBy('created_at', 'desc')
+                ->get()
+            : collect();
+
+        return Inertia::render('Admin/ManageNotes', [
+            'notesData' => $notes,
+        ]);
+    }
+
+    public function storeNote(Request $request)
+    {
+        $this->checkAdmin();
+        $validated = $request->validate([
+            'title'   => 'nullable|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        $student = User::where('role', 'student')->first();
+        abort_unless($student, 404, 'Student user not found.');
+
+        $dateStr = now()->locale('id')->isoFormat('dddd, D MMMM YYYY');
+
+        UserNote::create([
+            'user_id'   => $student->id,
+            'title'     => $validated['title'] ?? null,
+            'content'   => $validated['content'],
+            'date'      => $dateStr,
+            'author_id' => Auth::id(),
+        ]);
+
+        return back();
+    }
+
+    public function updateNote(Request $request, int $id)
+    {
+        $this->checkAdmin();
+        $validated = $request->validate([
+            'title'   => 'nullable|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        UserNote::findOrFail($id)->update($validated);
+        return back();
+    }
+
+    public function deleteNote(int $id)
+    {
+        $this->checkAdmin();
+        UserNote::findOrFail($id)->delete();
+        return back();
+    }
+
+    // ──────────────────────────────────────────────
+    // Activity Monitor (see what she's been up to)
+    // ──────────────────────────────────────────────
+
+    public function activityView()
+    {
+        $this->checkAdmin();
+
+        $student = User::where('role', 'student')->first();
+
+        if (!$student) {
+            return Inertia::render('Admin/Activity', [
+                'activities' => [],
+                'stats'      => [],
+                'studentName' => null,
+            ]);
+        }
+
+        $activities = \App\Models\UserActivity::forUser($student->id)
+            ->orderBy('created_at', 'desc')
+            ->limit(200)
+            ->get()
+            ->map(fn ($a) => [
+                'id'          => $a->id,
+                'action'      => $a->action,
+                'category'    => $a->category,
+                'description' => $a->description,
+                'meta'        => $a->meta,
+                'time'        => $a->created_at->diffForHumans(),
+                'date'        => $a->created_at->format('d M Y, H:i'),
+            ]);
+
+        // Calculate stats
+        $totalActions   = \App\Models\UserActivity::forUser($student->id)->count();
+        $todayActions   = \App\Models\UserActivity::forUser($student->id)->today()->count();
+        $quizCompleted  = \App\Models\UserActivity::forUser($student->id)->where('action', 'quiz_completed')->count();
+        $missionsDone   = \App\Models\UserActivity::forUser($student->id)->where('action', 'mission_completed')->count();
+        $loginCount     = \App\Models\UserActivity::forUser($student->id)->where('action', 'login')->count();
+
+        // First and last activity
+        $firstActivity  = \App\Models\UserActivity::forUser($student->id)->orderBy('created_at', 'asc')->first();
+        $lastActivity   = \App\Models\UserActivity::forUser($student->id)->orderBy('created_at', 'desc')->first();
+
+        $daysSinceFirst = $firstActivity
+            ? (int) now()->diffInDays($firstActivity->created_at) + 1
+            : 0;
+
+        return Inertia::render('Admin/Activity', [
+            'activities'  => $activities,
+            'stats'       => [
+                'totalActions'  => $totalActions,
+                'todayActions'  => $todayActions,
+                'quizCompleted' => $quizCompleted,
+                'missionsDone'  => $missionsDone,
+                'loginCount'    => $loginCount,
+                'daysActive'    => $daysSinceFirst,
+                'firstActivity' => $firstActivity?->created_at?->format('d M Y'),
+                'lastActivity'  => $lastActivity?->created_at?->diffForHumans(),
+            ],
+            'studentName' => $student->name,
+        ]);
+    }
 }

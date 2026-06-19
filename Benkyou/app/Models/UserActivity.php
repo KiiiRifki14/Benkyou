@@ -6,39 +6,51 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class UserNote extends Model
+class UserActivity extends Model
 {
-    protected $fillable = ['user_id', 'title', 'content', 'date', 'author_id'];
+    protected $fillable = [
+        'user_id',
+        'action',
+        'category',
+        'description',
+        'meta',
+        'ip_address',
+    ];
+
+    protected $casts = [
+        'meta' => 'array',
+    ];
 
     // ──────────────────────────────────────────────
     // Relationships
     // ──────────────────────────────────────────────
 
-    /** The student who receives/reads this note. */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    /** The person who wrote this note (admin = you). */
-    public function author(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'author_id');
     }
 
     // ──────────────────────────────────────────────
     // Scopes
     // ──────────────────────────────────────────────
 
-    /** Notes written by admin (from you to her). */
-    public function scopeFromAdmin(Builder $query): Builder
+    public function scopeForUser(Builder $query, int $userId): Builder
     {
-        return $query->whereNotNull('author_id');
+        return $query->where('user_id', $userId);
     }
 
-    /** Notes written by the student herself (legacy). */
-    public function scopeFromSelf(Builder $query): Builder
+    public function scopeCategory(Builder $query, string $category): Builder
     {
-        return $query->whereNull('author_id');
+        return $query->where('category', $category);
+    }
+
+    public function scopeRecent(Builder $query, int $days = 7): Builder
+    {
+        return $query->where('created_at', '>=', now()->subDays($days));
+    }
+
+    public function scopeToday(Builder $query): Builder
+    {
+        return $query->whereDate('created_at', today());
     }
 }

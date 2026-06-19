@@ -49,7 +49,9 @@ export default function Quiz({
                             ? JSON.parse(q.options)
                             : q.options;
                 } catch (e) {
-                    parsedOptions = q.options || [];
+                    parsedOptions = (
+                        Array.isArray(q.options) ? q.options : []
+                    ) as any[];
                 }
 
                 let parsedAnswer = "";
@@ -80,6 +82,19 @@ export default function Quiz({
             generateQuestions();
         }
     }, [questionsData]);
+
+    // Log quiz completion to activity tracker
+    useEffect(() => {
+        if (showResult && totalQuestions > 0) {
+            (window as any).axios
+                ?.post("/student/quiz/log", {
+                    score: score,
+                    total: totalQuestions,
+                    category: "Latihan Harian",
+                })
+                .catch(() => {}); // silently fail
+        }
+    }, [showResult]);
 
     const shuffleArray = <T,>(arr: T[]) => {
         for (let i = arr.length - 1; i > 0; i--) {

@@ -2,46 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Models\UserNote;
+use App\Services\ActivityLogger;
 use Illuminate\Support\Facades\Auth;
 
 class UserNoteController extends Controller
 {
+    /**
+     * GET /student/notes/api
+     *
+     * Student reads all notes addressed to her — including those written by admin.
+     * Returns notes in descending date order (newest first).
+     */
     public function index()
     {
+        ActivityLogger::notesViewed();
+
         /** @var \App\Models\User $user */
         $user = Auth::user();
-        $notes = $user->notes()->orderBy('created_at', 'desc')->get();
+
+        $notes = $user->notes()
+            ->with('author:id,name')
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->map(fn (UserNote $note) => [
+                'id'        => $note->id,
+                'title'     => $note->title,
+                'content'   => $note->content,
+                'date'      => $note->date,
+                'fromAdmin' => $note->author_id !== null,
+                'authorName' => $note->author?->name,
+            ]);
+
         return response()->json($notes);
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'date' => 'required|string',
-            'content' => 'required|string',
-        ]);
-
-        /** @var \App\Models\User $user */
-        $user = Auth::user();
-        $note = $user->notes()->create([
-            'date' => $request->date,
-            'content' => $request->content,
-        ]);
-
-        return response()->json(['message' => 'Note created successfully', 'note' => $note]);
-    }
-
-    public function destroy(UserNote $note)
-    {
-        if ($note->user_id !== Auth::id()) {
-            return response()->json(['message' => 'Unauthorized'], 403);
-        }
-
-        $note->delete();
-
-        return response()->json(['message' => 'Note deleted successfully']);
     }
 }

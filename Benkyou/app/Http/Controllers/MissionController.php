@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\UserCertification;
+use App\Services\ActivityLogger;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
@@ -26,46 +27,46 @@ class MissionController extends Controller
             'id'       => 'n5',
             'order'    => 1,
             'title'    => 'Kohai',
-            'subtitle' => 'Junior yang baru belajar',
+            'subtitle' => 'Langkah pertama yang seru~',
             'goal'     => 'Bisa baca menu Sushi 🍣',
             'emoji'    => '🔰',
-            'reward'   => 'Tema Sakura terbuka!',
+            'reward'   => 'Tema Sakura + Pesan rahasia #1',
         ],
         'n4' => [
             'id'       => 'n4',
             'order'    => 2,
             'title'    => 'Senpai',
-            'subtitle' => 'Senior yang mulai jago',
+            'subtitle' => 'Makin jago, makin asyik!',
             'goal'     => 'Berani pesen Takoyaki sendiri 🐙',
             'emoji'    => '🌸',
-            'reward'   => 'Tema Matcha terbuka!',
+            'reward'   => 'Tema Matcha + Pesan rahasia #2',
         ],
         'n3' => [
             'id'       => 'n3',
             'order'    => 3,
             'title'    => 'Sensei',
-            'subtitle' => 'Guru, sudah bisa ngajarin',
+            'subtitle' => 'Kamu udah mulai ngajarin nih~',
             'goal'     => 'Paham lirik lagu J-Pop 🎵',
             'emoji'    => '⛩️',
-            'reward'   => 'Tema Gunung Fuji terbuka!',
+            'reward'   => 'Tema Gunung Fuji + Pesan rahasia #3',
         ],
         'n2' => [
             'id'       => 'n2',
             'order'    => 4,
             'title'    => 'Tensai',
-            'subtitle' => 'Jenius!',
+            'subtitle' => 'Jenius! Kamu keren banget~',
             'goal'     => 'Siap nonton Anime tanpa Subtitle 📺',
             'emoji'    => '🦊',
-            'reward'   => 'Tema Autumn terbuka!',
+            'reward'   => 'Tema Autumn + Pesan rahasia #4',
         ],
         'n1' => [
             'id'       => 'n1',
             'order'    => 5,
             'title'    => 'Shogun',
-            'subtitle' => 'Legend — Penguasa Bahasa Jepang',
+            'subtitle' => 'Legend! Kamu udah siap~',
             'goal'     => 'Siap diajak jalan-jalan ke Jepang! ✈️',
             'emoji'    => '🏯',
-            'reward'   => 'Midnight Theme terbuka!',
+            'reward'   => 'Midnight Theme + Surprise terbesar! 🎁',
         ],
     ];
 
@@ -179,6 +180,9 @@ class MissionController extends Controller
 
         abort_if(empty($questions), 404, 'Tidak ada soal untuk level ini.');
 
+        // Log activity
+        ActivityLogger::missionStarted($level, $subLevel);
+
         $meta = self::TITLE_MAP[$level];
 
         return Inertia::render('Student/MissionPlay', [
@@ -272,6 +276,9 @@ class MissionController extends Controller
             ['user_id' => $request->user()->id, 'category' => $level, 'level' => $subLevel],
             ['score' => $score, 'passed' => $passed]
         );
+
+        // Log activity
+        ActivityLogger::missionCompleted($level, $subLevel, $score, 100, $passed);
 
         $rewardData = null;
         if ($passed) {

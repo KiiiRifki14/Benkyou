@@ -1,125 +1,113 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
-import { Book, Plus, Trash2 } from 'lucide-react';
-import Layout from '@/Components/Layout';
+import React, { useState, useEffect } from "react";
+import { motion } from "motion/react";
+import { Mail, Heart } from "lucide-react";
+import Layout from "@/Components/Layout";
 
 interface Note {
-  id: string;
-  date: string;
-  content: string;
+    id: string;
+    title: string | null;
+    date: string;
+    content: string;
+    fromAdmin: boolean;
+    authorName: string | null;
 }
 
 export default function Notes() {
-  const [notes, setNotes] = useState<Note[]>([]);
-  const [newNote, setNewNote] = useState('');
+    const [notes, setNotes] = useState<Note[]>([]);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Fetch from API instead of localStorage
-    window.axios.get('/student/notes/api')
-      .then(res => setNotes(res.data))
-      .catch(err => console.error('Failed to fetch notes:', err));
-  }, []);
+    useEffect(() => {
+        (window as any).axios
+            .get("/student/notes/api")
+            .then((res: any) => setNotes(res.data))
+            .catch((err: any) => console.error("Failed to fetch notes:", err))
+            .finally(() => setLoading(false));
+    }, []);
 
-  const saveNote = () => {
-    if (!newNote.trim()) return;
-    
-    const dateStr = new Date().toLocaleDateString('id-ID', {
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-
-    window.axios.post('/student/notes/api', {
-      date: dateStr,
-      content: newNote
-    })
-    .then(res => {
-      setNotes([res.data.note, ...notes]);
-      setNewNote('');
-    })
-    .catch(err => console.error('Failed to save note:', err));
-  };
-
-  const deleteNote = (id: string) => {
-    window.axios.delete(`/student/notes/api/${id}`)
-      .then(() => {
-        setNotes(notes.filter(n => n.id !== id));
-      })
-      .catch(err => console.error('Failed to delete note:', err));
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="max-w-4xl mx-auto space-y-8 pb-12 px-2 sm:px-4"
-    >
-      <header className="text-center space-y-4 mb-10">
-        <h1 className="font-serif text-3xl sm:text-4xl font-light text-[var(--color-ink)] flex items-center justify-center gap-3">
-          <Book className="text-[var(--color-japan-red)]" size={32} />
-          Catatan Pribadi
-        </h1>
-        <p className="text-[var(--color-ink-light)] text-sm sm:text-base">
-          Tulis jurnal harianmu, hal baru yang dipelajari, atau sekadar catatan biasa.
-        </p>
-      </header>
-
-      <div className="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-sm border border-[#E5E5E5] space-y-4">
-        <textarea
-          value={newNote}
-          onChange={(e) => setNewNote(e.target.value)}
-          placeholder="Tulis catatan barumu di sini..."
-          className="w-full h-32 sm:h-40 p-4 rounded-xl sm:rounded-2xl border border-gray-200 focus:outline-none focus:border-[var(--color-japan-red)] focus:ring-1 focus:ring-[var(--color-japan-red)] resize-none text-sm sm:text-base mb-2"
-        />
-        <div className="flex justify-end">
-          <button
-            onClick={saveNote}
-            disabled={!newNote.trim()}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[var(--color-ink)] text-white font-medium hover:bg-black disabled:opacity-50 transition-colors"
-          >
-            <Plus size={18} />
-            Simpan Catatan
-          </button>
-        </div>
-      </div>
-
-      <div className="space-y-4 mt-8">
-        <h2 className="font-serif text-xl sm:text-2xl font-medium mb-6">Catatan Sebelumnya</h2>
-        {notes.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-2xl border border-[#E5E5E5] text-[var(--color-ink-light)] tracking-wide">
-            Belum ada catatan. Mulai tulis diary belajarmu hari ini!
-          </div>
-        ) : (
-          <div className="grid gap-4">
-            {notes.map((note) => (
-              <div key={note.id} className="bg-white p-4 sm:p-6 rounded-2xl border border-[#E5E5E5] shadow-sm relative group">
-                <div className="flex justify-between items-start mb-3 pr-8">
-                  <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[var(--color-japan-red)] bg-[#fff9f9] px-3 py-1 rounded-full">
-                    {note.date}
-                  </span>
-                </div>
-                <p className="text-sm sm:text-base text-[var(--color-ink)] whitespace-pre-wrap leading-relaxed">
-                  {note.content}
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-3xl mx-auto space-y-8 pb-12 px-2 sm:px-4"
+        >
+            <header className="text-center space-y-4 mb-10">
+                <h1 className="font-serif text-3xl sm:text-4xl font-light text-[var(--color-ink)] flex items-center justify-center gap-3">
+                    <Mail className="text-[var(--color-japan-red)]" size={32} />
+                    Catatan Kecil
+                </h1>
+                <p className="text-[var(--color-ink-light)] text-sm sm:text-base max-w-md mx-auto">
+                    Pesan-pesan kecil yang ditulis khusus untukmu~ Baca
+                    satu-satu ya 💌
                 </p>
-                
-                <button 
-                  onClick={() => deleteNote(note.id)}
-                  className="absolute top-4 right-4 sm:top-6 sm:right-6 text-gray-300 hover:text-red-500 transition-colors opacity-100 sm:opacity-0 sm:group-hover:opacity-100 p-2"
-                  title="Hapus Catatan"
-                >
-                  <Trash2 size={18} />
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </motion.div>
-  );
+            </header>
+
+            {loading ? (
+                <div className="text-center py-16">
+                    <div className="inline-block w-8 h-8 border-2 border-[var(--color-japan-red)] border-t-transparent rounded-full animate-spin" />
+                </div>
+            ) : notes.length === 0 ? (
+                <div className="text-center py-16 bg-white rounded-3xl border border-[#E5E5E5] space-y-4">
+                    <Mail className="mx-auto text-gray-300" size={48} />
+                    <p className="text-[var(--color-ink-light)]">
+                        Belum ada catatan~ Tapi tenang, sesuatu yang spesial
+                        sedang ditulis untukmu 🌸
+                    </p>
+                </div>
+            ) : (
+                <div className="space-y-6">
+                    {notes.map((note, index) => (
+                        <motion.div
+                            key={note.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: index * 0.1 }}
+                            className="bg-white rounded-3xl border border-[#E5E5E5] shadow-sm overflow-hidden"
+                        >
+                            {/* Letter header with date */}
+                            <div className="px-6 sm:px-8 pt-6 sm:pt-8 pb-4 border-b border-gray-100 bg-gradient-to-r from-[#fff9f9] to-white">
+                                <div className="flex items-center justify-between">
+                                    <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[var(--color-japan-red)] bg-white/80 px-3 py-1 rounded-full border border-red-100">
+                                        {note.date}
+                                    </span>
+                                    {note.fromAdmin && (
+                                        <span className="flex items-center gap-1 text-[10px] font-bold text-[var(--color-japan-red)] bg-red-50 px-2.5 py-1 rounded-full border border-red-100">
+                                            <Heart
+                                                size={10}
+                                                className="fill-current"
+                                            />{" "}
+                                            Dari Aku
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Letter body */}
+                            <div className="px-6 sm:px-8 py-6 sm:py-8">
+                                {note.title && (
+                                    <h3 className="font-serif text-lg sm:text-xl font-semibold text-[var(--color-ink)] mb-4">
+                                        {note.title}
+                                    </h3>
+                                )}
+                                <p className="text-sm sm:text-base text-[var(--color-ink)] whitespace-pre-wrap leading-relaxed font-sans">
+                                    {note.content}
+                                </p>
+                            </div>
+
+                            {/* Letter footer */}
+                            {note.fromAdmin && (
+                                <div className="px-6 sm:px-8 pb-6 sm:pb-8">
+                                    <div className="flex items-center gap-2 text-xs text-[var(--color-ink-light)] italic">
+                                        <span>— dengan 💕</span>
+                                    </div>
+                                </div>
+                            )}
+                        </motion.div>
+                    ))}
+                </div>
+            )}
+        </motion.div>
+    );
 }
 
 Notes.layout = (page: React.ReactNode) => <Layout>{page}</Layout>;

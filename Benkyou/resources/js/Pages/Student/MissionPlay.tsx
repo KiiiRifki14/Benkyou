@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
-import { Head, router } from '@inertiajs/react';
-import { motion, AnimatePresence } from 'motion/react';
-import { ChevronLeft, ChevronRight, Volume2, XCircle, CheckCircle2, Check, X, RefreshCcw } from 'lucide-react';
+import React, { useState } from "react";
+import { Head, router } from "@inertiajs/react";
+import { motion, AnimatePresence } from "motion/react";
+import {
+    ChevronLeft,
+    ChevronRight,
+    Volume2,
+    XCircle,
+    CheckCircle2,
+    Check,
+    X,
+    RefreshCcw,
+} from "lucide-react";
 
 declare function route(name: string, params?: any, absolute?: boolean): string;
-import axios from 'axios';
+import axios from "axios";
 
 interface QuestionData {
     id: number;
@@ -26,31 +35,44 @@ interface MetaData {
 }
 
 // Utility Validation
-export const validateUserAnswer = (userAns: string, correctAns: string | string[] | null): boolean => {
+export const validateUserAnswer = (
+    userAns: string,
+    correctAns: string | string[] | null,
+): boolean => {
     if (!userAns || !correctAns) return false;
     const normalize = (text: string): string => text.trim().toLowerCase();
     if (Array.isArray(correctAns)) {
-        return correctAns.some(ans => normalize(ans) === normalize(userAns));
+        return correctAns.some((ans) => normalize(ans) === normalize(userAns));
     }
     return normalize(String(correctAns)) === normalize(userAns);
 };
 
-const QuestionRenderer = ({ question, currentValue, onAnswer, disabled }: { question: QuestionData; currentValue?: string; onAnswer: (val: string) => void; disabled: boolean }) => {
-    switch(question.question_type) {
-        case 'multiple-choice':
-        case 'pg':
+const QuestionRenderer = ({
+    question,
+    currentValue,
+    onAnswer,
+    disabled,
+}: {
+    question: QuestionData;
+    currentValue?: string;
+    onAnswer: (val: string) => void;
+    disabled: boolean;
+}) => {
+    switch (question.question_type) {
+        case "multiple-choice":
+        case "pg":
             return (
                 <div className="space-y-3">
                     {(question.options || []).map((opt, idx) => (
-                        <button 
+                        <button
                             key={idx}
                             disabled={disabled}
                             onClick={() => onAnswer(opt)}
                             className={`w-full text-left p-4 md:p-6 rounded-2xl transition-all border ${
-                                currentValue === opt 
-                                ? 'bg-[var(--color-washi)] border-[var(--color-japan-red)] text-[var(--color-japan-red)] font-bold' 
-                                : 'bg-white border-[#E5E5E5] hover:border-[var(--color-ink)] text-[var(--color-ink)]'
-                            } ${disabled ? 'opacity-70 cursor-not-allowed' : ''}`}
+                                currentValue === opt
+                                    ? "bg-[var(--color-washi)] border-[var(--color-japan-red)] text-[var(--color-japan-red)] font-bold"
+                                    : "bg-white border-[#E5E5E5] hover:border-[var(--color-ink)] text-[var(--color-ink)]"
+                            } ${disabled ? "opacity-70 cursor-not-allowed" : ""}`}
                         >
                             <span className="inline-block w-8 font-bold text-[var(--color-ink-light)]">
                                 {String.fromCharCode(65 + idx)}.
@@ -60,51 +82,54 @@ const QuestionRenderer = ({ question, currentValue, onAnswer, disabled }: { ques
                     ))}
                 </div>
             );
-        case 'typing':
+        case "typing":
             return (
-                <input 
+                <input
                     type="text"
                     disabled={disabled}
-                    value={currentValue || ''}
+                    value={currentValue || ""}
                     onChange={(e) => onAnswer(e.target.value)}
                     placeholder="Ketik jawabanmu di sini..."
                     className="w-full p-6 text-lg border border-[#E5E5E5] rounded-2xl focus:ring-2 focus:ring-[var(--color-japan-red)] focus:border-[var(--color-japan-red)] transition-all outline-none disabled:bg-gray-50"
                 />
             );
-        case 'reading':
+        case "reading":
             return (
                 <div className="flex flex-col gap-6">
                     <div className="p-6 bg-[var(--color-washi)] rounded-2xl text-[var(--color-ink)] leading-relaxed border border-[#E5E5E5] text-lg">
                         {question.context}
                     </div>
                     <div className="space-y-3 mt-2">
-                        {question.options && question.options.map((opt, idx) => (
-                            <button 
-                                key={idx}
-                                disabled={disabled}
-                                onClick={() => onAnswer(opt)}
-                                className={`w-full text-left p-4 md:p-6 rounded-2xl transition-all border ${
-                                    currentValue === opt 
-                                    ? 'bg-[var(--color-washi)] border-[var(--color-japan-red)] text-[var(--color-japan-red)] font-bold' 
-                                    : 'bg-white border-[#E5E5E5] hover:border-[var(--color-ink)] text-[var(--color-ink)]'
-                                } ${disabled ? 'opacity-70 cursor-not-allowed' : ''}`}
-                            >
-                                <span className="inline-block w-8 font-bold text-[var(--color-ink-light)]">
-                                    {String.fromCharCode(65 + idx)}.
-                                </span>
-                                {opt}
-                            </button>
-                        ))}
+                        {question.options &&
+                            question.options.map((opt, idx) => (
+                                <button
+                                    key={idx}
+                                    disabled={disabled}
+                                    onClick={() => onAnswer(opt)}
+                                    className={`w-full text-left p-4 md:p-6 rounded-2xl transition-all border ${
+                                        currentValue === opt
+                                            ? "bg-[var(--color-washi)] border-[var(--color-japan-red)] text-[var(--color-japan-red)] font-bold"
+                                            : "bg-white border-[#E5E5E5] hover:border-[var(--color-ink)] text-[var(--color-ink)]"
+                                    } ${disabled ? "opacity-70 cursor-not-allowed" : ""}`}
+                                >
+                                    <span className="inline-block w-8 font-bold text-[var(--color-ink-light)]">
+                                        {String.fromCharCode(65 + idx)}.
+                                    </span>
+                                    {opt}
+                                </button>
+                            ))}
                     </div>
                 </div>
             );
-        case 'listening':
+        case "listening":
             return (
                 <div className="text-center p-8 bg-[var(--color-washi)] rounded-[2rem] border border-[#E5E5E5]">
-                    <button 
+                    <button
                         onClick={() => {
-                            const utterance = new SpeechSynthesisUtterance(question.spokenText);
-                            utterance.lang = question.speechLang || 'ja-JP';
+                            const utterance = new SpeechSynthesisUtterance(
+                                question.spokenText,
+                            );
+                            utterance.lang = question.speechLang || "ja-JP";
                             window.speechSynthesis.speak(utterance);
                         }}
                         className="bg-white hover:bg-gray-50 border border-[#E5E5E5] text-[var(--color-ink)] px-8 py-5 rounded-full transition-all font-medium flex items-center gap-3 mx-auto"
@@ -113,68 +138,87 @@ const QuestionRenderer = ({ question, currentValue, onAnswer, disabled }: { ques
                         <Volume2 size={24} /> Putar Audio Pertanyaan
                     </button>
                     <div className="mt-8">
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             disabled={disabled}
                             className="w-full max-w-md mx-auto p-4 md:p-6 rounded-2xl border border-[#E5E5E5] text-center focus:ring-2 focus:ring-[var(--color-japan-red)] focus:border-[var(--color-japan-red)] outline-none transition-all disabled:bg-gray-50"
                             onChange={(e) => onAnswer(e.target.value)}
-                            value={currentValue || ''}
+                            value={currentValue || ""}
                             placeholder="Ketik apa yang kamu dengar..."
                         />
                     </div>
                 </div>
             );
-        case 'image':
+        case "image":
             return (
                 <div className="flex flex-col gap-8">
                     <div className="flex justify-center">
-                        <img src={question.imageUrl} alt="Pertanyaan" className="max-h-64 object-contain rounded-2xl border border-[#E5E5E5]" />
+                        <img
+                            src={question.imageUrl}
+                            alt="Pertanyaan"
+                            className="max-h-64 object-contain rounded-2xl border border-[#E5E5E5]"
+                        />
                     </div>
                     <div className="space-y-3">
-                        {question.options && question.options.map((opt, idx) => (
-                            <button 
-                                key={idx}
-                                disabled={disabled}
-                                onClick={() => onAnswer(opt)}
-                                className={`w-full text-left p-4 md:p-6 rounded-2xl transition-all border ${
-                                    currentValue === opt 
-                                    ? 'bg-[var(--color-washi)] border-[var(--color-japan-red)] text-[var(--color-japan-red)] font-bold' 
-                                    : 'bg-white border-[#E5E5E5] hover:border-[var(--color-ink)] text-[var(--color-ink)]'
-                                } ${disabled ? 'opacity-70 cursor-not-allowed' : ''}`}
-                            >
-                                <span className="inline-block w-8 font-bold text-[var(--color-ink-light)]">
-                                    {String.fromCharCode(65 + idx)}.
-                                </span>
-                                {opt}
-                            </button>
-                        ))}
+                        {question.options &&
+                            question.options.map((opt, idx) => (
+                                <button
+                                    key={idx}
+                                    disabled={disabled}
+                                    onClick={() => onAnswer(opt)}
+                                    className={`w-full text-left p-4 md:p-6 rounded-2xl transition-all border ${
+                                        currentValue === opt
+                                            ? "bg-[var(--color-washi)] border-[var(--color-japan-red)] text-[var(--color-japan-red)] font-bold"
+                                            : "bg-white border-[#E5E5E5] hover:border-[var(--color-ink)] text-[var(--color-ink)]"
+                                    } ${disabled ? "opacity-70 cursor-not-allowed" : ""}`}
+                                >
+                                    <span className="inline-block w-8 font-bold text-[var(--color-ink-light)]">
+                                        {String.fromCharCode(65 + idx)}.
+                                    </span>
+                                    {opt}
+                                </button>
+                            ))}
                     </div>
                 </div>
             );
-        case 'essay':
+        case "essay":
             return (
-                <textarea 
+                <textarea
                     rows={6}
                     disabled={disabled}
-                    value={currentValue || ''}
+                    value={currentValue || ""}
                     onChange={(e) => onAnswer(e.target.value)}
                     placeholder="Tulis esaimu di sini dengan bahasa Jepang..."
                     className="w-full p-6 text-lg border border-[#E5E5E5] rounded-2xl focus:ring-2 focus:ring-[var(--color-japan-red)] focus:border-[var(--color-japan-red)] transition-all outline-none resize-none disabled:bg-gray-50"
                 />
             );
         default:
-            return <div className="text-[var(--color-ink-light)] italic">Tipe soal belum diatur.</div>;
+            return (
+                <div className="text-[var(--color-ink-light)] italic">
+                    Tipe soal belum diatur.
+                </div>
+            );
     }
 };
 
-export default function MissionPlay({ meta, questions, passingScore = 80 }: { meta: MetaData; questions: QuestionData[]; passingScore?: number }) {
+export default function MissionPlay({
+    meta,
+    questions,
+    passingScore = 80,
+}: {
+    meta: MetaData;
+    questions: QuestionData[];
+    passingScore?: number;
+}) {
     if (!questions || questions.length === 0) {
         return (
             <div className="max-w-3xl mx-auto pt-20 text-center">
-                <Head title={`Ujian: ${meta?.title || 'Mission'}`} />
-                <h2 className="text-2xl font-bold mb-4">Tidak ada soal untuk level ini.</h2>
-                <button 
-                    onClick={() => router.visit(route('student.missions'))}
+                <Head title={`Tantangan: ${meta?.title || "Mission"}`} />
+                <h2 className="text-2xl font-bold mb-4">
+                    Tidak ada soal untuk level ini.
+                </h2>
+                <button
+                    onClick={() => router.visit(route("student.missions"))}
                     className="bg-[var(--color-ink)] text-white px-8 py-3 rounded-full"
                 >
                     Kembali
@@ -185,19 +229,26 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answers, setAnswers] = useState<Record<number, string>>({});
-    
+
     // Status per soal: 'answering' atau 'feedback'
-    const [questionState, setQuestionState] = useState<'answering'|'feedback'>('answering');
+    const [questionState, setQuestionState] = useState<
+        "answering" | "feedback"
+    >("answering");
     const [isChecking, setIsChecking] = useState(false);
-    
+
     // Simpan hasil penilaian tiap soal (baik PG maupun essay)
-    const [results, setResults] = useState<Record<number, { isCorrect: boolean; essayScore?: number; essayFeedback?: string }>>({});
+    const [results, setResults] = useState<
+        Record<
+            number,
+            { isCorrect: boolean; essayScore?: number; essayFeedback?: string }
+        >
+    >({});
 
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [rewardState, setRewardState] = useState<{ 
-        show: boolean; 
-        passed: boolean; 
-        rewardData?: any; 
+    const [rewardState, setRewardState] = useState<{
+        show: boolean;
+        passed: boolean;
+        rewardData?: any;
         finalScore: number;
         totalCorrect: number;
         totalQuestions: number;
@@ -206,8 +257,8 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
     const currentQuestion = questions[currentIndex];
 
     const handleAnswer = (val: string) => {
-        if (questionState === 'answering') {
-            setAnswers(prev => ({ ...prev, [currentQuestion.id]: val }));
+        if (questionState === "answering") {
+            setAnswers((prev) => ({ ...prev, [currentQuestion.id]: val }));
         }
     };
 
@@ -218,28 +269,34 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
         setIsChecking(true);
 
         try {
-            if (currentQuestion.question_type === 'essay') {
-                const res = await axios.post(`/student/missions/essay/${currentQuestion.id}/grade`, { answer: userAns });
+            if (currentQuestion.question_type === "essay") {
+                const res = await axios.post(
+                    `/student/missions/essay/${currentQuestion.id}/grade`,
+                    { answer: userAns },
+                );
                 const score = res.data.score || 0;
-                setResults(prev => ({
+                setResults((prev) => ({
                     ...prev,
                     [currentQuestion.id]: {
                         isCorrect: score >= 70, // Threshold lulus esai
                         essayScore: score,
-                        essayFeedback: res.data.feedback
-                    }
+                        essayFeedback: res.data.feedback,
+                    },
                 }));
             } else {
-                const correct = validateUserAnswer(userAns, currentQuestion.answer);
-                setResults(prev => ({
+                const correct = validateUserAnswer(
+                    userAns,
+                    currentQuestion.answer,
+                );
+                setResults((prev) => ({
                     ...prev,
-                    [currentQuestion.id]: { isCorrect: correct }
+                    [currentQuestion.id]: { isCorrect: correct },
                 }));
             }
-            setQuestionState('feedback');
+            setQuestionState("feedback");
         } catch (e) {
-            console.error('Error checking answer', e);
-            alert('Gagal mengecek jawaban. Periksa koneksi atau coba lagi.');
+            console.error("Error checking answer", e);
+            alert("Gagal mengecek jawaban. Periksa koneksi atau coba lagi.");
         } finally {
             setIsChecking(false);
         }
@@ -247,8 +304,8 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
 
     const handleNext = () => {
         if (currentIndex < questions.length - 1) {
-            setCurrentIndex(idx => idx + 1);
-            setQuestionState('answering');
+            setCurrentIndex((idx) => idx + 1);
+            setQuestionState("answering");
         } else {
             handleSubmit();
         }
@@ -263,9 +320,9 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
 
             for (const q of questions) {
                 const res = results[q.id];
-                if (q.question_type === 'essay') {
+                if (q.question_type === "essay") {
                     essayCount++;
-                    totalEssayScore += (res?.essayScore || 0);
+                    totalEssayScore += res?.essayScore || 0;
                 } else {
                     if (res?.isCorrect) {
                         totalCorrect++;
@@ -275,9 +332,10 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
 
             let baseScore = 0;
             if (questions.length - essayCount > 0) {
-                baseScore = (totalCorrect / (questions.length - essayCount)) * 100;
+                baseScore =
+                    (totalCorrect / (questions.length - essayCount)) * 100;
             }
-            
+
             let finalScore = baseScore;
             if (essayCount > 0) {
                 const essayAvg = totalEssayScore / essayCount;
@@ -287,23 +345,25 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
                     finalScore = (baseScore + essayAvg) / 2;
                 }
             }
-            
+
             finalScore = Math.round(finalScore);
 
-            const response = await axios.post(`/student/missions/${meta.id}/${meta.subLevel}/submit`, { score: finalScore });
-            
+            const response = await axios.post(
+                `/student/missions/${meta.id}/${meta.subLevel}/submit`,
+                { score: finalScore },
+            );
+
             setRewardState({
                 show: true,
                 passed: response.data.passed,
                 rewardData: response.data.reward,
                 finalScore,
                 totalCorrect,
-                totalQuestions: questions.length - essayCount
+                totalQuestions: questions.length - essayCount,
             });
-
         } catch (error) {
-            console.error('Submit failed', error);
-            alert('Gagal mengumpulkan jawaban. Coba lagi.');
+            console.error("Submit failed", error);
+            alert("Gagal mengumpulkan jawaban. Coba lagi.");
         } finally {
             setIsSubmitting(false);
         }
@@ -313,21 +373,23 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
         setAnswers({});
         setResults({});
         setCurrentIndex(0);
-        setQuestionState('answering');
+        setQuestionState("answering");
         setRewardState(null);
     };
 
-    const progressPercent = ((currentIndex) / questions.length) * 100;
+    const progressPercent = (currentIndex / questions.length) * 100;
     const currentResult = results[currentQuestion?.id];
 
     return (
         <div className="max-w-3xl mx-auto space-y-8 pt-8 px-4 pb-20">
-            <Head title={`Ujian: ${meta.title}`} />
-            
+            <Head title={`Tantangan: ${meta.title}`} />
+
             {/* Header & Progress */}
             <div className="flex items-center justify-between mb-4">
-                <button 
-                    onClick={() => router.visit(route('student.missions.level', meta.id))}
+                <button
+                    onClick={() =>
+                        router.visit(route("student.missions.level", meta.id))
+                    }
                     className="text-[var(--color-ink-light)] font-medium flex items-center gap-2 hover:text-[var(--color-ink)] transition-colors"
                 >
                     <ChevronLeft size={18} /> Tinggalkan
@@ -338,15 +400,15 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
             </div>
 
             <div className="h-2 w-full bg-[var(--color-washi)] rounded-full overflow-hidden">
-                <motion.div 
+                <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${progressPercent}%` }}
                     className="h-full bg-[var(--color-japan-red)] rounded-full transition-all duration-300"
                 />
             </div>
-            
+
             <AnimatePresence mode="wait">
-                <motion.div 
+                <motion.div
                     key={currentIndex}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -356,7 +418,9 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
                 >
                     <div className="p-8 md:p-10 border-b border-[#E5E5E5]">
                         <span className="inline-block text-[var(--color-ink-light)] font-bold text-xs tracking-widest uppercase mb-4">
-                            {currentQuestion.question_type === 'essay' ? 'Tantangan Esai' : 'Pertanyaan'}
+                            {currentQuestion.question_type === "essay"
+                                ? "Tantangan Esai"
+                                : "Pertanyaan"}
                         </span>
                         <h2 className="text-2xl font-bold text-[var(--color-ink)] leading-relaxed">
                             {currentQuestion.question}
@@ -364,51 +428,84 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
                     </div>
 
                     <div className="p-8 md:p-10 min-h-[250px]">
-                        <QuestionRenderer 
+                        <QuestionRenderer
                             question={currentQuestion}
                             currentValue={answers[currentQuestion.id]}
                             onAnswer={handleAnswer}
-                            disabled={questionState === 'feedback' || isChecking}
+                            disabled={
+                                questionState === "feedback" || isChecking
+                            }
                         />
 
                         {/* Immediate Feedback Box */}
                         <AnimatePresence>
-                            {questionState === 'feedback' && currentResult && (
-                                <motion.div 
+                            {questionState === "feedback" && currentResult && (
+                                <motion.div
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className={`mt-8 p-6 rounded-2xl border ${currentResult.isCorrect ? 'bg-green-50 border-green-200 text-green-900' : 'bg-red-50 border-red-200 text-red-900'}`}
+                                    className={`mt-8 p-6 rounded-2xl border ${currentResult.isCorrect ? "bg-green-50 border-green-200 text-green-900" : "bg-red-50 border-red-200 text-red-900"}`}
                                 >
                                     <div className="flex items-start gap-4">
                                         {currentResult.isCorrect ? (
                                             <div className="bg-green-100 p-2 rounded-full shrink-0">
-                                                <Check className="text-green-600" size={24} />
+                                                <Check
+                                                    className="text-green-600"
+                                                    size={24}
+                                                />
                                             </div>
                                         ) : (
                                             <div className="bg-red-100 p-2 rounded-full shrink-0">
-                                                <X className="text-red-600" size={24} />
+                                                <X
+                                                    className="text-red-600"
+                                                    size={24}
+                                                />
                                             </div>
                                         )}
                                         <div className="flex-1">
                                             <h4 className="font-bold text-lg mb-2">
-                                                {currentResult.isCorrect ? 'Benar Sekali!' : 'Kurang Tepat'}
+                                                {currentResult.isCorrect
+                                                    ? "Benar Sekali!"
+                                                    : "Kurang Tepat"}
                                             </h4>
-                                            
-                                            {currentQuestion.question_type === 'essay' ? (
+
+                                            {currentQuestion.question_type ===
+                                            "essay" ? (
                                                 <div className="space-y-2">
-                                                    <p className="font-bold">Skor Esai: {currentResult.essayScore}/100</p>
-                                                    <p className="leading-relaxed opacity-90">{currentResult.essayFeedback}</p>
+                                                    <p className="font-bold">
+                                                        Skor Esai:{" "}
+                                                        {
+                                                            currentResult.essayScore
+                                                        }
+                                                        /100
+                                                    </p>
+                                                    <p className="leading-relaxed opacity-90">
+                                                        {
+                                                            currentResult.essayFeedback
+                                                        }
+                                                    </p>
                                                 </div>
                                             ) : (
                                                 <div className="space-y-2">
                                                     {!currentResult.isCorrect && (
                                                         <p className="font-medium text-red-800">
-                                                            Jawaban yang benar: {Array.isArray(currentQuestion.answer) ? currentQuestion.answer.join(' / ') : currentQuestion.answer}
+                                                            Jawaban yang benar:{" "}
+                                                            {Array.isArray(
+                                                                currentQuestion.answer,
+                                                            )
+                                                                ? currentQuestion.answer.join(
+                                                                      " / ",
+                                                                  )
+                                                                : currentQuestion.answer}
                                                         </p>
                                                     )}
                                                     {currentQuestion.explanation && (
                                                         <p className="leading-relaxed opacity-90 mt-2 border-t pt-2 border-opacity-20 border-current">
-                                                            <span className="font-bold">Penjelasan:</span> {currentQuestion.explanation}
+                                                            <span className="font-bold">
+                                                                Penjelasan:
+                                                            </span>{" "}
+                                                            {
+                                                                currentQuestion.explanation
+                                                            }
                                                         </p>
                                                     )}
                                                 </div>
@@ -424,21 +521,26 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
 
             {/* Navigation Footer */}
             <div className="flex justify-end items-center mt-6">
-                {questionState === 'answering' ? (
-                    <button 
+                {questionState === "answering" ? (
+                    <button
                         onClick={checkAnswer}
                         disabled={!answers[currentQuestion.id] || isChecking}
                         className="bg-[var(--color-japan-red)] hover:bg-red-800 text-white px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
                     >
-                        {isChecking ? 'Memeriksa...' : 'Periksa Jawaban'}
+                        {isChecking ? "Memeriksa..." : "Periksa Jawaban"}
                     </button>
                 ) : (
-                    <button 
+                    <button
                         onClick={handleNext}
                         disabled={isSubmitting}
                         className="bg-[var(--color-ink)] hover:bg-black text-white px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 shadow-md hover:shadow-lg"
                     >
-                        {currentIndex === questions.length - 1 ? (isSubmitting ? 'Mengumpulkan...' : 'Kumpulkan & Selesai') : 'Lanjut ke Soal Berikutnya'} <ChevronRight size={18} />
+                        {currentIndex === questions.length - 1
+                            ? isSubmitting
+                                ? "Mengumpulkan..."
+                                : "Kumpulkan & Selesai"
+                            : "Lanjut ke Soal Berikutnya"}{" "}
+                        <ChevronRight size={18} />
                     </button>
                 )}
             </div>
@@ -446,12 +548,12 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
             {/* Result Modal */}
             <AnimatePresence>
                 {rewardState?.show && (
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4"
                     >
-                        <motion.div 
+                        <motion.div
                             initial={{ scale: 0.9, y: 20 }}
                             animate={{ scale: 1, y: 0 }}
                             className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl max-w-lg w-full text-center border-4 border-white"
@@ -459,54 +561,94 @@ export default function MissionPlay({ meta, questions, passingScore = 80 }: { me
                             <div className="mb-8">
                                 {rewardState.passed ? (
                                     <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-                                        <CheckCircle2 size={48} className="text-green-600" />
+                                        <CheckCircle2
+                                            size={48}
+                                            className="text-green-600"
+                                        />
                                     </div>
                                 ) : (
                                     <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-                                        <XCircle size={48} className="text-[var(--color-japan-red)]" />
-                                    </div>
-                                )}
-                                
-                                <h3 className="text-3xl font-black text-[var(--color-ink)] mb-2 tracking-tight">
-                                    {rewardState.passed ? 'Misi Berhasil! 🎉' : 'Misi Gagal'}
-                                </h3>
-                                
-                                <div className="bg-gray-50 rounded-2xl p-6 my-8 border border-gray-100">
-                                    <p className="text-[var(--color-ink-light)] mb-2 font-medium uppercase tracking-widest text-xs">Skor Akhir</p>
-                                    <p className={`text-6xl font-black mb-4 ${rewardState.passed ? 'text-green-600' : 'text-[var(--color-japan-red)]'}`}>
-                                        {rewardState.finalScore}
-                                    </p>
-                                    
-                                    {rewardState.totalQuestions > 0 && (
-                                        <p className="text-sm font-medium text-gray-600">
-                                            Benar <span className="font-bold">{rewardState.totalCorrect}</span> dari <span className="font-bold">{rewardState.totalQuestions}</span> Soal PG/Lainnya
-                                        </p>
-                                    )}
-                                </div>
-                                
-                                {rewardState.passed && rewardState.rewardData && (
-                                    <div className="bg-[var(--color-washi)] p-6 rounded-2xl border border-[var(--color-japan-red)] mb-8 text-left shadow-sm">
-                                        <div className="flex items-center gap-3 mb-2">
-                                            <span className="text-2xl">🎁</span>
-                                            <h4 className="font-bold text-[var(--color-japan-red)]">{rewardState.rewardData.title}</h4>
-                                        </div>
-                                        <p className="text-sm text-[var(--color-ink)] font-medium ml-9">{rewardState.rewardData.message}</p>
+                                        <XCircle
+                                            size={48}
+                                            className="text-[var(--color-japan-red)]"
+                                        />
                                     </div>
                                 )}
 
+                                <h3 className="text-3xl font-black text-[var(--color-ink)] mb-2 tracking-tight">
+                                    {rewardState.passed
+                                        ? "Misi Berhasil! 🎉"
+                                        : "Misi Gagal"}
+                                </h3>
+
+                                <div className="bg-gray-50 rounded-2xl p-6 my-8 border border-gray-100">
+                                    <p className="text-[var(--color-ink-light)] mb-2 font-medium uppercase tracking-widest text-xs">
+                                        Skor Akhir
+                                    </p>
+                                    <p
+                                        className={`text-6xl font-black mb-4 ${rewardState.passed ? "text-green-600" : "text-[var(--color-japan-red)]"}`}
+                                    >
+                                        {rewardState.finalScore}
+                                    </p>
+
+                                    {rewardState.totalQuestions > 0 && (
+                                        <p className="text-sm font-medium text-gray-600">
+                                            Benar{" "}
+                                            <span className="font-bold">
+                                                {rewardState.totalCorrect}
+                                            </span>{" "}
+                                            dari{" "}
+                                            <span className="font-bold">
+                                                {rewardState.totalQuestions}
+                                            </span>{" "}
+                                            Soal PG/Lainnya
+                                        </p>
+                                    )}
+                                </div>
+
+                                {rewardState.passed &&
+                                    rewardState.rewardData && (
+                                        <div className="bg-[var(--color-washi)] p-6 rounded-2xl border border-[var(--color-japan-red)] mb-8 text-left shadow-sm">
+                                            <div className="flex items-center gap-3 mb-2">
+                                                <span className="text-2xl">
+                                                    🎁
+                                                </span>
+                                                <h4 className="font-bold text-[var(--color-japan-red)]">
+                                                    {
+                                                        rewardState.rewardData
+                                                            .title
+                                                    }
+                                                </h4>
+                                            </div>
+                                            <p className="text-sm text-[var(--color-ink)] font-medium ml-9">
+                                                {rewardState.rewardData.message}
+                                            </p>
+                                        </div>
+                                    )}
+
                                 <div className="space-y-3">
-                                    <button 
-                                        onClick={() => router.visit(route('student.missions.level', meta.id))}
+                                    <button
+                                        onClick={() =>
+                                            router.visit(
+                                                route(
+                                                    "student.missions.level",
+                                                    meta.id,
+                                                ),
+                                            )
+                                        }
                                         className="w-full bg-[var(--color-ink)] text-white font-bold py-4 rounded-xl hover:bg-black transition-colors shadow-md"
                                     >
                                         Kembali ke Menu
                                     </button>
-                                    
-                                    <button 
+
+                                    <button
                                         onClick={handleRetry}
                                         className="w-full bg-white text-[var(--color-ink)] border-2 border-[var(--color-ink)] font-bold py-4 rounded-xl hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
                                     >
-                                        <RefreshCcw size={18} /> {rewardState.passed ? 'Kerjakan Ulang' : 'Perbaiki Nilai'}
+                                        <RefreshCcw size={18} />{" "}
+                                        {rewardState.passed
+                                            ? "Kerjakan Ulang"
+                                            : "Perbaiki Nilai"}
                                     </button>
                                 </div>
                             </div>

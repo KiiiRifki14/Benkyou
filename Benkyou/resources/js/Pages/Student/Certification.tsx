@@ -76,7 +76,9 @@ export default function Certification({
                                 ? JSON.parse(q.options)
                                 : q.options;
                     } catch (e) {
-                        parsedOptions = q.options || [];
+                        parsedOptions = (
+                            Array.isArray(q.options) ? q.options : []
+                        ) as any[];
                     }
 
                     let parsedAnswer: string | string[] = "";
@@ -115,7 +117,7 @@ export default function Certification({
                         return {
                             id: lvlId,
                             title: `${cat.id.toUpperCase()} Level ${lvlId}`,
-                            description: `Ujian ${cat.id.toUpperCase()} Level ${lvlId} - Terdiri dari ${levelsMap[lvlId].length} soal dari database.`,
+                            description: `Tantangan ${cat.id.toUpperCase()} Level ${lvlId} - ${levelsMap[lvlId].length} soal seru dari database.`,
                             passingScore: 70,
                             questions: levelsMap[lvlId],
                         };
@@ -276,6 +278,7 @@ export default function Certification({
                 : selectedLevel
                   ? selectedLevel.questions[currentQuestion]
                   : null;
+        if (!q) return;
         const normalize = (s: string) => s.trim().toLowerCase();
         const isCorrect = Array.isArray(q.answer)
             ? q.answer.some((a) => normalize(a) === normalize(option))
@@ -296,6 +299,7 @@ export default function Certification({
                 : selectedLevel
                   ? selectedLevel.questions[currentQuestion]
                   : null;
+        if (!q) return;
         const normalizedInput = typingInput.trim().toLowerCase();
 
         const isCorrect = Array.isArray(q.answer)
@@ -403,13 +407,10 @@ export default function Certification({
                     <div className="w-20 h-20 bg-[var(--color-japan-red)] rounded-full flex items-center justify-center mx-auto text-white shadow-xl mb-4">
                         <Trophy size={40} />
                     </div>
-                    <h1 className="font-serif text-4xl mb-4">
-                        Sertifikasi JLPT
-                    </h1>
+                    <h1 className="font-serif text-4xl mb-4">My Journey ✨</h1>
                     <p className="text-lg text-[var(--color-ink-light)] max-w-2xl mx-auto">
-                        Pilih kategori sertifikasi untuk menguji kemampuanmu.
-                        Selesaikan seluruh bab level untuk mendapatkan
-                        sertifikat dan tema unik!
+                        Dari Kohai sampai Shogun~ Selesaikan setiap tantangan
+                        untuk buka reward dan tema eksklusif!
                     </p>
                 </header>
 
@@ -455,10 +456,10 @@ export default function Certification({
                                                 : "",
                                         }}
                                     >
-                                        {isCompleted ? "LULUS" : "BELUM"}
+                                        {isCompleted ? "MASTERED" : "BELUM"}
                                     </div>
                                     <div className="text-xs uppercase tracking-widest text-gray-400 font-bold">
-                                        Status Sertifikasi
+                                        Status Gelar
                                     </div>
                                 </div>
                             </button>
@@ -572,7 +573,7 @@ export default function Certification({
                 </p>
                 <div className="bg-white p-6 rounded-2xl border border-[#E5E5E5] text-left space-y-4 shadow-sm max-w-md mx-auto">
                     <h3 className="font-bold text-sm uppercase tracking-widest flex items-center gap-2">
-                        <BookOpen size={16} /> Detail Ujian
+                        <BookOpen size={16} /> Detail Tantangan
                     </h3>
                     <ul className="text-sm space-y-2 text-[var(--color-ink-light)]">
                         <li>• Soal: {totalQuestions} Pertanyaan</li>
@@ -580,8 +581,8 @@ export default function Certification({
                             • Jenis: Kosakata, Tata Bahasa, Membaca, Mendengar
                         </li>
                         <li>
-                            • Syarat Lulus: {selectedLevel.passingScore}%
-                            Jawaban Benar
+                            • Target: {selectedLevel.passingScore}% Jawaban
+                            Benar
                         </li>
                     </ul>
                 </div>
@@ -589,7 +590,7 @@ export default function Certification({
                     onClick={startQuiz}
                     className="px-12 py-4 rounded-full bg-[var(--color-japan-red)] text-white font-bold text-lg hover:shadow-lg transition-all hover:-translate-y-1"
                 >
-                    Mulai Ujian
+                    Mulai Tantangan!
                 </button>
             </motion.div>
         );
@@ -614,7 +615,7 @@ export default function Certification({
                             Selamat! Omedetou!
                         </h2>
                         <p className="text-[var(--color-ink-light)]">
-                            Kamu telah LULUS {selectedLevel.title}.
+                            Kamu telah menaklukkan {selectedLevel.title}. 🎉
                         </p>
 
                         {/* Certificate Style Box */}
@@ -632,10 +633,10 @@ export default function Certification({
                             {isFullCompletion ? (
                                 <>
                                     <div className="font-serif text-xl md:text-2xl mb-2 text-[var(--color-ink)]">
-                                        SERTIFIKAT KELULUSAN TOTAL
+                                        GELAR SEMPURNA! 🏆
                                     </div>
                                     <div className="text-[10px] md:text-sm text-[var(--color-ink-light)] mb-4">
-                                        Secara resmi telah menaklukkan seluruh
+                                        Kamu telah menaklukkan seluruh
                                         tantangan:
                                     </div>
                                     <div
@@ -664,16 +665,13 @@ export default function Certification({
                             ) : (
                                 <>
                                     <div className="font-serif text-lg md:text-2xl mb-2 text-[var(--color-ink)]">
-                                        SERTIFIKAT MODUL
+                                        BADGE PRESTASI ✨
                                     </div>
                                     <div className="text-[10px] md:text-sm text-[var(--color-ink-light)] mb-4 px-2">
-                                        Sertifikat ini diberikan secara bangga
-                                        kepada:
+                                        Badge ini diberikan dengan bangga untuk:
                                     </div>
                                     <div className="font-serif text-2xl md:text-4xl font-bold mb-4 tracking-wide text-gray-800">
-                                        {user
-                                            ? user.name.toUpperCase()
-                                            : "PELAJAR"}
+                                        {user ? user.name : "Sayang"}
                                     </div>
                                     <div className="text-xs md:text-sm text-[var(--color-ink-light)] mb-2 px-4 md:px-6">
                                         Telah berhasil menguasai{" "}
@@ -685,7 +683,7 @@ export default function Certification({
 
                             <div className="mt-4 font-bold text-green-700 bg-green-100 px-4 py-2 rounded-full inline-block text-[10px] md:text-sm">
                                 SKOR: {score}/{totalQuestions} ({percentage}%) -
-                                LULUS
+                                CLEARED!
                             </div>
                         </div>
                     </div>
