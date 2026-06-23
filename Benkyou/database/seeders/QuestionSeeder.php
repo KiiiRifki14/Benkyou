@@ -9,6 +9,8 @@ class QuestionSeeder extends Seeder
 {
     public function run(): void
     {
+        Question::truncate();
+
         // 1. Seed Latihan Harian (Daily Quizzes)
         $quizzes = [
             [

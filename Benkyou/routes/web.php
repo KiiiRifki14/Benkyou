@@ -112,8 +112,11 @@ Route::prefix('student')->middleware(['auth'])->group(function () {
     // API endpoints for frontend
     Route::post('/preferences', [App\Http\Controllers\UserPreferenceController::class, 'update'])->name('student.preferences.update');
 
-    // API endpoint for notes (read-only for student)
+    // API endpoint for notes (student notes CRUD)
     Route::get('/notes/api', [App\Http\Controllers\UserNoteController::class, 'index'])->name('student.notes.api.index');
+    Route::post('/notes/api', [App\Http\Controllers\UserNoteController::class, 'store'])->name('student.notes.api.store');
+    Route::put('/notes/api/{id}', [App\Http\Controllers\UserNoteController::class, 'update'])->name('student.notes.api.update');
+    Route::delete('/notes/api/{id}', [App\Http\Controllers\UserNoteController::class, 'destroy'])->name('student.notes.api.destroy');
 
     // Quiz activity logging
     Route::post('/quiz/log', function (\Illuminate\Http\Request $request) {

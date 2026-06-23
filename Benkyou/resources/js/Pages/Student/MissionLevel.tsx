@@ -2,7 +2,18 @@ import React from "react";
 import { Head, Link } from "@inertiajs/react";
 import Layout from "@/Components/Layout";
 import { motion } from "motion/react";
-import { ArrowLeft, Play, CheckCircle, Lock } from "lucide-react";
+import {
+    ArrowLeft,
+    Play,
+    CheckCircle2,
+    Lock,
+    Star,
+    Sparkles,
+    MapPin,
+    Scroll,
+    Shield,
+    ChevronRight,
+} from "lucide-react";
 
 declare function route(name: string, params?: any, absolute?: boolean): string;
 
@@ -25,103 +36,305 @@ interface MissionLevelProps {
     userCerts: Record<number, boolean>;
 }
 
-export default function MissionLevel({
-    meta,
-    subLevels,
-    userCerts,
-}: MissionLevelProps) {
+// Rank theming per level order — matches blueprint N5→N1
+const levelThemes: Record<number, {
+    rank: string;
+    jlpt: string;
+    location: string;
+    locationJp: string;
+    story: string;
+    storyEmoji: string;
+    bg: string;
+    accentColor: string;
+    badgeBg: string;
+    badgeText: string;
+    borderColor: string;
+    watermark: string;
+}> = {
+    1: {
+        rank: "Kohai 🔰",
+        jlpt: "N5",
+        location: "Tokyo · Haneda",
+        locationJp: "東京",
+        story: "Lapar di Tokyo — selamat datang di Jepang! Kamu harus bisa pesan sushi tanpa menu bahasa Inggris~",
+        storyEmoji: "🍣",
+        bg: "from-emerald-800 to-teal-900",
+        accentColor: "#10b981",
+        badgeBg: "bg-emerald-100",
+        badgeText: "text-emerald-800",
+        borderColor: "border-emerald-200",
+        watermark: "食",
+    },
+    2: {
+        rank: "Senpai 🦊",
+        jlpt: "N4",
+        location: "Kyoto · Fushimi",
+        locationJp: "京都",
+        story: "Tersesat di Kyoto — kamu harus membaca peta dan petunjuk arah untuk menemukanku di Kuil Fushimi Inari~",
+        storyEmoji: "⛩️",
+        bg: "from-blue-800 to-indigo-900",
+        accentColor: "#3b82f6",
+        badgeBg: "bg-blue-100",
+        badgeText: "text-blue-800",
+        borderColor: "border-blue-200",
+        watermark: "道",
+    },
+    3: {
+        rank: "Sensei 🎓",
+        jlpt: "N3",
+        location: "Shibuya · Tokyo",
+        locationJp: "渋谷",
+        story: "Magang di Kafe Buku Shibuya — kamu harus menguasai bahasa formal agar diterima kerja. Kita rayakan bersama~",
+        storyEmoji: "☕",
+        bg: "from-amber-800 to-orange-900",
+        accentColor: "#f59e0b",
+        badgeBg: "bg-amber-100",
+        badgeText: "text-amber-800",
+        borderColor: "border-amber-200",
+        watermark: "仕",
+    },
+    4: {
+        rank: "Tensai ⚡",
+        jlpt: "N2",
+        location: "Osaka · Dotonbori",
+        locationJp: "大阪",
+        story: "Festival Musim Panas Osaka — yukata, kembang api, dan akhirnya... kita ungkapkan perasaan satu sama lain~",
+        storyEmoji: "🎆",
+        bg: "from-purple-800 to-violet-900",
+        accentColor: "#8b5cf6",
+        badgeBg: "bg-purple-100",
+        badgeText: "text-purple-800",
+        borderColor: "border-purple-200",
+        watermark: "祭",
+    },
+    5: {
+        rank: "Shogun 👑",
+        jlpt: "N1",
+        location: "Gunung Fuji · Puncak",
+        locationJp: "富士山",
+        story: "Penaklukan Gunung Fuji — di puncaknya, ada surat cinta terakhir yang menunggumu. Selesaikan ini~",
+        storyEmoji: "🗻",
+        bg: "from-[#bc002d] to-rose-900",
+        accentColor: "#bc002d",
+        badgeBg: "bg-rose-100",
+        badgeText: "text-rose-800",
+        borderColor: "border-rose-200",
+        watermark: "頂",
+    },
+};
+
+function getTheme(order: number) {
+    return levelThemes[order] ?? levelThemes[1];
+}
+
+export default function MissionLevel({ meta, subLevels, userCerts }: MissionLevelProps) {
+    const theme = getTheme(meta.order);
+    const passedCount = Object.values(userCerts).filter(Boolean).length;
+    const totalSubs = subLevels.length;
+
     return (
-        <div className="max-w-4xl mx-auto space-y-8 pt-8">
-            <Head title={`${meta.title} - Tantangan`} />
+        <div className="max-w-4xl mx-auto space-y-8 pb-12">
+            <Head title={`${meta.title} — ${theme.jlpt}`} />
 
-            <Link
-                href={route("student.missions")}
-                className="inline-flex items-center gap-2 text-[var(--color-ink-light)] font-medium hover:text-[var(--color-japan-red)] transition-colors"
+            {/* ── Back link ── */}
+            <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
             >
-                <ArrowLeft size={18} /> Kembali ke Daftar Level
-            </Link>
+                <Link
+                    href={route("student.missions")}
+                    className="inline-flex items-center gap-2 text-[var(--color-ink-light)] font-medium hover:text-[var(--color-japan-red)] transition-colors group text-sm"
+                >
+                    <ArrowLeft size={16} className="group-hover:-translate-x-0.5 transition-transform" />
+                    Kembali ke My Journey
+                </Link>
+            </motion.div>
 
-            <div className="bg-white rounded-[2rem] border border-[#E5E5E5] p-8 md:p-12 text-center">
-                <div className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center text-4xl bg-[var(--color-washi)] mb-6">
-                    {meta.emoji}
+            {/* ── Story Banner ── */}
+            <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className={`relative bg-gradient-to-br ${theme.bg} text-white rounded-3xl overflow-hidden`}
+            >
+                {/* Watermark kanji */}
+                <div className="absolute -right-4 -bottom-6 text-[11rem] font-jp font-bold opacity-[0.07] select-none pointer-events-none leading-none">
+                    {theme.watermark}
                 </div>
-                <h1 className="text-3xl md:text-4xl font-bold text-[var(--color-ink)] mb-2">
-                    {meta.title}
-                </h1>
-                <p className="text-[var(--color-ink-light)] text-lg mb-6">
-                    {meta.subtitle}
-                </p>
-                <div className="inline-block px-4 py-2 rounded-full bg-[var(--color-washi)] text-[var(--color-ink)] font-medium text-sm border border-[#E5E5E5]">
-                    Target: {meta.goal}
+                <div className="absolute top-6 right-8 text-[4rem] font-jp opacity-[0.06] select-none pointer-events-none leading-none">
+                    {theme.locationJp}
                 </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="relative z-10 p-8 md:p-12">
+                    {/* Header tags */}
+                    <div className="flex flex-wrap items-center gap-2 mb-5">
+                        <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-white/15 rounded-full">
+                            Level {meta.order} · {theme.jlpt}
+                        </span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-white/10 rounded-full flex items-center gap-1">
+                            <MapPin size={9} /> {theme.location}
+                        </span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-white/10 rounded-full">
+                            {theme.rank}
+                        </span>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row gap-6 items-start justify-between">
+                        <div className="flex-1 space-y-3">
+                            <div className="flex items-center gap-3">
+                                <div className="text-4xl">{meta.emoji}</div>
+                                <h1 className="font-fredoka text-3xl md:text-4xl font-bold leading-tight">
+                                    {meta.title}
+                                </h1>
+                            </div>
+                            <p className="text-white/70 text-sm max-w-lg leading-relaxed">
+                                {theme.storyEmoji} {theme.story}
+                            </p>
+                            <div className="pt-1">
+                                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-medium">
+                                    <Scroll size={12} className="opacity-70" />
+                                    Target: {meta.goal}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Mini progress */}
+                        <div className="shrink-0 bg-white/10 backdrop-blur-sm rounded-2xl p-5 text-center min-w-[120px] border border-white/10">
+                            <p className="text-3xl font-bold font-fredoka">
+                                {passedCount}
+                                <span className="text-lg text-white/50">/{totalSubs}</span>
+                            </p>
+                            <p className="text-[10px] uppercase tracking-widest text-white/60 mt-1">Tahap Selesai</p>
+                            <div className="mt-3 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                <motion.div
+                                    className="h-full bg-white/70 rounded-full"
+                                    initial={{ width: 0 }}
+                                    animate={{ width: totalSubs > 0 ? `${(passedCount / totalSubs) * 100}%` : "0%" }}
+                                    transition={{ duration: 0.8, ease: "easeOut" }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+            {/* ── Sub Level Grid ── */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {subLevels.map((sub, idx) => {
                     const isPassed = !!userCerts[sub.id];
-                    const isUnlocked =
-                        idx === 0 || !!userCerts[subLevels[idx - 1].id];
+                    const isUnlocked = idx === 0 || !!userCerts[subLevels[idx - 1].id];
 
                     return (
                         <motion.div
                             key={sub.id}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.1 }}
-                            className={`bg-white rounded-3xl border border-[#E5E5E5] p-6 md:p-8 flex flex-col justify-between transition-colors ${isUnlocked ? "hover:border-[var(--color-ink)]" : "opacity-70 grayscale"}`}
+                            transition={{ delay: idx * 0.1, duration: 0.4 }}
+                            className={`relative bg-white rounded-3xl border-2 overflow-hidden transition-all duration-300 ${
+                                !isUnlocked
+                                    ? "opacity-55 grayscale border-gray-200"
+                                    : isPassed
+                                    ? `${theme.borderColor} shadow-md`
+                                    : "border-gray-200 hover:border-gray-300 hover:shadow-md"
+                            }`}
                         >
-                            <div className="mb-8">
-                                <div className="flex justify-between items-start mb-2">
-                                    <h3
-                                        className={`font-bold text-xl ${isUnlocked ? "text-[var(--color-ink)]" : "text-gray-400"}`}
-                                    >
-                                        Tahap {sub.id}
-                                    </h3>
-                                    {isPassed ? (
-                                        <span className="flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full bg-green-50 text-green-600 border border-green-200">
-                                            <CheckCircle size={14} /> Tuntas
-                                        </span>
-                                    ) : (
-                                        <span className="text-xs font-bold px-3 py-1 rounded-full bg-[var(--color-washi)] text-[var(--color-ink-light)]">
-                                            Belum Tuntas
-                                        </span>
-                                    )}
-                                </div>
-                                <p className="text-[var(--color-ink-light)] text-sm">
-                                    {sub.questionCount} Tantangan Seru
-                                </p>
+                            {/* Top accent */}
+                            {isPassed && (
+                                <div
+                                    className="absolute top-0 left-0 right-0 h-0.5"
+                                    style={{ backgroundColor: theme.accentColor }}
+                                />
+                            )}
+
+                            {/* Step number watermark */}
+                            <div className="absolute right-4 bottom-4 font-jp text-[5rem] font-bold opacity-[0.04] select-none pointer-events-none leading-none">
+                                {sub.id}
                             </div>
 
-                            {isUnlocked ? (
-                                <Link
-                                    href={route("student.missions.start", {
-                                        level: meta.id,
-                                        subLevel: sub.id,
-                                    })}
-                                    className="w-full inline-flex justify-center items-center gap-2 bg-[var(--color-ink)] hover:bg-black text-white rounded-full px-6 py-3 font-medium transition-colors"
-                                >
-                                    <Play
-                                        size={18}
-                                        fill="currentColor"
-                                        className="scale-75"
-                                    />{" "}
-                                    {isPassed
-                                        ? "Ulangi Tahap"
-                                        : "Mulai Tahap Ini"}
-                                </Link>
-                            ) : (
-                                <div className="w-full inline-flex justify-center items-center gap-2 bg-gray-100 text-gray-400 rounded-full px-6 py-3 font-medium cursor-not-allowed">
-                                    <Lock size={18} /> Terkunci
+                            <div className="relative z-10 p-6 md:p-8 flex flex-col h-full">
+                                <div className="flex items-start justify-between mb-4">
+                                    {/* Step badge */}
+                                    <div className="flex items-center gap-3">
+                                        <div
+                                            className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold text-white`}
+                                            style={{ backgroundColor: isUnlocked ? theme.accentColor : "#9ca3af" }}
+                                        >
+                                            {isUnlocked ? (isPassed ? <CheckCircle2 size={18} /> : <Play size={14} fill="currentColor" />) : <Lock size={14} />}
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-ink-light)]">
+                                                Tahap {sub.id}
+                                            </p>
+                                            <h3
+                                                className={`font-bold text-lg leading-tight ${
+                                                    isUnlocked ? "text-[var(--color-ink)]" : "text-gray-400"
+                                                }`}
+                                            >
+                                                {sub.title}
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    {/* Status badge */}
+                                    {isPassed ? (
+                                        <span className={`flex items-center gap-1 text-[10px] font-bold px-2.5 py-1 rounded-full ${theme.badgeBg} ${theme.badgeText} border ${theme.borderColor} shrink-0`}>
+                                            <Star size={10} fill="currentColor" /> Tuntas
+                                        </span>
+                                    ) : !isUnlocked ? (
+                                        <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-gray-100 text-gray-400 shrink-0">
+                                            Terkunci
+                                        </span>
+                                    ) : null}
                                 </div>
-                            )}
+
+                                {/* Question count */}
+                                <p className="text-sm text-[var(--color-ink-light)] mb-6 flex items-center gap-1.5">
+                                    <Sparkles size={13} style={{ color: theme.accentColor }} />
+                                    {sub.questionCount} tantangan menunggumu
+                                </p>
+
+                                {/* CTA */}
+                                <div className="mt-auto">
+                                    {isUnlocked ? (
+                                        <Link
+                                            href={route("student.missions.start", { level: meta.id, subLevel: sub.id })}
+                                            className="w-full inline-flex justify-center items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all duration-200 group"
+                                            style={{
+                                                backgroundColor: isPassed ? "#1a1a1a" : theme.accentColor,
+                                                color: "white",
+                                            }}
+                                        >
+                                            {isPassed ? (
+                                                <>
+                                                    <Shield size={15} />
+                                                    Ulangi Tahap
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Play size={14} fill="currentColor" />
+                                                    Mulai Tahap Ini
+                                                </>
+                                            )}
+                                            <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                                        </Link>
+                                    ) : (
+                                        <div className="w-full inline-flex justify-center items-center gap-2 bg-gray-100 text-gray-400 rounded-full px-6 py-3 text-sm font-bold cursor-not-allowed">
+                                            <Lock size={14} /> Selesaikan tahap sebelumnya
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
                         </motion.div>
                     );
                 })}
 
+                {/* Empty state */}
                 {subLevels.length === 0 && (
-                    <div className="col-span-1 md:col-span-2 text-center py-16 bg-white rounded-3xl border border-dashed border-[#E5E5E5]">
+                    <div className="col-span-1 md:col-span-2 text-center py-20 bg-white rounded-3xl border-2 border-dashed border-gray-200">
+                        <div className="text-5xl mb-4">🗺️</div>
                         <p className="text-[var(--color-ink-light)] font-medium">
-                            Belum ada soal untuk level ini.
+                            Belum ada soal untuk level ini — nantikan ya! ✨
                         </p>
                     </div>
                 )}

@@ -77,10 +77,11 @@ export default function Welcome({
             desc2:
                 landingSettings["tab1_desc2"] ||
                 "Kosakata sehari-hari, cara baca yang benar, dan kenalan sama Kanji dasar. Setiap kuis dirancang biar kamu senyum pas jawabnya, bukan stres!",
-            badge: "Kohai 🌱",
+            badge: landingSettings["tab1_badge"] || "Kohai 🌱",
             stats:
                 landingSettings["tab1_stats"] ||
                 "120 Kanji • 800 Kosakata • 40 Tantangan Seru",
+            image: landingSettings["tab1_image"] || "/images/benkyou_tab1.png",
         },
         menengah: {
             name: landingSettings["tab2_name"] || "Tahap Seru",
@@ -94,10 +95,11 @@ export default function Welcome({
             desc2:
                 landingSettings["tab2_desc2"] ||
                 "Latihan membaca yang dinamis dan Kanji yang makin banyak. Percaya deh, kamu bakal kaget sendiri sama progress-mu!",
-            badge: "Senpai ⚡",
+            badge: landingSettings["tab2_badge"] || "Senpai ⚡",
             stats:
                 landingSettings["tab2_stats"] ||
                 "650 Kanji • 3,500 Kosakata • 60 Tantangan",
+            image: landingSettings["tab2_image"] || "/images/benkyou_tab2.png",
         },
         lanjut: {
             name: landingSettings["tab3_name"] || "Tahap Legend",
@@ -112,165 +114,127 @@ export default function Welcome({
             desc2:
                 landingSettings["tab3_desc2"] ||
                 "Latihan interaktif yang menantang tapi tetap seru. Dari baca panjang sampai dengerin percakapan — semua dirancang biar kamu siap jalan-jalan ke Jepang! ✈️",
-            badge: "Shogun 👑",
+            badge: landingSettings["tab3_badge"] || "Shogun 👑",
             stats:
                 landingSettings["tab3_stats"] ||
                 "2,000 Kanji • 10,000 Kosakata • 80 Tantangan",
+            image: landingSettings["tab3_image"] || "/images/benkyou_tab3.png",
         },
     };
 
     const programs = [
         {
-            title: "Huruf & Kanji",
-            subtitle: "Kana, Kanji & Cara Menulis",
-            desc: "Belajar coretan huruf Hiragana, Katakana, dan Kanji dengan cara yang seru — ada visualisasi lucu biar gampang ingat!",
-            link: "/register",
+            title: landingSettings["prog1_title"] || "Huruf & Kanji",
+            subtitle: landingSettings["prog1_subtitle"] || "Kana, Kanji & Cara Menulis",
+            desc: landingSettings["prog1_desc"] || "Belajar coretan huruf Hiragana, Katakana, dan Kanji dengan cara yang seru — ada visualisasi lucu biar gampang ingat!",
+            link: landingSettings["prog1_link"] || "/register",
             colorFront:
                 "from-pink-500/10 to-red-500/5 text-[var(--color-japan-red)] border-red-200/60",
             colorBack: "bg-[var(--color-japan-red)] text-white",
-            badge: "Menulis & Kanji",
+            badge: landingSettings["prog1_badge"] || "Menulis & Kanji",
             icon: <PenTool className="w-12 h-12" />,
         },
         {
-            title: "Tata Bahasa",
-            subtitle: "Pola Kalimat & Konjugasi",
-            desc: "Racik kalimatmu sendiri kayak bikin resep rahasia~ Dari partikel dasar sampai pola yang bikin kamu terdengar kayak native!",
-            link: "/register",
+            title: landingSettings["prog2_title"] || "Tata Bahasa",
+            subtitle: landingSettings["prog2_subtitle"] || "Pola Kalimat & Konjugasi",
+            desc: landingSettings["prog2_desc"] || "Racik kalimatmu sendiri kayak bikin resep rahasia~ Dari partikel dasar sampai pola yang bikin kamu terdengar kayak native!",
+            link: landingSettings["prog2_link"] || "/register",
             colorFront:
                 "from-emerald-500/10 to-teal-500/5 text-emerald-800 border-emerald-200/60",
             colorBack: "bg-emerald-800 text-white",
-            badge: "Grammar & Percakapan",
+            badge: landingSettings["prog2_badge"] || "Grammar & Percakapan",
             icon: <Languages className="w-12 h-12" />,
         },
         {
-            title: "My Journey",
-            subtitle: "Tantangan Naik Level",
-            desc: "Dari Kohai sampai Shogun — setiap tantangan yang kamu selesaikan buka reward spesial. Ada pesan rahasia di setiap level!",
-            link: "/register",
+            title: landingSettings["prog3_title"] || "My Journey",
+            subtitle: landingSettings["prog3_subtitle"] || "Tantangan Naik Level",
+            desc: landingSettings["prog3_desc"] || "Dari Kohai sampai Shogun — setiap tantangan yang kamu selesaikan buka reward spesial. Ada pesan rahasia di setiap level!",
+            link: landingSettings["prog3_link"] || "/register",
             colorFront:
                 "from-blue-500/10 to-indigo-500/5 text-blue-800 border-blue-200/60",
             colorBack: "bg-blue-800 text-white",
-            badge: "Gelar & Reward",
+            badge: landingSettings["prog3_badge"] || "Gelar & Reward",
             icon: <GraduationCap className="w-12 h-12" />,
         },
     ];
 
     const aspects = [
         {
-            title: "Mulai dari yang Mudah Dulu~",
-            desc: "Nggak perlu langsung jago! Kita mulai dari huruf paling dasar, pelan-pelan aja. Yang penting kamu enjoy dan nggak merasa terbebani.",
+            title: landingSettings["aspect1_title"] || "Mulai dari yang Mudah Dulu~",
+            desc: landingSettings["aspect1_desc"] || "Nggak perlu langsung jago! Kita mulai dari huruf paling dasar, pelan-pelan aja. Yang penting kamu enjoy dan nggak merasa terbebani.",
             points: [
-                "Nggak ada tes masuk",
-                "Mulai dari nol pun bisa",
-                "Progress sesuai kecepatanmu sendiri",
+                landingSettings["aspect1_point1"] || "Nggak ada tes masuk",
+                landingSettings["aspect1_point2"] || "Mulai dari nol pun bisa",
+                landingSettings["aspect1_point3"] || "Progress sesuai kecepatanmu sendiri",
             ],
             bg: "bg-rose-50 border-rose-100",
             icon: <Compass className="w-8 h-8 text-[var(--color-japan-red)]" />,
         },
         {
-            title: "Belajar Kapan Aja, di Mana Aja",
-            desc: "Buka HP, langsung bisa belajar. Nggak perlu jadwal kaku — kamu yang tentuin kapan mau latihan. Mau tengah malam juga boleh~",
+            title: landingSettings["aspect2_title"] || "Belajar Kapan Aja, di Mana Aja",
+            desc: landingSettings["aspect2_desc"] || "Buka HP, langsung bisa belajar. Nggak perlu jadwal kaku — kamu yang tentuin kapan mau latihan. Mau tengah malam juga boleh~",
             points: [
-                "Akses 24/7 dari mana aja",
-                "Kuis acak biar nggak bosen",
-                "Nggak ada deadline yang bikin stres",
+                landingSettings["aspect2_point1"] || "Akses 24/7 dari mana aja",
+                landingSettings["aspect2_point2"] || "Kuis acak biar nggak bosen",
+                landingSettings["aspect2_point3"] || "Nggak ada deadline yang bikin stres",
             ],
             bg: "bg-emerald-50 border-emerald-100",
             icon: <Award className="w-8 h-8 text-emerald-600" />,
         },
         {
-            title: "Setiap Langkah Ada Hadiahnya",
-            desc: "Setiap kali kamu selesai satu tantangan, kamu naik level dan buka reward baru — dari tema cantik sampai pesan rahasia!",
+            title: landingSettings["aspect3_title"] || "Setiap Langkah Ada Hadiahnya",
+            desc: landingSettings["aspect3_desc"] || "Setiap kali kamu selesai satu tantangan, kamu naik level dan buka reward baru — dari tema cantik sampai pesan rahasia!",
             points: [
-                "Naik gelar: Kohai → Shogun",
-                "Unlock tema eksklusif",
-                "Pesan surprise di setiap level",
+                landingSettings["aspect3_point1"] || "Naik gelar: Kohai → Shogun",
+                landingSettings["aspect3_point2"] || "Unlock tema eksklusif",
+                landingSettings["aspect3_point3"] || "Pesan surprise di setiap level",
             ],
             bg: "bg-blue-50 border-blue-100",
             icon: <BookOpen className="w-8 h-8 text-blue-600" />,
         },
         {
-            title: "Feedback Instan + Kejutan",
-            desc: "Setiap jawaban langsung dikasih tahu bener atau nggak — plus penjelasan yang gampang dimengerti. Kayak punya tutor pribadi 24 jam!",
+            title: landingSettings["aspect4_title"] || "Feedback Instan + Kejutan",
+            desc: landingSettings["aspect4_desc"] || "Setiap jawaban langsung dikasih tahu bener atau nggak — plus penjelasan yang gampang dimengerti. Kayak punya tutor pribadi 24 jam!",
             points: [
-                "Nilai langsung muncul",
-                "Penjelasan ramah, bukan textbook",
-                "Ada Easter egg tersembunyi~",
+                landingSettings["aspect4_point1"] || "Nilai langsung muncul",
+                landingSettings["aspect4_point2"] || "Penjelasan ramah, bukan textbook",
+                landingSettings["aspect4_point3"] || "Ada Easter egg tersembunyi~",
             ],
             bg: "bg-amber-50 border-amber-100",
             icon: <ShieldCheck className="w-8 h-8 text-amber-600" />,
         },
     ];
 
-    const testimonials = [
-        {
-            name: "Surat #1",
-            role: "Pesan dari Pembuat",
-            detail: "Hari spesialmu~ 🎂",
-            avatar: "💌",
-            color: "bg-pink-100 text-pink-800",
-            quoteTitle: '"Aku bikin ini semua buat kamu, lho~"',
-            quoteText:
-                "Setiap huruf, setiap soal, setiap tantangan di sini aku rancang khusus buat kamu. Bukan buat ujian, bukan buat sertifikat — tapi biar kamu senyum setiap kali buka web ini. Happy birthday, sayang! 🌸",
-        },
-        {
-            name: "Surat #2",
-            role: "Kenapa Bahasa Jepang?",
-            detail: "Karena kamu suka anime 📺",
-            avatar: "🎌",
-            color: "bg-blue-100 text-blue-800",
-            quoteTitle:
-                '"Suatu hari nanti, kita nonton anime bareng tanpa subtitle~"',
-            quoteText:
-                "Aku tahu kamu suka banget sama Jepang — dari anime, J-Pop, sampai makanan. Jadi aku bikin perjalanan kecil ini biar suatu hari kamu bisa jalan-jalan ke sana dan pesen ramen sendiri pakai bahasa Jepang! 🍜",
-        },
-        {
-            name: "Surat #3",
-            role: "Janji Kecil",
-            detail: "Kita belajar bareng ya~",
-            avatar: "🤝",
-            color: "bg-emerald-100 text-emerald-800",
-            quoteTitle: '"Kalau kamu stuck, aku selalu ada di sini."',
-            quoteText:
-                "Nggak usah buru-buru. Nggak usah sempurna. Yang penting kamu coba dan having fun. Kalau ada yang bikin bingung, tinggal bilang aja — aku siap jelasin sampai kamu paham. Kita team! 💪",
-        },
-        {
-            name: "Surat #4",
-            role: "Masa Depan Kita",
-            detail: "Trip ke Jepang! ✈️",
-            avatar: "🗾",
-            color: "bg-purple-100 text-purple-800",
-            quoteTitle: '"Reward terbesarnya? Jalan-jalan bareng ke Jepang~"',
-            quoteText:
-                "Kalau kamu udah sampai level Shogun, itu tandanya kamu udah siap diajak jalan-jalan ke Jepang. Dan tebak apa? Aku udah siapin itinerary-nya. Jadi... semangat belajarnya ya! ✈️🗻🌸",
-        },
-    ];
+    const testimonials = [];
 
     const news = [
         {
-            title: "💌 Surat rahasia baru udah ditambahkan di Level 3 — coba selesaikan tantangannya!",
-            date: "Juli 2026",
-            type: "SURPRISE",
+            title: landingSettings["news1_title"] || "💌 Surat rahasia baru udah ditambahkan di Level 3 — coba selesaikan tantangannya!",
+            date: landingSettings["news1_date"] || "Juli 2026",
+            type: landingSettings["news1_type"] || "SURPRISE",
+            link: landingSettings["news1_link"] || "#",
         },
         {
-            title: "🎵 Challenge baru: Coba terjemahin lirik lagu J-Pop favoritmu!",
-            date: "Juli 2026",
-            type: "FUN",
+            title: landingSettings["news2_title"] || "🎵 Challenge baru: Coba terjemahin lirik lagu J-Pop favoritmu!",
+            date: landingSettings["news2_date"] || "Juli 2026",
+            type: landingSettings["news2_type"] || "FUN",
+            link: landingSettings["news2_link"] || "#",
         },
         {
-            title: "✈️ Kalau kamu sampai Level Shogun, ada hadiah spesial menunggumu~",
-            date: "Rahasia",
-            type: "MYSTERY",
+            title: landingSettings["news3_title"] || "✈️ Kalau kamu sampai Level Shogun, ada hadiah spesial menunggumu~",
+            date: landingSettings["news3_date"] || "Rahasia",
+            type: landingSettings["news3_type"] || "MYSTERY",
+            link: landingSettings["news3_link"] || "#",
         },
     ];
 
     return (
         <>
             <Head>
-                <title>Benkyou — Untukmu, yang Spesial 🌸</title>
+                <title>{landingSettings["site_title"] || "Benkyou — Untukmu, yang Spesial 🌸"}</title>
                 <meta
                     name="description"
-                    content="Sebuah dunia kecil berisi huruf, kata, dan cerita dalam bahasa Jepang — dibuat khusus untukmu."
+                    content={landingSettings["site_meta_desc"] || "Sebuah dunia kecil berisi huruf, kata, dan cerita dalam bahasa Jepang — dibuat khusus untukmu."}
                 />
             </Head>
 
@@ -280,25 +244,25 @@ export default function Welcome({
                     <div className="max-w-7xl mx-auto flex justify-between items-center">
                         <span className="font-light tracking-wider flex items-center gap-1.5">
                             <Sparkles size={12} className="text-yellow-400" />{" "}
-                            Dibuat dengan sepenuh hati, khusus untukmu~
+                            {landingSettings["announcement_text"] || "Dibuat dengan sepenuh hati, khusus untukmu~"}
                         </span>
                         <div className="hidden sm:flex gap-5 items-center opacity-90">
                             <a
                                 href="#kontak"
                                 className="hover:text-[var(--color-sakura)] transition-colors"
                             >
-                                Surat Rahasia
+                                {landingSettings["nav_link4"] || "Surat Rahasia"}
                             </a>
                             <span className="opacity-30">|</span>
                             <a
                                 href="#manfaat"
                                 className="hover:text-[var(--color-sakura)] transition-colors"
                             >
-                                Perjalananmu
+                                {landingSettings["nav_link1"] || "Perjalananmu"}
                             </a>
                             <span className="opacity-30">|</span>
                             <span className="flex items-center gap-1 font-medium">
-                                💕 Made for You
+                                💕 {landingSettings["site_logo_sub"] || "Made for You"}
                             </span>
                         </div>
                     </div>
@@ -313,14 +277,14 @@ export default function Welcome({
                             className="flex items-center gap-3 group"
                         >
                             <div className="w-10 h-10 rounded-full bg-[var(--color-japan-red)] flex items-center justify-center text-white font-jp font-bold text-xl shadow-md group-hover:scale-105 transition-transform duration-200">
-                                日
+                                {landingSettings["site_logo_char"] || "日"}
                             </div>
                             <div>
                                 <h1 className="font-fredoka font-bold text-2xl tracking-tight text-[var(--color-ink)] leading-none">
-                                    Benkyou
+                                    {landingSettings["site_brand_name"] || "Benkyou"}
                                 </h1>
                                 <p className="text-[10px] tracking-widest text-[var(--color-japan-red)] uppercase font-extrabold mt-0.5">
-                                    Made for You
+                                    {landingSettings["site_logo_sub"] || "Made for You"}
                                 </p>
                             </div>
                         </Link>
@@ -331,31 +295,31 @@ export default function Welcome({
                                 href="#manfaat"
                                 className="hover:text-[var(--color-japan-red)] transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--color-japan-red)] hover:after:w-full after:transition-all after:duration-200"
                             >
-                                Perjalananmu
+                                {landingSettings["nav_link1"] || "Perjalananmu"}
                             </a>
                             <a
                                 href="#metode"
                                 className="hover:text-[var(--color-japan-red)] transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--color-japan-red)] hover:after:w-full after:transition-all after:duration-200"
                             >
-                                Kenapa Beda
+                                {landingSettings["nav_link2"] || "Kenapa Beda"}
                             </a>
                             <a
                                 href="#modul"
                                 className="hover:text-[var(--color-japan-red)] transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--color-japan-red)] hover:after:w-full after:transition-all after:duration-200"
                             >
-                                Yang Bisa Dipelajari
+                                {landingSettings["nav_link3"] || "Yang Bisa Dipelajari"}
                             </a>
                             <a
                                 href="#testimoni"
                                 className="hover:text-[var(--color-japan-red)] transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--color-japan-red)] hover:after:w-full after:transition-all after:duration-200"
                             >
-                                Surat Rahasia
+                                {landingSettings["nav_link4"] || "Surat Rahasia"}
                             </a>
                             <a
                                 href="#berita"
                                 className="hover:text-[var(--color-japan-red)] transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--color-japan-red)] hover:after:w-full after:transition-all after:duration-200"
                             >
-                                Kejutan
+                                {landingSettings["nav_link5"] || "Kejutan"}
                             </a>
                         </nav>
 
@@ -366,7 +330,7 @@ export default function Welcome({
                                     href="/dashboard"
                                     className="px-6 py-2.5 rounded-full bg-[var(--color-japan-red)] text-white text-sm font-bold hover:bg-red-700 transition-all shadow-md hover:shadow-red-600/10 flex items-center gap-2"
                                 >
-                                    Dasbor Belajar <ArrowRight size={16} />
+                                    {landingSettings["header_dashboard_text"] || "Dasbor Belajar"} <ArrowRight size={16} />
                                 </Link>
                             ) : (
                                 <>
@@ -374,13 +338,13 @@ export default function Welcome({
                                         href="/login"
                                         className="px-5 py-2 text-sm font-bold text-gray-600 hover:text-black transition-colors"
                                     >
-                                        Masuk
+                                        {landingSettings["header_login_text"] || "Masuk"}
                                     </Link>
                                     <Link
                                         href="/register"
                                         className="px-6 py-2.5 rounded-full bg-[var(--color-japan-red)] text-white text-sm font-bold hover:bg-red-700 transition-all shadow-md hover:shadow-red-600/15 flex items-center gap-1.5"
                                     >
-                                        Daftar Sekarang{" "}
+                                        {landingSettings["header_register_text"] || "Daftar Sekarang"}{" "}
                                         <ChevronRight size={16} />
                                     </Link>
                                 </>
@@ -441,7 +405,7 @@ export default function Welcome({
                                         size={16}
                                         className="fill-[var(--color-japan-red)] text-[var(--color-japan-red)]"
                                     />{" "}
-                                    Tonton Video Intro
+                                    {landingSettings["hero_video_btn_text"] || "Tonton Video Intro"}
                                 </button>
                             </div>
 
@@ -451,13 +415,12 @@ export default function Welcome({
                                     className="text-[var(--color-japan-red)]"
                                 />
                                 <span>
-                                    Unduh Buklet Panduan Belajar Mandiri Benkyou
-                                    (PDF) •{" "}
+                                    {landingSettings["hero_doc_text"] || "Unduh Buklet Panduan Belajar Mandiri Benkyou (PDF)"} •{" "}
                                     <a
-                                        href="#"
+                                        href={landingSettings["hero_doc_link"] || "#"}
                                         className="text-[var(--color-japan-red)] font-bold hover:underline"
                                     >
-                                        Unduh (5.4 MB)
+                                        {landingSettings["hero_doc_link_text"] || "Unduh"}
                                     </a>
                                 </span>
                             </div>
@@ -472,7 +435,7 @@ export default function Welcome({
                                 {/* Collage Layer 2: Main Hero Image */}
                                 <div className="absolute inset-2 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200/50">
                                     <img
-                                        src="/images/benkyou_hero.png"
+                                        src={landingSettings["hero_image"] || "/images/benkyou_hero.png"}
                                         alt="Benkyou Premium Japanese Learning"
                                         className="w-full h-full object-cover"
                                     />
@@ -485,22 +448,30 @@ export default function Welcome({
                                     </div>
                                     <div>
                                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider leading-none">
-                                            Cocok Buat
+                                            {landingSettings["hero_stat_label"] || "Cocok Buat"}
                                         </p>
                                         <p className="text-sm font-fredoka font-semibold text-green-800 mt-1">
-                                            Pemula s/d Mahir
+                                            {landingSettings["hero_stat_badge"] || "Pemula s/d Mahir"}
                                         </p>
                                     </div>
                                 </div>
 
                                 {/* Collage Layer 4: Overlapping Info Badge */}
-                                <div className="absolute -top-4 -right-4 bg-[var(--color-japan-red)] text-white p-4 rounded-2xl shadow-xl border border-red-500/20 text-center">
-                                    <p className="text-xl font-bold font-fredoka leading-none">
-                                        100%
-                                    </p>
-                                    <p className="text-[9px] font-extrabold uppercase tracking-widest mt-1 opacity-90">
-                                        Digital Mandiri
-                                    </p>
+                                <div className="absolute -top-4 -right-4 bg-[var(--color-japan-red)] text-white p-4 rounded-2xl shadow-xl border border-red-500/20 text-center flex flex-col justify-center items-center min-w-[100px]">
+                                    {landingSettings["hero_info_badge"] ? (
+                                        <p className="text-xs font-extrabold uppercase tracking-wider leading-tight">
+                                            {landingSettings["hero_info_badge"]}
+                                        </p>
+                                    ) : (
+                                        <>
+                                            <p className="text-xl font-bold font-fredoka leading-none">
+                                                100%
+                                            </p>
+                                            <p className="text-[9px] font-extrabold uppercase tracking-widest mt-1 opacity-90">
+                                                Digital Mandiri
+                                            </p>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -570,10 +541,10 @@ export default function Welcome({
                                             <div className="absolute inset-0 bg-rose-50 rounded-2xl transform rotate-6 border border-rose-100" />
                                             {/* Layer 2: Secondary plate */}
                                             <div className="absolute inset-4 bg-orange-50 rounded-2xl transform -rotate-3 border border-orange-100" />
-                                            {/* Layer 3: Main photo (using our premium hero image as cover asset) */}
+                                            {/* Layer 3: Main photo */}
                                             <div className="absolute inset-6 bg-white rounded-xl overflow-hidden shadow-md border border-gray-200/60">
                                                 <img
-                                                    src="/images/benkyou_hero.png"
+                                                    src={tabContents[activeTab].image || "/images/benkyou_hero.png"}
                                                     alt={
                                                         tabContents[activeTab]
                                                             .title
@@ -639,11 +610,11 @@ export default function Welcome({
                                                 href="/register"
                                                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--color-japan-red)] text-white font-bold hover:bg-red-700 transition-all text-sm shadow-md shadow-red-600/10"
                                             >
-                                                Daftar Program Ini{" "}
+                                                {landingSettings["tab_cta_text"] || "Daftar Program Ini"}{" "}
                                                 <ArrowRight size={16} />
                                             </Link>
                                             <span className="text-xs text-gray-400 font-semibold">
-                                                Tersedia coba gratis 7 hari
+                                                {landingSettings["tab_cta_sub"] || "Tersedia coba gratis 7 hari"}
                                             </span>
                                         </div>
                                     </div>
@@ -703,7 +674,7 @@ export default function Welcome({
 
                                                 <div className="flex items-center justify-between pt-4 border-t border-gray-100 text-xs font-bold text-[var(--color-japan-red)]">
                                                     <span>
-                                                        Lihat Detail Program
+                                                        {landingSettings["modul_detail_text"] || "Lihat Detail Program"}
                                                     </span>
                                                     <div className="w-8 h-8 rounded-full bg-[var(--color-japan-red)]/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
                                                         <ChevronRight
@@ -719,23 +690,20 @@ export default function Welcome({
                                             >
                                                 <div className="space-y-4">
                                                     <h4 className="font-fredoka text-xl font-bold border-b border-white/20 pb-2">
-                                                        Detail Kurikulum
+                                                        {landingSettings["modul_curriculum_text"] || "Detail Kurikulum"}
                                                     </h4>
                                                     <p className="text-sm text-white/90 leading-relaxed font-sans">
                                                         {prog.desc}
                                                     </p>
                                                     <ul className="text-xs space-y-2 text-white/80 pt-2 font-medium">
                                                         <li className="flex items-center gap-1.5">
-                                                            ✓ Materi Interaktif
-                                                            Mudah Diakses
+                                                            ✓ {landingSettings["modul_point1"] || "Materi Interaktif Mudah Diakses"}
                                                         </li>
                                                         <li className="flex items-center gap-1.5">
-                                                            ✓ Audio Penutur Asli
-                                                            Jepang
+                                                            ✓ {landingSettings["modul_point2"] || "Audio Penutur Asli Jepang"}
                                                         </li>
                                                         <li className="flex items-center gap-1.5">
-                                                            ✓ Evaluasi Kemajuan
-                                                            Realtime
+                                                            ✓ {landingSettings["modul_point3"] || "Evaluasi Kemajuan Realtime"}
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -745,7 +713,7 @@ export default function Welcome({
                                                         href={prog.link}
                                                         className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-white text-[var(--color-ink)] font-bold hover:bg-gray-100 transition-colors text-sm shadow-md"
                                                     >
-                                                        Daftar Sekarang{" "}
+                                                        {landingSettings["modul_register_text"] || "Daftar Sekarang"}{" "}
                                                         <ArrowRight size={16} />
                                                     </Link>
                                                 </div>
@@ -1003,8 +971,7 @@ export default function Welcome({
                                                             className="flex items-center gap-1.5 text-xs font-bold text-[var(--color-japan-red)] mt-2"
                                                         >
                                                             <span>
-                                                                Aspek Metode
-                                                                Benkyou
+                                                                {landingSettings["aspect_badge_text"] || "Aspek Metode Benkyou"}
                                                             </span>
                                                             <Sparkles
                                                                 size={12}
@@ -1137,8 +1104,7 @@ export default function Welcome({
                             ) : (
                                 <div className="text-center py-12 bg-white rounded-3xl border border-gray-200 text-gray-400">
                                     <p>
-                                        Catatan-catatan kecil akan muncul di
-                                        sini~ ✨
+                                        {landingSettings["testi_fallback"] || "Catatan-catatan kecil akan muncul di sini~ ✨"}
                                     </p>
                                 </div>
                             )}
@@ -1168,10 +1134,10 @@ export default function Welcome({
                                             <Calendar size={20} />
                                         </div>
                                         <h3 className="font-fredoka text-2xl font-bold text-[var(--color-ink)]">
-                                            Roadmap Perjalananmu~
+                                            {landingSettings["roadmap_title"] || "Roadmap Perjalananmu~"}
                                         </h3>
                                         <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">
-                                            Dari Kohai sampai Shogun 🌸
+                                            {landingSettings["roadmap_subtitle"] || "Dari Kohai sampai Shogun 🌸"}
                                         </p>
 
                                         {/* Timeline Graphic List */}
@@ -1183,12 +1149,10 @@ export default function Welcome({
                                                         TAHAP 01
                                                     </p>
                                                     <h4 className="text-xs font-bold text-gray-800">
-                                                        Kenalan sama Huruf
-                                                        Jepang
+                                                        {landingSettings["roadmap1_title"] || "Kenalan sama Huruf Jepang"}
                                                     </h4>
                                                     <p className="text-[10px] text-gray-500">
-                                                        Hiragana, Katakana, dan
-                                                        Kanji dasar.
+                                                        {landingSettings["roadmap1_desc"] || "Hiragana, Katakana, dan Kanji dasar."}
                                                     </p>
                                                 </div>
                                             </div>
@@ -1200,11 +1164,10 @@ export default function Welcome({
                                                         TAHAP 02
                                                     </p>
                                                     <h4 className="text-xs font-bold text-gray-800">
-                                                        Latihan Seru Setiap Hari
+                                                        {landingSettings["roadmap2_title"] || "Latihan Seru Setiap Hari"}
                                                     </h4>
                                                     <p className="text-[10px] text-gray-500">
-                                                        Kuis acak, tantangan
-                                                        naik level~
+                                                        {landingSettings["roadmap2_desc"] || "Kuis acak, tantangan naik level~"}
                                                     </p>
                                                 </div>
                                             </div>
@@ -1216,12 +1179,10 @@ export default function Welcome({
                                                         TAHAP 03
                                                     </p>
                                                     <h4 className="text-xs font-bold text-gray-800">
-                                                        Tantangan Seru dengan
-                                                        Reward
+                                                        {landingSettings["roadmap3_title"] || "Tantangan Seru dengan Reward"}
                                                     </h4>
                                                     <p className="text-[10px] text-gray-500">
-                                                        Setiap level buka hadiah
-                                                        spesial~
+                                                        {landingSettings["roadmap3_desc"] || "Setiap level buka hadiah spesial~"}
                                                     </p>
                                                 </div>
                                             </div>
@@ -1234,8 +1195,7 @@ export default function Welcome({
                                             className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--color-japan-red)] hover:underline"
                                         >
                                             <span>
-                                                Lihat perjalanan lengkap yang
-                                                menunggumu
+                                                {landingSettings["roadmap_link_text"] || "Lihat perjalanan lengkap yang menunggumu"}
                                             </span>
                                             <ArrowRight size={14} />
                                         </a>
@@ -1247,7 +1207,7 @@ export default function Welcome({
                                     {news.map((item, idx) => (
                                         <a
                                             key={idx}
-                                            href="#"
+                                            href={item.link}
                                             className="bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200 flex flex-col justify-between gap-4 group"
                                         >
                                             <div className="space-y-2">
@@ -1277,7 +1237,7 @@ export default function Welcome({
                                             </div>
 
                                             <div className="flex items-center gap-1 text-xs font-bold text-[var(--color-japan-red)] opacity-0 group-hover:opacity-100 transition-opacity">
-                                                <span>Baca artikel</span>
+                                                <span>{landingSettings["news_link_text"] || "Baca artikel"}</span>
                                                 <ChevronRight size={14} />
                                             </div>
                                         </a>
@@ -1300,16 +1260,20 @@ export default function Welcome({
                             </div>
 
                             <h2 className="font-fredoka text-3xl sm:text-5xl font-semibold leading-tight max-w-3xl mx-auto">
-                                Siap Mulai{" "}
-                                <span className="text-[var(--color-sakura)] font-bold">
-                                    Petualanganmu
-                                </span>
-                                ?
+                                {landingSettings["cta_title"] ? (
+                                    <span dangerouslySetInnerHTML={{ __html: landingSettings["cta_title"] }} />
+                                ) : (
+                                    <>
+                                        Siap Mulai{" "}
+                                        <span className="text-[var(--color-sakura)] font-bold">
+                                            Petualanganmu
+                                        </span>
+                                        ?
+                                    </>
+                                )}
                             </h2>
                             <p className="text-gray-300 text-sm sm:text-base max-w-xl mx-auto font-sans leading-relaxed">
-                                Dunia kecil ini udah siap menunggumu. Mulai dari
-                                huruf pertama, dan siapa tahu... suatu hari kita
-                                ke Jepang bareng~ 🌸
+                                {landingSettings["cta_desc"] || "Dunia kecil ini udah siap menunggumu. Mulai dari huruf pertama, dan siapa tahu... suatu hari kita ke Jepang bareng~ 🌸"}
                             </p>
 
                             <div className="pt-6 flex flex-wrap justify-center gap-4">
@@ -1319,13 +1283,13 @@ export default function Welcome({
                                     }
                                     className="px-8 py-4 rounded-full bg-[var(--color-japan-red)] text-white font-bold hover:bg-red-700 transition-all shadow-lg hover:shadow-red-600/20 text-sm"
                                 >
-                                    Yuk Mulai! 💕
+                                    {landingSettings["cta_button_text"] || "Yuk Mulai! 💕"}
                                 </Link>
                                 <Link
                                     href="/login"
                                     className="px-8 py-4 rounded-full bg-white/10 border border-white/20 text-white font-bold hover:bg-white/20 transition-all text-sm"
                                 >
-                                    Masuk ke Dunia Kecil Kita
+                                    {landingSettings["cta_button_sub"] || "Masuk ke Dunia Kecil Kita"}
                                 </Link>
                             </div>
                         </div>
@@ -1339,29 +1303,26 @@ export default function Welcome({
                         <div className="md:col-span-4 space-y-6">
                             <div className="flex items-center gap-3">
                                 <div className="w-9 h-9 rounded-full bg-[var(--color-japan-red)] flex items-center justify-center text-white font-jp font-bold text-base shadow-sm">
-                                    日
+                                    {landingSettings["site_logo_char"] || "日"}
                                 </div>
                                 <span className="font-fredoka font-bold text-xl text-white">
-                                    Benkyou
+                                    {landingSettings["site_brand_name"] || "Benkyou"}
                                 </span>
                             </div>
 
                             <p className="text-xs text-gray-400 leading-relaxed max-w-sm">
-                                Sebuah dunia kecil penuh huruf, kata, dan cerita
-                                dalam bahasa Jepang — dibuat dengan sepenuh hati
-                                untuk seseorang yang spesial.
+                                {landingSettings["footer_desc"] || "Sebuah dunia kecil penuh huruf, kata, dan cerita dalam bahasa Jepang — dibuat dengan sepenuh hati untuk seseorang yang spesial."}
                             </p>
 
                             <div className="text-[11px] text-gray-500 space-y-1.5 pt-2 border-t border-gray-800/80">
-                                <p>Dibuat dengan 💕 untuk ulang tahunmu</p>
-                                <p>Juli 2026</p>
+                                <p>{landingSettings["footer_love_text"] || "Dibuat dengan 💕 untuk ulang tahunmu. Juli 2026"}</p>
                             </div>
                         </div>
 
                         {/* Column 2: Navigation Links */}
                         <div className="md:col-span-4 space-y-4">
                             <h4 className="font-fredoka text-white text-sm font-bold tracking-wider uppercase">
-                                Navigasi
+                                {landingSettings["footer_nav_header"] || "Navigasi"}
                             </h4>
                             <ul className="text-xs space-y-2.5 font-semibold text-gray-400">
                                 <li>
@@ -1369,7 +1330,7 @@ export default function Welcome({
                                         href="#manfaat"
                                         className="hover:text-white transition-colors"
                                     >
-                                        Perjalanan Belajarmu
+                                        {landingSettings["nav_link1"] || "Perjalanan Belajarmu"}
                                     </a>
                                 </li>
                                 <li>
@@ -1377,7 +1338,7 @@ export default function Welcome({
                                         href="#modul"
                                         className="hover:text-white transition-colors"
                                     >
-                                        Yang Bisa Kamu Pelajari
+                                        {landingSettings["nav_link3"] || "Yang Bisa Kamu Pelajari"}
                                     </a>
                                 </li>
                                 <li>
@@ -1385,7 +1346,7 @@ export default function Welcome({
                                         href="#metode"
                                         className="hover:text-white transition-colors"
                                     >
-                                        Kenapa Beda dari yang Lain
+                                        {landingSettings["nav_link2"] || "Kenapa Beda dari yang Lain"}
                                     </a>
                                 </li>
                                 <li>
@@ -1401,7 +1362,7 @@ export default function Welcome({
                                         href="#testimoni"
                                         className="hover:text-white transition-colors"
                                     >
-                                        Surat Rahasia
+                                        {landingSettings["nav_link4"] || "Surat Rahasia"}
                                     </a>
                                 </li>
                             </ul>
@@ -1410,15 +1371,12 @@ export default function Welcome({
                         {/* Column 3: Contact & Address Info */}
                         <div className="md:col-span-4 space-y-4">
                             <h4 className="font-fredoka text-white text-sm font-bold tracking-wider uppercase">
-                                Dari Pembuat
+                                {landingSettings["footer_creator_header"] || "Dari Pembuat"}
                             </h4>
 
                             <div className="text-xs text-gray-400 space-y-3">
                                 <p className="leading-relaxed">
-                                    Ini bukan platform belajar biasa. Ini adalah
-                                    hadiah kecil dari aku untukmu — berisi
-                                    ratusan jam usaha, coding, dan cinta. Semoga
-                                    kamu suka ya~ 💕
+                                    {landingSettings["footer_about"] || "Ini bukan platform belajar biasa. Ini adalah hadiah kecil dari aku untukmu — berisi ratusan jam usaha, coding, dan cinta. Semoga kamu suka ya~ 💕"}
                                 </p>
                                 <div className="flex gap-2 items-center">
                                     <Heart
@@ -1437,15 +1395,15 @@ export default function Welcome({
                     {/* Copyright bar at the bottom */}
                     <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-800 text-center flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-gray-500">
                         <p>
-                            © 2026 Benkyou — Made with 💕 for someone special.
+                            {landingSettings["footer_copy_text"] || "© 2026 Benkyou — Made with 💕 for someone special."}
                         </p>
                         <div className="flex gap-2 items-center">
-                            <span>Dibuat dengan</span>
+                            <span>{landingSettings["footer_made_with"] || "Dibuat dengan"}</span>
                             <Heart
                                 size={10}
                                 className="text-[var(--color-japan-red)] fill-[var(--color-japan-red)]"
                             />
-                            <span>untuk pembelajar Bahasa Jepang.</span>
+                            <span>{landingSettings["footer_for_learners"] || "untuk pembelajar Bahasa Jepang."}</span>
                         </div>
                     </div>
                 </footer>
@@ -1466,7 +1424,7 @@ export default function Welcome({
                             <div className="aspect-video w-full">
                                 <video
                                     className="w-full h-full"
-                                    src="https://id.kumonglobal.com/wp-content/uploads/2024/01/video-intro-kumon.mp4"
+                                    src={landingSettings["hero_video_url"] || "https://id.kumonglobal.com/wp-content/uploads/2024/01/video-intro-kumon.mp4"}
                                     controls
                                     autoPlay
                                     preload="metadata"
@@ -1475,11 +1433,10 @@ export default function Welcome({
 
                             <div className="p-4 sm:px-6 bg-[#222] text-xs text-gray-400 flex justify-between items-center">
                                 <span>
-                                    Video Pengenalan Benkyou — Dunia Kecil
-                                    Untukmu
+                                    {landingSettings["hero_video_label"] || "Video Pengenalan Benkyou — Dunia Kecil Untukmu"}
                                 </span>
                                 <span className="flex items-center gap-1">
-                                    <Info size={12} /> Durasi: 2 Menit
+                                    <Info size={12} /> {landingSettings["hero_video_duration"] || "Durasi: 2 Menit"}
                                 </span>
                             </div>
                         </div>
@@ -1495,7 +1452,7 @@ export default function Welcome({
                             exit={{ opacity: 0, scale: 0.8, y: 20 }}
                             onClick={scrollToTop}
                             className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-[var(--color-japan-red)] text-white flex items-center justify-center shadow-lg hover:bg-red-700 transition-colors focus:outline-none border border-red-500/20 group cursor-pointer"
-                            title="Kembali ke atas"
+                            title={landingSettings["back_to_top_title"] || "Kembali ke atas"}
                         >
                             <ArrowUp
                                 size={20}
