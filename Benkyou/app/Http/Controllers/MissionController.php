@@ -27,8 +27,8 @@ class MissionController extends Controller
             'id'       => 'n5',
             'order'    => 1,
             'title'    => 'Kohai',
-            'subtitle' => 'Langkah pertama yang seru~',
-            'goal'     => 'Bisa baca menu Sushi 🍣',
+            'subtitle' => 'Misi: Lapar di Tokyo',
+            'goal'     => 'Bisa pesan Sushi & Ocha hangat 🍣',
             'emoji'    => '🔰',
             'reward'   => 'Tema Sakura + Pesan rahasia #1',
         ],
@@ -36,8 +36,8 @@ class MissionController extends Controller
             'id'       => 'n4',
             'order'    => 2,
             'title'    => 'Senpai',
-            'subtitle' => 'Makin jago, makin asyik!',
-            'goal'     => 'Berani pesen Takoyaki sendiri 🐙',
+            'subtitle' => 'Misi: Tersesat Menuju Hana di Kyoto',
+            'goal'     => 'Menemukan Hana di Kuil Fushimi Inari 🦊',
             'emoji'    => '🌸',
             'reward'   => 'Tema Matcha + Pesan rahasia #2',
         ],
@@ -45,8 +45,8 @@ class MissionController extends Controller
             'id'       => 'n3',
             'order'    => 3,
             'title'    => 'Sensei',
-            'subtitle' => 'Kamu udah mulai ngajarin nih~',
-            'goal'     => 'Paham lirik lagu J-Pop 🎵',
+            'subtitle' => 'Misi: Bertahan Bersama di Shibuya',
+            'goal'     => 'Lulus wawancara magang di Café Shizuku ☕',
             'emoji'    => '⛩️',
             'reward'   => 'Tema Gunung Fuji + Pesan rahasia #3',
         ],
@@ -54,8 +54,8 @@ class MissionController extends Controller
             'id'       => 'n2',
             'order'    => 4,
             'title'    => 'Tensai',
-            'subtitle' => 'Jenius! Kamu keren banget~',
-            'goal'     => 'Siap nonton Anime tanpa Subtitle 📺',
+            'subtitle' => 'Misi: Kehidupan Bersama di Osaka',
+            'goal'     => 'Mengungkapkan perasaan di Natsu Matsuri 🎆',
             'emoji'    => '🦊',
             'reward'   => 'Tema Autumn + Pesan rahasia #4',
         ],
@@ -63,10 +63,44 @@ class MissionController extends Controller
             'id'       => 'n1',
             'order'    => 5,
             'title'    => 'Shogun',
-            'subtitle' => 'Legend! Kamu udah siap~',
-            'goal'     => 'Siap diajak jalan-jalan ke Jepang! ✈️',
+            'subtitle' => 'Misi: Puncak Fuji & Surat yang Terkunci',
+            'goal'     => 'Membuka surat cinta Hana di puncak Fuji 🗻',
             'emoji'    => '🏯',
             'reward'   => 'Midnight Theme + Surprise terbesar! 🎁',
+        ],
+    ];
+
+    public const STAGE_MAP = [
+        'n5' => [
+            1 => 'Membaca Papan Nama 🚪',
+            2 => 'Membaca Menu Dinding 📜',
+            3 => 'Memesan dengan Sopan 🍣',
+            4 => 'Membayar & Pamit 💴',
+        ],
+        'n4' => [
+            1 => 'Salah Naik Bus 🚌',
+            2 => 'Bertanya kepada Obaa-san Kimura 👵',
+            3 => 'Membeli Tiket Baru 🎫',
+            4 => 'Navigasi Terakhir 🗺️',
+            5 => 'Janji di Osaka 🌸',
+        ],
+        'n3' => [
+            1 => 'Menulis Surat Lamaran 📝',
+            2 => 'Wawancara Kerja 👔',
+            3 => 'Hari Pertama Kerja (Hampir Menyerah) 🦊',
+            4 => 'Membuktikan Diri ✨',
+        ],
+        'n2' => [
+            1 => 'Adaptasi dengan Kansai-ben 🗣️',
+            2 => 'Kehidupan Sehari-hari 🏠',
+            3 => 'Persiapan Matsuri 👘',
+            4 => 'Malam Festival 🎆',
+        ],
+        'n1' => [
+            1 => 'Membaca Papan & Aturan Pendakian 🗻',
+            2 => 'Pengumuman Darurat di Pos 7 ⚠️',
+            3 => 'Percakapan dengan Pemandu 🥾',
+            4 => 'Langkah Terakhir ke Puncak 🏔️',
         ],
     ];
 
@@ -128,24 +162,32 @@ class MissionController extends Controller
 
         $meta = self::TITLE_MAP[$level];
 
-        // Collect all distinct level_ids that exist in DB for this certification tier.
         $subLevels = Question::certification($level)
             ->selectRaw('level_id, COUNT(*) as question_count')
             ->groupBy('level_id')
             ->orderBy('level_id')
             ->get()
-            ->map(fn ($row) => [
-                'id'             => (int) $row->level_id,
-                'title'          => "{$meta['title']} — Tahap {$row->level_id}",
-                'questionCount'  => (int) $row->question_count,
-            ])
+            ->map(function ($row) use ($level) {
+                $subId = (int) $row->level_id;
+                $title = self::STAGE_MAP[$level][$subId] ?? "Tahap {$subId}";
+                return [
+                    'id'             => $subId,
+                    'title'          => $title,
+                    'questionCount'  => (int) $row->question_count,
+                ];
+            })
             ->all();
 
         $user = $request->user();
         $userCerts = $user
             ->certifications()
             ->where('category', $level)
-            ->pluck('passed', 'level')
+            ->get()
+            ->keyBy('level')
+            ->map(fn ($cert) => [
+                'passed' => (bool) $cert->passed,
+                'score'  => (int) $cert->score,
+            ])
             ->toArray();
 
         return Inertia::render('Student/MissionLevel', [
@@ -172,7 +214,7 @@ class MissionController extends Controller
 
         $questions = Question::certification($level)
             ->forLevel($subLevel)
-            ->inRandomOrder()
+            ->orderBy('id', 'asc')
             ->get()
             ->map(fn (Question $q) => $this->formatQuestion($q))
             ->values()

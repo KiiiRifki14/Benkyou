@@ -1,6 +1,49 @@
 import React, { useState } from "react";
 import { Head, router } from "@inertiajs/react";
 import { motion, AnimatePresence } from "motion/react";
+
+// Helper: menunggu voices Web Speech API siap (handles browser async loading)
+function getVoicesAsync(): Promise<SpeechSynthesisVoice[]> {
+    return new Promise((resolve) => {
+        const voices = window.speechSynthesis.getVoices();
+        if (voices.length > 0) {
+            resolve(voices);
+        } else {
+            const handler = () => {
+                window.speechSynthesis.removeEventListener("voiceschanged", handler);
+                resolve(window.speechSynthesis.getVoices());
+            };
+            window.speechSynthesis.addEventListener("voiceschanged", handler);
+            // Fallback jika event tidak terpicu dalam 3 detik
+            setTimeout(() => {
+                window.speechSynthesis.removeEventListener("voiceschanged", handler);
+                resolve(window.speechSynthesis.getVoices());
+            }, 3000);
+        }
+    });
+}
+
+async function speakJapanese(text: string, lang: string = "ja-JP") {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+
+    const voices = await getVoicesAsync();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    utterance.rate = 0.85; // sedikit diperlambat agar jelas
+
+    // Cari voice Jepang
+    const jpVoice = voices.find(
+        (v) =>
+            v.lang.toLowerCase().replace("_", "-").startsWith("ja") ||
+            v.lang.toLowerCase().includes("jp")
+    );
+    if (jpVoice) {
+        utterance.voice = jpVoice;
+    }
+
+    window.speechSynthesis.speak(utterance);
+}
 import {
     ChevronLeft,
     ChevronRight,
@@ -41,10 +84,17 @@ export const validateUserAnswer = (
 ): boolean => {
     if (!userAns || !correctAns) return false;
     const normalize = (text: string): string => text.trim().toLowerCase();
+    const normalizedUser = normalize(userAns);
+
     if (Array.isArray(correctAns)) {
-        return correctAns.some((ans) => normalize(ans) === normalize(userAns));
+        return correctAns.some((ans) => {
+            const normalizedAns = normalize(ans);
+            return normalizedAns.split(',').map((s) => s.trim()).includes(normalizedUser);
+        });
     }
-    return normalize(String(correctAns)) === normalize(userAns);
+
+    const answersList = String(correctAns).split(',').map((s) => normalize(s));
+    return answersList.includes(normalizedUser);
 };
 
 const QuestionRenderer = ({
@@ -123,30 +173,51 @@ const QuestionRenderer = ({
             );
         case "listening":
             return (
-                <div className="text-center p-8 bg-[var(--color-washi)] rounded-[2rem] border border-[#E5E5E5]">
-                    <button
-                        onClick={() => {
-                            const utterance = new SpeechSynthesisUtterance(
-                                question.spokenText,
-                            );
-                            utterance.lang = question.speechLang || "ja-JP";
-                            window.speechSynthesis.speak(utterance);
-                        }}
-                        className="bg-white hover:bg-gray-50 border border-[#E5E5E5] text-[var(--color-ink)] px-8 py-5 rounded-full transition-all font-medium flex items-center gap-3 mx-auto"
-                        disabled={disabled}
-                    >
-                        <Volume2 size={24} /> Putar Audio Pertanyaan
-                    </button>
-                    <div className="mt-8">
-                        <input
-                            type="text"
+                <div className="flex flex-col gap-6">
+                    <div className="text-center p-8 bg-[var(--color-washi)] rounded-[2rem] border border-[#E5E5E5] flex flex-col items-center justify-center">
+                        <button
+                            onClick={() => speakJapanese(
+                                question.spokenText || question.question,
+                                question.speechLang || "ja-JP"
+                            )}
+                            className="bg-white hover:bg-gray-50 border border-[#E5E5E5] text-[var(--color-ink)] px-8 py-5 rounded-full transition-all font-medium flex items-center gap-3 mx-auto shadow-sm"
                             disabled={disabled}
-                            className="w-full max-w-md mx-auto p-4 md:p-6 rounded-2xl border border-[#E5E5E5] text-center focus:ring-2 focus:ring-[var(--color-japan-red)] focus:border-[var(--color-japan-red)] outline-none transition-all disabled:bg-gray-50"
-                            onChange={(e) => onAnswer(e.target.value)}
-                            value={currentValue || ""}
-                            placeholder="Ketik apa yang kamu dengar..."
-                        />
+                        >
+                            <Volume2 size={24} /> Putar Audio Pertanyaan
+                        </button>
                     </div>
+                    {question.options && question.options.length > 0 ? (
+                        <div className="space-y-3">
+                            {question.options.map((opt, idx) => (
+                                <button
+                                    key={idx}
+                                    disabled={disabled}
+                                    onClick={() => onAnswer(opt)}
+                                    className={`w-full text-left p-4 md:p-6 rounded-2xl transition-all border ${
+                                        currentValue === opt
+                                            ? "bg-[var(--color-washi)] border-[var(--color-japan-red)] text-[var(--color-japan-red)] font-bold"
+                                            : "bg-white border-[#E5E5E5] hover:border-[var(--color-ink)] text-[var(--color-ink)]"
+                                    } ${disabled ? "opacity-70 cursor-not-allowed" : ""}`}
+                                >
+                                    <span className="inline-block w-8 font-bold text-[var(--color-ink-light)]">
+                                        {String.fromCharCode(65 + idx)}.
+                                    </span>
+                                    {opt}
+                                </button>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="mt-2">
+                            <input
+                                type="text"
+                                disabled={disabled}
+                                className="w-full p-6 text-lg border border-[#E5E5E5] rounded-2xl focus:ring-2 focus:ring-[var(--color-japan-red)] focus:border-[var(--color-japan-red)] outline-none transition-all disabled:bg-gray-50 text-center"
+                                onChange={(e) => onAnswer(e.target.value)}
+                                value={currentValue || ""}
+                                placeholder="Ketik apa yang kamu dengar..."
+                            />
+                        </div>
+                    )}
                 </div>
             );
         case "image":
@@ -227,13 +298,28 @@ export default function MissionPlay({
         );
     }
 
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [answers, setAnswers] = useState<Record<number, string>>({});
+    const storageKey = `benkyou_mission_progress_${meta.id}_${meta.subLevel}`;
+
+    const getSavedValue = (key: string, defaultValue: any) => {
+        try {
+            const saved = localStorage.getItem(storageKey);
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (parsed && parsed[key] !== undefined) {
+                    return parsed[key];
+                }
+            }
+        } catch (e) {
+            console.error("Error reading mission progress", e);
+        }
+        return defaultValue;
+    };
+
+    const [currentIndex, setCurrentIndex] = useState(() => getSavedValue("currentIndex", 0));
+    const [answers, setAnswers] = useState<Record<number, string>>(() => getSavedValue("answers", {}));
 
     // Status per soal: 'answering' atau 'feedback'
-    const [questionState, setQuestionState] = useState<
-        "answering" | "feedback"
-    >("answering");
+    const [questionState, setQuestionState] = useState<"answering" | "feedback">(() => getSavedValue("questionState", "answering"));
     const [isChecking, setIsChecking] = useState(false);
 
     // Simpan hasil penilaian tiap soal (baik PG maupun essay)
@@ -242,7 +328,21 @@ export default function MissionPlay({
             number,
             { isCorrect: boolean; essayScore?: number; essayFeedback?: string }
         >
-    >({});
+    >(() => getSavedValue("results", {}));
+
+    React.useEffect(() => {
+        try {
+            const stateToSave = {
+                currentIndex,
+                answers,
+                questionState,
+                results,
+            };
+            localStorage.setItem(storageKey, JSON.stringify(stateToSave));
+        } catch (e) {
+            console.error("Error saving mission progress", e);
+        }
+    }, [currentIndex, answers, questionState, results, storageKey]);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [rewardState, setRewardState] = useState<{
@@ -304,7 +404,7 @@ export default function MissionPlay({
 
     const handleNext = () => {
         if (currentIndex < questions.length - 1) {
-            setCurrentIndex((idx) => idx + 1);
+            setCurrentIndex((idx: number) => idx + 1);
             setQuestionState("answering");
         } else {
             handleSubmit();
@@ -352,6 +452,12 @@ export default function MissionPlay({
                 `/student/missions/${meta.id}/${meta.subLevel}/submit`,
                 { score: finalScore },
             );
+
+            try {
+                localStorage.removeItem(storageKey);
+            } catch (e) {
+                console.error("Error clearing progress storage", e);
+            }
 
             setRewardState({
                 show: true,

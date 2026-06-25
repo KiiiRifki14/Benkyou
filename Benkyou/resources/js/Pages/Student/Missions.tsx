@@ -94,9 +94,8 @@ function getRankConfig(order: number) {
     return rankConfig[Math.min(order - 1, rankConfig.length - 1)];
 }
 
-function ScoreBar({ score, total }: { score: number; total: number }) {
-    if (total === 0) return null;
-    const pct = Math.round((score / total) * 100);
+function ScoreBar({ score }: { score: number }) {
+    const pct = Math.min(Math.max(score, 0), 100);
     return (
         <div className="w-full">
             <div className="flex justify-between items-center mb-1 text-xs font-semibold">
@@ -199,10 +198,7 @@ export default function Missions({ levels }: MissionsProps) {
                     const isUnlocked = idx === 0 || levels[idx - 1].passed;
                     const cfg = getRankConfig(level.order);
                     const RankIcon = cfg.icon;
-                    const scorePercent =
-                        level.totalQuestions > 0
-                            ? Math.round((level.bestScore / level.totalQuestions) * 100)
-                            : 0;
+                    const scorePercent = level.bestScore;
 
                     return (
                         <motion.div
@@ -289,7 +285,7 @@ export default function Missions({ levels }: MissionsProps) {
                                                 {level.passed && level.bestScore > 0 && (
                                                     <span className="flex items-center gap-1">
                                                         <Flame size={12} className="text-orange-500" />
-                                                        Skor: {level.bestScore}/{level.totalQuestions}
+                                                        Skor: {level.bestScore}%
                                                     </span>
                                                 )}
                                                 {level.reward && (
@@ -303,7 +299,7 @@ export default function Missions({ levels }: MissionsProps) {
                                             {/* Score bar (only if passed or started) */}
                                             {isUnlocked && level.bestScore > 0 && (
                                                 <div className="pt-2 max-w-xs">
-                                                    <ScoreBar score={level.bestScore} total={level.totalQuestions} />
+                                                    <ScoreBar score={level.bestScore} />
                                                 </div>
                                             )}
                                         </div>

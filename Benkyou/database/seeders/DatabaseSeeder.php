@@ -62,6 +62,7 @@ class DatabaseSeeder extends Seeder
             JLPTN5QuestionsSeeder::class,
             QuizSistemSeeder::class,
             MisiLevel1Seeder::class,
+            MisiLevel2Seeder::class,
         ]);
     }
 }

@@ -6,11 +6,11 @@ use App\Models\Question;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
-class MisiLevel1Seeder extends Seeder
+class MisiLevel2Seeder extends Seeder
 {
     public function run()
     {
-        $filePath = base_path('Bank Soal/Soal/Bank_Soal_Level1_MyJourney_N5.md');
+        $filePath = base_path('Bank Soal/Soal/Bank_Soal_Level2_MyJourney_N4.md');
         
         if (!File::exists($filePath)) {
             $this->command->error("File soal tidak ditemukan di: {$filePath}");
@@ -19,8 +19,8 @@ class MisiLevel1Seeder extends Seeder
 
         $content = File::get($filePath);
         
-        // Hapus soal N5 lama agar tidak duplikat jika dijalankan berkali-kali
-        Question::where('type', 'n5')->delete();
+        // Hapus soal N4 lama agar tidak duplikat jika dijalankan berkali-kali
+        Question::where('type', 'n4')->delete();
 
         // Pisahkan teks per soal berdasarkan kata "Soal "
         $blocks = preg_split('/^Soal\s+\d+\.\d+\s*$/m', $content, -1, PREG_SPLIT_NO_EMPTY);
@@ -33,7 +33,7 @@ class MisiLevel1Seeder extends Seeder
             if (str_starts_with($block, '##')) continue; // Skip storyline markers
 
             $data = [
-                'type' => 'n5',
+                'type' => 'n4',
                 'question_type' => 'multiple-choice',
                 'question' => '',
                 'options' => [],
@@ -117,6 +117,6 @@ class MisiLevel1Seeder extends Seeder
             }
         }
 
-        $this->command->info("Berhasil mengimpor {$inserted} soal Misi Level 1!");
+        $this->command->info("Berhasil mengimpor {$inserted} soal Misi Level 2!");
     }
 }

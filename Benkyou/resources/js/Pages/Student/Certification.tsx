@@ -302,9 +302,13 @@ export default function Certification({
         if (!q) return;
         const normalizedInput = typingInput.trim().toLowerCase();
 
-        const isCorrect = Array.isArray(q.answer)
-            ? q.answer.some((a) => a.toLowerCase() === normalizedInput)
-            : (q.answer as string).toLowerCase() === normalizedInput;
+        const checkCorrect = (ans: string | string[]) => {
+            if (Array.isArray(ans)) {
+                return ans.some((a) => a.toLowerCase().split(',').map((s) => s.trim()).includes(normalizedInput));
+            }
+            return ans.toLowerCase().split(',').map((s) => s.trim()).includes(normalizedInput);
+        };
+        const isCorrect = checkCorrect(q.answer);
 
         setIsTypingCorrect(isCorrect);
         if (isCorrect) {
@@ -358,6 +362,17 @@ export default function Certification({
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = lang;
                 utterance.rate = 0.8; // Talk a little slower for beginners
+                
+                const voices = window.speechSynthesis.getVoices();
+                const jpVoice = voices.find(
+                    (v) =>
+                        v.lang.toLowerCase().replace('_', '-').startsWith("ja") ||
+                        v.lang.toLowerCase().includes("jp")
+                );
+                if (jpVoice) {
+                    utterance.voice = jpVoice;
+                }
+                
                 window.speechSynthesis.speak(utterance);
             } else {
                 alert(

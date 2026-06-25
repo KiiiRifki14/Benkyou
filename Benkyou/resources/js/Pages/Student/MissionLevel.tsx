@@ -1,7 +1,7 @@
 import React from "react";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 import Layout from "@/Components/Layout";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import {
     ArrowLeft,
     Play,
@@ -13,6 +13,7 @@ import {
     Scroll,
     Shield,
     ChevronRight,
+    HelpCircle,
 } from "lucide-react";
 
 declare function route(name: string, params?: any, absolute?: boolean): string;
@@ -33,7 +34,7 @@ interface MissionLevelProps {
         emoji: string;
     };
     subLevels: SubLevel[];
-    userCerts: Record<number, boolean>;
+    userCerts: Record<number, { passed: boolean; score: number }>;
 }
 
 // Rank theming per level order — matches blueprint N5→N1
@@ -129,8 +130,27 @@ function getTheme(order: number) {
 
 export default function MissionLevel({ meta, subLevels, userCerts }: MissionLevelProps) {
     const theme = getTheme(meta.order);
-    const passedCount = Object.values(userCerts).filter(Boolean).length;
+    const passedCount = Object.values(userCerts).filter((cert) => cert?.passed).length;
     const totalSubs = subLevels.length;
+
+    const [confirmModal, setConfirmModal] = React.useState<{
+        isOpen: boolean;
+        subId: number | null;
+        href: string | null;
+    }>({
+        isOpen: false,
+        subId: null,
+        href: null,
+    });
+
+    const handleRepeatClick = (e: React.MouseEvent, subId: number, href: string) => {
+        e.preventDefault();
+        setConfirmModal({
+            isOpen: true,
+            subId,
+            href,
+        });
+    };
 
     return (
         <div className="max-w-4xl mx-auto space-y-8 pb-12">
@@ -222,8 +242,9 @@ export default function MissionLevel({ meta, subLevels, userCerts }: MissionLeve
             {/* ── Sub Level Grid ── */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {subLevels.map((sub, idx) => {
-                    const isPassed = !!userCerts[sub.id];
-                    const isUnlocked = idx === 0 || !!userCerts[subLevels[idx - 1].id];
+                    const cert = userCerts[sub.id];
+                    const isPassed = !!cert?.passed;
+                    const isUnlocked = idx === 0 || !!userCerts[subLevels[idx - 1].id]?.passed;
 
                     return (
                         <motion.div
@@ -279,7 +300,7 @@ export default function MissionLevel({ meta, subLevels, userCerts }: MissionLeve
                                     {/* Status badge */}
                                     {isPassed ? (
                                         <span className={`flex items-center gap-1 text-[10px] font-bold px-2.5 py-1 rounded-full ${theme.badgeBg} ${theme.badgeText} border ${theme.borderColor} shrink-0`}>
-                                            <Star size={10} fill="currentColor" /> Tuntas
+                                            <Star size={10} fill="currentColor" /> Tuntas ({cert?.score}%)
                                         </span>
                                     ) : !isUnlocked ? (
                                         <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-gray-100 text-gray-400 shrink-0">
@@ -299,6 +320,15 @@ export default function MissionLevel({ meta, subLevels, userCerts }: MissionLeve
                                     {isUnlocked ? (
                                         <Link
                                             href={route("student.missions.start", { level: meta.id, subLevel: sub.id })}
+                                            onClick={(e) => {
+                                                if (isPassed) {
+                                                    handleRepeatClick(
+                                                        e,
+                                                        sub.id,
+                                                        route("student.missions.start", { level: meta.id, subLevel: sub.id })
+                                                    );
+                                                }
+                                            }}
                                             className="w-full inline-flex justify-center items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all duration-200 group"
                                             style={{
                                                 backgroundColor: isPassed ? "#1a1a1a" : theme.accentColor,
@@ -339,6 +369,59 @@ export default function MissionLevel({ meta, subLevels, userCerts }: MissionLeve
                     </div>
                 )}
             </div>
+
+            <AnimatePresence>
+                {confirmModal.isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, y: 20 }}
+                            animate={{ scale: 1, y: 0 }}
+                            exit={{ scale: 0.9, y: 20 }}
+                            className="bg-white p-8 rounded-[2rem] shadow-2xl max-w-md w-full text-center border-4 border-white"
+                        >
+                            <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                                <HelpCircle
+                                    size={32}
+                                    style={{ color: theme.accentColor }}
+                                />
+                            </div>
+
+                            <h3 className="text-2xl font-black text-[var(--color-ink)] mb-2 tracking-tight">
+                                Ulangi Tahap Ini?
+                            </h3>
+                            
+                            <p className="text-[var(--color-ink-light)] text-sm mb-8 leading-relaxed">
+                                Apakah kamu yakin ingin mengulangi tahap ini? Progress pengerjaan kamu pada tahap ini akan diulang dari awal.
+                            </p>
+
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => setConfirmModal({ isOpen: false, subId: null, href: null })}
+                                    className="flex-1 bg-white text-[var(--color-ink)] border-2 border-gray-200 font-bold py-3.5 rounded-full hover:bg-gray-50 transition-colors text-sm"
+                                >
+                                    Batal
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        if (confirmModal.href) {
+                                            router.visit(confirmModal.href);
+                                        }
+                                    }}
+                                    className="flex-1 text-white font-bold py-3.5 rounded-full transition-colors text-sm shadow-md"
+                                    style={{ backgroundColor: theme.accentColor }}
+                                >
+                                    Ya, Ulangi
+                                </button>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
