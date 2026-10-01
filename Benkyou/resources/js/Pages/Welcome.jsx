@@ -38,6 +38,7 @@ export default function Welcome({
     const [activeAspect, setActiveAspect] = useState(0);
     const [activeTestimonial, setActiveTestimonial] = useState(0);
     const [isVideoOpen, setIsVideoOpen] = useState(false);
+    const [flippedProgram, setFlippedProgram] = useState(null);
 
     // Section visibility helper — reads toggle from landing settings
     const isVisible = (key) => landingSettings[key] !== "0";
@@ -644,41 +645,42 @@ export default function Welcome({
                             </div>
 
                             {/* Flip Cards Grid (Kumon-style 3D flip) */}
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-8">
                                 {programs.map((prog, idx) => (
                                     <div
                                         key={idx}
-                                        className="group relative h-[300px] sm:h-[340px] md:h-[380px] w-full perspective-1000"
+                                        onClick={() => setFlippedProgram(prev => prev === idx ? null : idx)}
+                                        className="group relative h-[185px] sm:h-[260px] md:h-[370px] w-full perspective-1000 cursor-pointer"
                                     >
-                                        <div className="relative w-full h-full duration-700 preserve-3d group-hover:rotate-y-180 transition-transform">
+                                        <div className={`relative w-full h-full duration-700 preserve-3d transition-transform ${flippedProgram === idx ? 'rotate-y-180' : ''} group-hover:rotate-y-180`}>
                                             {/* Front Side */}
                                             <div
-                                                className={`absolute inset-0 w-full h-full backface-hidden rounded-2xl sm:rounded-3xl border p-5 sm:p-8 flex flex-col justify-between bg-gradient-to-br bg-white shadow-sm border-gray-200/80`}
+                                                className={`absolute inset-0 w-full h-full backface-hidden rounded-2xl sm:rounded-3xl border p-3.5 sm:p-6 md:p-8 flex flex-col justify-between bg-gradient-to-br bg-white shadow-sm border-gray-200/80`}
                                             >
-                                                <div className="space-y-2.5 sm:space-y-4">
-                                                    <div className="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white border border-gray-200 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-gray-500">
+                                                <div className="space-y-1 sm:space-y-3">
+                                                    <div className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white border border-gray-200 text-[8px] sm:text-[10px] font-bold uppercase tracking-wider text-gray-500">
                                                         {prog.badge}
                                                     </div>
 
-                                                    <div className="text-[var(--color-japan-red)]/85 pt-1 sm:pt-2 scale-90 sm:scale-100 origin-left">
+                                                    <div className="text-[var(--color-japan-red)]/85 pt-0.5 sm:pt-2 scale-75 sm:scale-100 origin-left">
                                                         {prog.icon}
                                                     </div>
 
-                                                    <h3 className="font-fredoka text-lg sm:text-2xl font-bold text-[var(--color-ink)] pt-1 sm:pt-2">
+                                                    <h3 className="font-fredoka text-base sm:text-xl md:text-2xl font-bold text-[var(--color-ink)] leading-snug">
                                                         {prog.title}
                                                     </h3>
-                                                    <p className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest">
+                                                    <p className="text-[9px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest truncate">
                                                         {prog.subtitle}
                                                     </p>
                                                 </div>
 
-                                                <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-100 text-[11px] sm:text-xs font-bold text-[var(--color-japan-red)]">
+                                                <div className="flex items-center justify-between pt-2 sm:pt-4 border-t border-gray-100 text-[10px] sm:text-xs font-bold text-[var(--color-japan-red)]">
                                                     <span>
                                                         {landingSettings["modul_detail_text"] || "Lihat Detail Program"}
                                                     </span>
-                                                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[var(--color-japan-red)]/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                                                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[var(--color-japan-red)]/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
                                                         <ChevronRight
-                                                            size={14}
+                                                            size={13}
                                                         />
                                                     </div>
                                                 </div>
@@ -686,35 +688,35 @@ export default function Welcome({
 
                                             {/* Back Side */}
                                             <div
-                                                className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl sm:rounded-3xl p-5 sm:p-8 flex flex-col justify-between ${prog.colorBack} shadow-xl`}
+                                                className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 md:p-8 flex flex-col justify-between ${prog.colorBack} shadow-xl`}
                                             >
-                                                <div className="space-y-2.5 sm:space-y-4">
-                                                    <h4 className="font-fredoka text-base sm:text-xl font-bold border-b border-white/20 pb-1.5 sm:pb-2">
+                                                <div className="space-y-1.5 sm:space-y-4">
+                                                    <h4 className="font-fredoka text-xs sm:text-xl font-bold border-b border-white/20 pb-1 sm:pb-2">
                                                         {landingSettings["modul_curriculum_text"] || "Detail Kurikulum"}
                                                     </h4>
-                                                    <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-sans line-clamp-3 sm:line-clamp-none">
+                                                    <p className="text-[10px] sm:text-sm text-white/90 leading-tight sm:leading-relaxed font-sans line-clamp-2 sm:line-clamp-none">
                                                         {prog.desc}
                                                     </p>
-                                                    <ul className="text-[10px] sm:text-xs space-y-1.5 sm:space-y-2 text-white/80 pt-1 sm:pt-2 font-medium">
+                                                    <ul className="text-[9px] sm:text-xs space-y-1 sm:space-y-2 text-white/80 pt-0.5 sm:pt-2 font-medium">
                                                         <li className="flex items-center gap-1.5">
                                                             ✓ {landingSettings["modul_point1"] || "Materi Interaktif Mudah Diakses"}
                                                         </li>
                                                         <li className="flex items-center gap-1.5">
                                                             ✓ {landingSettings["modul_point2"] || "Audio Penutur Asli Jepang"}
                                                         </li>
-                                                        <li className="flex items-center gap-1.5">
+                                                        <li className="hidden sm:flex items-center gap-1.5">
                                                             ✓ {landingSettings["modul_point3"] || "Evaluasi Kemajuan Realtime"}
                                                         </li>
                                                     </ul>
                                                 </div>
 
-                                                <div>
+                                                <div onClick={e => e.stopPropagation()}>
                                                     <Link
                                                         href={prog.link}
-                                                        className="w-full flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 sm:py-3 rounded-full bg-white text-[var(--color-ink)] font-bold hover:bg-gray-100 transition-colors text-xs sm:text-sm shadow-md"
+                                                        className="w-full flex items-center justify-center gap-1.5 sm:gap-2 py-1.5 sm:py-3 rounded-full bg-white text-[var(--color-ink)] font-bold hover:bg-gray-100 transition-colors text-[11px] sm:text-sm shadow-md"
                                                     >
                                                         {landingSettings["modul_register_text"] || "Daftar Sekarang"}{" "}
-                                                        <ArrowRight size={14} />
+                                                        <ArrowRight size={13} />
                                                     </Link>
                                                 </div>
                                             </div>
