@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
-import MobileBottomNav from "./MobileBottomNav";
 import { Menu } from "lucide-react";
 import { usePage } from "@inertiajs/react";
 
@@ -76,19 +75,12 @@ export default function Layout({ children }: LayoutProps) {
                 </div>
 
                 <main className="flex-1 overflow-y-auto">
-                    <div className={isAdminRoute ? 'p-4 sm:p-6 lg:p-8' : 'p-3 sm:p-8 md:p-10 lg:p-12 pb-24 lg:pb-12'}>
+                    <div className={isAdminRoute ? 'p-4 sm:p-6 lg:p-8' : 'p-3 sm:p-8 md:p-10 lg:p-12 pb-8 sm:pb-10 lg:pb-12'}>
                         <div className="max-w-7xl mx-auto">
                             {children}
                         </div>
                     </div>
                 </main>
-
-                {/* Mobile Bottom Navigation Bar (Non-Admin / Student Views) */}
-                {!isAdminRoute && (
-                    <MobileBottomNav
-                        currentPage={currentPage}
-                    />
-                )}
             </div>
         </div>
     );
