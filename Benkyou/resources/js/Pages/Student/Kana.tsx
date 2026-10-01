@@ -20,9 +20,15 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
   const yoonData     = kanaData.filter(k => k.category === (isHiragana ? 'yoon'            : 'katakana-yoon'));
 
   const speakKana = (kana: string) => {
-    const utt = new SpeechSynthesisUtterance(kana);
-    utt.lang = 'ja-JP';
-    window.speechSynthesis.speak(utt);
+    try {
+      window.speechSynthesis.cancel();
+      const utt = new SpeechSynthesisUtterance(kana);
+      utt.lang = 'ja-JP';
+      utt.rate = 0.88;
+      window.speechSynthesis.speak(utt);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const renderGrid = (data: KanaCharacter[], cols: number = 5) => (
@@ -105,15 +111,15 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
           </div>
 
           {/* Tab switcher */}
-          <div className="flex gap-1.5 sm:gap-2 bg-white/10 p-1 rounded-xl sm:rounded-2xl shrink-0 border border-white/10">
+          <div className="grid grid-cols-2 p-1 sm:p-1.5 bg-black/20 sm:bg-white/10 rounded-xl sm:rounded-2xl border border-white/15 w-full sm:w-72 md:w-80 shrink-0">
             {(['hiragana', 'katakana'] as const).map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold transition-all capitalize ${
+                className={`w-full py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold transition-all capitalize flex items-center justify-center text-center cursor-pointer ${
                   activeTab === tab
                     ? 'bg-white text-[var(--color-ink)] shadow-sm'
-                    : 'text-white/70 hover:text-white'
+                    : 'text-white/80 hover:text-white hover:bg-white/5'
                 }`}
               >
                 {tab === 'hiragana' ? 'あ Hiragana' : 'ア Katakana'}
