@@ -76,11 +76,10 @@ export default function ManageNotes({
                 <div>
                     <h1 className="font-serif text-2xl font-bold text-slate-800 flex items-center gap-2">
                         <Mail className="text-[#bc002d]" size={28} />
-                        Catatan Kecil
+                        Catatan Belajar
                     </h1>
                     <p className="text-slate-500 text-sm mt-0.5">
-                        Tulis pesan-pesan manis untuknya. Dia akan membaca ini
-                        di halaman "Catatan Kecil" 💌
+                        Kelola catatan dan pesan motivasi untuk siswa. Siswa dapat membaca pesan ini di platform.
                     </p>
                 </div>
                 <button
@@ -117,7 +116,7 @@ export default function ManageNotes({
                                 onChange={(e) =>
                                     setData("title", e.target.value)
                                 }
-                                placeholder="Contoh: Surat Pertama, Untukmu yang Spesial..."
+                                placeholder="Contoh: Pengumuman Belajar, Tips Menghafal Kanji..."
                                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#bc002d] focus:ring-1 focus:ring-[#bc002d]/20"
                             />
                         </div>
@@ -132,7 +131,7 @@ export default function ManageNotes({
                                     setData("content", e.target.value)
                                 }
                                 rows={6}
-                                placeholder="Tulis pesan manismu di sini... 💕"
+                                placeholder="Tulis pesan atau catatan untuk siswa di sini..."
                                 className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#bc002d] focus:ring-1 focus:ring-[#bc002d]/20 resize-none leading-relaxed"
                                 required
                             />

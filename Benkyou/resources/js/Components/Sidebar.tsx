@@ -78,7 +78,7 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                 },
                 {
                     id: "notes",
-                    label: "Catatan Kecil",
+                    label: "Catatan Belajar",
                     icon: Mail,
                     href: "/admin/notes",
                 },
