@@ -337,7 +337,7 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                             key={item.id}
                             href={item.href}
                             onClick={onNavigate}
-                            className={`w-full flex items-center gap-3 px-3 py-2 sm:py-2.5 rounded-xl transition-all duration-200 block ${
+                            className={`w-full flex items-center gap-3 px-3 py-2 sm:py-2.5 rounded-xl transition-all duration-200 ${
                                 isActive
                                     ? "bg-[var(--color-washi)] text-[var(--color-japan-red)] shadow-xs font-bold"
                                     : "text-[var(--color-ink-light)] hover:bg-[var(--color-washi)] hover:text-[var(--color-ink)] font-medium"

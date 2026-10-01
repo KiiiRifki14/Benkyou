@@ -443,7 +443,7 @@ export default function Certification({
                             <button
                                 key={cat.id}
                                 onClick={() => selectCategoryAction(cat)}
-                                className="p-6 md:p-8 rounded-3xl border border-[#E5E5E5] bg-white text-left transition-all duration-300 relative flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6 hover:border-black hover:shadow-lg hover:-translate-y-1 text-center md:text-left"
+                                className="p-6 md:p-8 rounded-3xl border border-[#E5E5E5] bg-white transition-all duration-300 relative flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6 hover:border-black hover:shadow-lg hover:-translate-y-1 text-center md:text-left"
                             >
                                 <div
                                     className="w-16 h-16 shrink-0 rounded-2xl flex items-center justify-center text-white shadow-md relative overflow-hidden"

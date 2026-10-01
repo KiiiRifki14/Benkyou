@@ -192,7 +192,7 @@ export default function Home({ stats }: HomeProps) {
                         >
                             <Link
                                 href={feature.href}
-                                className={`group bg-white p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border-2 border-transparent ${feature.hoverBorder} hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 block relative overflow-hidden h-full flex flex-col justify-between`}
+                                className={`group bg-white p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border-2 border-transparent ${feature.hoverBorder} hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden h-full flex flex-col justify-between`}
                             >
                                 {/* Gradient tint on hover */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl sm:rounded-3xl`} />
