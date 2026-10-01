@@ -244,27 +244,27 @@ export default function Quiz({
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="max-w-md mx-auto text-center space-y-8 py-12 px-2 sm:px-4"
+                className="max-w-md mx-auto text-center space-y-6 sm:space-y-8 py-6 sm:py-12 px-2 sm:px-4"
             >
-                <div className="bg-white p-6 sm:p-12 rounded-3xl shadow-xl border border-[#E5E5E5] space-y-6">
-                    <h2 className="text-2xl sm:text-3xl font-serif">
+                <div className="bg-white p-5 sm:p-10 md:p-12 rounded-2xl sm:rounded-3xl shadow-xl border border-[#E5E5E5] space-y-4 sm:space-y-6">
+                    <h2 className="text-xl sm:text-3xl font-serif">
                         Hasil Latihan
                     </h2>
-                    <div className="text-5xl sm:text-6xl font-bold text-[var(--color-japan-red)]">
+                    <div className="text-4xl sm:text-6xl font-bold text-[var(--color-japan-red)]">
                         {score}{" "}
-                        <span className="text-xl sm:text-2xl text-gray-400">
+                        <span className="text-lg sm:text-2xl text-gray-400">
                             / {totalQuestions}
                         </span>
                     </div>
-                    <p className="text-[var(--color-ink-light)] text-sm sm:text-base">
+                    <p className="text-[var(--color-ink-light)] text-xs sm:text-base">
                         Kerja bagus, kamu telah berlatih kemampuan bahasa
                         Jepangmu!
                     </p>
                     <button
                         onClick={generateQuestions}
-                        className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 sm:px-8 py-3 rounded-full bg-[var(--color-ink)] text-white font-medium hover:bg-black transition-all mx-auto"
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 sm:px-8 sm:py-3 rounded-full bg-[var(--color-ink)] text-white font-medium hover:bg-black transition-all mx-auto text-xs sm:text-base"
                     >
-                        <RefreshCw size={18} /> Latihan Baru
+                        <RefreshCw size={16} /> Latihan Baru
                     </button>
                 </div>
             </motion.div>
@@ -277,36 +277,36 @@ export default function Quiz({
             : questions[currentQuestion];
 
     return (
-        <div className="max-w-2xl mx-auto space-y-8 pb-12 px-2 sm:px-4">
-            <header className="text-center space-y-4 mb-8 sm:mb-10">
-                <h1 className="font-serif text-3xl sm:text-4xl font-light">
+        <div className="max-w-2xl mx-auto space-y-5 sm:space-y-8 pb-12 px-1 sm:px-4">
+            <header className="text-center space-y-2 sm:space-y-4 mb-4 sm:mb-8">
+                <h1 className="font-serif text-xl sm:text-3xl md:text-4xl font-bold sm:font-light">
                     Latihan Tanpa Batas
                 </h1>
-                <p className="text-[var(--color-ink-light)] max-w-xl mx-auto text-sm sm:text-base">
+                <p className="text-[var(--color-ink-light)] max-w-xl mx-auto text-xs sm:text-base">
                     Kamu bisa mengulang latihan ini berkali-kali! Setiap sesi
                     akan mengacak 10 pertanyaan dari Kosakata, Kanji, dan Tata
                     Bahasa.
                 </p>
             </header>
 
-            <div className="flex justify-between items-center bg-white p-3 sm:p-4 rounded-2xl border border-[#E5E5E5]">
+            <div className="flex justify-between items-center bg-white p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-[#E5E5E5]">
                 <div className="flex items-center gap-2 max-w-[60%]">
                     <span className="w-2 h-2 rounded-full bg-[var(--color-japan-red)] flex-shrink-0" />
-                    <span className="text-xs sm:text-sm font-bold uppercase tracking-wider truncate">
+                    <span className="text-[11px] sm:text-sm font-bold uppercase tracking-wider truncate">
                         {q.category}
                     </span>
                 </div>
-                <div className="text-xs sm:text-sm font-mono text-[var(--color-ink-light)]">
+                <div className="text-[11px] sm:text-sm font-mono text-[var(--color-ink-light)]">
                     {currentQuestion + 1} / {totalQuestions}
                 </div>
             </div>
 
-            <div className="bg-white p-4 sm:p-8 md:p-12 rounded-3xl shadow-lg border border-[#E5E5E5] space-y-5 sm:space-y-8">
-                <h2 className="text-lg sm:text-2xl text-center leading-relaxed font-light break-words">
+            <div className="bg-white p-4 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl shadow-lg border border-[#E5E5E5] space-y-4 sm:space-y-8">
+                <h2 className="text-base sm:text-2xl text-center leading-relaxed font-light break-words">
                     {q.text}
                 </h2>
 
-                <div className="grid grid-cols-1 gap-2.5 sm:gap-4">
+                <div className="grid grid-cols-1 gap-2 sm:gap-4">
                     {q.options.map((opt, idx) => {
                         const normalize = (s: string) =>
                             (s || "").trim().toLowerCase();
@@ -332,20 +332,20 @@ export default function Quiz({
                                 key={idx}
                                 onClick={() => handleAnswer(opt)}
                                 disabled={answered}
-                                className={`w-full p-3.5 sm:p-5 rounded-2xl border-2 text-left transition-all duration-200 flex justify-between items-center gap-2 cursor-pointer ${variant}`}
+                                className={`w-full p-3 sm:p-5 rounded-xl sm:rounded-2xl border-2 text-left transition-all duration-200 flex justify-between items-center gap-2 cursor-pointer ${variant}`}
                             >
-                                <span className="font-medium text-sm sm:text-base break-words">
+                                <span className="font-medium text-xs sm:text-base break-words">
                                     {opt}
                                 </span>
                                 {answered && isCorrect && (
                                     <CheckCircle2
-                                        size={18}
+                                        size={16}
                                         className="text-green-500 flex-shrink-0"
                                     />
                                 )}
                                 {answered && isSelected && !isCorrect && (
                                     <XCircle
-                                        size={18}
+                                        size={16}
                                         className="text-red-500 flex-shrink-0"
                                     />
                                 )}
@@ -359,12 +359,12 @@ export default function Quiz({
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         onClick={nextQuestion}
-                        className="w-full py-3 sm:py-4 rounded-xl bg-[var(--color-ink)] text-white font-bold flex items-center justify-center gap-2 hover:bg-black text-sm sm:text-base"
+                        className="w-full py-2.5 sm:py-4 rounded-xl bg-[var(--color-ink)] text-white font-bold flex items-center justify-center gap-2 hover:bg-black text-xs sm:text-base"
                     >
                         {currentQuestion === totalQuestions - 1
                             ? "Selesaikan"
                             : "Soal Berikutnya"}{" "}
-                        <ChevronRight size={18} />
+                        <ChevronRight size={16} />
                     </motion.button>
                 )}
             </div>

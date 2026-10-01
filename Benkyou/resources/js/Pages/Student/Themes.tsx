@@ -157,23 +157,22 @@ export default function Themes() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto space-y-8 pb-12 px-2 sm:px-4"
+            className="max-w-4xl mx-auto space-y-5 sm:space-y-8 pb-12 px-1 sm:px-4"
         >
-            <header className="text-center space-y-4 mb-10">
-                <h1 className="font-serif text-3xl sm:text-4xl font-light text-[var(--color-ink)] flex items-center justify-center gap-3">
+            <header className="text-center space-y-2 sm:space-y-4 mb-5 sm:mb-10">
+                <h1 className="font-serif text-xl sm:text-3xl md:text-4xl font-bold sm:font-light text-[var(--color-ink)] flex items-center justify-center gap-2 sm:gap-3">
                     <Palette
-                        className="text-[var(--color-japan-red)]"
-                        size={32}
+                        className="text-[var(--color-japan-red)] w-6 h-6 sm:w-8 sm:h-8 shrink-0"
                     />
                     Tema Aplikasi
                 </h1>
-                <p className="text-[var(--color-ink-light)] text-sm sm:text-base">
+                <p className="text-[var(--color-ink-light)] text-xs sm:text-base">
                     Sesuaikan tampilan dengan tema-tema yang kamu dapatkan dari
                     menyelesaikan setiap tantangan~
                 </p>
             </header>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                 {Object.values(THEMES).map((theme) => {
                     const isUnlocked = unlocked.includes(theme.id);
                     const isActive = activeTheme === theme.id;
@@ -183,7 +182,7 @@ export default function Themes() {
                             key={theme.id}
                             onClick={() => handleSelectTheme(theme.id)}
                             disabled={!isUnlocked}
-                            className={`w-full text-left p-6 rounded-3xl border-2 transition-all duration-300 relative overflow-hidden flex flex-col gap-4 ${
+                            className={`w-full text-left p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-2 transition-all duration-300 relative overflow-hidden flex flex-col gap-3 sm:gap-4 ${
                                 isActive
                                     ? "border-[var(--color-japan-red)] shadow-md bg-white"
                                     : isUnlocked
@@ -192,26 +191,26 @@ export default function Themes() {
                             }`}
                         >
                             <div
-                                className="w-16 h-16 shrink-0 rounded-2xl flex items-center justify-center text-white shadow-md relative overflow-hidden"
+                                className="w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-xl sm:rounded-2xl flex items-center justify-center text-white shadow-md relative overflow-hidden"
                                 style={{
                                     backgroundColor:
                                         theme.props["--color-japan-red"],
                                 }}
                             >
                                 {isActive ? (
-                                    <Cat size={32} />
+                                    <Cat size={24} className="sm:w-8 sm:h-8" />
                                 ) : (
-                                    <Cat size={32} opacity={0.7} />
+                                    <Cat size={24} className="sm:w-8 sm:h-8" opacity={0.7} />
                                 )}
                             </div>
 
                             <div>
-                                <h3 className="font-serif text-xl font-bold mb-1 flex items-center gap-2">
+                                <h3 className="font-serif text-base sm:text-xl font-bold mb-1 flex items-center gap-2">
                                     {theme.name}
                                     {!isUnlocked && (
                                         <Lock
-                                            size={16}
-                                            className="text-gray-500"
+                                            size={14}
+                                            className="text-gray-500 sm:w-4 sm:h-4"
                                         />
                                     )}
                                 </h3>

@@ -64,21 +64,21 @@ export default function Kanji({ kanjiData = [] }: { kanjiData: KanjiType[] }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="space-y-8 pb-12"
+      className="space-y-5 sm:space-y-8 pb-12"
     >
       {/* ── Header Banner ── */}
-      <div className="relative bg-gradient-to-br from-[var(--color-ink)] to-gray-800 text-white rounded-3xl p-8 md:p-10 overflow-hidden">
-        <div className="absolute -right-4 -top-4 font-jp text-[9rem] font-bold opacity-[0.06] select-none pointer-events-none leading-none">
+      <div className="relative bg-gradient-to-br from-[var(--color-ink)] to-gray-800 text-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-10 overflow-hidden">
+        <div className="absolute -right-2 sm:-right-4 -top-2 sm:-top-4 font-jp text-[4.5rem] sm:text-[6.5rem] md:text-[9rem] font-bold opacity-[0.06] select-none pointer-events-none leading-none">
           漢字
         </div>
         <div className="relative z-10">
-          <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-white/10 rounded-full border border-white/10">
+          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/10 rounded-full border border-white/10">
             Kamus Kanji
           </span>
-          <h1 className="font-fredoka text-3xl md:text-4xl font-bold mt-3 mb-2">
+          <h1 className="font-fredoka text-xl sm:text-3xl md:text-4xl font-bold mt-2 mb-1 sm:mt-3 sm:mb-2">
             Karakter Bahasa Jepang ✍️
           </h1>
-          <p className="text-gray-300 text-sm max-w-lg leading-relaxed">
+          <p className="text-gray-300 text-xs sm:text-sm max-w-lg leading-relaxed">
             Kenali karakter-karakter kanji yang akan muncul di misi petualanganmu.
             <strong className="text-white"> Klik kartu</strong> untuk mendengar cara bacanya~
           </p>
@@ -86,29 +86,29 @@ export default function Kanji({ kanjiData = [] }: { kanjiData: KanjiType[] }) {
       </div>
 
       {/* ── Filter & Search Bar ── */}
-      <div className="flex flex-col sm:flex-row gap-3">
+      <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3">
         {/* Search */}
         <div className="relative flex-1">
-          <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-ink-light)]" />
+          <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--color-ink-light)]" />
           <input
             type="text"
             placeholder="Cari kanji, romaji, atau arti..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 rounded-2xl bg-white border-2 border-gray-200 focus:border-[var(--color-japan-red)] focus:outline-none text-sm font-medium text-[var(--color-ink)] transition-colors placeholder:text-gray-400"
+            className="w-full pl-9 pr-3.5 py-2.5 sm:pl-10 sm:pr-4 sm:py-3 rounded-xl sm:rounded-2xl bg-white border-2 border-gray-200 focus:border-[var(--color-japan-red)] focus:outline-none text-xs sm:text-sm font-medium text-[var(--color-ink)] transition-colors placeholder:text-gray-400"
           />
         </div>
 
         {/* Level filter pills */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <Filter size={14} className="text-[var(--color-ink-light)] shrink-0" />
+        <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+          <Filter size={13} className="text-[var(--color-ink-light)] shrink-0" />
           {levels.map(lv => {
             const colors = lv !== 'all' ? (levelColors[lv] ?? { bg: 'bg-gray-100', text: 'text-gray-700', border: 'border-gray-200' }) : null;
             return (
               <button
                 key={lv}
                 onClick={() => setActiveLevel(lv)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border-2 capitalize ${
+                className={`px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold transition-all border-2 capitalize ${
                   activeLevel === lv
                     ? lv === 'all'
                       ? 'bg-[var(--color-ink)] text-white border-[var(--color-ink)]'
@@ -125,7 +125,7 @@ export default function Kanji({ kanjiData = [] }: { kanjiData: KanjiType[] }) {
 
       {/* ── Kanji Grid ── */}
       {paginated.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-4">
           {paginated.map((item, index) => {
             const colors = levelColors[item.level] ?? { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' };
             return (
@@ -136,7 +136,7 @@ export default function Kanji({ kanjiData = [] }: { kanjiData: KanjiType[] }) {
                 transition={{ delay: Math.min(index * 0.02, 0.4), duration: 0.25 }}
                 whileHover={{ scale: 1.04, y: -4 }}
                 onClick={() => speakKanji(item.kanji)}
-                className="group bg-white rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-lg cursor-pointer border-2 border-transparent hover:border-[var(--color-japan-red)] transition-all duration-200 text-center flex flex-col items-center justify-center gap-2 relative overflow-hidden"
+                className="group bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-sm hover:shadow-lg cursor-pointer border-2 border-transparent hover:border-[var(--color-japan-red)] transition-all duration-200 text-center flex flex-col items-center justify-center gap-1.5 sm:gap-2 relative overflow-hidden"
               >
                 {/* Level badge */}
                 {item.level && (
@@ -146,23 +146,23 @@ export default function Kanji({ kanjiData = [] }: { kanjiData: KanjiType[] }) {
                 )}
 
                 {/* Kanji character */}
-                <span className="font-jp text-4xl sm:text-5xl text-[var(--color-ink)] block leading-none group-hover:text-[var(--color-japan-red)] transition-colors">
+                <span className="font-jp text-3xl sm:text-5xl text-[var(--color-ink)] block leading-none group-hover:text-[var(--color-japan-red)] transition-colors">
                   {item.kanji}
                 </span>
 
                 {/* Romaji */}
-                <span className="text-xs sm:text-sm text-[var(--color-japan-red)] font-bold block truncate w-full text-center">
+                <span className="text-[11px] sm:text-sm text-[var(--color-japan-red)] font-bold block truncate w-full text-center">
                   {item.romaji}
                 </span>
 
                 {/* Meaning */}
-                <span className="text-[10px] sm:text-xs text-[var(--color-ink-light)] font-medium uppercase tracking-tight line-clamp-1 w-full text-center">
+                <span className="text-[9px] sm:text-xs text-[var(--color-ink-light)] font-medium uppercase tracking-tight line-clamp-1 w-full text-center">
                   {item.meaning}
                 </span>
 
                 {/* Speaker hint */}
-                <div className="mt-1 w-7 h-7 rounded-full bg-[var(--color-washi)] group-hover:bg-[var(--color-japan-red)] flex items-center justify-center transition-colors">
-                  <Volume2 size={12} className="text-[var(--color-ink-light)] group-hover:text-white transition-colors" />
+                <div className="mt-0.5 sm:mt-1 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[var(--color-washi)] group-hover:bg-[var(--color-japan-red)] flex items-center justify-center transition-colors">
+                  <Volume2 size={11} className="text-[var(--color-ink-light)] group-hover:text-white transition-colors" />
                 </div>
               </motion.div>
             );

@@ -26,43 +26,43 @@ export default function Login({ status, canResetPassword }) {
         <GuestLayout>
             <Head title="Masuk - Benkyou" />
 
-            <div className="text-center mb-8 space-y-2">
-                <h2 className="font-serif text-3xl font-bold text-[var(--color-ink)]">Selamat Datang Kembali</h2>
-                <p className="text-sm text-[var(--color-ink-light)]">Silakan masuk untuk melanjutkan petualangan bahasa Jepang Anda.</p>
+            <div className="text-center mb-4 sm:mb-8 space-y-1 sm:space-y-2">
+                <h2 className="font-serif text-xl sm:text-3xl font-bold text-[var(--color-ink)]">Selamat Datang Kembali</h2>
+                <p className="text-xs sm:text-sm text-[var(--color-ink-light)]">Silakan masuk untuk melanjutkan petualangan bahasa Jepang Anda.</p>
             </div>
 
             {status && (
-                <div className="mb-6 p-4 rounded-2xl bg-green-50 border border-green-200 text-sm font-medium text-green-700 text-center">
+                <div className="mb-4 sm:mb-6 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-green-50 border border-green-200 text-xs sm:text-sm font-medium text-green-700 text-center">
                     {status}
                 </div>
             )}
 
-            <form onSubmit={submit} className="space-y-6">
+            <form onSubmit={submit} className="space-y-3.5 sm:space-y-5">
                 <div>
-                    <InputLabel htmlFor="email" value="Alamat Email" className="font-bold text-sm text-[var(--color-ink)] mb-2" />
+                    <InputLabel htmlFor="email" value="Alamat Email" className="font-bold text-xs sm:text-sm text-[var(--color-ink)] mb-1 sm:mb-2" />
 
                     <TextInput
                         id="email"
                         type="email"
                         name="email"
                         value={data.email}
-                        className="w-full px-4 py-3 rounded-2xl border border-[#E5E5E5] bg-[#FCFBF9] text-[var(--color-ink)] focus:bg-white focus:ring-2 focus:ring-[var(--color-japan-red)] focus:border-[var(--color-japan-red)] transition-all shadow-sm outline-none"
+                        className="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-[#E5E5E5] bg-[#FCFBF9] text-xs sm:text-sm text-[var(--color-ink)] focus:bg-white focus:ring-2 focus:ring-[var(--color-japan-red)] focus:border-[var(--color-japan-red)] transition-all shadow-sm outline-none"
                         autoComplete="username"
                         isFocused={true}
                         placeholder="contoh@email.com"
                         onChange={(e) => setData('email', e.target.value)}
                     />
 
-                    <InputError message={errors.email} className="mt-2 text-red-600 text-xs font-medium" />
+                    <InputError message={errors.email} className="mt-1.5 text-red-600 text-xs font-medium" />
                 </div>
 
                 <div>
-                    <div className="flex justify-between items-center mb-2">
-                        <InputLabel htmlFor="password" value="Kata Sandi" className="font-bold text-sm text-[var(--color-ink)]" />
+                    <div className="flex justify-between items-center mb-1 sm:mb-2">
+                        <InputLabel htmlFor="password" value="Kata Sandi" className="font-bold text-xs sm:text-sm text-[var(--color-ink)]" />
                         {canResetPassword && (
                             <Link
                                 href={route('password.request')}
-                                className="text-xs font-bold text-[var(--color-japan-red)] hover:underline"
+                                className="text-[11px] sm:text-xs font-bold text-[var(--color-japan-red)] hover:underline"
                             >
                                 Lupa Kata Sandi?
                             </Link>
@@ -74,13 +74,13 @@ export default function Login({ status, canResetPassword }) {
                         type="password"
                         name="password"
                         value={data.password}
-                        className="w-full px-4 py-3 rounded-2xl border border-[#E5E5E5] bg-[#FCFBF9] text-[var(--color-ink)] focus:bg-white focus:ring-2 focus:ring-[var(--color-japan-red)] focus:border-[var(--color-japan-red)] transition-all shadow-sm outline-none"
+                        className="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-[#E5E5E5] bg-[#FCFBF9] text-xs sm:text-sm text-[var(--color-ink)] focus:bg-white focus:ring-2 focus:ring-[var(--color-japan-red)] focus:border-[var(--color-japan-red)] transition-all shadow-sm outline-none"
                         autoComplete="current-password"
                         placeholder="••••••••"
                         onChange={(e) => setData('password', e.target.value)}
                     />
 
-                    <InputError message={errors.password} className="mt-2 text-red-600 text-xs font-medium" />
+                    <InputError message={errors.password} className="mt-1.5 text-red-600 text-xs font-medium" />
                 </div>
 
                 <div className="flex items-center justify-between">
@@ -91,7 +91,7 @@ export default function Login({ status, canResetPassword }) {
                             onChange={(e) => setData('remember', e.target.checked)}
                             className="rounded border-gray-300 text-[var(--color-japan-red)] focus:ring-[var(--color-japan-red)]"
                         />
-                        <span className="ms-3 text-sm text-[var(--color-ink-light)] group-hover:text-[var(--color-ink)] transition-colors">
+                        <span className="ms-2.5 text-xs sm:text-sm text-[var(--color-ink-light)] group-hover:text-[var(--color-ink)] transition-colors">
                             Ingat sesi saya
                         </span>
                     </label>
@@ -100,25 +100,25 @@ export default function Login({ status, canResetPassword }) {
                 <button
                     type="submit"
                     disabled={processing}
-                    className="w-full py-4 rounded-full bg-[var(--color-japan-red)] text-white font-bold text-base hover:opacity-90 transition-all shadow-lg hover:shadow-[var(--color-japan-red)]/30 hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0 flex items-center justify-center gap-2 group"
+                    className="w-full py-2.5 sm:py-3.5 rounded-full bg-[var(--color-japan-red)] text-white font-bold text-xs sm:text-base hover:opacity-90 transition-all shadow-md sm:shadow-lg hover:shadow-[var(--color-japan-red)]/30 hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0 flex items-center justify-center gap-2 group cursor-pointer"
                 >
-                    <LogIn size={20} /> Masuk ke Dasbor <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    <LogIn size={16} /> Masuk ke Dasbor <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </button>
 
-                <div className="relative my-6">
+                <div className="relative my-3 sm:my-5">
                     <div className="absolute inset-0 flex items-center">
                         <div className="w-full border-t border-[#E5E5E5]" />
                     </div>
-                    <div className="relative flex justify-center text-xs uppercase tracking-wider">
+                    <div className="relative flex justify-center text-[10px] sm:text-xs uppercase tracking-wider">
                         <span className="bg-white px-3 text-[var(--color-ink-light)] font-medium">atau masuk dengan</span>
                     </div>
                 </div>
 
                 <a
                     href={route('auth.google')}
-                    className="w-full flex items-center justify-center gap-3 px-4 py-3.5 rounded-full border border-[#E5E5E5] bg-white hover:bg-[#FDFBF7] text-[var(--color-ink)] font-bold text-sm shadow-sm hover:shadow transition-all hover:-translate-y-0.5"
+                    className="w-full flex items-center justify-center gap-2.5 sm:gap-3 px-4 py-2.5 sm:py-3 rounded-full border border-[#E5E5E5] bg-white hover:bg-[#FDFBF7] text-[var(--color-ink)] font-bold text-xs sm:text-sm shadow-sm hover:shadow transition-all hover:-translate-y-0.5"
                 >
-                    <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" viewBox="0 0 24 24">
                         <path
                             fill="#4285F4"
                             d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -139,7 +139,7 @@ export default function Login({ status, canResetPassword }) {
                     <span>Masuk dengan Google</span>
                 </a>
 
-                <div className="text-center text-sm text-[var(--color-ink-light)] pt-4 border-t border-[#E5E5E5]">
+                <div className="text-center text-xs sm:text-sm text-[var(--color-ink-light)] pt-3 sm:pt-4 border-t border-[#E5E5E5]">
                     Belum memiliki akun?{' '}
                     <Link href={route('register')} className="font-bold text-[var(--color-japan-red)] hover:underline">
                         Daftar Sekarang

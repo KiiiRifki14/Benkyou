@@ -359,10 +359,10 @@ export default function Welcome({
                     <div className="absolute top-1/4 left-10 w-72 h-72 rounded-full bg-rose-200/20 blur-3xl pointer-events-none" />
                     <div className="absolute bottom-10 right-1/3 w-96 h-96 rounded-full bg-orange-200/20 blur-3xl pointer-events-none" />
 
-                    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[85dvh] lg:min-h-[90dvh] items-center relative pt-20 pb-16 lg:pt-12 lg:pb-12">
+                    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-0 lg:min-h-[90dvh] items-center relative pt-8 pb-10 sm:pt-14 sm:pb-12 lg:pt-12 lg:pb-12">
                         {/* Left Content Column */}
-                        <div className="lg:col-span-6 px-6 sm:px-8 lg:px-16 py-6 lg:py-10 space-y-7 z-10">
-                            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--color-japan-red)]/10 text-[var(--color-japan-red)] text-[11px] font-extrabold uppercase tracking-widest border border-red-200/40">
+                        <div className="lg:col-span-6 px-4 sm:px-8 lg:px-16 py-4 lg:py-10 space-y-4 sm:space-y-7 z-10">
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--color-japan-red)]/10 text-[var(--color-japan-red)] text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest border border-red-200/40">
                                 <span className="flex h-2 w-2 relative">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-japan-red)] opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-japan-red)]"></span>
@@ -372,7 +372,7 @@ export default function Welcome({
                             </div>
 
                             <h2
-                                className="font-fredoka text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-[var(--color-ink)] leading-[1.1]"
+                                className="font-fredoka text-2xl sm:text-4xl lg:text-6xl font-semibold tracking-tight text-[var(--color-ink)] leading-snug sm:leading-[1.15]"
                                 dangerouslySetInnerHTML={{
                                     __html:
                                         landingSettings["hero_title"] ||
@@ -380,39 +380,39 @@ export default function Welcome({
                                 }}
                             />
 
-                            <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-xl">
+                            <p className="text-xs sm:text-base lg:text-lg text-gray-600 leading-relaxed max-w-xl">
                                 {landingSettings["hero_subtitle"] ||
                                     "Temukan cara paling asyik dan santai buat belajar bahasa Jepang bareng aku."}
                             </p>
 
-                            <div className="pt-3 flex flex-wrap gap-4 items-center">
+                            <div className="pt-2 sm:pt-3 flex flex-wrap gap-2.5 sm:gap-4 items-center">
                                 <Link
                                     href={
                                         auth?.user ? "/dashboard" : "/register"
                                     }
-                                    className="px-8 py-3.5 rounded-full bg-[var(--color-japan-red)] text-white font-bold hover:bg-red-700 transition-all shadow-lg hover:shadow-red-600/20 flex items-center gap-2 text-sm"
+                                    className="px-5 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-[var(--color-japan-red)] text-white font-bold hover:bg-red-700 transition-all shadow-md sm:shadow-lg hover:shadow-red-600/20 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm"
                                 >
                                     {landingSettings["hero_cta_text"] ||
                                         "Mulai Belajar"}{" "}
-                                    <ChevronRight size={18} />
+                                    <ChevronRight size={16} />
                                 </Link>
 
                                 <button
                                     onClick={() => setIsVideoOpen(true)}
-                                    className="px-6 py-3.5 rounded-full bg-white border border-gray-300 text-[var(--color-ink)] font-bold hover:bg-gray-50 hover:border-gray-400 transition-all flex items-center gap-2 text-sm shadow-sm"
+                                    className="px-4 py-2.5 sm:px-6 sm:py-3.5 rounded-full bg-white border border-gray-300 text-[var(--color-ink)] font-bold hover:bg-gray-50 hover:border-gray-400 transition-all flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm shadow-sm cursor-pointer"
                                 >
                                     <Play
-                                        size={16}
+                                        size={14}
                                         className="fill-[var(--color-japan-red)] text-[var(--color-japan-red)]"
                                     />{" "}
                                     {landingSettings["hero_video_btn_text"] || "Tonton Video Intro"}
                                 </button>
                             </div>
 
-                            <div className="pt-6 border-t border-gray-200/80 flex items-center gap-3 text-xs text-gray-500 font-medium">
+                            <div className="pt-3 sm:pt-6 border-t border-gray-200/80 flex items-center gap-2 sm:gap-3 text-[11px] sm:text-xs text-gray-500 font-medium">
                                 <FileText
-                                    size={16}
-                                    className="text-[var(--color-japan-red)]"
+                                    size={14}
+                                    className="text-[var(--color-japan-red)] shrink-0"
                                 />
                                 <span>
                                     {landingSettings["hero_doc_text"] || "Unduh Buklet Panduan Belajar Mandiri Benkyou (PDF)"} •{" "}
@@ -427,13 +427,13 @@ export default function Welcome({
                         </div>
 
                         {/* Right Banner Image Collage Column */}
-                        <div className="lg:col-span-6 h-full min-h-[360px] lg:min-h-[580px] w-full relative flex items-center justify-center p-6 lg:p-0">
-                            <div className="relative w-full max-w-[480px] h-[340px] lg:h-[420px] z-10">
+                        <div className="lg:col-span-6 h-full min-h-[220px] sm:min-h-[340px] lg:min-h-[580px] w-full relative flex items-center justify-center p-3 sm:p-6 lg:p-0">
+                            <div className="relative w-full max-w-[300px] sm:max-w-[420px] lg:max-w-[480px] h-[220px] sm:h-[320px] lg:h-[420px] z-10">
                                 {/* Collage Layer 1: Background Shape */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-amber-100 to-orange-100/60 rounded-3xl transform rotate-3 shadow-sm border border-orange-200/30" />
+                                <div className="absolute inset-0 bg-gradient-to-tr from-amber-100 to-orange-100/60 rounded-2xl sm:rounded-3xl transform rotate-3 shadow-sm border border-orange-200/30" />
 
                                 {/* Collage Layer 2: Main Hero Image */}
-                                <div className="absolute inset-2 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200/50">
+                                <div className="absolute inset-2 bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-gray-200/50">
                                     <img
                                         src={landingSettings["hero_image"] || "/images/benkyou_hero.png"}
                                         alt="Benkyou Premium Japanese Learning"
@@ -442,32 +442,32 @@ export default function Welcome({
                                 </div>
 
                                 {/* Collage Layer 3: Overlapping Interactive Stat Badge */}
-                                <div className="absolute -bottom-4 -left-4 bg-white/95 backdrop-blur-sm p-4 rounded-2xl border border-gray-200 shadow-xl flex items-center gap-3 animate-bounce-slow">
-                                    <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-600 font-bold">
+                                <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 bg-white/95 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-gray-200 shadow-md sm:shadow-xl flex items-center gap-2 sm:gap-3 animate-bounce-slow">
+                                    <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-green-50 flex items-center justify-center text-green-600 font-bold text-xs sm:text-base">
                                         🇯🇵
                                     </div>
                                     <div>
-                                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider leading-none">
+                                        <p className="text-[8px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-wider leading-none">
                                             {landingSettings["hero_stat_label"] || "Cocok Buat"}
                                         </p>
-                                        <p className="text-sm font-fredoka font-semibold text-green-800 mt-1">
+                                        <p className="text-xs sm:text-sm font-fredoka font-semibold text-green-800 mt-0.5 sm:mt-1">
                                             {landingSettings["hero_stat_badge"] || "Pemula s/d Mahir"}
                                         </p>
                                     </div>
                                 </div>
 
                                 {/* Collage Layer 4: Overlapping Info Badge */}
-                                <div className="absolute -top-4 -right-4 bg-[var(--color-japan-red)] text-white p-4 rounded-2xl shadow-xl border border-red-500/20 text-center flex flex-col justify-center items-center min-w-[100px]">
+                                <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 bg-[var(--color-japan-red)] text-white p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-md sm:shadow-xl border border-red-500/20 text-center flex flex-col justify-center items-center min-w-[70px] sm:min-w-[100px]">
                                     {landingSettings["hero_info_badge"] ? (
-                                        <p className="text-xs font-extrabold uppercase tracking-wider leading-tight">
+                                        <p className="text-[10px] sm:text-xs font-extrabold uppercase tracking-wider leading-tight">
                                             {landingSettings["hero_info_badge"]}
                                         </p>
                                     ) : (
                                         <>
-                                            <p className="text-xl font-bold font-fredoka leading-none">
+                                            <p className="text-sm sm:text-xl font-bold font-fredoka leading-none">
                                                 100%
                                             </p>
-                                            <p className="text-[9px] font-extrabold uppercase tracking-widest mt-1 opacity-90">
+                                            <p className="text-[7px] sm:text-[9px] font-extrabold uppercase tracking-widest mt-0.5 sm:mt-1 opacity-90">
                                                 Digital Mandiri
                                             </p>
                                         </>
@@ -482,28 +482,28 @@ export default function Welcome({
                 {isVisible("section_program_visible") && (
                     <section
                         id="manfaat"
-                        className="py-24 px-6 max-w-7xl mx-auto"
+                        className="py-10 sm:py-16 lg:py-24 px-4 sm:px-6 max-w-7xl mx-auto"
                     >
-                        <div className="text-center space-y-2 max-w-2xl mx-auto">
-                            <h2 className="font-fredoka text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
+                        <div className="text-center space-y-1.5 sm:space-y-2 max-w-2xl mx-auto">
+                            <h2 className="font-fredoka text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
                                 {landingSettings["program_title"] ||
                                     "Perjalanan Belajarmu~"}
                             </h2>
                             <div className="under-heading-wave" />
-                            <p className="text-sm sm:text-base text-gray-500 max-w-lg mx-auto">
+                            <p className="text-xs sm:text-base text-gray-500 max-w-lg mx-auto">
                                 {landingSettings["program_subtitle"] ||
                                     "Dari nol sampai bisa pesen ramen di Tokyo — semua dimulai dari langkah kecil ini."}
                             </p>
                         </div>
 
                         {/* Navigation Tabs (Kumon design style) */}
-                        <div className="mt-14 flex justify-center border-b border-gray-200">
-                            <div className="flex flex-wrap -mb-px justify-center gap-2 sm:gap-4">
+                        <div className="mt-6 sm:mt-12 flex justify-center border-b border-gray-200">
+                            <div className="flex flex-wrap -mb-px justify-center gap-1.5 sm:gap-4">
                                 {Object.keys(tabContents).map((key) => (
                                     <button
                                         key={key}
                                         onClick={() => setActiveTab(key)}
-                                        className={`py-4 px-6 sm:px-8 text-sm sm:text-base font-bold font-fredoka border-b-4 transition-all duration-200 ${
+                                        className={`py-2.5 px-3.5 sm:py-4 sm:px-8 text-xs sm:text-base font-bold font-fredoka border-b-4 transition-all duration-200 cursor-pointer ${
                                             activeTab === key
                                                 ? "border-[var(--color-japan-red)] text-[var(--color-japan-red)] bg-white/50 rounded-t-xl"
                                                 : "border-transparent text-gray-400 hover:text-gray-600"
@@ -524,7 +524,7 @@ export default function Welcome({
                         </div>
 
                         {/* Overlapping layout container */}
-                        <div className="mt-10 bg-white border border-gray-200 rounded-3xl p-6 sm:p-12 shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <div className="mt-6 sm:mt-10 bg-white border border-gray-200 rounded-2xl sm:rounded-3xl p-4 sm:p-8 lg:p-12 shadow-sm sm:shadow-md hover:shadow-lg transition-shadow duration-300">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={activeTab}
@@ -532,11 +532,11 @@ export default function Welcome({
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -15 }}
                                     transition={{ duration: 0.25 }}
-                                    className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
+                                    className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-center"
                                 >
                                     {/* Collage / Image Layout Left (overlapping like Kumon page) */}
-                                    <div className="lg:col-span-5 flex items-center justify-center p-4">
-                                        <div className="relative w-full max-w-[340px] h-[300px]">
+                                    <div className="lg:col-span-5 flex items-center justify-center p-2 sm:p-4">
+                                        <div className="relative w-full max-w-[240px] sm:max-w-[340px] h-[180px] sm:h-[260px] lg:h-[300px]">
                                             {/* Layer 1: Colored base plate */}
                                             <div className="absolute inset-0 bg-rose-50 rounded-2xl transform rotate-6 border border-rose-100" />
                                             {/* Layer 2: Secondary plate */}
@@ -553,7 +553,7 @@ export default function Welcome({
                                                 />
                                             </div>
                                             {/* Layer 4: Floating tag */}
-                                            <div className="absolute -bottom-2 right-2 bg-[var(--color-ink)] text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                            <div className="absolute -bottom-2 right-2 bg-[var(--color-ink)] text-white text-[9px] sm:text-[10px] font-bold px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg">
                                                 🇯🇵{" "}
                                                 {
                                                     tabContents[
@@ -565,20 +565,20 @@ export default function Welcome({
                                     </div>
 
                                     {/* Text Content Right */}
-                                    <div className="lg:col-span-7 space-y-6">
-                                        <div className="inline-block px-3 py-1 rounded-full bg-red-50 text-[var(--color-japan-red)] border border-red-200/50 text-[10px] font-bold uppercase tracking-wider font-fredoka">
+                                    <div className="lg:col-span-7 space-y-3 sm:space-y-6">
+                                        <div className="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-red-50 text-[var(--color-japan-red)] border border-red-200/50 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider font-fredoka">
                                             {tabContents[activeTab].badge}
                                         </div>
 
-                                        <h3 className="font-fredoka text-2xl sm:text-3xl font-semibold leading-snug text-[var(--color-ink)]">
+                                        <h3 className="font-fredoka text-lg sm:text-2xl lg:text-3xl font-semibold leading-snug text-[var(--color-ink)]">
                                             {tabContents[activeTab].title}
                                         </h3>
 
-                                        <p className="text-base font-serif italic text-gray-500 border-l-4 border-[var(--color-japan-red)]/30 pl-4 py-1 bg-rose-50/20">
+                                        <p className="text-xs sm:text-base font-serif italic text-gray-500 border-l-4 border-[var(--color-japan-red)]/30 pl-3 sm:pl-4 py-1 bg-rose-50/20">
                                             "{tabContents[activeTab].subtitle}"
                                         </p>
 
-                                        <div className="space-y-4 text-sm sm:text-base text-gray-600 leading-relaxed font-sans">
+                                        <div className="space-y-2 sm:space-y-4 text-xs sm:text-base text-gray-600 leading-relaxed font-sans">
                                             <p>
                                                 {tabContents[activeTab].desc1}
                                             </p>
@@ -588,13 +588,13 @@ export default function Welcome({
                                         </div>
 
                                         {/* Program stats list */}
-                                        <div className="pt-2 flex flex-wrap gap-2 text-xs font-bold text-gray-500">
+                                        <div className="pt-1 sm:pt-2 flex flex-wrap gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-bold text-gray-500">
                                             {tabContents[activeTab].stats
                                                 .split(" • ")
                                                 .map((stat, i) => (
                                                     <span
                                                         key={i}
-                                                        className="bg-gray-100/80 border border-gray-200/60 px-3 py-1.5 rounded-lg flex items-center gap-1"
+                                                        className="bg-gray-100/80 border border-gray-200/60 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg flex items-center gap-1"
                                                     >
                                                         <Check
                                                             size={12}
@@ -605,15 +605,15 @@ export default function Welcome({
                                                 ))}
                                         </div>
 
-                                        <div className="pt-4 border-t border-gray-100 flex flex-wrap gap-4 items-center">
+                                        <div className="pt-2 sm:pt-4 border-t border-gray-100 flex flex-wrap gap-2.5 sm:gap-4 items-center">
                                             <Link
                                                 href="/register"
-                                                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--color-japan-red)] text-white font-bold hover:bg-red-700 transition-all text-sm shadow-md shadow-red-600/10"
+                                                className="inline-flex items-center gap-1.5 sm:gap-2 px-5 py-2.5 sm:px-7 sm:py-3.5 rounded-full bg-[var(--color-japan-red)] text-white font-bold hover:bg-red-700 transition-all text-xs sm:text-sm shadow-md shadow-red-600/10"
                                             >
                                                 {landingSettings["tab_cta_text"] || "Daftar Program Ini"}{" "}
-                                                <ArrowRight size={16} />
+                                                <ArrowRight size={14} />
                                             </Link>
-                                            <span className="text-xs text-gray-400 font-semibold">
+                                            <span className="text-[10px] sm:text-xs text-gray-400 font-semibold">
                                                 {landingSettings["tab_cta_sub"] || "Tersedia coba gratis 7 hari"}
                                             </span>
                                         </div>
@@ -628,57 +628,57 @@ export default function Welcome({
                 {isVisible("section_modul_visible") && (
                     <section
                         id="modul"
-                        className="py-24 bg-gray-50/60 border-y border-gray-200/60 px-6"
+                        className="py-10 sm:py-16 lg:py-24 bg-gray-50/60 border-y border-gray-200/60 px-4 sm:px-6"
                     >
-                        <div className="max-w-7xl mx-auto space-y-16">
-                            <div className="text-center space-y-2 max-w-2xl mx-auto">
-                                <h2 className="font-fredoka text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
+                        <div className="max-w-7xl mx-auto space-y-8 sm:space-y-16">
+                            <div className="text-center space-y-1.5 sm:space-y-2 max-w-2xl mx-auto">
+                                <h2 className="font-fredoka text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
                                     {landingSettings["modul_title"] ||
                                         "Apa Aja yang Bisa Kamu Pelajari~"}
                                 </h2>
                                 <div className="under-heading-wave" />
-                                <p className="text-sm sm:text-base text-gray-500 max-w-lg mx-auto">
+                                <p className="text-xs sm:text-base text-gray-500 max-w-lg mx-auto">
                                     {landingSettings["modul_subtitle"] ||
                                         "Pilih yang kamu suka, atau coba semuanya — yang penting having fun!"}
                                 </p>
                             </div>
 
                             {/* Flip Cards Grid (Kumon-style 3D flip) */}
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
                                 {programs.map((prog, idx) => (
                                     <div
                                         key={idx}
-                                        className="group relative h-[380px] w-full perspective-1000"
+                                        className="group relative h-[300px] sm:h-[340px] md:h-[380px] w-full perspective-1000"
                                     >
                                         <div className="relative w-full h-full duration-700 preserve-3d group-hover:rotate-y-180 transition-transform">
                                             {/* Front Side */}
                                             <div
-                                                className={`absolute inset-0 w-full h-full backface-hidden rounded-3xl border p-8 flex flex-col justify-between bg-gradient-to-br bg-white shadow-sm border-gray-200/80`}
+                                                className={`absolute inset-0 w-full h-full backface-hidden rounded-2xl sm:rounded-3xl border p-5 sm:p-8 flex flex-col justify-between bg-gradient-to-br bg-white shadow-sm border-gray-200/80`}
                                             >
-                                                <div className="space-y-4">
-                                                    <div className="inline-block px-3 py-1 rounded-full bg-white border border-gray-200 text-[10px] font-bold uppercase tracking-wider text-gray-500">
+                                                <div className="space-y-2.5 sm:space-y-4">
+                                                    <div className="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white border border-gray-200 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-gray-500">
                                                         {prog.badge}
                                                     </div>
 
-                                                    <div className="text-[var(--color-japan-red)]/85 pt-2">
+                                                    <div className="text-[var(--color-japan-red)]/85 pt-1 sm:pt-2 scale-90 sm:scale-100 origin-left">
                                                         {prog.icon}
                                                     </div>
 
-                                                    <h3 className="font-fredoka text-2xl font-bold text-[var(--color-ink)] pt-2">
+                                                    <h3 className="font-fredoka text-lg sm:text-2xl font-bold text-[var(--color-ink)] pt-1 sm:pt-2">
                                                         {prog.title}
                                                     </h3>
-                                                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                                                    <p className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest">
                                                         {prog.subtitle}
                                                     </p>
                                                 </div>
 
-                                                <div className="flex items-center justify-between pt-4 border-t border-gray-100 text-xs font-bold text-[var(--color-japan-red)]">
+                                                <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-100 text-[11px] sm:text-xs font-bold text-[var(--color-japan-red)]">
                                                     <span>
                                                         {landingSettings["modul_detail_text"] || "Lihat Detail Program"}
                                                     </span>
-                                                    <div className="w-8 h-8 rounded-full bg-[var(--color-japan-red)]/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                                                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[var(--color-japan-red)]/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
                                                         <ChevronRight
-                                                            size={16}
+                                                            size={14}
                                                         />
                                                     </div>
                                                 </div>
@@ -686,16 +686,16 @@ export default function Welcome({
 
                                             {/* Back Side */}
                                             <div
-                                                className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl p-8 flex flex-col justify-between ${prog.colorBack} shadow-xl`}
+                                                className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl sm:rounded-3xl p-5 sm:p-8 flex flex-col justify-between ${prog.colorBack} shadow-xl`}
                                             >
-                                                <div className="space-y-4">
-                                                    <h4 className="font-fredoka text-xl font-bold border-b border-white/20 pb-2">
+                                                <div className="space-y-2.5 sm:space-y-4">
+                                                    <h4 className="font-fredoka text-base sm:text-xl font-bold border-b border-white/20 pb-1.5 sm:pb-2">
                                                         {landingSettings["modul_curriculum_text"] || "Detail Kurikulum"}
                                                     </h4>
-                                                    <p className="text-sm text-white/90 leading-relaxed font-sans">
+                                                    <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-sans line-clamp-3 sm:line-clamp-none">
                                                         {prog.desc}
                                                     </p>
-                                                    <ul className="text-xs space-y-2 text-white/80 pt-2 font-medium">
+                                                    <ul className="text-[10px] sm:text-xs space-y-1.5 sm:space-y-2 text-white/80 pt-1 sm:pt-2 font-medium">
                                                         <li className="flex items-center gap-1.5">
                                                             ✓ {landingSettings["modul_point1"] || "Materi Interaktif Mudah Diakses"}
                                                         </li>
@@ -711,10 +711,10 @@ export default function Welcome({
                                                 <div>
                                                     <Link
                                                         href={prog.link}
-                                                        className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-white text-[var(--color-ink)] font-bold hover:bg-gray-100 transition-colors text-sm shadow-md"
+                                                        className="w-full flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 sm:py-3 rounded-full bg-white text-[var(--color-ink)] font-bold hover:bg-gray-100 transition-colors text-xs sm:text-sm shadow-md"
                                                     >
                                                         {landingSettings["modul_register_text"] || "Daftar Sekarang"}{" "}
-                                                        <ArrowRight size={16} />
+                                                        <ArrowRight size={14} />
                                                     </Link>
                                                 </div>
                                             </div>
@@ -730,15 +730,15 @@ export default function Welcome({
                 {isVisible("section_method_visible") && (
                     <section
                         id="metode"
-                        className="py-24 px-6 max-w-7xl mx-auto space-y-16"
+                        className="py-10 sm:py-16 lg:py-24 px-4 sm:px-6 max-w-7xl mx-auto space-y-8 sm:space-y-16"
                     >
-                        <div className="text-center space-y-2 max-w-2xl mx-auto">
-                            <h2 className="font-fredoka text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
+                        <div className="text-center space-y-1.5 sm:space-y-2 max-w-2xl mx-auto">
+                            <h2 className="font-fredoka text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
                                 {landingSettings["method_title"] ||
                                     "Kenapa Belajar di Sini Beda dari yang Lain?"}
                             </h2>
                             <div className="under-heading-wave" />
-                            <p className="text-sm text-gray-500 font-medium">
+                            <p className="text-xs sm:text-sm text-gray-500 font-medium">
                                 {landingSettings["method_subtitle"] ||
                                     "Klik panel kartu buat baca selengkapnya~"}
                             </p>
@@ -988,25 +988,25 @@ export default function Welcome({
                         </motion.div>
 
                         {/* Fallback accordion for mobile */}
-                        <div className="flex md:hidden flex-col gap-4">
+                        <div className="flex md:hidden flex-col gap-2.5">
                             {aspects.map((aspect, idx) => {
                                 const isActive = activeAspect === idx;
                                 return (
                                     <div
                                         key={idx}
                                         onClick={() => setActiveAspect(idx)}
-                                        className={`border rounded-2xl p-5 cursor-pointer transition-all duration-300 ${
+                                        className={`border rounded-xl p-3.5 sm:p-5 cursor-pointer transition-all duration-300 ${
                                             isActive
                                                 ? `${aspect.bg} border-gray-300/40 shadow-sm`
                                                 : "bg-white border-gray-200"
                                         }`}
                                     >
                                         <div className="flex items-center justify-between">
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-8 h-8 rounded-lg bg-white border border-gray-100 flex items-center justify-center scale-90">
+                                            <div className="flex items-center gap-2.5">
+                                                <div className="w-7 h-7 rounded-lg bg-white border border-gray-100 flex items-center justify-center scale-90">
                                                     {aspect.icon}
                                                 </div>
-                                                <h3 className="font-fredoka text-sm font-bold text-[var(--color-ink)]">
+                                                <h3 className="font-fredoka text-xs sm:text-sm font-bold text-[var(--color-ink)]">
                                                     {aspect.title}
                                                 </h3>
                                             </div>
@@ -1016,16 +1016,16 @@ export default function Welcome({
                                         </div>
 
                                         {isActive && (
-                                            <div className="mt-4 space-y-4 border-t border-gray-200/50 pt-4">
+                                            <div className="mt-3 space-y-3 border-t border-gray-200/50 pt-3">
                                                 <p className="text-xs text-gray-600 leading-relaxed font-sans">
                                                     {aspect.desc}
                                                 </p>
-                                                <div className="flex flex-col gap-2">
+                                                <div className="flex flex-col gap-1.5">
                                                     {aspect.points.map(
                                                         (pt, pIdx) => (
                                                             <div
                                                                 key={pIdx}
-                                                                className="flex items-center gap-2 text-[10px] font-bold text-gray-700 bg-white/70 px-2 py-1.5 rounded-lg border border-gray-100 shadow-sm"
+                                                                className="flex items-center gap-1.5 text-[10px] font-bold text-gray-700 bg-white/70 px-2 py-1 rounded-lg border border-gray-100 shadow-sm"
                                                             >
                                                                 <CheckCircle2
                                                                     size={12}
@@ -1051,16 +1051,16 @@ export default function Welcome({
                 {isVisible("section_testi_visible") && (
                     <section
                         id="testimoni"
-                        className="py-24 bg-white border-t border-gray-200/80 px-6"
+                        className="py-10 sm:py-16 lg:py-24 bg-white border-t border-gray-200/80 px-4 sm:px-6"
                     >
-                        <div className="max-w-7xl mx-auto space-y-16">
-                            <div className="text-center space-y-2 max-w-2xl mx-auto">
-                                <h2 className="font-fredoka text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
+                        <div className="max-w-7xl mx-auto space-y-8 sm:space-y-16">
+                            <div className="text-center space-y-1.5 sm:space-y-2 max-w-2xl mx-auto">
+                                <h2 className="font-fredoka text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
                                     {landingSettings["testi_title"] ||
                                         "Surat-Surat Rahasia Untukmu"}
                                 </h2>
                                 <div className="under-heading-wave" />
-                                <p className="text-sm sm:text-base text-gray-500 max-w-lg mx-auto">
+                                <p className="text-xs sm:text-base text-gray-500 max-w-lg mx-auto">
                                     {landingSettings["testi_subtitle"] ||
                                         "Baca satu-satu ya~ Setiap surat punya cerita dan pesan yang berbeda. 💌"}
                                 </p>
@@ -1068,25 +1068,25 @@ export default function Welcome({
 
                             {/* Real Admin Notes from Database */}
                             {adminNotes && adminNotes.length > 0 ? (
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                                     {adminNotes.map((note, idx) => (
                                         <div
                                             key={idx}
-                                            className="bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 shadow-sm relative overflow-hidden"
+                                            className="bg-white border border-gray-200 rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-sm relative overflow-hidden"
                                         >
-                                            <div className="absolute -right-2 -top-2 font-serif font-black text-[120px] text-gray-100/50 pointer-events-none select-none leading-none">
+                                            <div className="absolute -right-2 -top-2 font-serif font-black text-[80px] sm:text-[120px] text-gray-100/50 pointer-events-none select-none leading-none">
                                                 "
                                             </div>
-                                            <div className="relative z-10 space-y-4">
-                                                <span className="inline-block text-[10px] font-bold text-[var(--color-japan-red)] bg-red-50 px-2.5 py-1 rounded-full border border-red-100">
+                                            <div className="relative z-10 space-y-2.5 sm:space-y-4">
+                                                <span className="inline-block text-[9px] sm:text-[10px] font-bold text-[var(--color-japan-red)] bg-red-50 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border border-red-100">
                                                     {note.date}
                                                 </span>
                                                 {note.title && (
-                                                    <h3 className="font-fredoka text-lg font-bold text-[var(--color-ink)]">
+                                                    <h3 className="font-fredoka text-base sm:text-lg font-bold text-[var(--color-ink)]">
                                                         {note.title}
                                                     </h3>
                                                 )}
-                                                <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-wrap">
+                                                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed whitespace-pre-wrap">
                                                     {note.content.length > 150
                                                         ? note.content.substring(
                                                               0,
@@ -1094,7 +1094,7 @@ export default function Welcome({
                                                           ) + "..."
                                                         : note.content}
                                                 </p>
-                                                <div className="flex items-center gap-2 text-xs text-[var(--color-ink-light)] italic pt-2 border-t border-gray-100">
+                                                <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-[var(--color-ink-light)] italic pt-2 border-t border-gray-100">
                                                     <span>— dengan 💕</span>
                                                 </div>
                                             </div>
@@ -1102,7 +1102,7 @@ export default function Welcome({
                                     ))}
                                 </div>
                             ) : (
-                                <div className="text-center py-12 bg-white rounded-3xl border border-gray-200 text-gray-400">
+                                <div className="text-center py-8 sm:py-12 bg-white rounded-2xl sm:rounded-3xl border border-gray-200 text-gray-400 text-xs sm:text-sm">
                                     <p>
                                         {landingSettings["testi_fallback"] || "Catatan-catatan kecil akan muncul di sini~ ✨"}
                                     </p>
@@ -1116,36 +1116,36 @@ export default function Welcome({
                 {isVisible("section_berita_visible") && (
                     <section
                         id="berita"
-                        className="py-24 bg-gray-50/60 border-t border-gray-200 px-6"
+                        className="py-10 sm:py-16 lg:py-24 bg-gray-50/60 border-t border-gray-200 px-4 sm:px-6"
                     >
-                        <div className="max-w-7xl mx-auto space-y-16">
-                            <div className="text-center space-y-2 max-w-2xl mx-auto">
-                                <h2 className="font-fredoka text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
+                        <div className="max-w-7xl mx-auto space-y-8 sm:space-y-16">
+                            <div className="text-center space-y-1.5 sm:space-y-2 max-w-2xl mx-auto">
+                                <h2 className="font-fredoka text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
                                     Berita Terbaru
                                 </h2>
                                 <div className="under-heading-wave" />
                             </div>
 
-                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-stretch">
                                 {/* Left Column: Timeline Graphic Card */}
-                                <div className="lg:col-span-5 bg-white border border-gray-200/80 rounded-3xl p-8 shadow-sm flex flex-col justify-between relative overflow-hidden">
-                                    <div className="space-y-4">
-                                        <div className="w-10 h-10 rounded-xl bg-red-50 text-[var(--color-japan-red)] flex items-center justify-center">
-                                            <Calendar size={20} />
+                                <div className="lg:col-span-5 bg-white border border-gray-200/80 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm flex flex-col justify-between relative overflow-hidden">
+                                    <div className="space-y-3 sm:space-y-4">
+                                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-red-50 text-[var(--color-japan-red)] flex items-center justify-center">
+                                            <Calendar size={18} />
                                         </div>
-                                        <h3 className="font-fredoka text-2xl font-bold text-[var(--color-ink)]">
+                                        <h3 className="font-fredoka text-lg sm:text-2xl font-bold text-[var(--color-ink)]">
                                             {landingSettings["roadmap_title"] || "Roadmap Perjalananmu~"}
                                         </h3>
-                                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">
+                                        <p className="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider">
                                             {landingSettings["roadmap_subtitle"] || "Dari Kohai sampai Shogun 🌸"}
                                         </p>
 
                                         {/* Timeline Graphic List */}
-                                        <div className="pt-6 pl-4 space-y-6 timeline-dotted-line">
-                                            <div className="relative flex gap-4 items-start">
-                                                <div className="absolute -left-7 w-4 h-4 rounded-full bg-[var(--color-japan-red)] border-4 border-white shadow-sm z-10" />
+                                        <div className="pt-4 sm:pt-6 pl-4 space-y-4 sm:space-y-6 timeline-dotted-line">
+                                            <div className="relative flex gap-3 sm:gap-4 items-start">
+                                                <div className="absolute -left-7 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[var(--color-japan-red)] border-4 border-white shadow-sm z-10" />
                                                 <div className="leading-tight">
-                                                    <p className="text-[10px] font-bold text-[var(--color-japan-red)]">
+                                                    <p className="text-[9px] sm:text-[10px] font-bold text-[var(--color-japan-red)]">
                                                         TAHAP 01
                                                     </p>
                                                     <h4 className="text-xs font-bold text-gray-800">
@@ -1157,10 +1157,10 @@ export default function Welcome({
                                                 </div>
                                             </div>
 
-                                            <div className="relative flex gap-4 items-start">
-                                                <div className="absolute -left-7 w-4 h-4 rounded-full bg-orange-400 border-4 border-white shadow-sm z-10" />
+                                            <div className="relative flex gap-3 sm:gap-4 items-start">
+                                                <div className="absolute -left-7 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-orange-400 border-4 border-white shadow-sm z-10" />
                                                 <div className="leading-tight">
-                                                    <p className="text-[10px] font-bold text-orange-500">
+                                                    <p className="text-[9px] sm:text-[10px] font-bold text-orange-500">
                                                         TAHAP 02
                                                     </p>
                                                     <h4 className="text-xs font-bold text-gray-800">
@@ -1172,10 +1172,10 @@ export default function Welcome({
                                                 </div>
                                             </div>
 
-                                            <div className="relative flex gap-4 items-start">
-                                                <div className="absolute -left-7 w-4 h-4 rounded-full bg-green-500 border-4 border-white shadow-sm z-10" />
+                                            <div className="relative flex gap-3 sm:gap-4 items-start">
+                                                <div className="absolute -left-7 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-green-500 border-4 border-white shadow-sm z-10" />
                                                 <div className="leading-tight">
-                                                    <p className="text-[10px] font-bold text-green-500">
+                                                    <p className="text-[9px] sm:text-[10px] font-bold text-green-500">
                                                         TAHAP 03
                                                     </p>
                                                     <h4 className="text-xs font-bold text-gray-800">
@@ -1189,7 +1189,7 @@ export default function Welcome({
                                         </div>
                                     </div>
 
-                                    <div className="pt-8 border-t border-gray-100 mt-8">
+                                    <div className="pt-4 sm:pt-8 border-t border-gray-100 mt-4 sm:mt-8">
                                         <a
                                             href="#manfaat"
                                             className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--color-japan-red)] hover:underline"
@@ -1203,17 +1203,17 @@ export default function Welcome({
                                 </div>
 
                                 {/* Right Column: News Articles List */}
-                                <div className="lg:col-span-7 flex flex-col gap-4">
+                                <div className="lg:col-span-7 flex flex-col gap-3 sm:gap-4">
                                     {news.map((item, idx) => (
                                         <a
                                             key={idx}
                                             href={item.link}
-                                            className="bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200 flex flex-col justify-between gap-4 group"
+                                            className="bg-white border border-gray-200/80 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200 flex flex-col justify-between gap-3 sm:gap-4 group"
                                         >
-                                            <div className="space-y-2">
+                                            <div className="space-y-1.5 sm:space-y-2">
                                                 <div className="flex items-center gap-2">
                                                     <span
-                                                        className={`text-[9px] font-black tracking-widest uppercase px-2 py-0.5 rounded ${
+                                                        className={`text-[8px] sm:text-[9px] font-black tracking-widest uppercase px-2 py-0.5 rounded ${
                                                             item.type ===
                                                             "SURPRISE"
                                                                 ? "bg-pink-100 text-pink-800"
@@ -1225,13 +1225,13 @@ export default function Welcome({
                                                     >
                                                         {item.type}
                                                     </span>
-                                                    <div className="flex items-center gap-1 text-[11px] text-gray-400 font-semibold">
+                                                    <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-gray-400 font-semibold">
                                                         <Clock size={12} />
                                                         <span>{item.date}</span>
                                                     </div>
                                                 </div>
 
-                                                <h3 className="font-fredoka text-base sm:text-lg font-semibold text-gray-800 leading-snug group-hover:text-[var(--color-japan-red)] transition-colors">
+                                                <h3 className="font-fredoka text-sm sm:text-lg font-semibold text-gray-800 leading-snug group-hover:text-[var(--color-japan-red)] transition-colors">
                                                     {item.title}
                                                 </h3>
                                             </div>
@@ -1250,16 +1250,16 @@ export default function Welcome({
 
                 {/* Section: Call to Action (Daftar Gratis) */}
                 {isVisible("section_cta_visible") && (
-                    <section className="py-24 px-6 max-w-7xl mx-auto text-center">
-                        <div className="p-10 sm:p-20 rounded-3xl bg-[var(--color-ink)] text-white space-y-6 relative overflow-hidden shadow-xl">
-                            <div className="absolute top-0 right-0 p-8 opacity-[0.03] font-jp font-bold text-[200px] pointer-events-none select-none">
+                    <section className="py-10 sm:py-16 lg:py-24 px-4 sm:px-6 max-w-7xl mx-auto text-center">
+                        <div className="p-6 sm:p-14 lg:p-20 rounded-2xl sm:rounded-3xl bg-[var(--color-ink)] text-white space-y-4 sm:space-y-6 relative overflow-hidden shadow-xl">
+                            <div className="absolute top-0 right-0 p-8 opacity-[0.03] font-jp font-bold text-[140px] sm:text-[200px] pointer-events-none select-none">
                                 日本
                             </div>
-                            <div className="absolute bottom-0 left-0 p-8 opacity-[0.03] font-jp font-bold text-[200px] pointer-events-none select-none leading-none">
+                            <div className="absolute bottom-0 left-0 p-8 opacity-[0.03] font-jp font-bold text-[140px] sm:text-[200px] pointer-events-none select-none leading-none">
                                 勉
                             </div>
 
-                            <h2 className="font-fredoka text-3xl sm:text-5xl font-semibold leading-tight max-w-3xl mx-auto">
+                            <h2 className="font-fredoka text-xl sm:text-3xl lg:text-5xl font-semibold leading-tight max-w-3xl mx-auto">
                                 {landingSettings["cta_title"] ? (
                                     <span dangerouslySetInnerHTML={{ __html: landingSettings["cta_title"] }} />
                                 ) : (
@@ -1272,22 +1272,22 @@ export default function Welcome({
                                     </>
                                 )}
                             </h2>
-                            <p className="text-gray-300 text-sm sm:text-base max-w-xl mx-auto font-sans leading-relaxed">
+                            <p className="text-gray-300 text-xs sm:text-base max-w-xl mx-auto font-sans leading-relaxed">
                                 {landingSettings["cta_desc"] || "Dunia kecil ini udah siap menunggumu. Mulai dari huruf pertama, dan siapa tahu... suatu hari kita ke Jepang bareng~ 🌸"}
                             </p>
 
-                            <div className="pt-6 flex flex-wrap justify-center gap-4">
+                            <div className="pt-3 sm:pt-6 flex flex-wrap justify-center gap-2.5 sm:gap-4">
                                 <Link
                                     href={
                                         auth?.user ? "/dashboard" : "/register"
                                     }
-                                    className="px-8 py-4 rounded-full bg-[var(--color-japan-red)] text-white font-bold hover:bg-red-700 transition-all shadow-lg hover:shadow-red-600/20 text-sm"
+                                    className="px-5 py-2.5 sm:px-8 sm:py-4 rounded-full bg-[var(--color-japan-red)] text-white font-bold hover:bg-red-700 transition-all shadow-md sm:shadow-lg hover:shadow-red-600/20 text-xs sm:text-sm"
                                 >
                                     {landingSettings["cta_button_text"] || "Yuk Mulai! 💕"}
                                 </Link>
                                 <Link
                                     href="/login"
-                                    className="px-8 py-4 rounded-full bg-white/10 border border-white/20 text-white font-bold hover:bg-white/20 transition-all text-sm"
+                                    className="px-5 py-2.5 sm:px-8 sm:py-4 rounded-full bg-white/10 border border-white/20 text-white font-bold hover:bg-white/20 transition-all text-xs sm:text-sm"
                                 >
                                     {landingSettings["cta_button_sub"] || "Masuk ke Dunia Kecil Kita"}
                                 </Link>
@@ -1297,8 +1297,8 @@ export default function Welcome({
                 )}
 
                 {/* Footer Area (Detailed Multi-column Kumon Style) */}
-                <footer className="bg-[#1e1e1e] text-gray-300 border-t border-gray-800 py-16 px-6 relative z-10 font-sans">
-                    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10">
+                <footer className="bg-[#1e1e1e] text-gray-300 border-t border-gray-800 py-10 sm:py-16 px-4 sm:px-6 relative z-10 font-sans">
+                    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-10">
                         {/* Column 1: Brand & Site lists */}
                         <div className="md:col-span-4 space-y-6">
                             <div className="flex items-center gap-3">

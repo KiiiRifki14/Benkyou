@@ -26,7 +26,7 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
   };
 
   const renderGrid = (data: KanaCharacter[], cols: number = 5) => (
-    <div className={`grid ${cols === 3 ? 'grid-cols-3 sm:grid-cols-6 md:grid-cols-9' : 'grid-cols-5 md:grid-cols-10'} gap-2 sm:gap-3`}>
+    <div className={`grid ${cols === 3 ? 'grid-cols-3 sm:grid-cols-6 md:grid-cols-9' : 'grid-cols-5 md:grid-cols-10'} gap-1.5 sm:gap-3`}>
       {data.map((item, index) => (
         <motion.div
           key={index}
@@ -37,7 +37,7 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
           onHoverStart={() => item.kana && setHoveredKana(item.kana)}
           onHoverEnd={() => setHoveredKana(null)}
           onClick={() => item.kana && speakKana(item.kana)}
-          className={`h-16 sm:h-20 lg:h-24 rounded-2xl flex flex-col items-center justify-center relative transition-all duration-200 ${
+          className={`h-14 sm:h-20 lg:h-24 rounded-xl sm:rounded-2xl flex flex-col items-center justify-center relative transition-all duration-200 ${
             item.kana
               ? `bg-white shadow-sm hover:shadow-md cursor-pointer border-2 ${
                   isHiragana
@@ -49,7 +49,7 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
         >
           {item.kana ? (
             <>
-              <span className={`font-jp text-2xl sm:text-3xl lg:text-4xl mb-0.5 block text-center leading-none transition-colors ${
+              <span className={`font-jp text-xl sm:text-3xl lg:text-4xl mb-0.5 block text-center leading-none transition-colors ${
                 isHiragana ? 'text-[var(--color-ink)]' : 'text-blue-900'
               }`}>
                 {item.kana}
@@ -68,7 +68,7 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
               )}
             </>
           ) : (
-            <span className="text-lg text-gray-200">—</span>
+            <span className="text-sm sm:text-lg text-gray-200">—</span>
           )}
         </motion.div>
       ))}
@@ -80,24 +80,24 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="space-y-10 pb-12"
+      className="space-y-5 sm:space-y-10 pb-12"
     >
       {/* ── Hero Header ── */}
-      <div className={`relative rounded-3xl overflow-hidden p-8 md:p-10 ${isHiragana ? 'bg-gradient-to-br from-rose-800 to-[#bc002d]' : 'bg-gradient-to-br from-blue-800 to-indigo-900'}`}>
-        <div className="absolute right-8 top-4 font-jp text-[8rem] font-bold opacity-[0.08] select-none pointer-events-none leading-none text-white">
+      <div className={`relative rounded-2xl sm:rounded-3xl overflow-hidden p-4 sm:p-7 md:p-10 ${isHiragana ? 'bg-gradient-to-br from-rose-800 to-[#bc002d]' : 'bg-gradient-to-br from-blue-800 to-indigo-900'}`}>
+        <div className="absolute right-4 sm:right-8 top-2 sm:top-4 font-jp text-[4.5rem] sm:text-[6.5rem] md:text-[8rem] font-bold opacity-[0.08] select-none pointer-events-none leading-none text-white">
           {isHiragana ? 'あ' : 'ア'}
         </div>
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-white/15 rounded-full text-white">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
+              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/15 rounded-full text-white">
                 Huruf Kana
               </span>
             </div>
-            <h1 className="font-fredoka text-3xl md:text-4xl font-bold text-white leading-tight">
+            <h1 className="font-fredoka text-xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
               Tabel {isHiragana ? 'Hiragana' : 'Katakana'}
             </h1>
-            <p className="mt-2 text-white/70 text-sm max-w-md leading-relaxed">
+            <p className="mt-1 sm:mt-2 text-white/70 text-xs sm:text-sm max-w-md leading-relaxed">
               {isHiragana
                 ? 'Hiragana adalah huruf bundar yang dipakai untuk kata-kata asli bahasa Jepang. Klik kartu untuk mendengar pelafalannya~'
                 : 'Katakana dipakai untuk kata serapan asing dan efek suara. Bentuknya lebih tegas dan sudut-sudut~'}
@@ -105,12 +105,12 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
           </div>
 
           {/* Tab switcher */}
-          <div className="flex gap-2 bg-white/10 p-1 rounded-2xl shrink-0 border border-white/10">
+          <div className="flex gap-1.5 sm:gap-2 bg-white/10 p-1 rounded-xl sm:rounded-2xl shrink-0 border border-white/10">
             {(['hiragana', 'katakana'] as const).map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all capitalize ${
+                className={`px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold transition-all capitalize ${
                   activeTab === tab
                     ? 'bg-white text-[var(--color-ink)] shadow-sm'
                     : 'text-white/70 hover:text-white'
@@ -124,9 +124,9 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
       </div>
 
       {/* ── Tip ── */}
-      <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-2xl p-4">
-        <Info size={16} className="text-amber-600 mt-0.5 shrink-0" />
-        <p className="text-sm text-amber-800 leading-relaxed">
+      <div className="flex items-start gap-2.5 sm:gap-3 bg-amber-50 border border-amber-200 rounded-xl sm:rounded-2xl p-3 sm:p-4">
+        <Info size={15} className="text-amber-600 mt-0.5 shrink-0" />
+        <p className="text-xs sm:text-sm text-amber-800 leading-relaxed">
           <strong>Tips:</strong> Huruf <em>yi, ye, wi, wu, we</em> sudah tidak digunakan dalam bahasa Jepang modern, sehingga sel tersebut dibiarkan kosong agar kolom A-I-U-E-O tetap sejajar.
           <strong> Klik kartu</strong> untuk mendengar pengucapannya!
         </p>
@@ -139,13 +139,13 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.25 }}
-          className="space-y-10"
+          className="space-y-6 sm:space-y-10"
         >
           {/* Basic grid */}
-          <section className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className={`w-1.5 h-6 rounded-full ${isHiragana ? 'bg-[var(--color-japan-red)]' : 'bg-blue-500'}`} />
-              <h2 className="font-serif text-xl font-medium text-[var(--color-ink)]">
+          <section className="space-y-2.5 sm:space-y-4">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className={`w-1 sm:w-1.5 h-5 sm:h-6 rounded-full ${isHiragana ? 'bg-[var(--color-japan-red)]' : 'bg-blue-500'}`} />
+              <h2 className="font-serif text-sm sm:text-xl font-bold sm:font-medium text-[var(--color-ink)]">
                 Bentuk Dasar — Gojūon (五十音)
               </h2>
             </div>
@@ -154,14 +154,14 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
 
           {/* Dakuten grid */}
           {dakutenData.length > 0 && (
-            <section className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className={`w-1.5 h-6 rounded-full ${isHiragana ? 'bg-[var(--color-sakura-dark)]' : 'bg-indigo-500'}`} />
-                <h2 className="font-serif text-xl font-medium text-[var(--color-ink)]">
+            <section className="space-y-2.5 sm:space-y-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className={`w-1 sm:w-1.5 h-5 sm:h-6 rounded-full ${isHiragana ? 'bg-[var(--color-sakura-dark)]' : 'bg-indigo-500'}`} />
+                <h2 className="font-serif text-sm sm:text-xl font-bold sm:font-medium text-[var(--color-ink)]">
                   Dakuten & Handakuten (濁点・半濁点)
                 </h2>
               </div>
-              <p className="text-sm text-[var(--color-ink-light)] leading-relaxed -mt-2">
+              <p className="text-xs sm:text-sm text-[var(--color-ink-light)] leading-relaxed -mt-1 sm:-mt-2">
                 Huruf dasar yang ditambahkan tanda ゛(dua titik) menjadi suara keruh, atau tanda ゜(lingkaran kecil) menjadi suara p-.
               </p>
               {renderGrid(dakutenData)}
@@ -170,14 +170,14 @@ export default function Kana({ kanaData = [] }: { kanaData: KanaCharacter[] }) {
 
           {/* Yoon grid */}
           {yoonData.length > 0 && (
-            <section className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-1.5 h-6 rounded-full bg-[var(--color-matcha)]" />
-                <h2 className="font-serif text-xl font-medium text-[var(--color-ink)]">
+            <section className="space-y-2.5 sm:space-y-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-1 sm:w-1.5 h-5 sm:h-6 rounded-full bg-[var(--color-matcha)]" />
+                <h2 className="font-serif text-sm sm:text-xl font-bold sm:font-medium text-[var(--color-ink)]">
                   Huruf Gabungan — Yōon (拗音)
                 </h2>
               </div>
-              <p className="text-sm text-[var(--color-ink-light)] -mt-2">
+              <p className="text-xs sm:text-sm text-[var(--color-ink-light)] -mt-1 sm:-mt-2">
                 Dibentuk dengan menambahkan ya (や), yu (ゆ), atau yo (よ) yang ditulis lebih kecil.
               </p>
               {renderGrid(yoonData, 3)}

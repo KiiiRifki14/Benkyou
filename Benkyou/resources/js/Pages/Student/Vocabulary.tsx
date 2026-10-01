@@ -68,34 +68,34 @@ export default function Vocabulary({ vocabularyData = [] }: { vocabularyData: Vo
       className="max-w-2xl mx-auto space-y-8 pb-12"
     >
       {/* ── Header ── */}
-      <div className="relative bg-gradient-to-br from-[var(--color-matcha)] to-teal-700 text-white rounded-3xl p-7 md:p-9 overflow-hidden">
-        <div className="absolute -right-4 -top-4 font-jp text-[8rem] font-bold opacity-[0.07] select-none pointer-events-none leading-none">
+      <div className="relative bg-gradient-to-br from-[var(--color-matcha)] to-teal-700 text-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-9 overflow-hidden">
+        <div className="absolute -right-2 sm:-right-4 -top-2 sm:-top-4 font-jp text-[4.5rem] sm:text-[6.5rem] md:text-[8rem] font-bold opacity-[0.07] select-none pointer-events-none leading-none">
           語
         </div>
-        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-white/15 rounded-full">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/15 rounded-full">
               Kartu Pintar
             </span>
-            <h1 className="font-fredoka text-3xl font-bold mt-3 mb-1 leading-tight">
+            <h1 className="font-fredoka text-xl sm:text-3xl font-bold mt-2 mb-1 leading-tight">
               Kosakata Jepang 📖
             </h1>
-            <p className="text-white/70 text-sm">
+            <p className="text-white/70 text-xs sm:text-sm">
               Klik kartu untuk membalik dan melihat artinya~
             </p>
           </div>
           {/* Progress */}
-          <div className="shrink-0 bg-white/10 rounded-2xl p-4 text-center border border-white/10 min-w-[100px]">
-            <p className="text-2xl font-bold font-fredoka">
+          <div className="shrink-0 bg-white/10 rounded-xl sm:rounded-2xl p-2.5 sm:p-4 text-center border border-white/10 min-w-[75px] sm:min-w-[100px] self-start sm:self-auto">
+            <p className="text-lg sm:text-2xl font-bold font-fredoka">
               {currentIndex + 1}
-              <span className="text-base text-white/50">/{vocabularyData.length}</span>
+              <span className="text-xs sm:text-base text-white/50">/{vocabularyData.length}</span>
             </p>
-            <p className="text-[10px] uppercase tracking-widest text-white/60 mt-1">Kata</p>
+            <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-white/60 mt-0.5 sm:mt-1">Kata</p>
           </div>
         </div>
 
         {/* Progress bar */}
-        <div className="mt-5 h-1.5 bg-white/10 rounded-full overflow-hidden">
+        <div className="mt-3.5 sm:mt-5 h-1.5 bg-white/10 rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-white/60 rounded-full"
             animate={{ width: `${pct}%` }}
@@ -105,7 +105,7 @@ export default function Vocabulary({ vocabularyData = [] }: { vocabularyData: Vo
       </div>
 
       {/* ── Flashcard ── */}
-      <div className="relative h-80 md:h-96 perspective-1000">
+      <div className="relative h-64 sm:h-80 md:h-96 perspective-1000">
         <AnimatePresence mode="wait">
           <motion.div
             key={`${currentIndex}-${isFlipped ? 'back' : 'front'}`}
@@ -114,7 +114,7 @@ export default function Vocabulary({ vocabularyData = [] }: { vocabularyData: Vo
             exit={{ rotateX: direction > 0 ? -60 : 60, opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
             onClick={() => setIsFlipped(f => !f)}
-            className={`absolute inset-0 w-full h-full rounded-3xl shadow-xl cursor-pointer flex flex-col items-center justify-center p-8 md:p-12 select-none border-2 transition-colors ${
+            className={`absolute inset-0 w-full h-full rounded-2xl sm:rounded-3xl shadow-xl cursor-pointer flex flex-col items-center justify-center p-4 sm:p-8 md:p-12 select-none border-2 transition-colors ${
               isFlipped
                 ? 'bg-[var(--color-ink)] text-white border-[var(--color-ink)]'
                 : 'bg-white border-gray-100 hover:border-[var(--color-matcha)]'
@@ -123,38 +123,38 @@ export default function Vocabulary({ vocabularyData = [] }: { vocabularyData: Vo
             {!isFlipped ? (
               <>
                 {/* Front */}
-                <div className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6 ${typeColor.bg} ${typeColor.text}`}>
+                <div className={`px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-3 sm:mb-6 ${typeColor.bg} ${typeColor.text}`}>
                   {currentWord.type}
                 </div>
-                <h2 className="font-jp text-5xl sm:text-6xl md:text-7xl font-bold text-[var(--color-ink)] mb-4 text-center leading-tight">
+                <h2 className="font-jp text-3xl sm:text-5xl md:text-7xl font-bold text-[var(--color-ink)] mb-2 sm:mb-4 text-center leading-tight">
                   {currentWord.word}
                 </h2>
-                <p className="text-sm text-[var(--color-ink-light)] font-medium text-center">
+                <p className="text-xs sm:text-sm text-[var(--color-ink-light)] font-medium text-center">
                   Tap kartu untuk lihat artinya~
                 </p>
 
                 {/* Speaker */}
                 <button
                   onClick={e => { e.stopPropagation(); speak(); }}
-                  className="mt-6 w-11 h-11 rounded-full bg-[var(--color-washi)] border-2 border-gray-200 flex items-center justify-center hover:border-[var(--color-matcha)] hover:bg-[var(--color-matcha)] group transition-all"
+                  className="mt-3.5 sm:mt-6 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[var(--color-washi)] border-2 border-gray-200 flex items-center justify-center hover:border-[var(--color-matcha)] hover:bg-[var(--color-matcha)] group transition-all"
                 >
-                  <Volume2 size={18} className="text-[var(--color-ink-light)] group-hover:text-white transition-colors" />
+                  <Volume2 size={16} className="text-[var(--color-ink-light)] group-hover:text-white transition-colors" />
                 </button>
               </>
             ) : (
               <>
                 {/* Back */}
-                <div className="flex items-center gap-2 mb-6 opacity-60">
-                  <Sparkles size={14} className="text-[var(--color-sakura)]" />
-                  <span className="text-xs uppercase tracking-widest font-bold text-white/50">Arti</span>
+                <div className="flex items-center gap-1.5 sm:gap-2 mb-3 sm:mb-6 opacity-60">
+                  <Sparkles size={13} className="text-[var(--color-sakura)]" />
+                  <span className="text-[10px] sm:text-xs uppercase tracking-widest font-bold text-white/50">Arti</span>
                 </div>
-                <h3 className="font-fredoka text-3xl sm:text-4xl font-bold text-[var(--color-sakura)] text-center leading-tight mb-3">
+                <h3 className="font-fredoka text-2xl sm:text-4xl font-bold text-[var(--color-sakura)] text-center leading-tight mb-2 sm:mb-3">
                   {currentWord.meaning}
                 </h3>
-                <p className="text-lg text-white/60 font-medium text-center">
+                <p className="text-sm sm:text-lg text-white/60 font-medium text-center">
                   {currentWord.romaji}
                 </p>
-                <p className="mt-6 text-xs text-white/30">Tap lagi untuk balik~</p>
+                <p className="mt-4 sm:mt-6 text-[10px] sm:text-xs text-white/30">Tap lagi untuk balik~</p>
               </>
             )}
           </motion.div>
@@ -162,30 +162,30 @@ export default function Vocabulary({ vocabularyData = [] }: { vocabularyData: Vo
       </div>
 
       {/* ── Controls ── */}
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-2.5 sm:gap-4">
         <button
           onClick={() => go(-1)}
-          className="flex items-center gap-2 px-5 py-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-[var(--color-washi)] transition-all font-semibold text-sm text-[var(--color-ink)]"
+          className="flex items-center gap-1.5 sm:gap-2 px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-[var(--color-washi)] transition-all font-semibold text-xs sm:text-sm text-[var(--color-ink)]"
         >
-          <ChevronLeft size={18} />
+          <ChevronLeft size={16} />
           Sebelum
         </button>
 
         <button
           onClick={() => { setIsFlipped(false); setCurrentIndex(0); }}
-          className="flex items-center gap-1.5 px-4 py-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all text-[var(--color-ink-light)] text-xs font-bold"
+          className="flex items-center gap-1 px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all text-[var(--color-ink-light)] text-[11px] sm:text-xs font-bold"
           title="Mulai dari awal"
         >
-          <RotateCcw size={14} />
+          <RotateCcw size={13} />
           Reset
         </button>
 
         <button
           onClick={() => go(1)}
-          className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-[var(--color-ink)] text-white hover:bg-black transition-all font-semibold text-sm"
+          className="flex items-center gap-1.5 sm:gap-2 px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl bg-[var(--color-ink)] text-white hover:bg-black transition-all font-semibold text-xs sm:text-sm"
         >
           Lanjut
-          <ChevronRight size={18} />
+          <ChevronRight size={16} />
         </button>
       </div>
 

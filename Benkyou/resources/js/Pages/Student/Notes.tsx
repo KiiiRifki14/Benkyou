@@ -122,78 +122,78 @@ export default function Notes() {
                 )}
             </AnimatePresence>
 
-            <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-gray-200 pb-6 mb-8">
-                <div className="space-y-1.5 text-left">
-                    <h1 className="font-serif text-3xl font-light text-[var(--color-ink)] flex items-center gap-3">
-                        <Mail className="text-[var(--color-japan-red)]" size={32} />
+            <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 border-b border-gray-200 pb-4 sm:pb-6 mb-4 sm:mb-8">
+                <div className="space-y-1 sm:space-y-1.5 text-left">
+                    <h1 className="font-serif text-xl sm:text-3xl font-light text-[var(--color-ink)] flex items-center gap-2 sm:gap-3">
+                        <Mail className="text-[var(--color-japan-red)] w-6 h-6 sm:w-8 sm:h-8 shrink-0" />
                         Catatan Kecilku
                     </h1>
-                    <p className="text-[var(--color-ink-light)] text-sm">
+                    <p className="text-[var(--color-ink-light)] text-xs sm:text-sm">
                         Ruang rahasiamu untuk menulis ide, pengingat, atau cerita belajarmu. 🌸
                     </p>
                 </div>
                 <button
                     onClick={handleOpenCreate}
-                    className="px-5 py-3 rounded-full bg-[var(--color-japan-red)] text-white text-sm font-bold hover:bg-red-700 transition-all shadow-md hover:shadow-red-600/10 flex items-center justify-center gap-2 cursor-pointer self-start sm:self-center"
+                    className="px-4 py-2.5 sm:px-5 sm:py-3 rounded-full bg-[var(--color-japan-red)] text-white text-xs sm:text-sm font-bold hover:bg-red-700 transition-all shadow-md hover:shadow-red-600/10 flex items-center justify-center gap-2 cursor-pointer self-start sm:self-center"
                 >
-                    <Plus size={16} /> Tulis Catatan Baru
+                    <Plus size={15} /> Tulis Catatan Baru
                 </button>
             </header>
 
             {loading ? (
-                <div className="text-center py-16">
-                    <div className="inline-block w-8 h-8 border-2 border-[var(--color-japan-red)] border-t-transparent rounded-full animate-spin" />
+                <div className="text-center py-12 sm:py-16">
+                    <div className="inline-block w-7 h-7 sm:w-8 sm:h-8 border-2 border-[var(--color-japan-red)] border-t-transparent rounded-full animate-spin" />
                 </div>
             ) : notes.length === 0 ? (
-                <div className="text-center py-16 bg-white rounded-3xl border border-[#E5E5E5] space-y-4 shadow-sm">
-                    <FileText className="mx-auto text-gray-300" size={48} />
-                    <p className="text-[var(--color-ink-light)] text-sm max-w-sm mx-auto">
+                <div className="text-center py-12 sm:py-16 px-4 bg-white rounded-2xl sm:rounded-3xl border border-[#E5E5E5] space-y-3 sm:space-y-4 shadow-sm">
+                    <FileText className="mx-auto text-gray-300 w-10 h-10 sm:w-12 sm:h-12" />
+                    <p className="text-[var(--color-ink-light)] text-xs sm:text-sm max-w-sm mx-auto">
                         Belum ada catatan pribadi yang kamu buat. Yuk tulis catatan pertamamu sekarang! ✨
                     </p>
                 </div>
             ) : (
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                     {notes.map((note, index) => (
                         <motion.div
                             key={note.id}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: index * 0.05 }}
-                            className="bg-white rounded-3xl border border-[#E5E5E5] shadow-sm overflow-hidden hover:shadow-md transition-shadow group relative"
+                            className="bg-white rounded-2xl sm:rounded-3xl border border-[#E5E5E5] shadow-sm overflow-hidden hover:shadow-md transition-shadow group relative"
                         >
                             {/* Letter header with date */}
-                            <div className="px-6 sm:px-8 pt-6 sm:pt-7 pb-4 border-b border-gray-100 bg-gradient-to-r from-[#fff9f9] to-white flex items-center justify-between">
-                                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[var(--color-japan-red)] bg-white/80 px-3 py-1 rounded-full border border-red-100">
+                            <div className="px-4 sm:px-8 pt-4 sm:pt-7 pb-3 sm:pb-4 border-b border-gray-100 bg-gradient-to-r from-[#fff9f9] to-white flex items-center justify-between">
+                                <span className="text-[11px] sm:text-sm font-bold uppercase tracking-wider text-[var(--color-japan-red)] bg-white/80 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-red-100">
                                     {note.date}
                                 </span>
                                 
                                 {/* Edit & Delete Action Buttons */}
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-1.5 sm:gap-2">
                                     <button
                                         onClick={() => handleOpenEdit(note)}
-                                        className="p-2 rounded-xl text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all cursor-pointer"
+                                        className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all cursor-pointer"
                                         title="Edit Catatan"
                                     >
-                                        <Edit size={16} />
+                                        <Edit size={15} />
                                     </button>
                                     <button
                                         onClick={() => handleDelete(note.id)}
-                                        className="p-2 rounded-xl text-slate-400 hover:text-red-600 hover:bg-red-50 transition-all cursor-pointer"
+                                        className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl text-slate-400 hover:text-red-600 hover:bg-red-50 transition-all cursor-pointer"
                                         title="Hapus Catatan"
                                     >
-                                        <Trash2 size={16} />
+                                        <Trash2 size={15} />
                                     </button>
                                 </div>
                             </div>
 
                             {/* Letter body */}
-                            <div className="px-6 sm:px-8 py-6 sm:py-7">
+                            <div className="px-4 sm:px-8 py-4 sm:py-7">
                                 {note.title && (
-                                    <h3 className="font-serif text-lg sm:text-xl font-semibold text-[var(--color-ink)] mb-4">
+                                    <h3 className="font-serif text-base sm:text-xl font-semibold text-[var(--color-ink)] mb-2 sm:mb-4">
                                         {note.title}
                                     </h3>
                                 )}
-                                <p className="text-sm sm:text-base text-[var(--color-ink)] whitespace-pre-wrap leading-relaxed font-sans">
+                                <p className="text-xs sm:text-base text-[var(--color-ink)] whitespace-pre-wrap leading-relaxed font-sans">
                                     {note.content}
                                 </p>
                             </div>
@@ -205,15 +205,15 @@ export default function Notes() {
             {/* Glassmorphic Modal Form */}
             <AnimatePresence>
                 {isOpen && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/50 backdrop-blur-sm">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
-                            className="bg-white w-full max-w-xl rounded-3xl border border-slate-200 shadow-2xl overflow-hidden"
+                            className="bg-white w-full max-w-xl rounded-2xl sm:rounded-3xl border border-slate-200 shadow-2xl overflow-hidden"
                         >
                             {/* Modal Header */}
-                            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                            <div className="px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
                                 <h3 className="font-serif font-bold text-lg text-slate-800 flex items-center gap-2">
                                     {editingNote ? "✏️ Edit Catatan Kecil" : "✍️ Tulis Catatan Baru"}
                                 </h3>

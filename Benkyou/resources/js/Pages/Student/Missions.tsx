@@ -129,38 +129,38 @@ export default function Missions({ levels }: MissionsProps) {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="relative bg-[var(--color-ink)] text-white rounded-3xl p-8 md:p-12 overflow-hidden"
+                className="relative bg-[var(--color-ink)] text-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-12 overflow-hidden"
             >
                 {/* Decorative BG characters */}
-                <div className="absolute -right-6 -top-6 text-[9rem] font-jp opacity-[0.07] select-none pointer-events-none leading-none">
+                <div className="absolute -right-4 sm:-right-6 -top-4 sm:-top-6 text-[4.5rem] sm:text-[6.5rem] md:text-[9rem] font-jp opacity-[0.07] select-none pointer-events-none leading-none">
                     旅
                 </div>
-                <div className="absolute right-20 bottom-4 text-[5rem] font-jp opacity-[0.05] select-none pointer-events-none leading-none">
+                <div className="absolute right-12 sm:right-20 bottom-2 sm:bottom-4 text-[2.5rem] sm:text-[4rem] md:text-[5rem] font-jp opacity-[0.05] select-none pointer-events-none leading-none">
                     道
                 </div>
 
-                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
                     <div>
-                        <div className="flex items-center gap-2 mb-3">
-                            <div className="w-8 h-8 rounded-xl bg-[var(--color-japan-red)] flex items-center justify-center">
-                                <Trophy size={16} className="text-white" />
+                        <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-[var(--color-japan-red)] flex items-center justify-center">
+                                <Trophy size={14} className="text-white sm:w-4 sm:h-4" />
                             </div>
-                            <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-400">
                                 Perjalanan Ajaib
                             </span>
                         </div>
-                        <h1 className="font-fredoka text-4xl md:text-5xl font-bold leading-tight">
+                        <h1 className="font-fredoka text-xl sm:text-3xl md:text-5xl font-bold leading-tight">
                             My Journey
                             <span className="ml-2 text-[var(--color-sakura)]">✨</span>
                         </h1>
-                        <p className="mt-2 text-gray-300 text-sm md:text-base max-w-md">
+                        <p className="mt-1 sm:mt-2 text-gray-300 text-xs sm:text-sm md:text-base max-w-md">
                             Setiap level yang kamu selesaikan adalah langkah nyata menuju{" "}
                             <span className="text-[var(--color-sakura)] font-semibold">gelar Shogun</span>~
                         </p>
                     </div>
 
                     {/* Progress Ring Summary */}
-                    <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-2xl p-4 shrink-0">
+                    <div className="flex items-center gap-3 sm:gap-4 bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-2.5 sm:p-4 shrink-0 self-start sm:self-auto">
                         <div className="relative w-16 h-16">
                             <svg className="w-16 h-16 -rotate-90" viewBox="0 0 64 64">
                                 <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="6" />
@@ -227,53 +227,53 @@ export default function Missions({ levels }: MissionsProps) {
                                 {level.emoji}
                             </div>
 
-                            <div className="relative z-10 p-6 md:p-8">
-                                <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+                            <div className="relative z-10 p-4 sm:p-6 md:p-8">
+                                <div className="flex flex-col md:flex-row gap-4 sm:gap-6 items-start md:items-center justify-between">
 
                                     {/* Left: Rank Icon + Info */}
-                                    <div className="flex items-start gap-5">
+                                    <div className="flex items-start gap-3 sm:gap-5">
                                         {/* Rank Icon Box */}
                                         <div
-                                            className={`w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 ${cfg.bg} ${cfg.border} border-2`}
+                                            className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 ${cfg.bg} ${cfg.border} border-2`}
                                         >
                                             {isUnlocked ? (
-                                                <RankIcon size={28} className={cfg.color} strokeWidth={1.8} />
+                                                <RankIcon size={22} className={`${cfg.color} sm:w-7 sm:h-7`} strokeWidth={1.8} />
                                             ) : (
-                                                <Lock size={24} className="text-gray-400" strokeWidth={1.8} />
+                                                <Lock size={18} className="text-gray-400 sm:w-6 sm:h-6" strokeWidth={1.8} />
                                             )}
                                         </div>
 
-                                        <div className="space-y-1.5">
+                                        <div className="space-y-1 sm:space-y-1.5">
                                             {/* Tags row */}
-                                            <div className="flex flex-wrap items-center gap-2">
-                                                <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-[var(--color-ink)] text-white">
+                                            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                                                <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[var(--color-ink)] text-white">
                                                     Level {level.order}
                                                 </span>
-                                                <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${cfg.badge}`}>
+                                                <span className={`text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full ${cfg.badge}`}>
                                                     {cfg.rank}
                                                 </span>
                                                 {level.passed && (
-                                                    <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
-                                                        <CheckCircle2 size={11} /> Tuntas
+                                                    <span className="flex items-center gap-1 text-[9px] sm:text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full">
+                                                        <CheckCircle2 size={10} /> Tuntas
                                                     </span>
                                                 )}
                                                 {!isUnlocked && (
-                                                    <span className="flex items-center gap-1 text-[10px] font-bold text-gray-400 bg-gray-100 px-2.5 py-1 rounded-full">
-                                                        <Lock size={11} /> Terkunci
+                                                    <span className="flex items-center gap-1 text-[9px] sm:text-[10px] font-bold text-gray-400 bg-gray-100 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full">
+                                                        <Lock size={10} /> Terkunci
                                                     </span>
                                                 )}
                                             </div>
 
                                             {/* Title */}
-                                            <h2 className="text-xl md:text-2xl font-bold text-[var(--color-ink)] leading-snug">
+                                            <h2 className="text-base sm:text-xl md:text-2xl font-bold text-[var(--color-ink)] leading-snug">
                                                 {level.title}
                                             </h2>
-                                            <p className="text-sm text-[var(--color-ink-light)]">
+                                            <p className="text-xs sm:text-sm text-[var(--color-ink-light)]">
                                                 {level.subtitle}
                                             </p>
 
                                             {/* Meta info row */}
-                                            <div className="flex flex-wrap gap-4 pt-1 text-xs text-[var(--color-ink-light)] font-medium">
+                                            <div className="flex flex-wrap gap-2.5 sm:gap-4 pt-0.5 sm:pt-1 text-[11px] sm:text-xs text-[var(--color-ink-light)] font-medium">
                                                 <span className="flex items-center gap-1">
                                                     <Target size={12} className={cfg.color} />
                                                     {level.goal}
@@ -298,7 +298,7 @@ export default function Missions({ levels }: MissionsProps) {
 
                                             {/* Score bar (only if passed or started) */}
                                             {isUnlocked && level.bestScore > 0 && (
-                                                <div className="pt-2 max-w-xs">
+                                                <div className="pt-1.5 sm:pt-2 max-w-xs">
                                                     <ScoreBar score={level.bestScore} />
                                                 </div>
                                             )}
@@ -306,11 +306,11 @@ export default function Missions({ levels }: MissionsProps) {
                                     </div>
 
                                     {/* Right: CTA */}
-                                    <div className="w-full md:w-auto shrink-0 flex flex-col items-stretch md:items-end gap-2">
+                                    <div className="w-full md:w-auto shrink-0 flex flex-col items-stretch md:items-end gap-2 mt-2 md:mt-0">
                                         {isUnlocked ? (
                                             <Link
                                                 href={route("student.missions.level", level.id)}
-                                                className={`inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-sm font-bold transition-all duration-200 group ${
+                                                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-7 sm:py-3 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 group ${
                                                     level.passed
                                                         ? "bg-[var(--color-ink)] text-white hover:bg-black"
                                                         : "bg-[var(--color-japan-red)] text-white hover:bg-red-800 shadow-md shadow-red-600/20"

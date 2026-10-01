@@ -31,35 +31,35 @@ export default function Grammar({ grammarData = [] }: { grammarData: GrammarType
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="space-y-8 pb-12"
+      className="space-y-5 sm:space-y-8 pb-12"
     >
       {/* ── Header Banner ── */}
-      <div className="relative bg-gradient-to-br from-blue-800 to-indigo-900 text-white rounded-3xl p-8 md:p-10 overflow-hidden">
-        <div className="absolute -right-4 -bottom-4 font-jp text-[9rem] font-bold opacity-[0.07] select-none pointer-events-none leading-none">
+      <div className="relative bg-gradient-to-br from-blue-800 to-indigo-900 text-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-10 overflow-hidden">
+        <div className="absolute -right-2 sm:-right-4 -bottom-2 sm:-bottom-4 font-jp text-[4.5rem] sm:text-[6.5rem] md:text-[9rem] font-bold opacity-[0.07] select-none pointer-events-none leading-none">
           文法
         </div>
-        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-white/15 rounded-full border border-white/10">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/15 rounded-full border border-white/10">
               Pelajaran
             </span>
-            <h1 className="font-fredoka text-3xl md:text-4xl font-bold mt-3 mb-2">
+            <h1 className="font-fredoka text-xl sm:text-3xl md:text-4xl font-bold mt-2 mb-1 sm:mt-3 sm:mb-2">
               Tata Bahasa Jepang 📝
             </h1>
-            <p className="text-white/70 text-sm max-w-md leading-relaxed">
+            <p className="text-white/70 text-xs sm:text-sm max-w-md leading-relaxed">
               Kuasai struktur kalimat bahasa Jepang dari pola dasar hingga yang lebih kompleks~
             </p>
           </div>
-          <div className="shrink-0 bg-white/10 rounded-2xl p-4 text-center border border-white/10">
-            <p className="text-2xl font-bold font-fredoka">{grammarData.length}</p>
-            <p className="text-[10px] uppercase tracking-widest text-white/60 mt-1">Pola</p>
+          <div className="shrink-0 bg-white/10 rounded-xl sm:rounded-2xl p-2.5 sm:p-4 text-center border border-white/10 min-w-[70px] self-start sm:self-auto">
+            <p className="text-lg sm:text-2xl font-bold font-fredoka">{grammarData.length}</p>
+            <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-white/60 mt-0.5 sm:mt-1">Pola</p>
           </div>
         </div>
       </div>
 
       {/* ── Grammar Accordion ── */}
       {grammarData.length > 0 ? (
-        <div className="space-y-3">
+        <div className="space-y-2.5 sm:space-y-3">
           {grammarData.map((lesson, idx) => {
             const isOpen = expanded === (lesson.id ?? idx);
             return (
@@ -68,37 +68,37 @@ export default function Grammar({ grammarData = [] }: { grammarData: GrammarType
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.07 }}
-                className={`bg-white rounded-2xl border-2 overflow-hidden transition-all duration-200 ${
+                className={`bg-white rounded-xl sm:rounded-2xl border-2 overflow-hidden transition-all duration-200 ${
                   isOpen ? 'border-blue-300 shadow-md shadow-blue-50' : 'border-gray-100 hover:border-gray-200'
                 }`}
               >
                 {/* Accordion header */}
                 <button
                   onClick={() => setExpanded(isOpen ? null : (lesson.id ?? idx))}
-                  className="w-full flex items-center gap-4 p-5 md:p-6 text-left transition-colors hover:bg-gray-50/50"
+                  className="w-full flex items-center gap-3 sm:gap-4 p-3.5 sm:p-5 md:p-6 text-left transition-colors hover:bg-gray-50/50"
                 >
                   {/* Number badge */}
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 font-bold text-sm transition-colors ${
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 font-bold text-xs sm:text-sm transition-colors ${
                     isOpen ? 'bg-blue-600 text-white' : 'bg-[var(--color-washi)] text-[var(--color-ink-light)]'
                   }`}>
                     {(lesson.id ?? idx + 1).toString().padStart(2, '0')}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h2 className={`font-bold text-base sm:text-lg truncate transition-colors ${
+                    <h2 className={`font-bold text-sm sm:text-lg truncate transition-colors ${
                       isOpen ? 'text-blue-700' : 'text-[var(--color-ink)]'
                     }`}>
                       {lesson.title}
                     </h2>
                     {!isOpen && (
-                      <p className="text-xs text-[var(--color-ink-light)] mt-0.5 truncate">
+                      <p className="text-[11px] sm:text-xs text-[var(--color-ink-light)] mt-0.5 truncate">
                         {lesson.description}
                       </p>
                     )}
                   </div>
-                  <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                  <div className={`shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors ${
                     isOpen ? 'bg-blue-50 text-blue-600' : 'bg-gray-100 text-gray-400'
                   }`}>
-                    {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                    {isOpen ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
                   </div>
                 </button>
 
