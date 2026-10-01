@@ -59,8 +59,6 @@ class DatabaseSeeder extends Seeder
             VocabularySeeder::class,
             GrammarSeeder::class,
             QuestionSeeder::class,
-            JLPTN5QuestionsSeeder::class,
-            QuizSistemSeeder::class,
             MisiLevel1Seeder::class,
             MisiLevel2Seeder::class,
             MisiLevel3Seeder::class,
