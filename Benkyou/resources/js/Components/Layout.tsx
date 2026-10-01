@@ -38,7 +38,7 @@ export default function Layout({ children }: LayoutProps) {
             <div
                 className={`fixed inset-y-0 left-0 z-50 transform ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 lg:static lg:block transition-transform duration-300 ease-in-out shrink-0`}
             >
-                <div className={`w-64 h-full flex flex-col relative ${isAdminRoute ? '' : 'bg-white border-r border-[#E5E5E5]'}`}
+                <div className={`w-[240px] sm:w-64 h-full flex flex-col relative ${isAdminRoute ? '' : 'bg-white border-r border-[#E5E5E5]'}`}
                     style={isAdminRoute ? { boxShadow: '4px 0 32px rgba(0,0,0,0.15)' } : { boxShadow: '4px 0 24px rgba(0,0,0,0.02)' }}>
                     <Sidebar
                         currentPage={currentPage}

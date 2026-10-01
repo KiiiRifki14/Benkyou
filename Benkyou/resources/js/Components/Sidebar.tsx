@@ -302,33 +302,33 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
     // Student sidebar (light theme)
     return (
         <>
-            <div className="p-6 md:p-8 flex items-center gap-3">
+            <div className="px-4 py-4 sm:px-6 sm:py-5 flex items-center gap-2.5 sm:gap-3 border-b border-[#E5E5E5]/60">
                 <Link
                     href="/"
-                    className="w-10 h-10 rounded-full bg-[var(--color-japan-red)] flex items-center justify-center text-white font-jp font-bold text-xl shadow-sm shrink-0 hover:opacity-90 transition-opacity"
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[var(--color-japan-red)] flex items-center justify-center text-white font-jp font-bold text-base sm:text-lg shadow-sm shrink-0 hover:opacity-90 transition-opacity"
                 >
                     日
                 </Link>
                 <Link
                     href="/"
-                    className="shrink-0 flex items-center gap-4 group"
+                    className="shrink-0 flex items-center gap-2.5 sm:gap-3 group flex-1 min-w-0"
                 >
-                    <div>
-                        <h1 className="font-serif font-bold text-xl leading-tight group-hover:text-[var(--color-japan-red)] transition-colors">
+                    <div className="min-w-0">
+                        <h1 className="font-serif font-bold text-base sm:text-lg leading-tight group-hover:text-[var(--color-japan-red)] transition-colors truncate">
                             Benkyou
                         </h1>
-                        <p className="text-xs font-semibold text-[var(--color-ink-light)] truncate max-w-[130px]" title={user?.name}>
+                        <p className="text-[10px] sm:text-xs font-semibold text-[var(--color-ink-light)] truncate max-w-[120px] sm:max-w-[140px]" title={user?.name}>
                             {user ? user.name : "Platform Belajar"}
                         </p>
                     </div>
                     <Cat
-                        className="text-[var(--color-japan-red)] opacity-80 group-hover:scale-110 transition-transform"
-                        size={24}
+                        className="text-[var(--color-japan-red)] opacity-80 group-hover:scale-110 transition-transform ml-auto shrink-0"
+                        size={20}
                     />
                 </Link>
             </div>
 
-            <nav className="flex-1 px-4 py-2 space-y-1.5 overflow-y-auto">
+            <nav className="flex-1 px-2.5 sm:px-3 py-2 sm:py-3 space-y-0.5 sm:space-y-1 overflow-y-auto">
                 {studentNavItems.map((item) => {
                     const Icon = item.icon;
                     const isActive = currentPage === item.id;
@@ -337,19 +337,19 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                             key={item.id}
                             href={item.href}
                             onClick={onNavigate}
-                            className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300 block ${
+                            className={`w-full flex items-center gap-3 px-3 py-2 sm:py-2.5 rounded-xl transition-all duration-200 block ${
                                 isActive
-                                    ? "bg-[var(--color-washi)] text-[var(--color-japan-red)] shadow-sm"
-                                    : "text-[var(--color-ink-light)] hover:bg-[var(--color-washi)] hover:text-[var(--color-ink)]"
+                                    ? "bg-[var(--color-washi)] text-[var(--color-japan-red)] shadow-xs font-bold"
+                                    : "text-[var(--color-ink-light)] hover:bg-[var(--color-washi)] hover:text-[var(--color-ink)] font-medium"
                             }`}
                         >
                             <Icon
-                                size={20}
+                                size={17}
                                 className={
-                                    isActive ? "stroke-2" : "stroke-[1.5]"
+                                    isActive ? "stroke-[2.2] text-[var(--color-japan-red)]" : "stroke-[1.6]"
                                 }
                             />
-                            <span className="font-medium text-left truncate">
+                            <span className="text-xs sm:text-sm text-left truncate">
                                 {item.label}
                             </span>
                             {isActive && (
@@ -360,51 +360,51 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                 })}
             </nav>
 
-            <div className="p-4 border-t border-[#E5E5E5] bg-[var(--color-washi)]/30 mt-auto">
+            <div className="p-3 sm:p-4 border-t border-[#E5E5E5] bg-[var(--color-washi)]/30 mt-auto">
                 {user ? (
                     <div className="flex items-center justify-between gap-2">
-                        <div className="truncate">
-                            <p className="text-sm font-bold text-[var(--color-ink)] truncate">
+                        <div className="truncate min-w-0">
+                            <p className="text-xs sm:text-sm font-bold text-[var(--color-ink)] truncate">
                                 {user.name}
                             </p>
-                            <p className="text-[10px] text-[var(--color-ink-light)] truncate">
+                            <p className="text-[9px] sm:text-[10px] text-[var(--color-ink-light)] truncate">
                                 {user.email}
                             </p>
                         </div>
-                        <div className="flex items-center gap-1 shrink-0">
+                        <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
                             {user.role === "admin" && (
                                 <Link
                                     href="/admin"
-                                    className="p-2 text-blue-600 hover:bg-blue-50 rounded-xl transition-colors"
+                                    className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                                     title="Dashboard Admin"
                                 >
-                                    <ShieldAlert size={18} />
+                                    <ShieldAlert size={16} />
                                 </Link>
                             )}
                             <Link
                                 href="/logout"
                                 method="post"
                                 as="button"
-                                className="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-colors"
+                                className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
                                 title="Keluar"
                             >
-                                <LogOut size={18} />
+                                <LogOut size={16} />
                             </Link>
                         </div>
                     </div>
                 ) : (
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-1.5 sm:gap-2">
                         <Link
                             href="/login"
-                            className="w-full py-2 px-4 rounded-xl bg-[var(--color-japan-red)] text-white text-center text-xs font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                            className="w-full py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg sm:rounded-xl bg-[var(--color-japan-red)] text-white text-center text-xs font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-1.5"
                         >
-                            <LogIn size={16} /> Masuk
+                            <LogIn size={15} /> Masuk
                         </Link>
                         <Link
                             href="/register"
-                            className="w-full py-2 px-4 rounded-xl bg-white border border-[#E5E5E5] text-[var(--color-ink)] text-center text-xs font-bold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
+                            className="w-full py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg sm:rounded-xl bg-white border border-[#E5E5E5] text-[var(--color-ink)] text-center text-xs font-bold hover:bg-gray-50 transition-colors flex items-center justify-center gap-1.5"
                         >
-                            <UserPlus size={16} /> Daftar
+                            <UserPlus size={15} /> Daftar
                         </Link>
                     </div>
                 )}
