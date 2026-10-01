@@ -42,12 +42,12 @@ class DatabaseSeeder extends Seeder
             $student->certifications()->create(['category' => 'n5', 'level' => 1, 'passed' => true, 'score' => 100]);
         }
 
-        // Seed a sample "Catatan & Tips" from admin to student
+        // Seed a personal "Catatan Kecil" from admin to student
         if ($student->notes()->count() === 0) {
             \App\Models\UserNote::create([
                 'user_id'   => $student->id,
-                'title'     => 'Selamat Datang di Benkyou! 🌸',
-                'content'   => "Konnichiwa! Selamat datang di platform belajar bahasa Jepang Benkyou.\n\nDi sini kamu bisa mempelajari Hiragana, Katakana, Kanji, dan tata bahasa secara bertahap dan interaktif. Nikmati setiap proses belajarmu dan jangan ragu untuk mengulang materi!\n\nGanbatte kudasai! 🇯🇵✨",
+                'title'     => 'Surat Pertama~',
+                'content'   => "Hai! Ini adalah catatan kecil pertama yang aku tulis khusus buat kamu.\n\nSemoga setiap kali kamu buka halaman ini, kamu merasa ada yang nemenin belajar. Nggak usah buru-buru, nikmati aja prosesnya ya~\n\nSemangat! 💕",
                 'date'      => now()->locale('id')->isoFormat('dddd, D MMMM YYYY'),
                 'author_id' => $admin->id,
             ]);

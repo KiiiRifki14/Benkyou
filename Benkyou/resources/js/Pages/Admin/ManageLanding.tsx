@@ -545,11 +545,11 @@ export default function ManageLanding({
 
                                 <div className="p-5 border border-slate-200 rounded-2xl bg-slate-50/30">
                                     <h3 className="font-bold text-slate-700 mb-4 text-sm flex items-center gap-2">
-                                        💬 Bagian Catatan & Tips Belajar (Header Teks)
+                                        💬 Bagian Surat Rahasia (Header Teks)
                                     </h3>
-                                    {renderInput("testi_title", "Judul Bagian Catatan")}
-                                    {renderInput("testi_subtitle", "Sub-judul Bagian Catatan")}
-                                    {renderInput("testi_fallback", "Teks Fallback Jika Catatan Kosong")}
+                                    {renderInput("testi_title", "Judul Bagian Surat")}
+                                    {renderInput("testi_subtitle", "Sub-judul Bagian Surat")}
+                                    {renderInput("testi_fallback", "Teks Fallback Jika Surat Kosong")}
                                 </div>
                             </motion.div>
                         )}
@@ -562,7 +562,7 @@ export default function ManageLanding({
                             >
                                 <div className="p-5 border border-slate-200 rounded-2xl bg-slate-50/30">
                                     <h3 className="font-bold text-slate-700 mb-4 text-sm flex items-center gap-2">
-                                        🚀 Bagian Call To Action (Ajakan Daftar Bawah)
+                                        ❤️ Bagian Call To Action (Ajakan Daftar Bawah)
                                     </h3>
                                     {renderInput("cta_title", "Judul Ajakan")}
                                     {renderInput("cta_desc", "Deskripsi Ajakan", "textarea")}
@@ -575,19 +575,19 @@ export default function ManageLanding({
                                         📝 Bagian Footer (Hak Cipta & Info)
                                     </h3>
                                     {renderInput("footer_desc", "Deskripsi Brand Kiri", "textarea")}
-                                    {renderInput("footer_love_text", "Teks Catatan Footer (contoh: Hak Cipta / Slogan)")}
-                                    {renderInput("footer_about", "Teks Tentang Benkyou Kanan", "textarea")}
+                                    {renderInput("footer_love_text", "Teks Love Note Tengah (contoh: Dibuat dengan 💕...)")}
+                                    {renderInput("footer_about", "Teks Tentang Pembuat Kanan", "textarea")}
 
                                     <div className="p-4 bg-white border border-slate-100 rounded-xl space-y-3 mt-4">
                                         <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Teks Label Kolom & Hak Cipta:</h4>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             {renderInput("footer_nav_header", "Judul Kolom Navigasi (Navigasi)")}
-                                            {renderInput("footer_creator_header", "Judul Kolom Tentang (Tentang Benkyou)")}
+                                            {renderInput("footer_creator_header", "Judul Kolom Pembuat (Dari Pembuat)")}
                                         </div>
                                         {renderInput("footer_copy_text", "Teks Hak Cipta Bawah")}
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            {renderInput("footer_made_with", "Teks Didedikasikan Untuk (Didedikasikan untuk)")}
-                                            {renderInput("footer_for_learners", "Teks Target Pembelajar (seluruh pembelajar...)")}
+                                            {renderInput("footer_made_with", "Teks Dibuat Dengan (Dibuat dengan)")}
+                                            {renderInput("footer_for_learners", "Teks Target Pembelajar (untuk pembelajar...)")}
                                         </div>
                                         {renderInput("back_to_top_title", "Teks Tombol Kembali Ke Atas (Kembali ke atas)")}
                                     </div>
@@ -607,12 +607,12 @@ export default function ManageLanding({
                                 {[
                                     {
                                         key: "section_program_visible" as const,
-                                        label: "Program Belajar (Program Tabs)",
+                                        label: "Perjalanan Belajarmu (Program Tabs)",
                                         desc: "Bagian tab program belajar dengan 3 tahapan",
                                     },
                                     {
                                         key: "section_modul_visible" as const,
-                                        label: "Modul Pembelajaran Benkyou",
+                                        label: "Modul Spesial Buatmu",
                                         desc: "Kartu flip: Huruf & Kanji, Tata Bahasa, My Journey",
                                     },
                                     {
@@ -622,8 +622,8 @@ export default function ManageLanding({
                                     },
                                     {
                                         key: "section_testi_visible" as const,
-                                        label: "Catatan & Tips Belajar",
-                                        desc: "Catatan dan tips belajar dari database admin",
+                                        label: "Catatan Kecil",
+                                        desc: "Pesan-pesan pribadi dari database admin",
                                     },
                                     {
                                         key: "section_berita_visible" as const,

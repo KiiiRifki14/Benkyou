@@ -27,46 +27,46 @@ class MissionController extends Controller
             'id'       => 'n5',
             'order'    => 1,
             'title'    => 'Kohai',
-            'subtitle' => 'Misi: Kuliner di Tokyo',
+            'subtitle' => 'Misi: Lapar di Tokyo',
             'goal'     => 'Bisa pesan Sushi & Ocha hangat 🍣',
             'emoji'    => '🔰',
-            'reward'   => 'Tema Sakura + Lencana Kohai',
+            'reward'   => 'Tema Sakura + Pesan rahasia #1',
         ],
         'n4' => [
             'id'       => 'n4',
             'order'    => 2,
             'title'    => 'Senpai',
-            'subtitle' => 'Misi: Eksplorasi Kuil di Kyoto',
-            'goal'     => 'Menjelajahi keindahan Kuil Fushimi Inari 🦊',
+            'subtitle' => 'Misi: Tersesat Menuju Hana di Kyoto',
+            'goal'     => 'Menemukan Hana di Kuil Fushimi Inari 🦊',
             'emoji'    => '🌸',
-            'reward'   => 'Tema Matcha + Lencana Senpai',
+            'reward'   => 'Tema Matcha + Pesan rahasia #2',
         ],
         'n3' => [
             'id'       => 'n3',
             'order'    => 3,
             'title'    => 'Sensei',
-            'subtitle' => 'Misi: Percakapan di Kafe Shibuya',
-            'goal'     => 'Lulus tes percakapan praktis di Café Shizuku ☕',
+            'subtitle' => 'Misi: Bertahan Bersama di Shibuya',
+            'goal'     => 'Lulus wawancara magang di Café Shizuku ☕',
             'emoji'    => '⛩️',
-            'reward'   => 'Tema Gunung Fuji + Lencana Sensei',
+            'reward'   => 'Tema Gunung Fuji + Pesan rahasia #3',
         ],
         'n2' => [
             'id'       => 'n2',
             'order'    => 4,
             'title'    => 'Tensai',
-            'subtitle' => 'Misi: Suasana Festival di Osaka',
-            'goal'     => 'Berkomunikasi aktif dalam festival Natsu Matsuri 🎆',
+            'subtitle' => 'Misi: Kehidupan Bersama di Osaka',
+            'goal'     => 'Mengungkapkan perasaan di Natsu Matsuri 🎆',
             'emoji'    => '🦊',
-            'reward'   => 'Tema Autumn + Lencana Tensai',
+            'reward'   => 'Tema Autumn + Pesan rahasia #4',
         ],
         'n1' => [
             'id'       => 'n1',
             'order'    => 5,
             'title'    => 'Shogun',
-            'subtitle' => 'Misi: Puncak Gunung Fuji & Penguasaan Sempurna',
-            'goal'     => 'Menaklukkan tantangan bahasa tertinggi di puncak Fuji 🗻',
+            'subtitle' => 'Misi: Puncak Fuji & Surat yang Terkunci',
+            'goal'     => 'Membuka surat cinta Hana di puncak Fuji 🗻',
             'emoji'    => '🏯',
-            'reward'   => 'Midnight Theme + Gelar Shogun! 🏆',
+            'reward'   => 'Midnight Theme + Surprise terbesar! 🎁',
         ],
     ];
 
@@ -345,9 +345,9 @@ class MissionController extends Controller
         $rewardData = null;
         if ($passed) {
             $rewardData = [
-                'type' => 'badge',
-                'title' => 'Misi Berhasil Diselesaikan! 🎉',
-                'message' => 'Selamat, kamu berhasil menyelesaikan misi level ini!',
+                'type' => 'voucher',
+                'title' => 'Voucher Rahasia Terbuka! 🎉',
+                'message' => 'Voucher Gratis Traktir Seblak 1x (Klaim ke Admin ya!)',
                 'theme_unlocked' => self::TITLE_MAP[$level]['reward'] ?? 'Tema Spesial'
             ];
         }

@@ -148,12 +148,12 @@ export default function Home({ stats }: HomeProps) {
                         <h1 className="font-fredoka text-xl sm:text-2xl md:text-4xl font-bold leading-tight">
                             Hai,{" "}
                             <span className="text-[var(--color-sakura)]">
-                                {user ? user.name : "Teman Belajar"}
+                                {user ? user.name : "Sayang"}
                             </span>{" "}
-                            ✨
+                            💕
                         </h1>
                         <p className="text-gray-300 text-xs sm:text-sm md:text-base max-w-md leading-relaxed">
-                            Selamat datang di Benkyou! Yuk lanjutkan perjalanan belajar bahasa Jepangmu hari ini! 🇯🇵
+                            Selamat datang di dunia kecil kita~ Yuk lanjut belajar bahasa Jepang bareng hari ini! 🌸
                         </p>
                     </div>
 

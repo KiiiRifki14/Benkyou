@@ -72,7 +72,7 @@ export default function AdminActivity({
                         Aktivitas {studentName || "Siswa"}
                     </h1>
                     <p className="text-slate-500 mt-2 font-medium">
-                        Pantau aktivitas dan progres belajar siswa di platform ini.
+                        Pantau apa saja yang dia lakukan di web ini~ 💕
                     </p>
                 </div>
 

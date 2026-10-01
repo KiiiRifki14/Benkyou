@@ -686,7 +686,7 @@ export default function Certification({
                                         Badge ini diberikan dengan bangga untuk:
                                     </div>
                                     <div className="font-serif text-2xl md:text-4xl font-bold mb-4 tracking-wide text-gray-800">
-                                        {user ? user.name : "Pembelajar"}
+                                        {user ? user.name : "Sayang"}
                                     </div>
                                     <div className="text-xs md:text-sm text-[var(--color-ink-light)] mb-2 px-4 md:px-6">
                                         Telah berhasil menguasai{" "}

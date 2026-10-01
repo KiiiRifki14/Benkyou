@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Mail, Sparkles, Plus, Trash2, Edit, X, Save, FileText } from "lucide-react";
+import { Mail, Heart, Plus, Trash2, Edit, X, Save, FileText } from "lucide-react";
 import Layout from "@/Components/Layout";
 
 interface Note {
@@ -116,7 +116,7 @@ export default function Notes() {
                         exit={{ opacity: 0, y: -20, scale: 0.9 }}
                         className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 bg-slate-900 text-white text-sm font-medium rounded-full shadow-xl flex items-center gap-2"
                     >
-                        <Sparkles className="text-amber-400" size={16} />
+                        <Heart className="text-red-400 fill-red-400" size={16} />
                         <span>{toast}</span>
                     </motion.div>
                 )}
@@ -126,10 +126,10 @@ export default function Notes() {
                 <div className="space-y-1 sm:space-y-1.5 text-left">
                     <h1 className="font-serif text-xl sm:text-3xl font-light text-[var(--color-ink)] flex items-center gap-2 sm:gap-3">
                         <Mail className="text-[var(--color-japan-red)] w-6 h-6 sm:w-8 sm:h-8 shrink-0" />
-                        Catatan Belajar
+                        Catatan Kecilku
                     </h1>
                     <p className="text-[var(--color-ink-light)] text-xs sm:text-sm">
-                        Ruang belajarmu untuk menulis kosakata, tata bahasa, dan catatan penting. 📝
+                        Ruang rahasiamu untuk menulis ide, pengingat, atau cerita belajarmu. 🌸
                     </p>
                 </div>
                 <button
@@ -215,7 +215,7 @@ export default function Notes() {
                             {/* Modal Header */}
                             <div className="px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
                                 <h3 className="font-serif font-bold text-lg text-slate-800 flex items-center gap-2">
-                                    {editingNote ? "✏️ Edit Catatan Belajar" : "✍️ Tulis Catatan Baru"}
+                                    {editingNote ? "✏️ Edit Catatan Kecil" : "✍️ Tulis Catatan Baru"}
                                 </h3>
                                 <button
                                     onClick={() => setIsOpen(false)}
