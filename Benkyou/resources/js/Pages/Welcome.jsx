@@ -355,12 +355,12 @@ export default function Welcome({
                 </header>
 
                 {/* Hero Section */}
-                <section className="relative bg-gradient-to-br from-[#FDFBF7] via-[#f7f4ed] to-[#F1EDE2] border-b border-gray-200/80 overflow-hidden">
+                <section className="relative bg-gradient-to-br from-[#FDFBF7] via-[#f7f4ed] to-[#F1EDE2] border-b border-gray-200/80 overflow-hidden min-h-[calc(100dvh-5.5rem)] flex flex-col justify-center">
                     {/* Subtle Decorative Elements */}
                     <div className="absolute top-1/4 left-10 w-72 h-72 rounded-full bg-rose-200/20 blur-3xl pointer-events-none" />
                     <div className="absolute bottom-10 right-1/3 w-96 h-96 rounded-full bg-orange-200/20 blur-3xl pointer-events-none" />
 
-                    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-0 lg:min-h-[90dvh] items-center relative pt-8 pb-10 sm:pt-14 sm:pb-12 lg:pt-12 lg:pb-12">
+                    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 w-full flex-1 items-center relative py-6 sm:py-10 lg:py-12">
                         {/* Left Content Column */}
                         <div className="lg:col-span-6 px-4 sm:px-8 lg:px-16 py-4 lg:py-10 space-y-4 sm:space-y-7 z-10">
                             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--color-japan-red)]/10 text-[var(--color-japan-red)] text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest border border-red-200/40">
