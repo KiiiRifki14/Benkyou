@@ -5,7 +5,7 @@ import { motion } from 'motion/react';
 
 export default function GuestLayout({ children }) {
     return (
-        <div className="min-h-screen bg-[var(--color-washi)] text-[var(--color-ink)] flex flex-col justify-center items-center p-6 relative overflow-hidden selection:bg-[var(--color-japan-red)] selection:text-white">
+        <div className="min-h-screen bg-[var(--color-washi)] text-[var(--color-ink)] flex flex-col justify-center items-center p-4 sm:p-6 relative overflow-hidden selection:bg-[var(--color-japan-red)] selection:text-white">
             
             {/* Background Decorative Blurs */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--color-sakura)]/25 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
@@ -16,19 +16,19 @@ export default function GuestLayout({ children }) {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="mb-8 z-10"
+                className="mb-6 sm:mb-8 z-10"
             >
-                <Link href="/" className="flex items-center gap-4 group">
-                    <div className="w-14 h-14 rounded-full bg-[var(--color-japan-red)] flex items-center justify-center text-white font-jp font-bold text-3xl shadow-lg group-hover:scale-105 transition-transform">
+                <Link href="/" className="flex items-center gap-3 sm:gap-4 group">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[var(--color-japan-red)] flex items-center justify-center text-white font-jp font-bold text-2xl sm:text-3xl shadow-lg group-hover:scale-105 transition-transform">
                         日
                     </div>
                     <div className="flex items-center gap-2">
                         <div>
-                            <h1 className="font-serif font-bold text-3xl tracking-tight leading-none group-hover:text-[var(--color-japan-red)] transition-colors">
+                            <h1 className="font-serif font-bold text-2xl sm:text-3xl tracking-tight leading-none group-hover:text-[var(--color-japan-red)] transition-colors">
                                 Benkyou
                             </h1>
                         </div>
-                        <Cat className="text-[var(--color-japan-red)] opacity-80 group-hover:scale-110 transition-transform" size={28} />
+                        <Cat className="text-[var(--color-japan-red)] opacity-80 group-hover:scale-110 transition-transform" size={24} />
                     </div>
                 </Link>
             </motion.div>
@@ -38,7 +38,7 @@ export default function GuestLayout({ children }) {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-[#E5E5E5] p-8 sm:p-10 relative overflow-hidden z-10"
+                className="w-full max-w-md bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-[#E5E5E5] p-5 sm:p-10 relative overflow-hidden z-10"
             >
                 {/* Subtle Kanji Watermark */}
                 <div className="absolute right-0 bottom-0 translate-x-8 translate-y-8 text-[var(--color-washi)] opacity-50 font-jp font-bold text-[180px] pointer-events-none select-none">

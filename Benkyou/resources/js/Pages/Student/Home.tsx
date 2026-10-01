@@ -119,46 +119,46 @@ export default function Home() {
             className="space-y-10 pb-12"
         >
             {/* ── Welcome Hero ── */}
-            <div className="relative bg-gradient-to-br from-[var(--color-ink)] to-gray-800 text-white rounded-3xl p-8 md:p-12 overflow-hidden">
+            <div className="relative bg-gradient-to-br from-[var(--color-ink)] to-gray-800 text-white rounded-3xl p-5 sm:p-8 md:p-12 overflow-hidden shadow-sm">
                 {/* Decorative kanji watermarks */}
-                <div className="absolute -right-6 -top-6 font-jp text-[10rem] font-bold opacity-[0.06] select-none pointer-events-none leading-none">
+                <div className="absolute -right-6 -top-6 font-jp text-[6rem] sm:text-[10rem] font-bold opacity-[0.06] select-none pointer-events-none leading-none">
                     日本
                 </div>
-                <div className="absolute right-24 bottom-4 font-jp text-[5rem] font-bold opacity-[0.04] select-none pointer-events-none leading-none">
+                <div className="absolute right-24 bottom-4 font-jp text-[3rem] sm:text-[5rem] font-bold opacity-[0.04] select-none pointer-events-none leading-none">
                     語
                 </div>
 
-                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <div className="space-y-3">
+                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
+                    <div className="space-y-2 sm:space-y-3">
                         <div className="flex items-center gap-2">
                             <div className="w-2 h-2 rounded-full bg-[var(--color-sakura)] animate-pulse" />
-                            <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-gray-400">
                                 Dashboard Belajar
                             </span>
                         </div>
-                        <h1 className="font-fredoka text-4xl md:text-5xl font-bold leading-tight">
+                        <h1 className="font-fredoka text-2xl sm:text-3xl md:text-5xl font-bold leading-tight">
                             Hai,{" "}
                             <span className="text-[var(--color-sakura)]">
                                 {user ? user.name : "Sayang"}
                             </span>{" "}
                             💕
                         </h1>
-                        <p className="text-gray-300 text-sm md:text-base max-w-md leading-relaxed">
+                        <p className="text-gray-300 text-xs sm:text-sm md:text-base max-w-md leading-relaxed">
                             Selamat datang di dunia kecil kita~ Yuk lanjut belajar bahasa Jepang bareng hari ini! 🌸
                         </p>
                     </div>
 
                     {/* Quick stats */}
-                    <div className="flex gap-3 shrink-0">
-                        <div className="bg-white/10 rounded-2xl p-4 text-center border border-white/10 min-w-[90px]">
-                            <Flame size={20} className="text-orange-400 mx-auto mb-1" />
-                            <p className="text-lg font-bold font-fredoka">7</p>
-                            <p className="text-[9px] text-gray-400 uppercase tracking-widest">Hari Belajar</p>
+                    <div className="flex flex-row gap-2.5 sm:gap-3 shrink-0">
+                        <div className="bg-white/10 rounded-2xl p-3 sm:p-4 text-center border border-white/10 min-w-[80px] sm:min-w-[90px] flex-1 sm:flex-initial">
+                            <Flame size={18} className="text-orange-400 mx-auto mb-1" />
+                            <p className="text-base sm:text-lg font-bold font-fredoka">7</p>
+                            <p className="text-[8px] sm:text-[9px] text-gray-400 uppercase tracking-widest">Hari Belajar</p>
                         </div>
-                        <div className="bg-white/10 rounded-2xl p-4 text-center border border-white/10 min-w-[90px]">
-                            <Star size={20} className="text-yellow-400 mx-auto mb-1" />
-                            <p className="text-lg font-bold font-fredoka">✨</p>
-                            <p className="text-[9px] text-gray-400 uppercase tracking-widest">Mulai Petualangan</p>
+                        <div className="bg-white/10 rounded-2xl p-3 sm:p-4 text-center border border-white/10 min-w-[80px] sm:min-w-[90px] flex-1 sm:flex-initial">
+                            <Star size={18} className="text-yellow-400 mx-auto mb-1" />
+                            <p className="text-base sm:text-lg font-bold font-fredoka">✨</p>
+                            <p className="text-[8px] sm:text-[9px] text-gray-400 uppercase tracking-widest">Mulai Belajar</p>
                         </div>
                     </div>
                 </div>

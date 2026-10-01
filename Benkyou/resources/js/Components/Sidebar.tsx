@@ -181,8 +181,8 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                             <h1 className="font-serif font-bold text-lg leading-tight text-white group-hover:text-red-300 transition-colors">
                                 Benkyou
                             </h1>
-                            <p className="text-[10px] font-bold uppercase tracking-widest text-white/40">
-                                Admin Panel
+                            <p className="text-[10px] font-bold uppercase tracking-widest text-white/50 truncate max-w-[130px]" title={user?.name}>
+                                {user ? `${user.name} • Admin` : "Admin Panel"}
                             </p>
                         </div>
                         <Cat
@@ -317,6 +317,9 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                         <h1 className="font-serif font-bold text-xl leading-tight group-hover:text-[var(--color-japan-red)] transition-colors">
                             Benkyou
                         </h1>
+                        <p className="text-xs font-semibold text-[var(--color-ink-light)] truncate max-w-[130px]" title={user?.name}>
+                            {user ? user.name : "Platform Belajar"}
+                        </p>
                     </div>
                     <Cat
                         className="text-[var(--color-japan-red)] opacity-80 group-hover:scale-110 transition-transform"

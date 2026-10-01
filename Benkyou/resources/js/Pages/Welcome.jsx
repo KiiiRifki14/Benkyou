@@ -269,21 +269,21 @@ export default function Welcome({
                 </div>
 
                 {/* Main Header / Navigation */}
-                <header className="sticky top-0 z-40 bg-[var(--color-washi)]/95 backdrop-blur-md border-b border-gray-200/60 shadow-sm px-6 py-3.5">
-                    <div className="max-w-7xl mx-auto flex items-center justify-between">
+                <header className="sticky top-0 z-40 bg-[var(--color-washi)]/95 backdrop-blur-md border-b border-gray-200/60 shadow-sm px-4 sm:px-6 py-2.5 sm:py-3.5">
+                    <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
                         {/* Logo */}
                         <Link
                             href="/"
-                            className="flex items-center gap-3 group"
+                            className="flex items-center gap-2.5 sm:gap-3 group shrink-0"
                         >
-                            <div className="w-10 h-10 rounded-full bg-[var(--color-japan-red)] flex items-center justify-center text-white font-jp font-bold text-xl shadow-md group-hover:scale-105 transition-transform duration-200">
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[var(--color-japan-red)] flex items-center justify-center text-white font-jp font-bold text-base sm:text-xl shadow-md group-hover:scale-105 transition-transform duration-200">
                                 {landingSettings["site_logo_char"] || "日"}
                             </div>
                             <div>
-                                <h1 className="font-fredoka font-bold text-2xl tracking-tight text-[var(--color-ink)] leading-none">
+                                <h1 className="font-fredoka font-bold text-lg sm:text-2xl tracking-tight text-[var(--color-ink)] leading-none">
                                     {landingSettings["site_brand_name"] || "Benkyou"}
                                 </h1>
-                                <p className="text-[10px] tracking-widest text-[var(--color-japan-red)] uppercase font-extrabold mt-0.5">
+                                <p className="text-[9px] sm:text-[10px] tracking-widest text-[var(--color-japan-red)] uppercase font-extrabold mt-0.5">
                                     {landingSettings["site_logo_sub"] || "Made for You"}
                                 </p>
                             </div>
@@ -324,28 +324,28 @@ export default function Welcome({
                         </nav>
 
                         {/* Auth CTA */}
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
                             {auth?.user ? (
                                 <Link
                                     href="/dashboard"
-                                    className="px-6 py-2.5 rounded-full bg-[var(--color-japan-red)] text-white text-sm font-bold hover:bg-red-700 transition-all shadow-md hover:shadow-red-600/10 flex items-center gap-2"
+                                    className="px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full bg-[var(--color-japan-red)] text-white text-xs sm:text-sm font-bold hover:bg-red-700 transition-all shadow-md hover:shadow-red-600/10 flex items-center gap-1.5 sm:gap-2 shrink-0"
                                 >
-                                    {landingSettings["header_dashboard_text"] || "Dasbor Belajar"} <ArrowRight size={16} />
+                                    {landingSettings["header_dashboard_text"] || "Dasbor"} <ArrowRight size={14} className="sm:w-4 sm:h-4" />
                                 </Link>
                             ) : (
                                 <>
                                     <Link
                                         href="/login"
-                                        className="px-5 py-2 text-sm font-bold text-gray-600 hover:text-black transition-colors"
+                                        className="px-2 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-gray-600 hover:text-black transition-colors shrink-0"
                                     >
                                         {landingSettings["header_login_text"] || "Masuk"}
                                     </Link>
                                     <Link
                                         href="/register"
-                                        className="px-6 py-2.5 rounded-full bg-[var(--color-japan-red)] text-white text-sm font-bold hover:bg-red-700 transition-all shadow-md hover:shadow-red-600/15 flex items-center gap-1.5"
+                                        className="px-3 sm:px-5 py-1.5 sm:py-2 rounded-full bg-[var(--color-japan-red)] text-white text-xs sm:text-sm font-bold hover:bg-red-700 transition-all shadow-md hover:shadow-red-600/15 flex items-center gap-1 shrink-0"
                                     >
-                                        {landingSettings["header_register_text"] || "Daftar Sekarang"}{" "}
-                                        <ChevronRight size={16} />
+                                        {landingSettings["header_register_text"] || "Daftar"}{" "}
+                                        <ChevronRight size={14} className="sm:w-4 sm:h-4" />
                                     </Link>
                                 </>
                             )}

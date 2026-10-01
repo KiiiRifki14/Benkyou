@@ -301,12 +301,12 @@ export default function Quiz({
                 </div>
             </div>
 
-            <div className="bg-white p-6 sm:p-8 md:p-12 rounded-3xl shadow-lg border border-[#E5E5E5] space-y-6 sm:space-y-8">
-                <h2 className="text-xl sm:text-2xl text-center leading-relaxed font-light">
+            <div className="bg-white p-4 sm:p-8 md:p-12 rounded-3xl shadow-lg border border-[#E5E5E5] space-y-5 sm:space-y-8">
+                <h2 className="text-lg sm:text-2xl text-center leading-relaxed font-light break-words">
                     {q.text}
                 </h2>
 
-                <div className="grid grid-cols-1 gap-3 sm:gap-4">
+                <div className="grid grid-cols-1 gap-2.5 sm:gap-4">
                     {q.options.map((opt, idx) => {
                         const normalize = (s: string) =>
                             (s || "").trim().toLowerCase();
@@ -332,9 +332,9 @@ export default function Quiz({
                                 key={idx}
                                 onClick={() => handleAnswer(opt)}
                                 disabled={answered}
-                                className={`w-full p-4 sm:p-5 rounded-2xl border-2 text-left transition-all duration-200 flex justify-between items-center gap-2 ${variant}`}
+                                className={`w-full p-3.5 sm:p-5 rounded-2xl border-2 text-left transition-all duration-200 flex justify-between items-center gap-2 cursor-pointer ${variant}`}
                             >
-                                <span className="font-medium text-sm sm:text-base">
+                                <span className="font-medium text-sm sm:text-base break-words">
                                     {opt}
                                 </span>
                                 {answered && isCorrect && (

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
+import MobileBottomNav from "./MobileBottomNav";
 import { Menu, X } from "lucide-react";
 import { usePage } from "@inertiajs/react";
 
@@ -25,7 +26,7 @@ export default function Layout({ children }: LayoutProps) {
     }
 
     return (
-        <div className="flex h-screen overflow-hidden" style={{ background: isAdminRoute ? '#f1f5f9' : 'var(--color-washi)' }}>
+        <div className="flex h-[100dvh] min-h-[100dvh] w-full overflow-hidden" style={{ background: isAdminRoute ? '#f1f5f9' : 'var(--color-washi)' }}>
             {/* Mobile Overlay */}
             {isMobileMenuOpen && (
                 <div
@@ -41,10 +42,15 @@ export default function Layout({ children }: LayoutProps) {
                 <div className={`w-64 h-full flex flex-col relative ${isAdminRoute ? '' : 'bg-white border-r border-[#E5E5E5]'}`}
                     style={isAdminRoute ? { boxShadow: '4px 0 32px rgba(0,0,0,0.15)' } : { boxShadow: '4px 0 24px rgba(0,0,0,0.02)' }}>
                     <button
-                        className="lg:hidden absolute top-4 right-4 p-2 text-gray-400 hover:text-white transition-colors z-50"
+                        className={`lg:hidden absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-all z-50 shadow-sm cursor-pointer ${
+                            isAdminRoute
+                                ? "bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700"
+                                : "bg-gray-100 text-gray-700 hover:bg-gray-200 active:scale-95"
+                        }`}
                         onClick={() => setIsMobileMenuOpen(false)}
+                        aria-label="Tutup menu"
                     >
-                        <X size={20} />
+                        <X size={18} />
                     </button>
                     <Sidebar
                         currentPage={currentPage}
@@ -63,28 +69,38 @@ export default function Layout({ children }: LayoutProps) {
                             日
                         </div>
                         <div>
-                            <h1 className={`font-serif font-bold text-lg leading-none ${isAdminRoute ? 'text-white' : 'text-[var(--color-ink)]'}`}>
+                            <h1 className={`font-serif font-bold text-base sm:text-lg leading-tight ${isAdminRoute ? 'text-white' : 'text-[var(--color-ink)]'}`}>
                                 Benkyou
                             </h1>
-                            {isAdminRoute && <p className="text-[9px] text-white/40 uppercase tracking-widest font-bold">Admin Panel</p>}
+                            <p className={`text-[11px] font-semibold truncate max-w-[140px] sm:max-w-[200px] ${isAdminRoute ? 'text-white/60' : 'text-[var(--color-ink-light)]'}`} title={user?.name}>
+                                {user ? user.name : (isAdminRoute ? 'Admin Panel' : 'Platform Belajar')}
+                            </p>
                         </div>
                     </div>
                     <button
                         onClick={() => setIsMobileMenuOpen(true)}
-                        className={`p-2 -mr-2 transition-colors ${isAdminRoute ? 'text-white/60 hover:text-white' : 'text-gray-600 hover:text-black'}`}
-                        aria-label="Toggle menu"
+                        className={`p-2 -mr-2 transition-colors cursor-pointer ${isAdminRoute ? 'text-white/60 hover:text-white' : 'text-gray-600 hover:text-black'}`}
+                        aria-label="Buka menu"
                     >
                         <Menu size={24} />
                     </button>
                 </div>
 
                 <main className="flex-1 overflow-y-auto">
-                    <div className={isAdminRoute ? 'p-4 sm:p-6 lg:p-8' : 'p-4 sm:p-8 md:p-10 lg:p-12'}>
+                    <div className={isAdminRoute ? 'p-4 sm:p-6 lg:p-8' : 'p-3 sm:p-8 md:p-10 lg:p-12 pb-24 lg:pb-12'}>
                         <div className="max-w-7xl mx-auto">
                             {children}
                         </div>
                     </div>
                 </main>
+
+                {/* Mobile Bottom Navigation Bar (Non-Admin / Student Views) */}
+                {!isAdminRoute && (
+                    <MobileBottomNav
+                        currentPage={currentPage}
+                        onOpenMenu={() => setIsMobileMenuOpen(true)}
+                    />
+                )}
             </div>
         </div>
     );
