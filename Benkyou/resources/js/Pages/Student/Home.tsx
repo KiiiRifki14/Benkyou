@@ -107,9 +107,18 @@ function FeatureIcon({ type, color, jpChar }: { type: string; color: string; jpC
     return <>{iconMap[type] ?? <PenTool className={`w-4 h-4 sm:w-5 sm:h-5 ${color}`} />}</>;
 }
 
-export default function Home() {
+interface HomeProps {
+    stats?: {
+        streak: number;
+        passedMissions: number;
+    };
+}
+
+export default function Home({ stats }: HomeProps) {
     const { auth } = usePage().props as any;
     const user = auth?.user;
+    const streak = stats?.streak ?? 1;
+    const passedMissions = stats?.passedMissions ?? 0;
 
     return (
         <motion.div
@@ -152,13 +161,13 @@ export default function Home() {
                     <div className="flex flex-row gap-2 sm:gap-3 shrink-0">
                         <div className="bg-white/10 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 text-center border border-white/10 min-w-[70px] sm:min-w-[90px] flex-1 sm:flex-initial">
                             <Flame size={16} className="text-orange-400 mx-auto mb-0.5 sm:mb-1" />
-                            <p className="text-sm sm:text-lg font-bold font-fredoka">7</p>
+                            <p className="text-sm sm:text-lg font-bold font-fredoka">{streak}</p>
                             <p className="text-[8px] sm:text-[9px] text-gray-400 uppercase tracking-widest">Hari Belajar</p>
                         </div>
                         <div className="bg-white/10 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 text-center border border-white/10 min-w-[70px] sm:min-w-[90px] flex-1 sm:flex-initial">
                             <Star size={16} className="text-yellow-400 mx-auto mb-0.5 sm:mb-1" />
-                            <p className="text-sm sm:text-lg font-bold font-fredoka">✨</p>
-                            <p className="text-[8px] sm:text-[9px] text-gray-400 uppercase tracking-widest">Mulai Belajar</p>
+                            <p className="text-sm sm:text-lg font-bold font-fredoka">{passedMissions}</p>
+                            <p className="text-[8px] sm:text-[9px] text-gray-400 uppercase tracking-widest">Misi Tuntas</p>
                         </div>
                     </div>
                 </div>

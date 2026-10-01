@@ -57,7 +57,46 @@ require __DIR__.'/auth.php';
 // Student Prefixed Routes
 Route::prefix('student')->middleware(['auth'])->group(function () {
     Route::get('/home', function () {
-        return Inertia::render('Student/Home');
+        $user = Auth::user();
+
+        $activityDates = \App\Models\UserActivity::where('user_id', $user->id)
+            ->selectRaw('DATE(created_at) as date')
+            ->distinct()
+            ->pluck('date')
+            ->map(fn($d) => \Carbon\Carbon::parse($d)->toDateString())
+            ->toArray();
+
+        $quizDates = \App\Models\UserQuiz::where('user_id', $user->id)
+            ->selectRaw('DATE(created_at) as date')
+            ->distinct()
+            ->pluck('date')
+            ->map(fn($d) => \Carbon\Carbon::parse($d)->toDateString())
+            ->toArray();
+
+        $allDates = array_unique(array_merge($activityDates, $quizDates, [today()->toDateString()]));
+        rsort($allDates);
+
+        $streak = 0;
+        $checkDate = today();
+        if (!in_array($checkDate->toDateString(), $allDates)) {
+            $checkDate = $checkDate->subDay();
+        }
+        while (in_array($checkDate->toDateString(), $allDates)) {
+            $streak++;
+            $checkDate = $checkDate->copy()->subDay();
+        }
+        $streak = max(1, $streak);
+
+        $passedMissions = \App\Models\UserCertification::where('user_id', $user->id)
+            ->where('passed', true)
+            ->count();
+
+        return Inertia::render('Student/Home', [
+            'stats' => [
+                'streak' => $streak,
+                'passedMissions' => $passedMissions,
+            ],
+        ]);
     })->name('student.home');
 
     Route::get('/kana', [KanaController::class, 'index'])->name('student.kana');
