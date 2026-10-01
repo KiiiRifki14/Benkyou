@@ -776,7 +776,7 @@ export default function Certification({
                 )}
 
                 {/* Image Area */}
-                {q.type === "image" && q.imageUrl && (
+                {q.imageUrl && (
                     <div className="flex flex-col items-center justify-center space-y-4 py-6 bg-[#f8f9fa] rounded-2xl border border-dashed border-[#d1d5db]">
                         <img
                             src={q.imageUrl}

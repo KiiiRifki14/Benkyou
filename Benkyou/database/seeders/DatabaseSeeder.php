@@ -63,6 +63,10 @@ class DatabaseSeeder extends Seeder
             QuizSistemSeeder::class,
             MisiLevel1Seeder::class,
             MisiLevel2Seeder::class,
+            MisiLevel3Seeder::class,
+            MisiLevel4Seeder::class,
+            MisiLevel5Seeder::class,
+            LandingSettingSeeder::class,
         ]);
     }
 }

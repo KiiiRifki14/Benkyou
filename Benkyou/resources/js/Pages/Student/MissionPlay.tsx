@@ -222,34 +222,25 @@ const QuestionRenderer = ({
             );
         case "image":
             return (
-                <div className="flex flex-col gap-8">
-                    <div className="flex justify-center">
-                        <img
-                            src={question.imageUrl}
-                            alt="Pertanyaan"
-                            className="max-h-64 object-contain rounded-2xl border border-[#E5E5E5]"
-                        />
-                    </div>
-                    <div className="space-y-3">
-                        {question.options &&
-                            question.options.map((opt, idx) => (
-                                <button
-                                    key={idx}
-                                    disabled={disabled}
-                                    onClick={() => onAnswer(opt)}
-                                    className={`w-full text-left p-4 md:p-6 rounded-2xl transition-all border ${
-                                        currentValue === opt
-                                            ? "bg-[var(--color-washi)] border-[var(--color-japan-red)] text-[var(--color-japan-red)] font-bold"
-                                            : "bg-white border-[#E5E5E5] hover:border-[var(--color-ink)] text-[var(--color-ink)]"
-                                    } ${disabled ? "opacity-70 cursor-not-allowed" : ""}`}
-                                >
-                                    <span className="inline-block w-8 font-bold text-[var(--color-ink-light)]">
-                                        {String.fromCharCode(65 + idx)}.
-                                    </span>
-                                    {opt}
-                                </button>
-                            ))}
-                    </div>
+                <div className="space-y-3">
+                    {question.options &&
+                        question.options.map((opt, idx) => (
+                            <button
+                                key={idx}
+                                disabled={disabled}
+                                onClick={() => onAnswer(opt)}
+                                className={`w-full text-left p-4 md:p-6 rounded-2xl transition-all border ${
+                                    currentValue === opt
+                                        ? "bg-[var(--color-washi)] border-[var(--color-japan-red)] text-[var(--color-japan-red)] font-bold"
+                                        : "bg-white border-[#E5E5E5] hover:border-[var(--color-ink)] text-[var(--color-ink)]"
+                                } ${disabled ? "opacity-70 cursor-not-allowed" : ""}`}
+                            >
+                                <span className="inline-block w-8 font-bold text-[var(--color-ink-light)]">
+                                    {String.fromCharCode(65 + idx)}.
+                                </span>
+                                {opt}
+                            </button>
+                        ))}
                 </div>
             );
         case "essay":
@@ -523,6 +514,15 @@ export default function MissionPlay({
                     className="bg-white rounded-[2rem] border border-[#E5E5E5] overflow-hidden shadow-sm"
                 >
                     <div className="p-8 md:p-10 border-b border-[#E5E5E5]">
+                        {currentQuestion.imageUrl && (
+                            <div className="flex justify-center mb-6">
+                                <img
+                                    src={currentQuestion.imageUrl}
+                                    alt="Pertanyaan"
+                                    className="max-h-64 object-contain rounded-2xl border border-[#E5E5E5]"
+                                />
+                            </div>
+                        )}
                         <span className="inline-block text-[var(--color-ink-light)] font-bold text-xs tracking-widest uppercase mb-4">
                             {currentQuestion.question_type === "essay"
                                 ? "Tantangan Esai"

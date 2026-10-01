@@ -89,18 +89,23 @@ class MissionController extends Controller
             2 => 'Wawancara Kerja 👔',
             3 => 'Hari Pertama Kerja (Hampir Menyerah) 🦊',
             4 => 'Membuktikan Diri ✨',
+            5 => 'Rencana ke Osaka 🌸',
         ],
         'n2' => [
             1 => 'Adaptasi dengan Kansai-ben 🗣️',
             2 => 'Kehidupan Sehari-hari 🏠',
             3 => 'Persiapan Matsuri 👘',
             4 => 'Malam Festival 🎆',
+            5 => 'Persiapan Pendakian Fuji 🗻',
+            6 => 'Evaluasi N2 & Refleksi 🌟',
         ],
         'n1' => [
             1 => 'Membaca Papan & Aturan Pendakian 🗻',
-            2 => 'Pengumuman Darurat di Pos 7 ⚠️',
-            3 => 'Percakapan dengan Pemandu 🥾',
+            2 => 'Pengumuman Darurat Pos 7 ⚠️',
+            3 => 'Pos 8 ke Pos 9 🥾',
             4 => 'Langkah Terakhir ke Puncak 🏔️',
+            5 => 'Membuka Surat yang Terkunci 🔑',
+            6 => 'Evaluasi Akhir & Refleksi 🌟',
         ],
     ];
 
@@ -122,19 +127,33 @@ class MissionController extends Controller
             ->sortBy('order')
             ->map(function (array $meta, string $levelId) use ($user) {
                 $totalQuestions = Question::certification($levelId)->count();
+                $totalStages = count(self::STAGE_MAP[$levelId] ?? []);
 
-                $userCert = $user
+                // Get the highest stage level passed by the user
+                $highestCert = $user
                     ->certifications()
                     ->where('category', $levelId)
+                    ->where('passed', true)
                     ->orderByDesc('level')
                     ->first();
+
+                $highestCleared = $highestCert?->level ?? 0;
+
+                // A level is fully passed only if the final stage has been passed
+                $passed = $totalStages > 0 && $highestCleared >= $totalStages;
+
+                // Best score across all cleared stages of this level
+                $bestScore = $user
+                    ->certifications()
+                    ->where('category', $levelId)
+                    ->max('score') ?? 0;
 
                 return [
                     ...$meta,
                     'totalQuestions'  => $totalQuestions,
-                    'highestCleared'  => $userCert?->level ?? 0,
-                    'bestScore'       => $userCert?->score ?? 0,
-                    'passed'          => (bool) ($userCert?->passed ?? false),
+                    'highestCleared'  => $highestCleared,
+                    'bestScore'       => (int) $bestScore,
+                    'passed'          => $passed,
                 ];
             })
             ->values()
@@ -259,6 +278,7 @@ class MissionController extends Controller
             'question'      => $q->question,
             'answer'        => $q->answer,
             'explanation'   => $q->explanation,
+            'imageUrl'      => $q->imageUrl,
             'extra_attributes' => $q->extra_attributes,
         ];
 
