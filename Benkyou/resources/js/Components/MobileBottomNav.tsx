@@ -1,15 +1,14 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
-import { Home, BookOpen, Sparkles, Heart, Menu } from "lucide-react";
+import { Home, BookOpen, Sparkles, Heart } from "lucide-react";
 
 interface MobileBottomNavProps {
     currentPage: string;
-    onOpenMenu: () => void;
+    onOpenMenu?: () => void;
 }
 
 export default function MobileBottomNav({
     currentPage,
-    onOpenMenu,
 }: MobileBottomNavProps) {
     const navItems = [
         {
@@ -45,7 +44,7 @@ export default function MobileBottomNav({
     return (
         <nav
             aria-label="Navigasi Bawah Mobile"
-            className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-[#E5E5E5] px-2 py-1.5 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]"
+            className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-[#E5E5E5] px-4 py-1.5 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]"
             style={{ paddingBottom: "max(0.375rem, env(safe-area-inset-bottom))" }}
         >
             <div className="flex items-center justify-around max-w-md mx-auto">
@@ -74,17 +73,6 @@ export default function MobileBottomNav({
                         </Link>
                     );
                 })}
-
-                <button
-                    onClick={onOpenMenu}
-                    type="button"
-                    className="flex flex-col items-center justify-center py-1 px-3 rounded-2xl text-gray-500 hover:text-[var(--color-ink)] transition-all min-w-[56px] cursor-pointer"
-                >
-                    <Menu size={20} strokeWidth={2} />
-                    <span className="text-[10px] mt-1 tracking-tight font-medium">
-                        Menu
-                    </span>
-                </button>
             </div>
         </nav>
     );

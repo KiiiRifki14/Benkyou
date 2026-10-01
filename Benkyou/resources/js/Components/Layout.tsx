@@ -98,7 +98,6 @@ export default function Layout({ children }: LayoutProps) {
                 {!isAdminRoute && (
                     <MobileBottomNav
                         currentPage={currentPage}
-                        onOpenMenu={() => setIsMobileMenuOpen(true)}
                     />
                 )}
             </div>
