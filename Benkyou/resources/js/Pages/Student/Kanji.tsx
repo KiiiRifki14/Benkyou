@@ -44,10 +44,79 @@ export default function Kanji({ kanjiData = [] }: { kanjiData: KanjiType[] }) {
     return [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
   };
 
-  const speakKanji = (kanji: string) => {
-    const utt = new SpeechSynthesisUtterance(kanji);
-    utt.lang = 'ja-JP';
-    window.speechSynthesis.speak(utt);
+  // Convert Romaji to pure Hiragana so Japanese Web Speech API pronounces it with 100% precision
+  const romajiToHiragana = (romajiStr: string): string => {
+    if (!romajiStr) return "";
+    // If multiple readings separated by slash e.g. "hi / nichi", take the first reading
+    const clean = romajiStr.split('/')[0].trim().toLowerCase();
+    
+    const table: [string, string][] = [
+      ['kya', 'きゃ'], ['kyu', 'きゅ'], ['kyo', 'きょ'],
+      ['sha', 'しゃ'], ['shu', 'しゅ'], ['sho', 'しょ'],
+      ['cha', 'ちゃ'], ['chu', 'ちゅ'], ['cho', 'ちょ'],
+      ['nya', 'にゃ'], ['nyu', 'にゅ'], ['nyo', 'にょ'],
+      ['hya', 'ひゃ'], ['hyu', 'ひゅ'], ['hyo', 'ひょ'],
+      ['mya', 'みゃ'], ['myu', 'みゅ'], ['myo', 'みょ'],
+      ['rya', 'りゃ'], ['ryu', 'りゅ'], ['ryo', 'りょ'],
+      ['gya', 'ぎゃ'], ['gyu', 'ぎゅ'], ['gyo', 'ぎょ'],
+      ['ja', 'じゃ'], ['ju', 'じゅ'], ['jo', 'じょ'],
+      ['bya', 'びゃ'], ['byu', 'びゅ'], ['byo', 'びょ'],
+      ['pya', 'ぴゃ'], ['pyu', 'ぴゅ'], ['pyo', 'ぴょ'],
+      ['shi', 'し'], ['chi', 'ち'], ['tsu', 'つ'], ['fu', 'ふ'],
+      ['ka', 'か'], ['ki', 'き'], ['ku', 'く'], ['ke', 'け'], ['ko', 'こ'],
+      ['sa', 'さ'], ['su', 'す'], ['se', 'せ'], ['so', 'そ'],
+      ['ta', 'た'], ['te', 'て'], ['to', 'と'],
+      ['na', 'な'], ['ni', 'に'], ['nu', 'ぬ'], ['ne', 'ね'], ['no', 'の'],
+      ['ha', 'は'], ['hi', 'ひ'], ['he', 'へ'], ['ho', 'ほ'],
+      ['ma', 'ま'], ['mi', 'み'], ['mu', 'む'], ['me', 'め'], ['mo', 'も'],
+      ['ya', 'や'], ['yu', 'ゆ'], ['yo', 'よ'],
+      ['ra', 'ら'], ['ri', 'り'], ['ru', 'る'], ['re', 'れ'], ['ro', 'ろ'],
+      ['wa', 'わ'], ['wo', 'を'],
+      ['ga', 'が'], ['gi', 'ぎ'], ['gu', 'ぐ'], ['ge', 'げ'], ['go', 'ご'],
+      ['za', 'ざ'], ['ji', 'じ'], ['zu', 'ず'], ['ze', 'ぜ'], ['zo', 'ぞ'],
+      ['da', 'だ'], ['de', 'で'], ['do', 'ど'],
+      ['ba', 'ば'], ['bi', 'び'], ['bu', 'ぶ'], ['be', 'べ'], ['bo', 'ぼ'],
+      ['pa', 'ぱ'], ['pi', 'ぴ'], ['pu', 'ぷ'], ['pe', 'ぺ'], ['po', 'ぽ'],
+      ['a', 'あ'], ['i', 'い'], ['u', 'う'], ['e', 'え'], ['o', 'お'],
+      ['n', 'ん']
+    ];
+
+    let res = '';
+    let str = clean;
+    while (str.length > 0) {
+      if (str.length >= 2 && str[0] === str[1] && !'aiueon'.includes(str[0])) {
+        res += 'っ';
+        str = str.slice(1);
+        continue;
+      }
+      let matched = false;
+      for (const [rom, hira] of table) {
+        if (str.startsWith(rom)) {
+          res += hira;
+          str = str.slice(rom.length);
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) {
+        res += str[0];
+        str = str.slice(1);
+      }
+    }
+    return res || clean;
+  };
+
+  const speakKanji = (romaji: string, fallbackKanji: string) => {
+    try {
+      window.speechSynthesis.cancel();
+      const textToSpeak = romaji ? romajiToHiragana(romaji) : fallbackKanji;
+      const utt = new SpeechSynthesisUtterance(textToSpeak);
+      utt.lang = 'ja-JP';
+      utt.rate = 0.88;
+      window.speechSynthesis.speak(utt);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   // Level badge colors
@@ -64,7 +133,7 @@ export default function Kanji({ kanjiData = [] }: { kanjiData: KanjiType[] }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="space-y-5 sm:space-y-8 pb-12"
+      className="space-y-4 sm:space-y-8 pb-12"
     >
       {/* ── Header Banner ── */}
       <div className="relative bg-gradient-to-br from-[var(--color-ink)] to-gray-800 text-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-10 overflow-hidden">
@@ -125,7 +194,7 @@ export default function Kanji({ kanjiData = [] }: { kanjiData: KanjiType[] }) {
 
       {/* ── Kanji Grid ── */}
       {paginated.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3.5">
           {paginated.map((item, index) => {
             const colors = levelColors[item.level] ?? { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' };
             return (
@@ -134,36 +203,36 @@ export default function Kanji({ kanjiData = [] }: { kanjiData: KanjiType[] }) {
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: Math.min(index * 0.02, 0.4), duration: 0.25 }}
-                whileHover={{ scale: 1.04, y: -4 }}
-                onClick={() => speakKanji(item.kanji)}
-                className="group bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-sm hover:shadow-lg cursor-pointer border-2 border-transparent hover:border-[var(--color-japan-red)] transition-all duration-200 text-center flex flex-col items-center justify-center gap-1.5 sm:gap-2 relative overflow-hidden"
+                whileHover={{ scale: 1.03, y: -2 }}
+                onClick={() => speakKanji(item.romaji, item.kanji)}
+                className="group bg-white rounded-xl sm:rounded-2xl py-2.5 px-2 sm:p-4 shadow-xs sm:shadow-sm hover:shadow-md cursor-pointer border border-gray-100 hover:border-[var(--color-japan-red)] transition-all duration-200 text-center flex flex-col items-center justify-center gap-0.5 sm:gap-1.5 relative overflow-hidden active:scale-95"
               >
                 {/* Level badge */}
                 {item.level && (
-                  <span className={`absolute top-2 right-2 text-[9px] font-bold px-1.5 py-0.5 rounded-full ${colors.bg} ${colors.text}`}>
+                  <span className={`absolute top-1.5 right-1.5 text-[8px] sm:text-[9px] font-bold px-1.5 py-0.2 sm:py-0.5 rounded-full ${colors.bg} ${colors.text}`}>
                     {item.level}
                   </span>
                 )}
 
+                {/* Speaker indicator hint */}
+                <div className="absolute top-1.5 left-1.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[var(--color-washi)] group-hover:bg-[var(--color-japan-red)] flex items-center justify-center transition-colors opacity-70 group-hover:opacity-100">
+                  <Volume2 size={8} className="text-[var(--color-ink-light)] group-hover:text-white transition-colors sm:w-2.5 sm:h-2.5" />
+                </div>
+
                 {/* Kanji character */}
-                <span className="font-jp text-3xl sm:text-5xl text-[var(--color-ink)] block leading-none group-hover:text-[var(--color-japan-red)] transition-colors">
+                <span className="font-jp text-2xl sm:text-4xl text-[var(--color-ink)] block leading-tight mt-1 sm:mt-0 group-hover:text-[var(--color-japan-red)] transition-colors">
                   {item.kanji}
                 </span>
 
                 {/* Romaji */}
-                <span className="text-[11px] sm:text-sm text-[var(--color-japan-red)] font-bold block truncate w-full text-center">
+                <span className="text-[11px] sm:text-xs text-[var(--color-japan-red)] font-bold block truncate w-full text-center">
                   {item.romaji}
                 </span>
 
                 {/* Meaning */}
-                <span className="text-[9px] sm:text-xs text-[var(--color-ink-light)] font-medium uppercase tracking-tight line-clamp-1 w-full text-center">
+                <span className="text-[9px] sm:text-[11px] text-[var(--color-ink-light)] font-medium uppercase tracking-tight line-clamp-1 w-full text-center">
                   {item.meaning}
                 </span>
-
-                {/* Speaker hint */}
-                <div className="mt-0.5 sm:mt-1 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[var(--color-washi)] group-hover:bg-[var(--color-japan-red)] flex items-center justify-center transition-colors">
-                  <Volume2 size={11} className="text-[var(--color-ink-light)] group-hover:text-white transition-colors" />
-                </div>
               </motion.div>
             );
           })}
