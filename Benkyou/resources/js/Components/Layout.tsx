@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import MobileBottomNav from "./MobileBottomNav";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { usePage } from "@inertiajs/react";
 
 interface LayoutProps {
@@ -41,17 +41,6 @@ export default function Layout({ children }: LayoutProps) {
             >
                 <div className={`w-64 h-full flex flex-col relative ${isAdminRoute ? '' : 'bg-white border-r border-[#E5E5E5]'}`}
                     style={isAdminRoute ? { boxShadow: '4px 0 32px rgba(0,0,0,0.15)' } : { boxShadow: '4px 0 24px rgba(0,0,0,0.02)' }}>
-                    <button
-                        className={`lg:hidden absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-all z-50 shadow-sm cursor-pointer ${
-                            isAdminRoute
-                                ? "bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700"
-                                : "bg-gray-100 text-gray-700 hover:bg-gray-200 active:scale-95"
-                        }`}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        aria-label="Tutup menu"
-                    >
-                        <X size={18} />
-                    </button>
                     <Sidebar
                         currentPage={currentPage}
                         onNavigate={() => setIsMobileMenuOpen(false)}
