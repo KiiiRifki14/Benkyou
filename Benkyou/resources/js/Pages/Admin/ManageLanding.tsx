@@ -545,11 +545,11 @@ export default function ManageLanding({
 
                                 <div className="p-5 border border-slate-200 rounded-2xl bg-slate-50/30">
                                     <h3 className="font-bold text-slate-700 mb-4 text-sm flex items-center gap-2">
-                                        💬 Bagian Surat Rahasia (Header Teks)
+                                        💬 Bagian Catatan & Tips Belajar (Header Teks)
                                     </h3>
-                                    {renderInput("testi_title", "Judul Bagian Surat")}
-                                    {renderInput("testi_subtitle", "Sub-judul Bagian Surat")}
-                                    {renderInput("testi_fallback", "Teks Fallback Jika Surat Kosong")}
+                                    {renderInput("testi_title", "Judul Bagian Catatan")}
+                                    {renderInput("testi_subtitle", "Sub-judul Bagian Catatan")}
+                                    {renderInput("testi_fallback", "Teks Fallback Jika Catatan Kosong")}
                                 </div>
                             </motion.div>
                         )}
@@ -562,7 +562,7 @@ export default function ManageLanding({
                             >
                                 <div className="p-5 border border-slate-200 rounded-2xl bg-slate-50/30">
                                     <h3 className="font-bold text-slate-700 mb-4 text-sm flex items-center gap-2">
-                                        ❤️ Bagian Call To Action (Ajakan Daftar Bawah)
+                                        🎯 Bagian Call To Action (Ajakan Daftar Bawah)
                                     </h3>
                                     {renderInput("cta_title", "Judul Ajakan")}
                                     {renderInput("cta_desc", "Deskripsi Ajakan", "textarea")}
@@ -575,14 +575,14 @@ export default function ManageLanding({
                                         📝 Bagian Footer (Hak Cipta & Info)
                                     </h3>
                                     {renderInput("footer_desc", "Deskripsi Brand Kiri", "textarea")}
-                                    {renderInput("footer_love_text", "Teks Love Note Tengah (contoh: Dibuat dengan 💕...)")}
-                                    {renderInput("footer_about", "Teks Tentang Pembuat Kanan", "textarea")}
+                                    {renderInput("footer_love_text", "Teks Tagline Footer")}
+                                    {renderInput("footer_about", "Teks Tentang Platform / Pembuat", "textarea")}
 
                                     <div className="p-4 bg-white border border-slate-100 rounded-xl space-y-3 mt-4">
                                         <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Teks Label Kolom & Hak Cipta:</h4>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             {renderInput("footer_nav_header", "Judul Kolom Navigasi (Navigasi)")}
-                                            {renderInput("footer_creator_header", "Judul Kolom Pembuat (Dari Pembuat)")}
+                                            {renderInput("footer_creator_header", "Judul Kolom Info (contoh: Tentang Benkyou)")}
                                         </div>
                                         {renderInput("footer_copy_text", "Teks Hak Cipta Bawah")}
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

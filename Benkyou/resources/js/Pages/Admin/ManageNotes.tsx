@@ -79,8 +79,7 @@ export default function ManageNotes({
                         Catatan Kecil
                     </h1>
                     <p className="text-slate-500 text-sm mt-0.5">
-                        Tulis pesan-pesan manis untuknya. Dia akan membaca ini
-                        di halaman "Catatan Kecil" 💌
+                        Tulis pesan dan catatan motivasi belajar untuk siswa. Pesan ini akan muncul di halaman "Catatan Belajar" 📝
                     </p>
                 </div>
                 <button

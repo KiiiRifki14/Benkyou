@@ -8,7 +8,6 @@ import {
     GraduationCap,
     ArrowRight,
     Star,
-    Heart,
     CheckCircle2,
     ChevronRight,
     Play,
@@ -65,60 +64,60 @@ export default function Welcome({
 
     const tabContents = {
         pemula: {
-            name: landingSettings["tab1_name"] || "Tahap Awal",
+            name: landingSettings["tab1_name"] || "Tahap Pemula",
             title:
                 landingSettings["tab1_title"] ||
-                "Langkah Pertama yang Menyenangkan~",
+                "Dasar yang Kokoh",
             subtitle:
                 landingSettings["tab1_subtitle"] ||
-                "Dari coretan pertama, kamu sudah keren!",
+                "Mulai dari nol dengan percaya diri.",
             desc1:
                 landingSettings["tab1_desc1"] ||
-                "Di sini kamu akan belajar huruf Hiragana & Katakana dengan cara yang fun — nggak bakal bikin pusing. Kita mulai pelan-pelan aja, yang penting enjoy~",
+                "Pelajari huruf Hiragana dan Katakana dengan metode visual dan audio yang mudah dipahami. Fondasi penting untuk memulai perjalanan bahasa Jepangmu.",
             desc2:
                 landingSettings["tab1_desc2"] ||
-                "Kosakata sehari-hari, cara baca yang benar, dan kenalan sama Kanji dasar. Setiap kuis dirancang biar kamu senyum pas jawabnya, bukan stres!",
+                "Dilengkapi latihan kosakata dasar sehari-hari yang esensial dan pengenalan karakter Kanji pertama dengan cara yang menyenangkan.",
             badge: landingSettings["tab1_badge"] || "Kohai 🌱",
             stats:
                 landingSettings["tab1_stats"] ||
-                "120 Kanji • 800 Kosakata • 40 Tantangan Seru",
+                "Huruf Dasar • Kosakata Harian • Audio Native",
             image: landingSettings["tab1_image"] || "/images/benkyou_tab1.png",
         },
         menengah: {
-            name: landingSettings["tab2_name"] || "Tahap Seru",
-            title: landingSettings["tab2_title"] || "Makin Jago, Makin Asyik!",
+            name: landingSettings["tab2_name"] || "Tahap Menengah",
+            title: landingSettings["tab2_title"] || "Mulai Percakapan",
             subtitle:
                 landingSettings["tab2_subtitle"] ||
-                "Kamu udah mulai paham nih~",
+                "Pahami pola kalimat dan konjugasi.",
             desc1:
                 landingSettings["tab2_desc1"] ||
-                "Sekarang kamu bisa baca teks yang lebih panjang dan mulai merangkai kalimat sendiri. Rasanya kayak lagi unlock skill baru di game, kan?",
+                "Rangkai kalimat sendiri, pelajari partikel penting, dan latih pemahaman mendengar dengan audio autentik penutur asli.",
             desc2:
                 landingSettings["tab2_desc2"] ||
-                "Latihan membaca yang dinamis dan Kanji yang makin banyak. Percaya deh, kamu bakal kaget sendiri sama progress-mu!",
+                "Mulai memahami percakapan dalam anime, manga, dan komunikasi sehari-hari melalui latihan membaca dinamis.",
             badge: landingSettings["tab2_badge"] || "Senpai ⚡",
             stats:
                 landingSettings["tab2_stats"] ||
-                "650 Kanji • 3,500 Kosakata • 60 Tantangan",
+                "Percakapan • Tata Bahasa • Pemahaman Mendengar",
             image: landingSettings["tab2_image"] || "/images/benkyou_tab2.png",
         },
         lanjut: {
-            name: landingSettings["tab3_name"] || "Tahap Legend",
+            name: landingSettings["tab3_name"] || "Tahap Mahir",
             title:
                 landingSettings["tab3_title"] ||
-                "Siap Nonton Anime Tanpa Subtitle!",
+                "Lancar & Mahir",
             subtitle:
-                landingSettings["tab3_subtitle"] || "Kamu udah level dewa nih~",
+                landingSettings["tab3_subtitle"] || "Siap berkomunikasi dan hadapi JLPT.",
             desc1:
                 landingSettings["tab3_desc1"] ||
-                "Kanji tingkat lanjut, idiom, dan bahasa yang dipake di berita, manga, dan lagu J-Pop. Kamu bakal ngerti lirik lagu favoritmu tanpa buka kamus!",
+                "Kuasai ratusan Kanji lanjutan, pola tata bahasa formal, dan bacaan teks bahasa Jepang autentik untuk berbagai situasi.",
             desc2:
                 landingSettings["tab3_desc2"] ||
-                "Latihan interaktif yang menantang tapi tetap seru. Dari baca panjang sampai dengerin percakapan — semua dirancang biar kamu siap jalan-jalan ke Jepang! ✈️",
+                "Latihan komprehensif untuk menguji kemampuan membaca dan pemahaman tingkat lanjut dengan tantangan berbobot.",
             badge: landingSettings["tab3_badge"] || "Shogun 👑",
             stats:
                 landingSettings["tab3_stats"] ||
-                "2,000 Kanji • 10,000 Kosakata • 80 Tantangan",
+                "Kanji Mahir • JLPT Preparation • Natural Fluency",
             image: landingSettings["tab3_image"] || "/images/benkyou_tab3.png",
         },
     };
@@ -126,8 +125,8 @@ export default function Welcome({
     const programs = [
         {
             title: landingSettings["prog1_title"] || "Huruf & Kanji",
-            subtitle: landingSettings["prog1_subtitle"] || "Kana, Kanji & Cara Menulis",
-            desc: landingSettings["prog1_desc"] || "Belajar coretan huruf Hiragana, Katakana, dan Kanji dengan cara yang seru — ada visualisasi lucu biar gampang ingat!",
+            subtitle: landingSettings["prog1_subtitle"] || "Kana, Kanji & Urutan Goresan",
+            desc: landingSettings["prog1_desc"] || "Belajar menulis dan mengingat Hiragana, Katakana, serta Kanji bertahap dengan visualisasi jelas dan audio jernih.",
             link: landingSettings["prog1_link"] || "/register",
             colorFront:
                 "from-pink-500/10 to-red-500/5 text-[var(--color-japan-red)] border-red-200/60",
@@ -138,7 +137,7 @@ export default function Welcome({
         {
             title: landingSettings["prog2_title"] || "Tata Bahasa",
             subtitle: landingSettings["prog2_subtitle"] || "Pola Kalimat & Konjugasi",
-            desc: landingSettings["prog2_desc"] || "Racik kalimatmu sendiri kayak bikin resep rahasia~ Dari partikel dasar sampai pola yang bikin kamu terdengar kayak native!",
+            desc: landingSettings["prog2_desc"] || "Pahami struktur kalimat bahasa Jepang mulai dari partikel dasar hingga pola percakapan yang terdengar natural.",
             link: landingSettings["prog2_link"] || "/register",
             colorFront:
                 "from-emerald-500/10 to-teal-500/5 text-emerald-800 border-emerald-200/60",
@@ -148,58 +147,58 @@ export default function Welcome({
         },
         {
             title: landingSettings["prog3_title"] || "My Journey",
-            subtitle: landingSettings["prog3_subtitle"] || "Tantangan Naik Level",
-            desc: landingSettings["prog3_desc"] || "Dari Kohai sampai Shogun — setiap tantangan yang kamu selesaikan buka reward spesial. Ada pesan rahasia di setiap level!",
+            subtitle: landingSettings["prog3_subtitle"] || "Petualangan Naik Level",
+            desc: landingSettings["prog3_desc"] || "Dari Kohai sampai Shogun — selesaikan setiap tantangan misi seru di kota-kota Jepang dan raih reward spesial di setiap level!",
             link: landingSettings["prog3_link"] || "/register",
             colorFront:
                 "from-blue-500/10 to-indigo-500/5 text-blue-800 border-blue-200/60",
             colorBack: "bg-blue-800 text-white",
-            badge: landingSettings["prog3_badge"] || "Gelar & Reward",
+            badge: landingSettings["prog3_badge"] || "Gelar & Petualangan",
             icon: <GraduationCap className="w-12 h-12" />,
         },
     ];
 
     const aspects = [
         {
-            title: landingSettings["aspect1_title"] || "Mulai dari yang Mudah Dulu~",
-            desc: landingSettings["aspect1_desc"] || "Nggak perlu langsung jago! Kita mulai dari huruf paling dasar, pelan-pelan aja. Yang penting kamu enjoy dan nggak merasa terbebani.",
+            title: landingSettings["aspect1_title"] || "Mulai dari Nol dengan Mudah",
+            desc: landingSettings["aspect1_desc"] || "Nggak perlu takut salah atau bingung harus mulai dari mana. Panduan langkah demi langkah memandu belajarmu dari huruf paling dasar.",
             points: [
-                landingSettings["aspect1_point1"] || "Nggak ada tes masuk",
-                landingSettings["aspect1_point2"] || "Mulai dari nol pun bisa",
-                landingSettings["aspect1_point3"] || "Progress sesuai kecepatanmu sendiri",
+                landingSettings["aspect1_point1"] || "Tanpa tes masuk yang rumit",
+                landingSettings["aspect1_point2"] || "Ramah pemula total",
+                landingSettings["aspect1_point3"] || "Belajar sesuai kecepatan sendiri",
             ],
             bg: "bg-rose-50 border-rose-100",
             icon: <Compass className="w-8 h-8 text-[var(--color-japan-red)]" />,
         },
         {
-            title: landingSettings["aspect2_title"] || "Belajar Kapan Aja, di Mana Aja",
-            desc: landingSettings["aspect2_desc"] || "Buka HP, langsung bisa belajar. Nggak perlu jadwal kaku — kamu yang tentuin kapan mau latihan. Mau tengah malam juga boleh~",
+            title: landingSettings["aspect2_title"] || "Belajar Kapan Saja, di Mana Saja",
+            desc: landingSettings["aspect2_desc"] || "Akses materi dan kuis 24/7 dari perangkat ponsel maupun komputer, fleksibel sesuai waktu luangmu.",
             points: [
-                landingSettings["aspect2_point1"] || "Akses 24/7 dari mana aja",
-                landingSettings["aspect2_point2"] || "Kuis acak biar nggak bosen",
-                landingSettings["aspect2_point3"] || "Nggak ada deadline yang bikin stres",
+                landingSettings["aspect2_point1"] || "Akses 24/7 kapan saja",
+                landingSettings["aspect2_point2"] || "Kuis acak dan variatif",
+                landingSettings["aspect2_point3"] || "Tampilan ramah mobile",
             ],
             bg: "bg-emerald-50 border-emerald-100",
             icon: <Award className="w-8 h-8 text-emerald-600" />,
         },
         {
-            title: landingSettings["aspect3_title"] || "Setiap Langkah Ada Hadiahnya",
-            desc: landingSettings["aspect3_desc"] || "Setiap kali kamu selesai satu tantangan, kamu naik level dan buka reward baru — dari tema cantik sampai pesan rahasia!",
+            title: landingSettings["aspect3_title"] || "Petualangan & Tantangan Seru",
+            desc: landingSettings["aspect3_desc"] || "Tingkatkan level belajarmu dari Kohai hingga Shogun dengan petualangan skenario seru dan reward di setiap level.",
             points: [
                 landingSettings["aspect3_point1"] || "Naik gelar: Kohai → Shogun",
-                landingSettings["aspect3_point2"] || "Unlock tema eksklusif",
-                landingSettings["aspect3_point3"] || "Pesan surprise di setiap level",
+                landingSettings["aspect3_point2"] || "Buka tema eksklusif",
+                landingSettings["aspect3_point3"] || "Reward penyelesaian misi",
             ],
             bg: "bg-blue-50 border-blue-100",
             icon: <BookOpen className="w-8 h-8 text-blue-600" />,
         },
         {
-            title: landingSettings["aspect4_title"] || "Feedback Instan + Kejutan",
-            desc: landingSettings["aspect4_desc"] || "Setiap jawaban langsung dikasih tahu bener atau nggak — plus penjelasan yang gampang dimengerti. Kayak punya tutor pribadi 24 jam!",
+            title: landingSettings["aspect4_title"] || "Feedback Instan & Audio Native",
+            desc: landingSettings["aspect4_desc"] || "Ketahui langsung kebenaran jawabanmu dengan penjelasan yang mudah dipahami serta pelafalan audio yang akurat.",
             points: [
-                landingSettings["aspect4_point1"] || "Nilai langsung muncul",
-                landingSettings["aspect4_point2"] || "Penjelasan ramah, bukan textbook",
-                landingSettings["aspect4_point3"] || "Ada Easter egg tersembunyi~",
+                landingSettings["aspect4_point1"] || "Hasil kuis real-time",
+                landingSettings["aspect4_point2"] || "Penjelasan ringkas & jelas",
+                landingSettings["aspect4_point3"] || "Audio pengucapan asli",
             ],
             bg: "bg-amber-50 border-amber-100",
             icon: <ShieldCheck className="w-8 h-8 text-amber-600" />,
@@ -210,21 +209,21 @@ export default function Welcome({
 
     const news = [
         {
-            title: landingSettings["news1_title"] || "💌 Surat rahasia baru udah ditambahkan di Level 3 — coba selesaikan tantangannya!",
-            date: landingSettings["news1_date"] || "Juli 2026",
-            type: landingSettings["news1_type"] || "SURPRISE",
+            title: landingSettings["news1_title"] || "🚀 Fitur Baru: Audio pengucapan interaktif kini tersedia di seluruh modul Kana!",
+            date: landingSettings["news1_date"] || "Terbaru",
+            type: landingSettings["news1_type"] || "UPDATE",
             link: landingSettings["news1_link"] || "#",
         },
         {
-            title: landingSettings["news2_title"] || "🎵 Challenge baru: Coba terjemahin lirik lagu J-Pop favoritmu!",
-            date: landingSettings["news2_date"] || "Juli 2026",
-            type: landingSettings["news2_type"] || "FUN",
+            title: landingSettings["news2_title"] || "📝 Challenge Mingguan: Uji pemahaman kosakata N5 & N4 di kuis harian!",
+            date: landingSettings["news2_date"] || "Challenge",
+            type: landingSettings["news2_type"] || "EVENT",
             link: landingSettings["news2_link"] || "#",
         },
         {
-            title: landingSettings["news3_title"] || "✈️ Kalau kamu sampai Level Shogun, ada hadiah spesial menunggumu~",
-            date: landingSettings["news3_date"] || "Rahasia",
-            type: landingSettings["news3_type"] || "MYSTERY",
+            title: landingSettings["news3_title"] || "🏆 Capai Level Shogun di My Journey dan raih pencapaian tertinggi!",
+            date: landingSettings["news3_date"] || "Pencapaian",
+            type: landingSettings["news3_type"] || "INFO",
             link: landingSettings["news3_link"] || "#",
         },
     ];
@@ -232,10 +231,10 @@ export default function Welcome({
     return (
         <>
             <Head>
-                <title>{landingSettings["site_title"] || "Benkyou — Untukmu, yang Spesial 🌸"}</title>
+                <title>{landingSettings["site_title"] || "Benkyou — Platform Belajar Bahasa Jepang Interaktif 🇯🇵"}</title>
                 <meta
                     name="description"
-                    content={landingSettings["site_meta_desc"] || "Sebuah dunia kecil berisi huruf, kata, dan cerita dalam bahasa Jepang — dibuat khusus untukmu."}
+                    content={landingSettings["site_meta_desc"] || "Platform belajar bahasa Jepang mandiri yang interaktif, terstruktur, dan mudah dipahami dari tingkat pemula hingga mahir."}
                 />
             </Head>
 
@@ -245,25 +244,25 @@ export default function Welcome({
                     <div className="max-w-7xl mx-auto flex justify-between items-center">
                         <span className="font-light tracking-wider flex items-center gap-1.5">
                             <Sparkles size={12} className="text-yellow-400" />{" "}
-                            {landingSettings["announcement_text"] || "Dibuat dengan sepenuh hati, khusus untukmu~"}
+                            {landingSettings["announcement_text"] || "Platform Belajar Bahasa Jepang Mandiri & Interaktif 🇯🇵"}
                         </span>
                         <div className="hidden sm:flex gap-5 items-center opacity-90">
                             <a
                                 href="#kontak"
                                 className="hover:text-[var(--color-sakura)] transition-colors"
                             >
-                                {landingSettings["nav_link4"] || "Surat Rahasia"}
+                                {landingSettings["nav_link4"] || "Catatan & Tips"}
                             </a>
                             <span className="opacity-30">|</span>
                             <a
                                 href="#manfaat"
                                 className="hover:text-[var(--color-sakura)] transition-colors"
                             >
-                                {landingSettings["nav_link1"] || "Perjalananmu"}
+                                {landingSettings["nav_link1"] || "Program Belajar"}
                             </a>
                             <span className="opacity-30">|</span>
                             <span className="flex items-center gap-1 font-medium">
-                                💕 {landingSettings["site_logo_sub"] || "Made for You"}
+                                ✨ {landingSettings["site_logo_sub"] || "Belajar Bahasa Jepang"}
                             </span>
                         </div>
                     </div>
@@ -285,7 +284,7 @@ export default function Welcome({
                                     {landingSettings["site_brand_name"] || "Benkyou"}
                                 </h1>
                                 <p className="text-[9px] sm:text-[10px] tracking-widest text-[var(--color-japan-red)] uppercase font-extrabold mt-0.5">
-                                    {landingSettings["site_logo_sub"] || "Made for You"}
+                                    {landingSettings["site_logo_sub"] || "Belajar Bahasa Jepang"}
                                 </p>
                             </div>
                         </Link>
@@ -296,31 +295,31 @@ export default function Welcome({
                                 href="#manfaat"
                                 className="hover:text-[var(--color-japan-red)] transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--color-japan-red)] hover:after:w-full after:transition-all after:duration-200"
                             >
-                                {landingSettings["nav_link1"] || "Perjalananmu"}
+                                {landingSettings["nav_link1"] || "Program Belajar"}
                             </a>
                             <a
                                 href="#metode"
                                 className="hover:text-[var(--color-japan-red)] transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--color-japan-red)] hover:after:w-full after:transition-all after:duration-200"
                             >
-                                {landingSettings["nav_link2"] || "Kenapa Beda"}
+                                {landingSettings["nav_link2"] || "Keunggulan"}
                             </a>
                             <a
                                 href="#modul"
                                 className="hover:text-[var(--color-japan-red)] transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--color-japan-red)] hover:after:w-full after:transition-all after:duration-200"
                             >
-                                {landingSettings["nav_link3"] || "Yang Bisa Dipelajari"}
+                                {landingSettings["nav_link3"] || "Materi Modul"}
                             </a>
                             <a
                                 href="#testimoni"
                                 className="hover:text-[var(--color-japan-red)] transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--color-japan-red)] hover:after:w-full after:transition-all after:duration-200"
                             >
-                                {landingSettings["nav_link4"] || "Surat Rahasia"}
+                                {landingSettings["nav_link4"] || "Catatan & Tips"}
                             </a>
                             <a
                                 href="#berita"
                                 className="hover:text-[var(--color-japan-red)] transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[var(--color-japan-red)] hover:after:w-full after:transition-all after:duration-200"
                             >
-                                {landingSettings["nav_link5"] || "Kejutan"}
+                                {landingSettings["nav_link5"] || "Roadmap & Info"}
                             </a>
                         </nav>
 
@@ -369,7 +368,7 @@ export default function Welcome({
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-japan-red)]"></span>
                                 </span>
                                 {landingSettings["hero_badge"] ||
-                                    "Yuk Belajar Bareng!"}
+                                    "Mulai Belajar Hari Ini!"}
                             </div>
 
                             <h2
@@ -377,13 +376,13 @@ export default function Welcome({
                                 dangerouslySetInnerHTML={{
                                     __html:
                                         landingSettings["hero_title"] ||
-                                        'Ayo mulai perjalanan bahasamu hari ini, <br /><span class="text-[var(--color-japan-red)] font-bold">buat kamu!</span>',
+                                        'Ayo mulai perjalanan bahasamu hari ini, <br /><span class="text-[var(--color-japan-red)] font-bold">lebih mudah & seru!</span>',
                                 }}
                             />
 
                             <p className="text-xs sm:text-base lg:text-lg text-gray-600 leading-relaxed max-w-xl">
                                 {landingSettings["hero_subtitle"] ||
-                                    "Temukan cara paling asyik dan santai buat belajar bahasa Jepang bareng aku."}
+                                    "Kuasai Hiragana, Katakana, Kanji, dan percakapan bahasa Jepang dengan modul interaktif, kuis dinamis, dan petualangan seru."}
                             </p>
 
                             <div className="pt-2 sm:pt-3 flex flex-wrap gap-2.5 sm:gap-4 items-center">
@@ -488,12 +487,12 @@ export default function Welcome({
                         <div className="text-center space-y-1.5 sm:space-y-2 max-w-2xl mx-auto">
                             <h2 className="font-fredoka text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
                                 {landingSettings["program_title"] ||
-                                    "Perjalanan Belajarmu~"}
+                                    "Jalur Belajar Terstruktur"}
                             </h2>
                             <div className="under-heading-wave" />
                             <p className="text-xs sm:text-base text-gray-500 max-w-lg mx-auto">
                                 {landingSettings["program_subtitle"] ||
-                                    "Dari nol sampai bisa pesen ramen di Tokyo — semua dimulai dari langkah kecil ini."}
+                                    "Dari pengenalan huruf dasar sampai percakapan natural — semua dirancang langkah demi langkah."}
                             </p>
                         </div>
 
@@ -635,12 +634,12 @@ export default function Welcome({
                             <div className="text-center space-y-1.5 sm:space-y-2 max-w-2xl mx-auto">
                                 <h2 className="font-fredoka text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
                                     {landingSettings["modul_title"] ||
-                                        "Apa Aja yang Bisa Kamu Pelajari~"}
+                                        "Materi Lengkap & Menyeluruh"}
                                 </h2>
                                 <div className="under-heading-wave" />
                                 <p className="text-xs sm:text-base text-gray-500 max-w-lg mx-auto">
                                     {landingSettings["modul_subtitle"] ||
-                                        "Pilih yang kamu suka, atau coba semuanya — yang penting having fun!"}
+                                        "Pilih materi yang ingin kamu kuasai hari ini — belajar mandiri dengan ritmemu sendiri."}
                                 </p>
                             </div>
 
@@ -1059,12 +1058,12 @@ export default function Welcome({
                             <div className="text-center space-y-1.5 sm:space-y-2 max-w-2xl mx-auto">
                                 <h2 className="font-fredoka text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-ink)]">
                                     {landingSettings["testi_title"] ||
-                                        "Surat-Surat Rahasia Untukmu"}
+                                        "Catatan & Tips Belajar"}
                                 </h2>
                                 <div className="under-heading-wave" />
                                 <p className="text-xs sm:text-base text-gray-500 max-w-lg mx-auto">
                                     {landingSettings["testi_subtitle"] ||
-                                        "Baca satu-satu ya~ Setiap surat punya cerita dan pesan yang berbeda. 💌"}
+                                        "Kiat sukses, motivasi, dan panduan belajar dari para sensei untuk menemani perjalananmu."}
                                 </p>
                             </div>
 
@@ -1097,7 +1096,7 @@ export default function Welcome({
                                                         : note.content}
                                                 </p>
                                                 <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-[var(--color-ink-light)] italic pt-2 border-t border-gray-100">
-                                                    <span>— dengan 💕</span>
+                                                    <span>— Tim Sensei Benkyou 🇯🇵</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1106,7 +1105,7 @@ export default function Welcome({
                             ) : (
                                 <div className="text-center py-8 sm:py-12 bg-white rounded-2xl sm:rounded-3xl border border-gray-200 text-gray-400 text-xs sm:text-sm">
                                     <p>
-                                        {landingSettings["testi_fallback"] || "Catatan-catatan kecil akan muncul di sini~ ✨"}
+                                        {landingSettings["testi_fallback"] || "Catatan dan tips belajar akan muncul di sini~ ✨"}
                                     </p>
                                 </div>
                             )}
@@ -1266,16 +1265,16 @@ export default function Welcome({
                                     <span dangerouslySetInnerHTML={{ __html: landingSettings["cta_title"] }} />
                                 ) : (
                                     <>
-                                        Siap Mulai{" "}
+                                        Siap Memulai{" "}
                                         <span className="text-[var(--color-sakura)] font-bold">
-                                            Petualanganmu
+                                            Perjalanan Bahasa Jepangmu
                                         </span>
                                         ?
                                     </>
                                 )}
                             </h2>
                             <p className="text-gray-300 text-xs sm:text-base max-w-xl mx-auto font-sans leading-relaxed">
-                                {landingSettings["cta_desc"] || "Dunia kecil ini udah siap menunggumu. Mulai dari huruf pertama, dan siapa tahu... suatu hari kita ke Jepang bareng~ 🌸"}
+                                {landingSettings["cta_desc"] || "Bergabunglah sekarang dan rasakan kemudahan belajar bahasa Jepang secara mandiri dengan metode interaktif yang menyenangkan! 🌸"}
                             </p>
 
                             <div className="pt-3 sm:pt-6 flex flex-wrap justify-center gap-2.5 sm:gap-4">
@@ -1285,13 +1284,13 @@ export default function Welcome({
                                     }
                                     className="px-5 py-2.5 sm:px-8 sm:py-4 rounded-full bg-[var(--color-japan-red)] text-white font-bold hover:bg-red-700 transition-all shadow-md sm:shadow-lg hover:shadow-red-600/20 text-xs sm:text-sm"
                                 >
-                                    {landingSettings["cta_button_text"] || "Yuk Mulai! 💕"}
+                                    {landingSettings["cta_button_text"] || "Mulai Belajar Sekarang"}
                                 </Link>
                                 <Link
                                     href="/login"
                                     className="px-5 py-2.5 sm:px-8 sm:py-4 rounded-full bg-white/10 border border-white/20 text-white font-bold hover:bg-white/20 transition-all text-xs sm:text-sm"
                                 >
-                                    {landingSettings["cta_button_sub"] || "Masuk ke Dunia Kecil Kita"}
+                                    {landingSettings["cta_button_sub"] || "Masuk ke Akunmu"}
                                 </Link>
                             </div>
                         </div>
@@ -1313,11 +1312,11 @@ export default function Welcome({
                             </div>
 
                             <p className="text-xs text-gray-400 leading-relaxed max-w-sm">
-                                {landingSettings["footer_desc"] || "Sebuah dunia kecil penuh huruf, kata, dan cerita dalam bahasa Jepang — dibuat dengan sepenuh hati untuk seseorang yang spesial."}
+                                {landingSettings["footer_desc"] || "Platform edukasi mandiri bahasa Jepang modern yang interaktif, terstruktur, dan menyenangkan untuk siapa saja."}
                             </p>
 
                             <div className="text-[11px] text-gray-500 space-y-1.5 pt-2 border-t border-gray-800/80">
-                                <p>{landingSettings["footer_love_text"] || "Dibuat dengan 💕 untuk ulang tahunmu. Juli 2026"}</p>
+                                <p>{landingSettings["footer_love_text"] || "Dirancang untuk mempermudah belajar bahasa Jepang di mana saja."}</p>
                             </div>
                         </div>
 
@@ -1332,7 +1331,7 @@ export default function Welcome({
                                         href="#manfaat"
                                         className="hover:text-white transition-colors"
                                     >
-                                        {landingSettings["nav_link1"] || "Perjalanan Belajarmu"}
+                                        {landingSettings["nav_link1"] || "Program Belajar"}
                                     </a>
                                 </li>
                                 <li>
@@ -1340,7 +1339,7 @@ export default function Welcome({
                                         href="#modul"
                                         className="hover:text-white transition-colors"
                                     >
-                                        {landingSettings["nav_link3"] || "Yang Bisa Kamu Pelajari"}
+                                        {landingSettings["nav_link3"] || "Materi Modul"}
                                     </a>
                                 </li>
                                 <li>
@@ -1348,7 +1347,7 @@ export default function Welcome({
                                         href="#metode"
                                         className="hover:text-white transition-colors"
                                     >
-                                        {landingSettings["nav_link2"] || "Kenapa Beda dari yang Lain"}
+                                        {landingSettings["nav_link2"] || "Keunggulan"}
                                     </a>
                                 </li>
                                 <li>
@@ -1356,7 +1355,7 @@ export default function Welcome({
                                         href="/register"
                                         className="hover:text-white transition-colors"
                                     >
-                                        Mulai Petualangan
+                                        Mulai Belajar
                                     </Link>
                                 </li>
                                 <li>
@@ -1364,7 +1363,7 @@ export default function Welcome({
                                         href="#testimoni"
                                         className="hover:text-white transition-colors"
                                     >
-                                        {landingSettings["nav_link4"] || "Surat Rahasia"}
+                                        {landingSettings["nav_link4"] || "Catatan & Tips"}
                                     </a>
                                 </li>
                             </ul>
@@ -1373,21 +1372,20 @@ export default function Welcome({
                         {/* Column 3: Contact & Address Info */}
                         <div className="md:col-span-4 space-y-4">
                             <h4 className="font-fredoka text-white text-sm font-bold tracking-wider uppercase">
-                                {landingSettings["footer_creator_header"] || "Dari Pembuat"}
+                                {landingSettings["footer_creator_header"] || "Tentang Benkyou"}
                             </h4>
 
                             <div className="text-xs text-gray-400 space-y-3">
                                 <p className="leading-relaxed">
-                                    {landingSettings["footer_about"] || "Ini bukan platform belajar biasa. Ini adalah hadiah kecil dari aku untukmu — berisi ratusan jam usaha, coding, dan cinta. Semoga kamu suka ya~ 💕"}
+                                    {landingSettings["footer_about"] || "Benkyou hadir untuk membantu siapa saja yang ingin mempelajari bahasa dan budaya Jepang secara mandiri dengan kurikulum yang mudah dipahami."}
                                 </p>
-                                <div className="flex gap-2 items-center">
-                                    <Heart
+                                <div className="flex gap-2 items-center text-gray-400">
+                                    <Sparkles
                                         size={14}
-                                        className="text-[var(--color-japan-red)] fill-[var(--color-japan-red)]"
+                                        className="text-amber-400"
                                     />
                                     <p>
-                                        <strong>Dengan cinta,</strong> untukmu
-                                        yang spesial
+                                        Platform belajar mandiri bahasa Jepang
                                     </p>
                                 </div>
                             </div>
@@ -1397,15 +1395,15 @@ export default function Welcome({
                     {/* Copyright bar at the bottom */}
                     <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-800 text-center flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-gray-500">
                         <p>
-                            {landingSettings["footer_copy_text"] || "© 2026 Benkyou — Made with 💕 for someone special."}
+                            {landingSettings["footer_copy_text"] || "© 2026 Benkyou — Platform Belajar Bahasa Jepang Mandiri."}
                         </p>
                         <div className="flex gap-2 items-center">
-                            <span>{landingSettings["footer_made_with"] || "Dibuat dengan"}</span>
-                            <Heart
-                                size={10}
-                                className="text-[var(--color-japan-red)] fill-[var(--color-japan-red)]"
+                            <span>{landingSettings["footer_made_with"] || "Dibuat dengan dedikasi"}</span>
+                            <Sparkles
+                                size={12}
+                                className="text-amber-400"
                             />
-                            <span>{landingSettings["footer_for_learners"] || "untuk pembelajar Bahasa Jepang."}</span>
+                            <span>{landingSettings["footer_for_learners"] || "untuk seluruh pembelajar Bahasa Jepang."}</span>
                         </div>
                     </div>
                 </footer>
