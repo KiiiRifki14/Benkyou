@@ -197,7 +197,7 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
                     </button>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 border-t border-slate-50 pt-4">
+                <div className="flex gap-1.5 overflow-x-auto no-scrollbar sm:flex-wrap pb-1 -mx-2 px-2 sm:mx-0 sm:px-0 border-t border-slate-50 pt-4">
                     {(
                         [
                             { id: "semua", label: "Semua" },
@@ -211,7 +211,7 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
                         <button
                             key={chip.id}
                             onClick={() => handleLevelChange(chip.id)}
-                            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 ${
                                 activeLevel === chip.id
                                     ? "bg-[#bc002d] text-white shadow-sm"
                                     : "bg-slate-50 text-slate-500 hover:bg-slate-100 border border-slate-100"
@@ -225,7 +225,56 @@ export default function ManageKanji({ kanjisData = [] }: ManageKanjiProps) {
 
             {/* Table & Pagination Container */}
             <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-                <div className="overflow-x-auto">
+                {/* Mobile View: Clean Card List (< 640px) */}
+                <div className="sm:hidden divide-y divide-slate-100">
+                    {paginatedKanjis.length === 0 ? (
+                        <div className="py-12 px-4 text-center">
+                            <p className="font-jp text-4xl text-slate-200 mb-2 font-bold">空</p>
+                            <p className="text-slate-400 text-xs font-medium">Tidak ada data Kanji yang ditemukan.</p>
+                        </div>
+                    ) : (
+                        paginatedKanjis.map((k) => (
+                            <div key={k.id} className="p-4 space-y-2.5 hover:bg-slate-50/50 transition-colors">
+                                <div className="flex items-start justify-between gap-3">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center font-jp text-3xl font-bold text-slate-800 shrink-0">
+                                            {k.kanji}
+                                        </div>
+                                        <div>
+                                            <p className="font-mono font-bold text-sm text-[#bc002d] leading-tight">{k.romaji}</p>
+                                            <p className="text-xs text-slate-600 font-medium mt-0.5">{k.meaning}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-1 shrink-0">
+                                        <button
+                                            onClick={() => openCrud("edit", k)}
+                                            className="p-1.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                            title="Edit"
+                                        >
+                                            <Edit2 size={14} />
+                                        </button>
+                                        <button
+                                            onClick={() => setDeleteConfirm(k)}
+                                            className="p-1.5 text-slate-500 hover:text-[#bc002d] hover:bg-red-50 rounded-lg transition-colors"
+                                            title="Hapus"
+                                        >
+                                            <Trash2 size={14} />
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-center gap-2 pt-1">
+                                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${getLevelBadgeStyles(k.level)}`}>
+                                        {kanjiLevelMap[k.level.toUpperCase()] || k.level}
+                                    </span>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>
+
+                {/* Desktop View: Full Table (>= 640px) */}
+                <div className="hidden sm:block overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
                             <tr className="bg-slate-50 text-slate-400 text-[11px] font-bold uppercase tracking-wider border-b border-slate-100">

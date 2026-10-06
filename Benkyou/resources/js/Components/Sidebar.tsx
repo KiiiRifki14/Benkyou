@@ -23,6 +23,7 @@ import {
     Award,
     Settings,
     FileText,
+    X,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -142,7 +143,7 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
             <div className="flex flex-col h-full bg-[#1e1b18] text-[#fbf9f4] select-none">
                 {/* Brand Header */}
                 <div className="px-5 py-5 border-b border-white/10 flex items-center justify-between">
-                    <Link href="/admin" className="flex items-center gap-3 group">
+                    <Link href="/admin" className="flex items-center gap-3 group min-w-0" onClick={onNavigate}>
                         <div className="w-9 h-9 rounded-lg bg-[#c73e3a] text-white flex items-center justify-center font-jp font-bold text-lg shadow-[0_2px_10px_rgba(199,62,58,0.4)] shrink-0 transition-transform group-hover:scale-105">
                             勉
                         </div>
@@ -150,11 +151,20 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                             <span className="font-outfit font-bold text-base tracking-wide text-white leading-tight">
                                 BENKYOU
                             </span>
-                            <span className="text-[10px] uppercase font-bold tracking-widest text-[#d47a88] leading-none mt-0.5">
+                            <span className="text-[10px] uppercase font-bold tracking-widest text-[#d47a88] leading-none mt-0.5 truncate">
                                 Sensei Backoffice
                             </span>
                         </div>
                     </Link>
+                    {onNavigate && (
+                        <button
+                            onClick={onNavigate}
+                            className="lg:hidden p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer shrink-0"
+                            aria-label="Tutup menu"
+                        >
+                            <X size={18} />
+                        </button>
+                    )}
                 </div>
 
                 {/* Nav Links */}
@@ -241,7 +251,7 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
         <div className="flex flex-col h-full bg-[#fbf9f4] text-[#1e1b18] select-none border-r border-[#efe6e2]">
             {/* Brand Header */}
             <div className="px-5 py-5 border-b border-[#efe6e2] flex items-center justify-between bg-white/50">
-                <Link href="/student/home" className="flex items-center gap-3 group">
+                <Link href="/student/home" className="flex items-center gap-3 group min-w-0" onClick={onNavigate}>
                     <div className="w-9 h-9 rounded-lg bg-[#c73e3a] text-white flex items-center justify-center font-jp font-bold text-lg shadow-[0_2px_8px_rgba(199,62,58,0.25)] shrink-0 transition-transform group-hover:scale-105">
                         勉
                     </div>
@@ -249,11 +259,20 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
                         <span className="font-outfit font-bold text-base tracking-wide text-[#1e1b18] leading-tight">
                             BENKYOU
                         </span>
-                        <span className="text-[10px] uppercase font-bold tracking-widest text-[#59413f]/70 leading-none mt-0.5">
+                        <span className="text-[10px] uppercase font-bold tracking-widest text-[#59413f]/70 leading-none mt-0.5 truncate">
                             Nihongo Academy
                         </span>
                     </div>
                 </Link>
+                {onNavigate && (
+                    <button
+                        onClick={onNavigate}
+                        className="lg:hidden p-1.5 rounded-lg text-[#59413f] hover:text-[#c73e3a] hover:bg-[#f5ece7] transition-colors cursor-pointer shrink-0"
+                        aria-label="Tutup menu"
+                    >
+                        <X size={18} />
+                    </button>
+                )}
             </div>
 
             {/* Student Navigation */}

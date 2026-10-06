@@ -192,6 +192,24 @@ export default function Missions({ levels }: MissionsProps) {
                 </div>
             </motion.header>
 
+            {/* ── Kotowaza Cultural Proverb Card (Stich Mobile Reference) ── */}
+            <div className="rounded-2xl bg-white border border-[#efe6e2] p-4 sm:p-5 shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex items-center justify-between gap-4">
+                <div className="space-y-1">
+                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#c73e3a] font-outfit">
+                        KOTOWAZA • PERIBAHASA JEPANG
+                    </span>
+                    <p className="font-jp text-lg sm:text-xl font-bold text-[#1e1b18]">
+                        「七転び八起き」 <span className="font-outfit text-xs sm:text-sm font-normal text-[#79716b]">(Nana korobi ya oki)</span>
+                    </p>
+                    <p className="text-xs sm:text-sm text-[#59413f] italic">
+                        "Jatuh tujuh kali, bangkit delapan kali — pantang menyerah dalam belajar."
+                    </p>
+                </div>
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#fff0ef] border border-[#ffd9dd] flex items-center justify-center text-[#c73e3a] shrink-0 font-jp text-base font-bold shadow-xs">
+                    忍
+                </div>
+            </div>
+
             {/* ── Level Cards ── */}
             <div className="space-y-5">
                 {levels.map((level, idx) => {
@@ -310,10 +328,10 @@ export default function Missions({ levels }: MissionsProps) {
                                         {isUnlocked ? (
                                             <Link
                                                 href={route("student.missions.level", level.id)}
-                                                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-7 sm:py-3 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 group ${
+                                                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-7 sm:py-3 min-h-[44px] rounded-full text-xs sm:text-sm font-bold transition-all duration-200 group ${
                                                     level.passed
-                                                        ? "bg-[var(--color-ink)] text-white hover:bg-black"
-                                                        : "bg-[var(--color-japan-red)] text-white hover:bg-red-800 shadow-md shadow-red-600/20"
+                                                        ? "bg-[#1e1b18] text-white hover:bg-black"
+                                                        : "bg-[#c73e3a] text-white hover:bg-[#a52525] shadow-md shadow-[#c73e3a]/20"
                                                 }`}
                                             >
                                                 {level.passed ? (
@@ -333,7 +351,7 @@ export default function Missions({ levels }: MissionsProps) {
                                                 />
                                             </Link>
                                         ) : (
-                                            <div className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-gray-100 text-gray-400 rounded-full text-sm font-bold cursor-not-allowed">
+                                            <div className="inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:px-7 sm:py-3 min-h-[44px] bg-[#f5ece7] text-[#79716b] rounded-full text-xs sm:text-sm font-bold cursor-not-allowed">
                                                 <Lock size={16} />
                                                 Selesaikan level sebelumnya dulu~
                                             </div>

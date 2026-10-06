@@ -135,19 +135,19 @@ export default function ManageVocabulary({ vocabulariesData = [] }: ManageVocabu
           </button>
         </div>
 
-        <div className="flex flex-wrap gap-1.5 border-t border-slate-50 pt-4">
+        <div className="flex gap-1.5 overflow-x-auto no-scrollbar sm:flex-wrap pb-1 -mx-2 px-2 sm:mx-0 sm:px-0 border-t border-slate-50 pt-4">
           {([
             { id: 'semua', label: 'Semua' },
-            { id: 'noun', label: 'Noun (Kata Benda)' },
-            { id: 'verb', label: 'Verb (Kata Kerja)' },
-            { id: 'adjective', label: 'Adjective (Kata Sifat)' },
-            { id: 'greeting', label: 'Greeting (Salam)' },
-            { id: 'adverb', label: 'Adverb (Keterangan)' }
+            { id: 'noun', label: 'Noun' },
+            { id: 'verb', label: 'Verb' },
+            { id: 'adjective', label: 'Adjective' },
+            { id: 'greeting', label: 'Greeting' },
+            { id: 'adverb', label: 'Adverb' }
           ] as const).map((chip) => (
             <button
               key={chip.id}
               onClick={() => handleTypeChange(chip.id)}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 ${
                 activeType === chip.id
                   ? 'bg-[#bc002d] text-white shadow-sm'
                   : 'bg-slate-50 text-slate-500 hover:bg-slate-100 border border-slate-100'
@@ -161,7 +161,54 @@ export default function ManageVocabulary({ vocabulariesData = [] }: ManageVocabu
 
       {/* Table & Pagination Container */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-        <div className="overflow-x-auto">
+        {/* Mobile View: Clean Card List (< 640px) */}
+        <div className="sm:hidden divide-y divide-slate-100">
+          {paginatedVocabs.length === 0 ? (
+            <div className="py-12 px-4 text-center">
+              <p className="font-jp text-4xl text-slate-200 mb-2 font-bold">空</p>
+              <p className="text-slate-400 text-xs font-medium">Tidak ada data Kosakata yang ditemukan.</p>
+            </div>
+          ) : (
+            paginatedVocabs.map((v) => (
+              <div key={v.id} className="p-4 space-y-2 hover:bg-slate-50/50 transition-colors">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-jp font-bold text-2xl text-slate-800">{v.word}</span>
+                      <span className="font-mono font-bold text-sm text-[#bc002d]">{v.romaji}</span>
+                    </div>
+                    <p className="text-xs text-slate-600 font-medium mt-0.5">{v.meaning}</p>
+                  </div>
+                  <div className="flex items-center gap-1 shrink-0">
+                    <button
+                      onClick={() => openCrud('edit', v)}
+                      className="p-1.5 text-slate-500 hover:text-blue-600 rounded-lg transition-colors"
+                      title="Edit"
+                    >
+                      <Edit2 size={14} />
+                    </button>
+                    <button
+                      onClick={() => setDeleteConfirm(v)}
+                      className="p-1.5 text-slate-500 hover:text-[#bc002d] rounded-lg transition-colors"
+                      title="Hapus"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="pt-0.5">
+                  <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${getTypeBadgeStyles(v.type)}`}>
+                    {v.type}
+                  </span>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* Desktop View: Full Table (>= 640px) */}
+        <div className="hidden sm:block overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 text-slate-400 text-[11px] font-bold uppercase tracking-wider border-b border-slate-100">

@@ -215,14 +215,93 @@ export default function Home({ stats }: HomeProps) {
                 </div>
             </div>
 
-            {/* ── 2. Daily Missions Checklist & Word of the Day Grid ── */}
+            {/* ── 2. Quick Action Rail (Mobile Friendly Horizontal Scroll) ── */}
+            <section className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 -mx-3.5 px-3.5 sm:mx-0 sm:px-0">
+                <Link
+                    href="/student/missions"
+                    className="flex items-center gap-2.5 bg-[#c73e3a] text-white px-4 py-2.5 rounded-xl shrink-0 shadow-sm active:scale-95 transition-all text-left"
+                >
+                    <Play size={18} className="fill-white shrink-0" />
+                    <div className="flex flex-col leading-tight">
+                        <span className="text-[10px] opacity-80 uppercase tracking-wider font-semibold">Lanjut Belajar</span>
+                        <span className="text-xs font-bold font-outfit">Node N4.3: Bentuk ~Te</span>
+                    </div>
+                </Link>
+                <Link
+                    href="/student/quiz"
+                    className="flex items-center gap-2.5 bg-white text-[#1e1b18] border border-[#efe6e2] px-4 py-2.5 rounded-xl shrink-0 shadow-xs active:scale-95 transition-all text-left hover:border-[#c73e3a]/40"
+                >
+                    <HelpCircle size={18} className="text-[#944654] shrink-0" />
+                    <div className="flex flex-col leading-tight">
+                        <span className="text-[10px] text-[#79716b] uppercase tracking-wider font-semibold">Latihan</span>
+                        <span className="text-xs font-bold font-outfit">Quiz Harian 3 Min</span>
+                    </div>
+                </Link>
+                <Link
+                    href="/student/themes"
+                    className="flex items-center gap-2.5 bg-[#fbf2ed] text-[#1e1b18] border border-[#efe6e2] px-4 py-2.5 rounded-xl shrink-0 active:scale-95 transition-all text-left"
+                >
+                    <Sparkles size={18} className="text-[#326040] shrink-0" />
+                    <div className="flex flex-col leading-tight">
+                        <span className="text-[10px] text-[#79716b] uppercase tracking-wider font-semibold">Hadiah</span>
+                        <span className="text-xs font-bold font-outfit text-[#326040]">Koleksi Tema</span>
+                    </div>
+                </Link>
+            </section>
+
+            {/* ── 3. 7-Day Momentum Streak Strip (Stich Mobile UI) ── */}
+            <section className="bg-white rounded-2xl p-4 sm:p-5 border border-[#efe6e2] shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+                <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                        <Flame size={15} className="text-[#c73e3a] fill-[#c73e3a]" />
+                        <h3 className="font-outfit text-xs sm:text-sm font-bold text-[#1e1b18]">
+                            Momentum Belajar Minggu Ini
+                        </h3>
+                    </div>
+                    <span className="text-[10px] font-bold text-[#326040] bg-[#d0ffd8] px-2 py-0.5 rounded-full">
+                        Target 5/7 Hari
+                    </span>
+                </div>
+                <div className="grid grid-cols-7 gap-1 sm:gap-2 text-center">
+                    {[
+                        { day: "SEN", done: true },
+                        { day: "SEL", done: true },
+                        { day: "RAB", done: true },
+                        { day: "KAM", done: true },
+                        { day: "JUM", today: true },
+                        { day: "SAB", date: "24" },
+                        { day: "MIN", date: "25" },
+                    ].map((item, idx) => (
+                        <div key={idx} className="flex flex-col items-center gap-1">
+                            <span className={`text-[10px] font-bold ${item.today ? 'text-[#c73e3a]' : 'text-[#79716b]'}`}>
+                                {item.day}
+                            </span>
+                            {item.today ? (
+                                <div className="w-8 h-8 rounded-lg bg-[#c73e3a] text-white flex items-center justify-center font-bold text-xs shadow-sm transform -rotate-3">
+                                    <span className="font-jp text-xs leading-none">印</span>
+                                </div>
+                            ) : item.done ? (
+                                <div className="w-8 h-8 rounded-full bg-[#d0ffd8] text-[#00210d] flex items-center justify-center font-bold text-xs">
+                                    ✓
+                                </div>
+                            ) : (
+                                <div className="w-8 h-8 rounded-full bg-[#f5ece7] text-[#79716b] flex items-center justify-center text-[11px] font-medium">
+                                    {item.date}
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* ── 4. Daily Missions Checklist & Word of the Day Grid ── */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
                 {/* Daily Quest Section */}
-                <div className="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 border border-[#efe6e2] shadow-[0_1px_8px_rgba(0,0,0,0.04)] space-y-4">
+                <div className="lg:col-span-2 bg-white rounded-2xl p-4 sm:p-6 border border-[#efe6e2] shadow-[0_1px_8px_rgba(0,0,0,0.04)] space-y-3 sm:space-y-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <div className="w-2 h-5 rounded-full bg-[#c73e3a]" />
-                            <h2 className="font-outfit text-base sm:text-lg font-bold text-[#1e1b18]">
+                            <h2 className="font-outfit text-sm sm:text-lg font-bold text-[#1e1b18]">
                                 Target & Misi Harian
                             </h2>
                         </div>
@@ -231,7 +310,7 @@ export default function Home({ stats }: HomeProps) {
                         </span>
                     </div>
 
-                    <div className="space-y-2.5">
+                    <div className="space-y-2">
                         {dailyMissions.map((mission) => (
                             <div
                                 key={mission.id}
@@ -241,24 +320,24 @@ export default function Home({ stats }: HomeProps) {
                                         : "bg-white border-[#efe6e2] hover:border-[#c73e3a]/40 shadow-xs"
                                 }`}
                             >
-                                <div className="flex items-center gap-3 min-w-0">
-                                    <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
+                                <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                                    <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center shrink-0 ${
                                         mission.done ? "bg-[#4b7957] text-white" : "border-2 border-[#e9e1dc]"
                                     }`}>
-                                        {mission.done && <CheckCircle2 size={15} />}
+                                        {mission.done && <CheckCircle2 size={13} />}
                                     </div>
                                     <span className={`text-xs sm:text-sm font-semibold truncate ${mission.done ? "line-through text-[#79716b]" : "text-[#1e1b18]"}`}>
                                         {mission.title}
                                     </span>
                                 </div>
                                 <div className="flex items-center gap-2 shrink-0">
-                                    <span className="text-[11px] font-bold text-[#c73e3a] bg-[#fff0ef] px-2 py-0.5 rounded-md">
+                                    <span className="text-[10px] sm:text-[11px] font-bold text-[#c73e3a] bg-[#fff0ef] px-2 py-0.5 rounded-md">
                                         {mission.xp}
                                     </span>
                                     {!mission.done && (
                                         <Link
                                             href="/student/quiz"
-                                            className="text-[11px] font-bold text-[#1e1b18] hover:text-[#c73e3a] bg-[#f5ece7] hover:bg-[#efe6e2] px-2.5 py-1 rounded-md transition-colors"
+                                            className="text-[10px] sm:text-[11px] font-bold text-[#1e1b18] hover:text-[#c73e3a] bg-[#f5ece7] hover:bg-[#efe6e2] px-2.5 py-1 rounded-md transition-colors"
                                         >
                                             Mulai
                                         </Link>
@@ -270,8 +349,8 @@ export default function Home({ stats }: HomeProps) {
                 </div>
 
                 {/* Word of the Day Card */}
-                <div className="bg-[#1e1b18] text-white rounded-2xl p-5 sm:p-6 border border-[#1e1b18] shadow-[0_1px_8px_rgba(0,0,0,0.06)] relative overflow-hidden flex flex-col justify-between">
-                    <div className="absolute -right-4 -bottom-6 font-jp text-[9rem] opacity-[0.05] select-none pointer-events-none leading-none font-bold">
+                <div className="bg-[#1e1b18] text-white rounded-2xl p-4 sm:p-6 border border-[#1e1b18] shadow-[0_1px_8px_rgba(0,0,0,0.06)] relative overflow-hidden flex flex-col justify-between">
+                    <div className="absolute -right-4 -bottom-6 font-jp text-[8rem] sm:text-[9rem] opacity-[0.05] select-none pointer-events-none leading-none font-bold">
                         桜
                     </div>
 
@@ -282,29 +361,29 @@ export default function Home({ stats }: HomeProps) {
                             </span>
                             <button
                                 onClick={playAudio}
-                                className="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+                                className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
                                 title="Dengarkan Audio"
                             >
-                                <Volume2 size={15} />
+                                <Volume2 size={16} />
                             </button>
                         </div>
 
-                        <div className="pt-2">
+                        <div className="pt-1">
                             <div className="flex items-baseline gap-3">
-                                <span className="font-jp text-4xl sm:text-5xl font-bold leading-none">桜</span>
+                                <span className="font-jp text-3xl sm:text-5xl font-bold leading-none">桜</span>
                                 <div>
-                                    <p className="font-outfit text-base font-bold text-[#f4c2c2]">sakura</p>
+                                    <p className="font-outfit text-sm sm:text-base font-bold text-[#f4c2c2]">sakura</p>
                                     <p className="text-xs text-white/70">Bunga sakura Jepang</p>
                                 </div>
                             </div>
-                            <div className="mt-3 p-2.5 rounded-lg bg-white/5 border border-white/10">
+                            <div className="mt-2.5 p-2.5 rounded-lg bg-white/5 border border-white/10">
                                 <p className="text-xs text-white/90 font-jp">桜がとても綺麗ですね。</p>
                                 <p className="text-[10px] text-white/60 italic mt-0.5">Bunga sakura sangat indah, ya.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="relative z-10 pt-4 mt-auto">
+                    <div className="relative z-10 pt-3 mt-auto">
                         <Link
                             href="/student/vocabulary"
                             className="w-full py-2 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-center text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
@@ -316,53 +395,54 @@ export default function Home({ stats }: HomeProps) {
                 </div>
             </div>
 
-            {/* ── 3. Bento Grid: Modul Pembelajaran Utama ── */}
-            <section className="space-y-4">
+            {/* ── 5. Bento Grid: Modul Pembelajaran Utama (Mobile 2-Cols Grid) ── */}
+            <section className="space-y-3 sm:space-y-4">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <div className="w-2 h-5 rounded-full bg-[#c73e3a]" />
-                        <h2 className="font-outfit text-base sm:text-lg font-bold text-[#1e1b18]">
+                        <h2 className="font-outfit text-sm sm:text-lg font-bold text-[#1e1b18]">
                             Pilih Modul Pembelajaran
                         </h2>
                     </div>
                     <span className="text-xs text-[#79716b]">8 Modul Tersedia</span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
                     {features.map((feature, idx) => (
                         <motion.div
                             key={feature.href}
                             initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.04, duration: 0.3 }}
+                            transition={{ delay: idx * 0.03, duration: 0.25 }}
                         >
                             <Link
                                 href={feature.href}
-                                className={`group bg-white p-5 rounded-2xl border border-[#efe6e2] ${feature.borderHover} hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 h-full flex flex-col justify-between relative overflow-hidden`}
+                                className={`group bg-white p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border border-[#efe6e2] ${feature.borderHover} hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 h-full flex flex-col justify-between relative overflow-hidden`}
                             >
-                                <div className="space-y-3">
+                                <div className="space-y-2 sm:space-y-3">
                                     <div className="flex items-center justify-between">
-                                        <span className={`text-[11px] font-bold px-2 py-0.5 rounded-md ${feature.tagBg} font-jp`}>
+                                        <span className={`text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-md ${feature.tagBg} font-jp`}>
                                             {feature.kanjiTag}
                                         </span>
-                                        <div className="w-7 h-7 rounded-lg bg-[#fbf2ed] flex items-center justify-center text-[#79716b] group-hover:text-[#c73e3a] group-hover:bg-[#fff0ef] transition-colors">
-                                            <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                                        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#fbf2ed] flex items-center justify-center text-[#79716b] group-hover:text-[#c73e3a] group-hover:bg-[#fff0ef] transition-colors">
+                                            <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
                                         </div>
                                     </div>
 
                                     <div>
-                                        <h3 className="font-outfit font-bold text-sm sm:text-base text-[#1e1b18] group-hover:text-[#c73e3a] transition-colors leading-tight mb-1">
+                                        <h3 className="font-outfit font-bold text-xs sm:text-base text-[#1e1b18] group-hover:text-[#c73e3a] transition-colors leading-tight mb-0.5 sm:mb-1 line-clamp-1">
                                             {feature.title}
                                         </h3>
-                                        <p className="text-xs text-[#79716b] leading-relaxed line-clamp-2">
+                                        <p className="text-[11px] sm:text-xs text-[#79716b] leading-snug line-clamp-2">
                                             {feature.description}
                                         </p>
                                     </div>
                                 </div>
 
-                                <div className="mt-4 pt-3 border-t border-[#f5ece7] flex items-center justify-between text-[11px] font-semibold text-[#59413f]">
-                                    <span>Pelajari Modul</span>
-                                    <span className="text-[#c73e3a] font-bold group-hover:underline">Buka &rarr;</span>
+                                <div className="mt-3 pt-2.5 border-t border-[#f5ece7] flex items-center justify-between text-[10px] sm:text-[11px] font-semibold text-[#59413f]">
+                                    <span className="hidden sm:inline">Pelajari Modul</span>
+                                    <span className="sm:hidden">Mulai</span>
+                                    <span className="text-[#c73e3a] font-bold group-hover:underline">&rarr;</span>
                                 </div>
                             </Link>
                         </motion.div>

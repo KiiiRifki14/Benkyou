@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary-fixed": "#410003", "on-secondary-fixed-variant": "#762f3d", "surface-container-highest": "#e9e1dc", "inverse-surface": "#34302c", "on-primary-container": "#fff0ef", "on-background": "#1e1b18", "on-tertiary-fixed-variant": "#225031", "on-primary-fixed-variant": "#8e1217", "surface-bright": "#fff8f5", "secondary-fixed-dim": "#ffb2bc", "on-secondary": "#ffffff", "background": "#fff8f5", "on-tertiary-container": "#d0ffd8", "tertiary-container": "#4b7957", "on-secondary-fixed": "#3e0313", "error": "#ba1a1a", "on-secondary-container": "#79313f", "surface-container": "#f5ece7", "error-container": "#ffdad6", "on-surface-variant": "#59413f", "primary": "#a52525", "surface-container-lowest": "#ffffff", "tertiary-fixed": "#bcefc6", "on-error-container": "#93000a", "primary-container": "#c73e3a", "surface-container-high": "#efe6e2", "inverse-primary": "#ffb3ad", "surface-tint": "#b02d2b", "tertiary-fixed-dim": "#a0d2ab", "on-primary": "#ffffff", "surface-variant": "#e9e1dc", "surface": "#fff8f5", "secondary-container": "#fe9dac", "on-error": "#ffffff", "secondary": "#944654", "surface-dim": "#e1d8d4", "outline-variant": "#e1bfbb", "outline": "#8d706e", "secondary-fixed": "#ffd9dd", "inverse-on-surface": "#f8efea", "on-tertiary": "#ffffff", "on-surface": "#1e1b18", "surface-container-low": "#fbf2ed", "on-tertiary-fixed": "#00210d", "primary-fixed-dim": "#ffb3ad", "primary-fixed": "#ffdad6", "tertiary": "#326040" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "margin": "3rem", "gutter-mobile": "1rem", "gutter": "1.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-xl": "2.5rem", "space-md": "1rem", "space-lg": "1.5rem", "margin-mobile": "1.25rem" }, fontFamily: { "label-md": ["Plus Jakarta Sans"], "headline-lg": ["Noto Serif"], "label-lg": ["Plus Jakarta Sans"], "display-lg-mobile": ["Noto Serif"], "headline-md": ["Noto Serif"], "headline-sm": ["Noto Serif"], "body-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "display-lg": ["Noto Serif"] }, fontSize: { "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }], "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }], "body-lg": ["18px", { "lineHeight": "30px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "display-lg": ["56px", { "lineHeight": "68px", "letterSpacing": "-0.02em", "fontWeight": "400" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded bg-primary-container flex items-center justify-center text-on-primary shadow-sm"><span class="font-headline-sm text-headline-sm font-bold tracking-tight select-none">勉</span></div><div class="flex flex-col"><span class="font-label-md text-label-md tracking-wider text-primary font-bold leading-none">BENKYOU</span><span class="font-label-sm text-label-sm text-on-surface-variant font-medium leading-tight">勉強日本語</span></div></div><div class="flex items-center gap-space-xs"><div class="flex items-center gap-1 bg-surface-container px-2 py-1 rounded-full text-on-surface"><span class="text-[14px] leading-none select-none">🔥</span><span class="font-label-sm text-label-sm font-bold text-primary">14</span></div><div class="flex items-center bg-surface-container-high px-2 py-1 rounded-full text-on-surface-variant"><span class="font-label-sm text-label-sm font-semibold tracking-tight">N4</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 ml-1"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full pb-6">
+<!-- Subtle Ambient Header Graphic Background -->
+<div class="px-margin-mobile pt-3 pb-4">
+<!-- Sub-bar & Status Badge -->
+<div class="flex items-center justify-between gap-space-sm mb-2">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm tracking-widest font-semibold uppercase">PRACTICE HUB • 毎日の練習</span>
+</div>
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant shadow-sm">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span class="font-label-sm text-label-sm font-bold">+30 XP</span>
+</div>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Latihan Interaktif</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pertajam pemahaman kanji, tata bahasa, dan refleks pola kalimat.</p>
+</div>
+</div>
+<!-- Daily Target Card -->
+<div class="mt-3 p-3.5 rounded-xl bg-surface-container shadow-sm flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="relative w-11 h-11 flex items-center justify-center shrink-0">
+<svg class="w-11 h-11 -rotate-90" viewbox="0 0 44 44">
+<circle class="text-surface-container-highest" cx="22" cy="22" fill="none" r="18" stroke="currentColor" stroke-width="3.5"></circle>
+<circle class="text-primary" cx="22" cy="22" fill="none" r="18" stroke="currentColor" stroke-dasharray="113.09" stroke-dashoffset="22.6" stroke-linecap="round" stroke-width="3.5"></circle>
+</svg>
+<span class="absolute font-label-sm text-label-sm font-bold text-on-surface">80%</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Target Hari Ini</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">8 dari 10 soal terselesaikan</span>
+</div>
+</div>
+<button class="px-3 py-1.5 rounded bg-primary text-on-primary font-label-sm text-label-sm shadow-sm active:scale-95 transition-transform flex items-center gap-1">
+<span>Lanjut</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Mode Selector Scrollable Strip -->
+<div class="w-full overflow-x-auto no-scrollbar px-margin-mobile flex items-center gap-2 mb-4">
+<button class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm whitespace-nowrap shadow-sm shrink-0 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">quiz</span>
+<span>Kuis Harian Acak</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm whitespace-nowrap shadow-sm shrink-0 flex items-center gap-1.5 hover:bg-surface-container-highest">
+<span class="material-symbols-outlined text-[15px]">edit_note</span>
+<span>Menulis Kanji</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm whitespace-nowrap shadow-sm shrink-0 flex items-center gap-1.5 hover:bg-surface-container-highest">
+<span class="material-symbols-outlined text-[15px]">menu_book</span>
+<span>Tantangan Bunpou</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm whitespace-nowrap shadow-sm shrink-0 flex items-center gap-1.5 hover:bg-surface-container-highest">
+<span class="material-symbols-outlined text-[15px]">fact_check</span>
+<span>Simulasi JLPT N4</span>
+</button>
+</div>
+<!-- Interactive Quiz Card -->
+<div class="px-margin-mobile mb-5">
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-md flex flex-col relative overflow-hidden">
+<!-- Top Meta -->
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold tracking-wide uppercase">Sesi 14</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Kanji &amp; Tata Bahasa</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px] text-primary animate-pulse">timer</span>
+<span class="font-mono font-bold tracking-tight">00:45</span>
+</div>
+</div>
+<!-- Question Counter & Progress Bar -->
+<div class="w-full flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mb-1.5">
+<span>Soal 4 dari 10</span>
+<span class="font-semibold text-primary">N4 Intermediat</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container mb-4 overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-300" style="width: 40%;"></div>
+</div>
+<!-- Japanese Sentence with Furigana -->
+<div class="p-3.5 rounded-lg bg-surface-container-low mb-3 flex flex-col items-center justify-center text-center">
+<div class="font-headline-sm text-headline-sm text-on-surface leading-loose tracking-wide select-none">
+<ruby class="font-headline-sm">毎朝<rt class="font-label-sm text-on-surface-variant font-normal">まいあさ</rt></ruby>、コーヒーを（ <span class="text-primary font-bold inline-block px-1">？</span> ）ながら
+          <ruby class="font-headline-sm">新聞<rt class="font-label-sm text-on-surface-variant font-normal">しんぶん</rt></ruby>を
+          <ruby class="font-headline-sm">読<rt class="font-label-sm text-on-surface-variant font-normal">よ</rt></ruby>みます。
+        </div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3 leading-relaxed">
+        Pilih bentuk kata kerja yang tepat untuk melengkapi konstruksi pola kalimat <span class="font-semibold text-on-surface">~ながら</span> (melakukan dua aktivitas secara bersamaan).
+      </p>
+<!-- Multiple Choice Options -->
+<div class="grid grid-cols-1 gap-2 mb-3.5" id="quiz-options">
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer select-none">
+<div class="flex items-center gap-2.5">
+<span class="w-6 h-6 rounded flex items-center justify-center bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">A</span>
+<span class="font-headline-sm text-[16px] text-on-surface font-normal">飲みます</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(Nomimasu)</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline opacity-0">check_circle</span>
+</div>
+<!-- Correct Selection Highlighted -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed-variant shadow-sm transition-all cursor-pointer select-none">
+<div class="flex items-center gap-2.5">
+<span class="w-6 h-6 rounded flex items-center justify-center bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm font-bold">B</span>
+<span class="font-headline-sm text-[16px] font-bold">飲み</span>
+<span class="font-body-sm text-body-sm font-medium text-tertiary">(Nomi)</span>
+</div>
+<div class="flex items-center gap-1 text-tertiary font-label-sm text-label-sm font-bold">
+<span>Tepat!</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer select-none">
+<div class="flex items-center gap-2.5">
+<span class="w-6 h-6 rounded flex items-center justify-center bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">C</span>
+<span class="font-headline-sm text-[16px] text-on-surface font-normal">飲んで</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(Nonde)</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline opacity-0">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer select-none">
+<div class="flex items-center gap-2.5">
+<span class="w-6 h-6 rounded flex items-center justify-center bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">D</span>
+<span class="font-headline-sm text-[16px] text-on-surface font-normal">飲む</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(Nomu)</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline opacity-0">check_circle</span>
+</div>
+</div>
+<!-- Sensei Explanation Sheet Inset -->
+<div class="p-3 rounded-lg bg-surface-container-high text-on-surface flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">psychology_alt</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-primary mb-0.5">Penjelasan Pola Sensei:</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Pola <span class="font-semibold text-on-surface">V-masu (buang masu) + ながら</span> menyatakan aksi sekunder sambil melakukan aksi utama. Bentuk dasar <span class="font-serif">飲みます</span> menjadi <span class="font-bold text-on-surface">飲み</span>.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Genkouyoushi Interactive Canvas Box -->
+<div class="px-margin-mobile mb-5">
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col">
+<div class="flex items-center justify-between mb-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Latihan Goresan Kanji (Kakijun)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Ikuti urutan goresan tradisional</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined text-[15px]">verified</span>
+<span class="font-label-sm text-label-sm font-bold">Akurasi 94%</span>
+</div>
+</div>
+<!-- Genkouyoushi Canvas Area -->
+<div class="relative w-full aspect-square max-h-56 bg-surface-container-low rounded-lg p-3 flex items-center justify-center overflow-hidden mb-3">
+<!-- Traditional Japanese Grid Markings -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-25" viewbox="0 0 200 200">
+<line class="text-outline" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1" x1="100" x2="100" y1="0" y2="200"></line>
+<line class="text-outline" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="200" y1="100" y2="100"></line>
+<line class="text-outline" stroke="currentColor" stroke-dasharray="2 6" stroke-width="0.8" x1="0" x2="200" y1="0" y2="200"></line>
+<line class="text-outline" stroke="currentColor" stroke-dasharray="2 6" stroke-width="0.8" x1="200" x2="0" y1="0" y2="200"></line>
+</svg>
+<!-- Big Kanji Character Display with Stroke Numbers -->
+<div class="relative flex items-center justify-center w-full h-full select-none">
+<span class="font-headline-lg text-[108px] text-on-surface font-normal leading-none tracking-normal">水</span>
+<!-- Stroke Step Annotations -->
+<span class="absolute top-8 left-1/2 -translate-x-1/2 -translate-y-2 w-5 h-5 rounded-full bg-primary text-on-primary font-label-sm text-[10px] flex items-center justify-center font-bold shadow-sm">1</span>
+<span class="absolute top-14 left-1/3 -translate-x-3 w-5 h-5 rounded-full bg-tertiary text-on-tertiary font-label-sm text-[10px] flex items-center justify-center font-bold shadow-sm">2</span>
+<span class="absolute top-10 right-1/3 translate-x-3 w-5 h-5 rounded-full bg-secondary text-on-secondary font-label-sm text-[10px] flex items-center justify-center font-bold shadow-sm">3</span>
+<span class="absolute bottom-10 right-1/4 translate-x-2 w-5 h-5 rounded-full bg-primary-container text-on-primary font-label-sm text-[10px] flex items-center justify-center font-bold shadow-sm">4</span>
+</div>
+<div class="absolute bottom-2 left-2.5 px-2 py-0.5 rounded bg-surface-container-highest/80 text-on-surface font-label-sm text-label-sm font-semibold backdrop-blur-sm">
+          水 • Mizu (Air)
+        </div>
+</div>
+<!-- Action Buttons for Genkouyoushi -->
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-3 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium flex items-center justify-center gap-1.5 active:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[16px]">replay</span>
+<span>Ulangi Goresan</span>
+</button>
+<button class="py-2 px-3 rounded bg-primary text-on-primary font-label-sm text-label-sm font-bold flex items-center justify-center gap-1.5 shadow-sm active:opacity-95 transition-opacity">
+<span class="material-symbols-outlined text-[16px]">draw</span>
+<span>Periksa Hasil</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Specific Practice Categories (2-Column Grid) -->
+<div class="px-margin-mobile mb-5">
+<div class="flex items-center justify-between mb-3">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Kategori Khusus</h2>
+<a class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5" href="#">
+<span>Semua (8)</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Card 1: 3-Min Lightning Quiz -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between cursor-pointer active:scale-98 transition-transform">
+<div>
+<div class="w-8 h-8 rounded bg-primary-fixed flex items-center justify-center text-primary mb-2.5">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold leading-snug">Kuis Kilat 3 Menit</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">10 soal acak kosakata &amp; kanji kilat.</p>
+</div>
+<div class="mt-3 pt-2 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="font-semibold text-primary">N5 - N4</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2: Kana & Furigana Fast Reading -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between cursor-pointer active:scale-98 transition-transform">
+<div>
+<div class="w-8 h-8 rounded bg-secondary-fixed flex items-center justify-center text-secondary mb-2.5">
+<span class="font-headline-sm text-[16px] font-bold">あ</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold leading-snug">Tebak Romaji &amp; Kana</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">Melatih refleks membaca huruf tanpa tersendat.</p>
+</div>
+<div class="mt-3 pt-2 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="font-semibold text-secondary">Kana Drill</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Card 3: Choukai Audio Drill -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between cursor-pointer active:scale-98 transition-transform">
+<div>
+<div class="w-8 h-8 rounded bg-tertiary-fixed flex items-center justify-center text-tertiary mb-2.5">
+<span class="material-symbols-outlined text-[18px]">headphones</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold leading-snug">Choukai Audio Drill</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">Dialog interaktif penutur asli Tokyo.</p>
+</div>
+<div class="mt-3 pt-2 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="font-semibold text-tertiary">Mendengar</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Card 4: Full JLPT Mock Exam -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between cursor-pointer active:scale-98 transition-transform">
+<div>
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center text-on-surface mb-2.5">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold leading-snug">Simulasi Mock JLPT</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">Ujian penuh waktu standar resmi JLPT.</p>
+</div>
+<div class="mt-3 pt-2 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="font-semibold text-on-surface">60 Menit</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Historical Performance Inset Strip -->
+<div class="px-margin-mobile">
+<div class="p-3.5 rounded-xl bg-surface-container shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">military_tech</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface">Skor Sesi Kemarin</span>
+<span class="px-1.5 py-0.2 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-[10px] font-bold">Sempurna</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">90/100 poin • Rata-rata 8 dtk/soal</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md font-bold text-primary">+45 XP</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Ensure the Bottom Nav item for 'Latihan' is rendered in active state
+  (function setActiveBottomNav() {
+    const latihanLink = document.querySelector('a[data-path="kuis-latihan"]');
+    if (latihanLink) {
+      document.querySelectorAll('nav a').forEach(a => {
+        a.classList.remove('text-primary', 'font-bold');
+        a.classList.add('text-on-surface-variant');
+      });
+      latihanLink.classList.remove('text-on-surface-variant');
+      latihanLink.classList.add('text-primary', 'font-bold');
+      const icon = latihanLink.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.style.fontVariationSettings = "'FILL' 1";
+      }
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(44,40,37,0.04)]" data-active-classes="text-primary font-bold"><div class="flex items-center justify-around h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-on-surface-variant transition-colors" data-path="home-beranda" href="#"><span class="material-symbols-outlined text-[22px]">temple_buddhist</span><span class="font-label-sm text-label-sm tracking-tight">Beranda</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-on-surface-variant transition-colors" data-path="journey-peta" href="#"><span class="material-symbols-outlined text-[22px]">map</span><span class="font-label-sm text-label-sm tracking-tight">Journey</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-on-surface-variant transition-colors" data-path="materi-belajar" href="#"><span class="material-symbols-outlined text-[22px]">auto_stories</span><span class="font-label-sm text-label-sm tracking-tight">Materi</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-on-surface-variant transition-colors" data-path="kuis-latihan" href="#"><span class="material-symbols-outlined text-[22px]">draw</span><span class="font-label-sm text-label-sm tracking-tight">Latihan</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-on-surface-variant transition-colors" data-path="profil-menu" href="#"><span class="material-symbols-outlined text-[22px]">account_circle</span><span class="font-label-sm text-label-sm tracking-tight">Profil</span></a></div></nav></body></html>

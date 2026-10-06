@@ -148,7 +148,53 @@ export default function ManageKana({ kanasData = [] }: ManageKanaProps) {
 
       {/* Table & Pagination Container */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-        <div className="overflow-x-auto">
+        {/* Mobile View: Clean 2-column Grid (< 640px) */}
+        <div className="sm:hidden p-3.5 grid grid-cols-2 gap-2.5">
+          {paginatedKanas.length === 0 ? (
+            <div className="col-span-2 py-12 text-center">
+              <p className="font-jp text-4xl text-slate-200 mb-2 font-bold">空</p>
+              <p className="text-slate-400 text-xs font-medium">Tidak ada data huruf Kana yang ditemukan.</p>
+            </div>
+          ) : (
+            paginatedKanas.map((k) => (
+              <div key={k.id} className="p-3 rounded-xl border border-slate-100 bg-slate-50/50 flex flex-col justify-between space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider ${
+                    k.category.toLowerCase() === 'hiragana'
+                      ? 'bg-rose-50 text-rose-600 border border-rose-100'
+                      : 'bg-indigo-50 text-indigo-600 border border-indigo-100'
+                  }`}>
+                    {k.category}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => openCrud('edit', k)}
+                      className="p-1 text-slate-500 hover:text-blue-600 rounded-md transition-colors"
+                      title="Edit"
+                    >
+                      <Edit2 size={13} />
+                    </button>
+                    <button
+                      onClick={() => setDeleteConfirm(k)}
+                      className="p-1 text-slate-500 hover:text-[#bc002d] rounded-md transition-colors"
+                      title="Hapus"
+                    >
+                      <Trash2 size={13} />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="text-center py-1">
+                  <span className="font-jp font-bold text-3xl text-[#bc002d] block leading-tight">{k.kana}</span>
+                  <span className="font-mono font-bold text-xs text-slate-600 tracking-wider">{k.romaji}</span>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* Desktop View: Full Table (>= 640px) */}
+        <div className="hidden sm:block overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 text-slate-400 text-[11px] font-bold uppercase tracking-wider border-b border-slate-100">

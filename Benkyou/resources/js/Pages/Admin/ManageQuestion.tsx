@@ -337,7 +337,7 @@ export default function ManageQuestion({
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         Kategori Soal
                     </span>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex gap-1.5 overflow-x-auto no-scrollbar sm:flex-wrap pb-1 -mx-2 px-2 sm:mx-0 sm:px-0">
                         {(
                             [
                                 { id: "semua", label: "Semua" },
@@ -352,7 +352,7 @@ export default function ManageQuestion({
                             <button
                                 key={chip.id}
                                 onClick={() => handleCategoryChange(chip.id)}
-                                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
+                                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all shrink-0 ${
                                     activeCategory === chip.id
                                         ? "bg-[#bc002d] text-white shadow-sm"
                                         : "bg-slate-50 text-slate-500 hover:bg-slate-100 border border-slate-100"
@@ -369,25 +369,25 @@ export default function ManageQuestion({
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         Tipe Pertanyaan
                     </span>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex gap-1.5 overflow-x-auto no-scrollbar sm:flex-wrap pb-1 -mx-2 px-2 sm:mx-0 sm:px-0">
                         {(
                             [
                                 { id: "semua", label: "Semua Tipe" },
                                 {
                                     id: "multiple-choice",
-                                    label: "Pilihan Ganda (Multiple Choice)",
+                                    label: "Pilihan Ganda",
                                 },
                                 {
                                     id: "typing",
-                                    label: "Ketik Jawaban (Typing)",
+                                    label: "Ketik Jawaban",
                                 },
-                                { id: "reading", label: "Membaca (Reading)" },
+                                { id: "reading", label: "Membaca" },
                                 {
                                     id: "listening",
-                                    label: "Mendengar (Listening)",
+                                    label: "Mendengar",
                                 },
-                                { id: "image", label: "Gambar (Image)" },
-                                { id: "essay", label: "Esai (Essay)" },
+                                { id: "image", label: "Gambar" },
+                                { id: "essay", label: "Esai" },
                             ] as const
                         ).map((chip) => (
                             <button
@@ -395,7 +395,7 @@ export default function ManageQuestion({
                                 onClick={() =>
                                     handleQuestionTypeChange(chip.id)
                                 }
-                                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
+                                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all shrink-0 ${
                                     activeQuestionType === chip.id
                                         ? "bg-slate-800 text-white shadow-sm"
                                         : "bg-slate-50 text-slate-500 hover:bg-slate-100 border border-slate-100"
@@ -410,7 +410,64 @@ export default function ManageQuestion({
 
             {/* Table & Pagination Container */}
             <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-                <div className="overflow-x-auto">
+                {/* Mobile View: Clean Card List (< 640px) */}
+                <div className="sm:hidden divide-y divide-slate-100">
+                    {paginatedQuestions.length === 0 ? (
+                        <div className="py-12 px-4 text-center">
+                            <p className="font-jp text-4xl text-slate-200 mb-2 font-bold">空</p>
+                            <p className="text-slate-400 text-xs font-medium">Tidak ada data Pertanyaan yang ditemukan.</p>
+                        </div>
+                    ) : (
+                        paginatedQuestions.map((q) => (
+                            <div key={q.id} className="p-4 space-y-2.5 hover:bg-slate-50/50 transition-colors">
+                                <div className="flex items-start justify-between gap-2">
+                                    <p className="font-semibold text-slate-800 text-sm leading-snug">
+                                        {q.question}
+                                    </p>
+                                    <div className="flex items-center gap-1 shrink-0">
+                                        <button
+                                            onClick={() => openCrud("edit", q)}
+                                            className="p-1.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                            title="Edit"
+                                        >
+                                            <Edit2 size={14} />
+                                        </button>
+                                        <button
+                                            onClick={() => setDeleteConfirm(q)}
+                                            className="p-1.5 text-slate-500 hover:text-[#bc002d] hover:bg-red-50 rounded-lg transition-colors"
+                                            title="Hapus"
+                                        >
+                                            <Trash2 size={14} />
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {q.explanation && (
+                                    <p className="text-xs text-slate-400 flex items-center gap-1">
+                                        <span className="shrink-0 text-amber-500">💡</span>
+                                        <span className="truncate">{q.explanation}</span>
+                                    </p>
+                                )}
+
+                                <div className="flex items-center gap-1.5 flex-wrap pt-1">
+                                    <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[10px] font-mono font-bold uppercase">
+                                        {q.question_type}
+                                    </span>
+                                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
+                                        q.type.toLowerCase() === "quiz"
+                                            ? "bg-amber-50 text-amber-700 border border-amber-100"
+                                            : "bg-indigo-50 text-indigo-700 border border-indigo-100"
+                                    }`}>
+                                        {q.type.toLowerCase() === "quiz" ? "Latihan" : `Level ${q.level_id}`}
+                                    </span>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>
+
+                {/* Desktop View: Full Table (>= 640px) */}
+                <div className="hidden sm:block overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
                             <tr className="bg-slate-50 text-slate-400 text-[11px] font-bold uppercase tracking-wider border-b border-slate-100">

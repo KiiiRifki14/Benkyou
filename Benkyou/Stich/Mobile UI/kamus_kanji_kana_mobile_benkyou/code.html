@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&amp;family=Noto+Serif:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "tertiary-fixed": "#bcefc6", "on-secondary": "#ffffff", "surface-variant": "#e9e1dc", "tertiary-container": "#4b7957", "on-secondary-fixed-variant": "#762f3d", "surface-container": "#f5ece7", "primary-container": "#c73e3a", "on-tertiary": "#ffffff", "surface-container-highest": "#e9e1dc", "error-container": "#ffdad6", "on-tertiary-fixed": "#00210d", "on-error": "#ffffff", "tertiary": "#326040", "inverse-primary": "#ffb3ad", "on-tertiary-container": "#d0ffd8", "secondary": "#944654", "outline": "#8d706e", "on-secondary-container": "#79313f", "secondary-container": "#fe9dac", "surface-bright": "#fff8f5", "on-primary-fixed-variant": "#8e1217", "on-secondary-fixed": "#3e0313", "secondary-fixed": "#ffd9dd", "on-surface-variant": "#59413f", "surface-container-low": "#fbf2ed", "outline-variant": "#e1bfbb", "tertiary-fixed-dim": "#a0d2ab", "secondary-fixed-dim": "#ffb2bc", "surface-container-lowest": "#ffffff", "primary-fixed-dim": "#ffb3ad", "inverse-on-surface": "#f8efea", "on-tertiary-fixed-variant": "#225031", "surface-tint": "#b02d2b", "error": "#ba1a1a", "primary-fixed": "#ffdad6", "on-surface": "#1e1b18", "on-primary-container": "#fff0ef", "primary": "#a52525", "surface-dim": "#e1d8d4", "on-background": "#1e1b18", "inverse-surface": "#34302c", "surface-container-high": "#efe6e2", "background": "#fff8f5", "on-primary": "#ffffff", "surface": "#fff8f5", "on-primary-fixed": "#410003", "on-error-container": "#93000a" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "margin-mobile": "1.25rem", "space-xl": "2.5rem", "space-sm": "0.5rem", "gutter-mobile": "1rem", "gutter": "1.5rem", "margin": "3rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xs": "0.25rem" }, fontFamily: { "headline-sm": ["Noto Serif", "Noto Serif JP", "serif"], "body-lg": ["Plus Jakarta Sans", "sans-serif"], "label-md": ["Plus Jakarta Sans", "sans-serif"], "body-md": ["Plus Jakarta Sans", "sans-serif"], "label-lg": ["Plus Jakarta Sans", "sans-serif"], "headline-lg": ["Noto Serif", "Noto Serif JP", "serif"], "display-lg": ["Noto Serif", "Noto Serif JP", "serif"], "label-sm": ["Plus Jakarta Sans", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "sans-serif"], "display-lg-mobile": ["Noto Serif", "Noto Serif JP", "serif"], "headline-md": ["Noto Serif", "Noto Serif JP", "serif"] }, fontSize: { "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "30px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "display-lg": ["56px", { "lineHeight": "68px", "letterSpacing": "-0.02em", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#fff8f5;}body{overscroll-behavior:none;font-family:'Plus Jakarta Sans',sans-serif;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}</style></head><body class="bg-surface text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(44,40,37,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="text-primary font-headline-sm text-headline-sm font-bold tracking-tight">BENKYOU</span><span class="text-outline font-headline-sm text-label-sm font-medium tracking-widest pl-1">勉強</span></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-1 bg-surface-container-low px-2.5 py-1 rounded-lg text-primary"><span class="material-symbols-outlined text-[18px]">local_fire_department</span><span class="font-label-md text-label-md font-bold text-on-surface">14</span></div><div class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded-DEFAULT font-bold tracking-wide">N4</div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-20 bg-surface min-h-screen"><div class="flex flex-col w-full px-margin-mobile pb-space-xl">
+<!-- Back Button & Sub-Header -->
+<div class="flex items-center justify-between py-space-sm">
+<button aria-label="Kembali" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<div class="flex flex-col items-center text-center">
+<span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Kamus Kanji &amp; Kana</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest mt-0.5">漢字・仮名辞典</span>
+</div>
+<button aria-label="Riwayat Pencarian" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</button>
+</div>
+<!-- Segmented Primary Tab Switcher -->
+<div class="mt-space-sm bg-surface-container p-1 rounded-xl flex items-center shadow-sm">
+<button class="flex-1 py-2 rounded-lg bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5 transition-all" id="tab-kanji-btn" onclick="switchDictionaryTab('kanji')" type="button">
+<span class="material-symbols-outlined text-[18px]">translate</span>
+<span class="font-label-lg text-label-lg font-bold">Kamus Kanji (漢字)</span>
+</button>
+<button class="flex-1 py-2 rounded-lg text-on-surface-variant flex items-center justify-center gap-1.5 transition-all hover:text-on-surface" id="tab-kana-btn" onclick="switchDictionaryTab('kana')" type="button">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+<span class="font-label-lg text-label-lg font-bold">Tabel Kana (仮名)</span>
+</button>
+</div>
+<!-- VIEW 1: KAMUS KANJI -->
+<div class="flex flex-col w-full mt-space-md" id="view-kanji">
+<!-- Instant Search Bar with Washi Inset -->
+<div class="relative w-full">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full bg-surface-container-low pl-10 pr-20 py-3 rounded-xl font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm placeholder:text-outline/70 transition-all" placeholder="Ketik Kanji, Hiragana, Romaji, atau Arti ID..." type="text" value="taberu"/>
+<div class="absolute inset-y-0 right-1 flex items-center pr-1.5 gap-1">
+<button class="w-7 h-7 rounded-lg bg-surface-container-highest text-on-surface-variant flex items-center justify-center hover:bg-outline-variant/50 transition-colors" title="Bersihkan" type="button">
+<span class="material-symbols-outlined text-[15px]">close</span>
+</button>
+<button class="w-7 h-7 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center shadow-sm" title="Cari" type="button">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- JLPT Level Filter Chips -->
+<div class="flex items-center gap-2 overflow-x-auto py-space-sm mt-1 -mx-margin-mobile px-margin-mobile" style="scrollbar-width: none;">
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors hover:bg-surface-container-high" type="button">
+        Semua
+      </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md font-bold" type="button">
+        N5 (Dasar)
+      </button>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md font-bold shadow-sm flex items-center gap-1" type="button">
+<span>N4 Aktif</span>
+<span class="material-symbols-outlined text-[14px]">check</span>
+</button>
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md font-bold" type="button">
+        N3 (Menengah)
+      </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md" type="button">
+        N2
+      </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md" type="button">
+        N1
+      </button>
+</div>
+<!-- Featured Kanji Master Card -->
+<div class="mt-space-xs bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col relative overflow-hidden">
+<!-- Top Badges & Quick Action Row -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="bg-tertiary text-on-tertiary font-label-sm text-label-sm font-bold px-2 py-0.5 rounded-DEFAULT uppercase tracking-wider">JLPT N5</span>
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-2 py-0.5 rounded-DEFAULT">9 Goresan</span>
+<span class="bg-surface-container text-outline font-label-sm text-label-sm px-2 py-0.5 rounded-DEFAULT">Radikal: 食字部</span>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-secondary hover:bg-secondary-fixed transition-colors" id="bookmark-btn" onclick="toggleBookmark(this)" title="Simpan Kanji" type="button">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" onclick="playAudio('taberu-audio')" title="Putar Suara" type="button">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+</div>
+<!-- Hero Character & Reading Area -->
+<div class="flex items-center gap-space-lg mt-space-md">
+<!-- Traditional Washi Grid Kanji Canvas Container -->
+<div class="w-24 h-24 rounded-lg bg-surface-container-low flex items-center justify-center shrink-0 relative shadow-inner">
+<!-- Subtle Japanese Calligraphy Practice Crosshairs -->
+<svg class="absolute inset-0 w-full h-full text-outline-variant/40 pointer-events-none" viewbox="0 0 96 96">
+<line stroke="currentColor" stroke-dasharray="3,3" stroke-width="1" x1="48" x2="48" y1="0" y2="96"></line>
+<line stroke="currentColor" stroke-dasharray="3,3" stroke-width="1" x1="0" x2="96" y1="48" y2="48"></line>
+</svg>
+<span class="font-display-lg-mobile text-display-lg-mobile text-on-surface select-none font-bold">食</span>
+<span class="absolute bottom-1 right-1.5 font-label-sm text-label-sm text-outline/80">#128</span>
+</div>
+<!-- Readings Details -->
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Onyomi (Katakana)</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">ショク <span class="font-label-md text-label-md font-normal text-on-surface-variant">(shoku)</span></span>
+</div>
+<div class="flex flex-col mt-1">
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Kunyomi (Hiragana)</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">た・べる <span class="font-label-md text-label-md font-normal text-on-surface-variant">(ta-beru)</span></span>
+</div>
+</div>
+</div>
+<!-- Meaning Block -->
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-lg">
+<span class="font-label-sm text-label-sm text-outline font-semibold uppercase tracking-wide">Arti Bahasa Indonesia</span>
+<p class="font-body-md text-body-md text-on-surface font-medium mt-0.5">
+          Makan / Makanan <span class="text-on-surface-variant font-normal">(Food, Eating, Meal)</span>
+</p>
+</div>
+<!-- Derived Words / Vocabulary Links -->
+<div class="mt-space-md flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Contoh Kosakata Turunan:</span>
+<div class="mt-2 flex flex-col gap-2">
+<!-- Word 1 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high/60 hover:bg-surface-container-high transition-colors">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">食べる</span>
+<span class="font-label-md text-label-md text-primary font-medium">たべる (taberu)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">• makan (kata kerja)</span>
+</div>
+<button class="text-outline hover:text-primary transition-colors p-1" onclick="playAudio('taberu-v1')" title="Dengarkan" type="button">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<!-- Word 2 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high/60 hover:bg-surface-container-high transition-colors">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">食事</span>
+<span class="font-label-md text-label-md text-primary font-medium">しょくじ (shokuji)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">• santapan / jamuan</span>
+</div>
+<button class="text-outline hover:text-primary transition-colors p-1" onclick="playAudio('taberu-v2')" title="Dengarkan" type="button">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<!-- Word 3 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high/60 hover:bg-surface-container-high transition-colors">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">朝食</span>
+<span class="font-label-md text-label-md text-primary font-medium">ちょうしょく (choushoku)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">• sarapan pagi</span>
+</div>
+<button class="text-outline hover:text-primary transition-colors p-1" onclick="playAudio('taberu-v3')" title="Dengarkan" type="button">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Action Button: Practice Canvas -->
+<button class="mt-space-lg w-full py-3 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-sm hover:bg-primary-container transition-colors" onclick="showCanvasPractice()" type="button">
+<span class="material-symbols-outlined text-[20px]">brush</span>
+<span>Latih Goresan &amp; Urutan Stroke (書き順)</span>
+</button>
+</div>
+<!-- Section Heading: Kanji Populer -->
+<div class="flex items-center justify-between mt-space-lg mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">auto_stories</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Kanji Dasar Terkait (N4 / N5)</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-semibold">4 Karakter</span>
+</div>
+<!-- 2-Column Grid: Popular Kanji Cards -->
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Kanji Card 1: 行 -->
+<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex flex-col justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-1.5 py-0.5 rounded-DEFAULT font-bold">N5</span>
+<button class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-outline hover:text-primary" onclick="playAudio('iku-audio')" title="Audio" type="button">
+<span class="material-symbols-outlined text-[14px]">volume_up</span>
+</button>
+</div>
+<div class="flex flex-col items-center my-2 text-center">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">行</span>
+<span class="font-label-md text-label-md font-bold text-primary mt-1">iku / kou</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Pergi</span>
+</div>
+<div class="flex items-center justify-between pt-1.5 text-outline">
+<span class="font-label-sm text-label-sm">6 Goresan</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+</div>
+</div>
+<!-- Kanji Card 2: 来 -->
+<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex flex-col justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-1.5 py-0.5 rounded-DEFAULT font-bold">N5</span>
+<button class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-outline hover:text-primary" onclick="playAudio('kuru-audio')" title="Audio" type="button">
+<span class="material-symbols-outlined text-[14px]">volume_up</span>
+</button>
+</div>
+<div class="flex flex-col items-center my-2 text-center">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">来</span>
+<span class="font-label-md text-label-md font-bold text-primary mt-1">kuru / rai</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Datang</span>
+</div>
+<div class="flex items-center justify-between pt-1.5 text-outline">
+<span class="font-label-sm text-label-sm">7 Goresan</span>
+<span class="material-symbols-outlined text-[16px] text-outline/50">radio_button_unchecked</span>
+</div>
+</div>
+<!-- Kanji Card 3: 飲 -->
+<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex flex-col justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-1.5 py-0.5 rounded-DEFAULT font-bold">N5</span>
+<button class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-outline hover:text-primary" onclick="playAudio('nomu-audio')" title="Audio" type="button">
+<span class="material-symbols-outlined text-[14px]">volume_up</span>
+</button>
+</div>
+<div class="flex flex-col items-center my-2 text-center">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">飲</span>
+<span class="font-label-md text-label-md font-bold text-primary mt-1">nomu / in</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Minum</span>
+</div>
+<div class="flex items-center justify-between pt-1.5 text-outline">
+<span class="font-label-sm text-label-sm">12 Goresan</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+</div>
+</div>
+<!-- Kanji Card 4: 見 -->
+<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex flex-col justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-1.5 py-0.5 rounded-DEFAULT font-bold">N5</span>
+<button class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-outline hover:text-primary" onclick="playAudio('miru-audio')" title="Audio" type="button">
+<span class="material-symbols-outlined text-[14px]">volume_up</span>
+</button>
+</div>
+<div class="flex flex-col items-center my-2 text-center">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">見</span>
+<span class="font-label-md text-label-md font-bold text-primary mt-1">miru / ken</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Melihat</span>
+</div>
+<div class="flex items-center justify-between pt-1.5 text-outline">
+<span class="font-label-sm text-label-sm">7 Goresan</span>
+<span class="material-symbols-outlined text-[16px] text-outline/50">radio_button_unchecked</span>
+</div>
+</div>
+</div>
+<!-- Visual Paper Culture Quote Card -->
+<div class="mt-space-lg rounded-xl overflow-hidden relative bg-surface-container shadow-sm p-space-md flex items-center gap-space-md">
+<div class="w-16 h-16 shrink-0 rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Close up shot of delicate handmade Japanese washi paper with sumi calligraphic brush strokes in vermilion red and carbon black, soft natural morning studio light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHOSptaP9va88S_HZ5MxCIfm_a_EwW7Vnxde9Uox40lUzURVDRGhiJKTFmg1mYb-YI8bTb8pFLOPwxe1clLSvSzt-VqbqZvaH_RaJ4e_xC7I1CpjDUu6X0W_8S_C-N3UmD_hCqHs_qmUfixDAHRiP8TjFlmTsbvDgdXrQF71WMZNB3mdKyQaBzJ8TGplBDg0edvrpsZhPghys8OPiwgh_zmrS9IeU9oxnaHd6DH4sF8QfipCKi4bLJow"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Tips Menghafal Kanji</span>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">
+          Kanji <strong>食</strong> menggambarkan mangkuk bertutup penampung beras. Perhatikan bentuk goresan atap dan wadah di bawahnya!
+        </p>
+</div>
+</div>
+</div>
+<!-- VIEW 2: TABEL HURUF KANA (Hidden by default, switched via tab) -->
+<div class="hidden flex-col w-full mt-space-md" id="view-kana">
+<!-- Kana Sub-selector: Hiragana vs Katakana -->
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-1 bg-surface-container p-1 rounded-lg">
+<button class="px-3 py-1 rounded bg-surface-container-lowest text-primary font-label-md text-label-md font-bold shadow-sm" id="subtab-hiragana" onclick="toggleKanaSubtype('hiragana')">
+          Hiragana (ひらがna)
+        </button>
+<button class="px-3 py-1 rounded text-on-surface-variant font-label-md text-label-md font-medium" id="subtab-katakana" onclick="toggleKanaSubtype('katakana')">
+          Katakana (カタカナ)
+        </button>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Gojuon (五十音)</span>
+</div>
+<!-- 5-column Kana Syllabary Grid (Seion Row A, Ka, Sa, Ta, Na) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-sm shadow-sm flex flex-col gap-2">
+<!-- Header Row: a, i, u, e, o -->
+<div class="grid grid-cols-5 text-center py-1 bg-surface-container-low rounded-lg font-label-sm text-label-sm text-outline font-bold">
+<span>A</span>
+<span>I</span>
+<span>U</span>
+<span>E</span>
+<span>O</span>
+</div>
+<!-- Vowel Row (あ, い, う, え, お) -->
+<div class="grid grid-cols-5 gap-1.5 text-center">
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('a', 'あ')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">あ</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">a</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('i', 'い')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">い</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">i</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('u', 'う')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">う</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">u</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('e', 'え')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">え</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">e</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('o', 'お')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">お</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">o</span>
+</button>
+</div>
+<!-- K-Row (か, き, く, け, こ) -->
+<div class="grid grid-cols-5 gap-1.5 text-center">
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('ka', 'か')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">か</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">ka</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('ki', 'き')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">き</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">ki</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('ku', 'く')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">く</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">ku</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('ke', 'け')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">け</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">ke</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('ko', 'こ')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">こ</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">ko</span>
+</button>
+</div>
+<!-- S-Row (さ, し, す, せ, そ) -->
+<div class="grid grid-cols-5 gap-1.5 text-center">
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('sa', 'さ')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">さ</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">sa</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('shi', 'し')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">し</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">shi</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('su', 'す')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">す</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">su</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('se', 'せ')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">せ</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">se</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary group transition-colors flex flex-col items-center" onclick="playKanaSound('so', 'そ')" type="button">
+<span class="font-headline-md text-headline-md font-bold text-on-surface group-hover:text-on-primary">そ</span>
+<span class="font-label-sm text-label-sm text-outline group-hover:text-on-primary">so</span>
+</button>
+</div>
+</div>
+<!-- Active Kana Quick Card / Pronunciation Helper -->
+<div class="mt-space-md p-space-md rounded-xl bg-surface-container flex items-center justify-between shadow-sm" id="kana-feedback">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center shadow-sm">
+<span class="font-headline-lg text-headline-lg text-primary font-bold" id="active-kana-char">あ</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold" id="active-kana-romaji">Huruf 'a'</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Vokal murni, dilafalkan seperti 'a' pada kata "apel"</span>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-sm" onclick="playAudio('active-kana-audio')" title="Putar Suara Huruf" type="button">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+</div>
+</div>
+<!-- Interactive Modal: Stroke Order Canvas (書き順) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-center justify-center p-margin-mobile" id="stroke-modal">
+<div class="w-full max-w-sm bg-surface-container-lowest rounded-xl p-space-lg shadow-xl flex flex-col">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">draw</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Latihan Goresan: 食</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-outline hover:text-on-surface" onclick="closeCanvasPractice()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Rice Paper Canvas Simulating Genkouyoushi -->
+<div class="relative w-full aspect-square bg-surface-container-low rounded-xl mt-space-md flex items-center justify-center overflow-hidden shadow-inner">
+<!-- Genkouyoushi Guideline Grid -->
+<svg class="absolute inset-0 w-full h-full text-outline-variant/50 pointer-events-none" viewbox="0 0 200 200">
+<line stroke="currentColor" stroke-dasharray="4,4" stroke-width="1.5" x1="100" x2="100" y1="0" y2="200"></line>
+<line stroke="currentColor" stroke-dasharray="4,4" stroke-width="1.5" x1="0" x2="200" y1="100" y2="100"></line>
+<circle cx="100" cy="100" fill="none" r="80" stroke="currentColor" stroke-dasharray="2,4" stroke-width="1"></circle>
+</svg>
+<!-- Ghost stroke watermark -->
+<span class="text-[120px] font-headline-lg text-outline-variant/30 select-none">食</span>
+<!-- Interactive drawing surface representation -->
+<div class="absolute inset-0 flex items-center justify-center cursor-crosshair">
+<div class="bg-primary/10 text-primary px-3 py-1.5 rounded-full font-label-sm text-label-sm font-semibold flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span>Mulai dari goresan 1 (Atap 𠆢)</span>
+</div>
+</div>
+</div>
+<!-- Canvas Action Bar -->
+<div class="flex items-center justify-between mt-space-md pt-1">
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 rounded-lg bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors" title="Ulangi" type="button">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors" title="Bantuan Stroke" type="button">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+</button>
+</div>
+<button class="px-5 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold shadow-sm" onclick="closeCanvasPractice()" type="button">
+          Selesai Latihan
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function switchDictionaryTab(type) {
+    const kanjiBtn = document.getElementById('tab-kanji-btn');
+    const kanaBtn = document.getElementById('tab-kana-btn');
+    const kanjiView = document.getElementById('view-kanji');
+    const kanaView = document.getElementById('view-kana');
+
+    if (type === 'kanji') {
+      kanjiBtn.className = 'flex-1 py-2 rounded-lg bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5 transition-all';
+      kanaBtn.className = 'flex-1 py-2 rounded-lg text-on-surface-variant flex items-center justify-center gap-1.5 transition-all hover:text-on-surface';
+      kanjiView.classList.remove('hidden');
+      kanaView.classList.add('hidden');
+    } else {
+      kanaBtn.className = 'flex-1 py-2 rounded-lg bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5 transition-all';
+      kanjiBtn.className = 'flex-1 py-2 rounded-lg text-on-surface-variant flex items-center justify-center gap-1.5 transition-all hover:text-on-surface';
+      kanaView.classList.remove('hidden');
+      kanjiView.classList.add('hidden');
+    }
+  }
+
+  function toggleKanaSubtype(subtype) {
+    const btnHiragana = document.getElementById('subtab-hiragana');
+    const btnKatakana = document.getElementById('subtab-katakana');
+
+    if (subtype === 'hiragana') {
+      btnHiragana.className = 'px-3 py-1 rounded bg-surface-container-lowest text-primary font-label-md text-label-md font-bold shadow-sm';
+      btnKatakana.className = 'px-3 py-1 rounded text-on-surface-variant font-label-md text-label-md font-medium';
+    } else {
+      btnKatakana.className = 'px-3 py-1 rounded bg-surface-container-lowest text-primary font-label-md text-label-md font-bold shadow-sm';
+      btnHiragana.className = 'px-3 py-1 rounded text-on-surface-variant font-label-md text-label-md font-medium';
+    }
+  }
+
+  function playKanaSound(romaji, char) {
+    const charElem = document.getElementById('active-kana-char');
+    const romajiElem = document.getElementById('active-kana-romaji');
+    if (charElem && romajiElem) {
+      charElem.textContent = char;
+      romajiElem.textContent = "Huruf '" + romaji + "'";
+    }
+    playAudio(romaji);
+  }
+
+  function toggleBookmark(btn) {
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (icon) {
+      const isFilled = icon.style.fontVariationSettings && icon.style.fontVariationSettings.includes("'FILL' 1");
+      if (isFilled) {
+        icon.style.fontVariationSettings = "'FILL' 0";
+        btn.classList.remove('text-secondary');
+        btn.classList.add('text-outline');
+      } else {
+        icon.style.fontVariationSettings = "'FILL' 1";
+        btn.classList.remove('text-outline');
+        btn.classList.add('text-secondary');
+      }
+    }
+  }
+
+  function playAudio(key) {
+    // Subtle tactile notification for audio feedback
+    if ('vibrate' in navigator) {
+      navigator.vibrate(25);
+    }
+  }
+
+  function showCanvasPractice() {
+    const modal = document.getElementById('stroke-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+  }
+
+  function closeCanvasPractice() {
+    const modal = document.getElementById('stroke-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(44,40,37,0.05)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-on-surface-variant transition-colors" data-path="beranda" href="#"><span class="material-symbols-outlined text-[22px]">home</span><span class="font-label-sm text-label-sm mt-0.5">Beranda</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-on-surface-variant transition-colors" data-path="journey" href="#"><span class="material-symbols-outlined text-[22px]">explore</span><span class="font-label-sm text-label-sm mt-0.5">Journey</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] transition-colors text-primary font-semibold" data-path="materi" href="#"><span class="material-symbols-outlined text-[22px]">menu_book</span><span class="font-label-sm text-label-sm mt-0.5">Materi</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-on-surface-variant transition-colors" data-path="latihan" href="#"><span class="material-symbols-outlined text-[22px]">edit_note</span><span class="font-label-sm text-label-sm mt-0.5">Latihan</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] text-on-surface-variant transition-colors" data-path="profil" href="#"><span class="material-symbols-outlined text-[22px]">person</span><span class="font-label-sm text-label-sm mt-0.5">Profil</span></a></div></nav></body></html>

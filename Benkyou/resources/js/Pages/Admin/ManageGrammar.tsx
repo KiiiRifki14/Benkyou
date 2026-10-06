@@ -153,7 +153,59 @@ export default function ManageGrammar({ grammarsData = [] }: ManageGrammarProps)
 
       {/* Table & Pagination Container */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-        <div className="overflow-x-auto">
+        {/* Mobile View: Clean Card List (< 640px) */}
+        <div className="sm:hidden divide-y divide-slate-100">
+          {paginatedGrammars.length === 0 ? (
+            <div className="py-12 px-4 text-center">
+              <p className="font-jp text-4xl text-slate-200 mb-2 font-bold">空</p>
+              <p className="text-slate-400 text-xs font-medium">Tidak ada data Grammar yang ditemukan.</p>
+            </div>
+          ) : (
+            paginatedGrammars.map((g) => (
+              <div key={g.id} className="p-4 space-y-2.5 hover:bg-slate-50/50 transition-colors">
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="font-outfit font-bold text-base text-slate-800 leading-snug">
+                    {g.title}
+                  </h3>
+                  <div className="flex items-center gap-1 shrink-0">
+                    <button
+                      onClick={() => openCrud('edit', g)}
+                      className="p-1.5 text-slate-500 hover:text-blue-600 rounded-lg transition-colors"
+                      title="Edit"
+                    >
+                      <Edit2 size={14} />
+                    </button>
+                    <button
+                      onClick={() => setDeleteConfirm(g)}
+                      className="p-1.5 text-slate-500 hover:text-[#bc002d] rounded-lg transition-colors"
+                      title="Hapus"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                </div>
+
+                <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                  {g.description}
+                </p>
+
+                {getFirstExample(g.examples) && (
+                  <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-xs space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="px-1.5 py-0.2 bg-slate-200 text-slate-600 rounded text-[9px] font-bold">Contoh</span>
+                      <span className="font-jp font-bold text-slate-800 text-sm">{getFirstExample(g.examples)!.jp}</span>
+                    </div>
+                    <p className="font-mono text-[11px] text-slate-500">{getFirstExample(g.examples)!.romaji}</p>
+                    <p className="text-slate-600 italic text-[11px]">"{getFirstExample(g.examples)!.en}"</p>
+                  </div>
+                )}
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* Desktop View: Full Table (>= 640px) */}
+        <div className="hidden sm:block overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 text-slate-400 text-[11px] font-bold uppercase tracking-wider border-b border-slate-100">

@@ -136,41 +136,187 @@ export default function Layout({ children }: LayoutProps) {
                 </header>
 
                 {/* Mobile Header */}
-                <div className={`lg:hidden backdrop-blur-md border-b p-3.5 flex items-center justify-between sticky top-0 z-30 shadow-xs ${
-                    isAdminRoute ? 'bg-[#1e1b18] text-white border-white/10' : 'bg-white/95 text-[#1e1b18] border-[#efe6e2]'
+                <div className={`lg:hidden backdrop-blur-md border-b px-4 py-3 flex items-center justify-between sticky top-0 z-30 shadow-xs ${
+                    isAdminRoute ? 'bg-[#1e1b18]/95 text-white border-white/10' : 'bg-white/95 text-[#1e1b18] border-[#efe6e2]'
                 }`}>
-                    <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-lg bg-[#c73e3a] text-white font-jp font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                        <Link href={isAdminRoute ? "/admin" : "/student/home"} className="w-8 h-8 rounded-lg bg-[#c73e3a] text-white font-jp font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">
                             勉
-                        </div>
-                        <div>
-                            <h1 className="font-outfit font-bold text-sm leading-tight truncate max-w-[170px]">
+                        </Link>
+                        <div className="min-w-0">
+                            <h1 className="font-outfit font-bold text-sm leading-tight truncate">
                                 {currentMeta.title}
                             </h1>
-                            <p className={`text-[10px] font-medium truncate max-w-[160px] ${isAdminRoute ? 'text-white/60' : 'text-[#79716b]'}`}>
+                            <p className={`text-[10px] font-medium truncate ${isAdminRoute ? 'text-white/60' : 'text-[#79716b]'}`}>
                                 {user ? user.name : (isAdminRoute ? 'Sensei Backoffice' : 'Benkyou Academy')}
                             </p>
                         </div>
                     </div>
-                    <button
-                        onClick={() => setIsMobileMenuOpen(true)}
-                        className={`p-2 rounded-lg transition-colors cursor-pointer ${
-                            isAdminRoute ? 'text-white/80 hover:bg-white/10' : 'text-[#1e1b18] hover:bg-[#f5ece7]'
-                        }`}
-                        aria-label="Buka menu"
-                    >
-                        <Menu size={22} />
-                    </button>
+
+                    <div className="flex items-center gap-2 shrink-0">
+                        {isAdminRoute ? (
+                            <Link
+                                href="/student/home"
+                                className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 text-white text-[10px] font-semibold hover:bg-white/20 transition-colors"
+                                title="Beralih ke Mode Murid"
+                            >
+                                <span className="text-[12px]">🎓</span>
+                                <span>Murid</span>
+                            </Link>
+                        ) : (
+                            <div className="flex items-center gap-1.5">
+                                <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#fff0ef] text-[#c73e3a] text-[11px] font-bold border border-[#ffd9dd]">
+                                    <Flame size={12} className="fill-[#c73e3a]" />
+                                    <span>14</span>
+                                </div>
+                                <div className="px-2 py-1 rounded-full bg-[#fbf2ed] text-[#59413f] text-[10px] font-bold border border-[#efe6e2]">
+                                    N4
+                                </div>
+                            </div>
+                        )}
+                        <button
+                            onClick={() => setIsMobileMenuOpen(true)}
+                            className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                                isAdminRoute ? 'text-white/80 hover:bg-white/10' : 'text-[#1e1b18] hover:bg-[#f5ece7]'
+                            }`}
+                            aria-label="Buka menu navigasi"
+                        >
+                            <Menu size={20} />
+                        </button>
+                    </div>
                 </div>
 
-                {/* Page Content Canvas */}
-                <main className="flex-1 overflow-y-auto custom-scrollbar">
-                    <div className={isAdminRoute ? 'p-4 sm:p-6 lg:p-8' : 'p-3 sm:p-6 md:p-8 lg:p-10 pb-12'}>
+                {/* Page Content Canvas with mobile bottom padding */}
+                <main className="flex-1 overflow-y-auto custom-scrollbar pb-24 lg:pb-8">
+                    <div className={isAdminRoute ? 'p-3.5 sm:p-6 lg:p-8' : 'p-3.5 sm:p-6 md:p-8 lg:p-10'}>
                         <div className="max-w-7xl mx-auto">
                             {children}
                         </div>
                     </div>
                 </main>
+
+                {/* Mobile Bottom Navigation Bar (Stich Mobile UI Pattern) */}
+                <nav className={`lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t backdrop-blur-xl shadow-[0_-2px_12px_rgba(44,40,37,0.06)] ${
+                    isAdminRoute ? 'bg-[#1e1b18]/95 border-white/10 text-white' : 'bg-white/95 border-[#efe6e2] text-[#1e1b18]'
+                }`}>
+                    <div className="flex items-center justify-around h-16 px-1">
+                        {isAdminRoute ? (
+                            <>
+                                <Link
+                                    href="/admin"
+                                    className={`flex flex-col items-center justify-center min-w-[56px] py-1 transition-colors ${
+                                        currentPage === "home" || currentPage === "admin"
+                                            ? "text-[#c73e3a] font-bold"
+                                            : "text-white/60 hover:text-white"
+                                    }`}
+                                >
+                                    <ShieldCheck size={20} />
+                                    <span className="text-[10px] font-medium tracking-tight mt-0.5">Ringkasan</span>
+                                </Link>
+                                <Link
+                                    href="/admin/kana"
+                                    className={`flex flex-col items-center justify-center min-w-[56px] py-1 transition-colors ${
+                                        currentPage === "kana" || currentPage === "kanji" || currentPage === "vocabulary" || currentPage === "grammar"
+                                            ? "text-[#c73e3a] font-bold"
+                                            : "text-white/60 hover:text-white"
+                                    }`}
+                                >
+                                    <BookOpen size={20} />
+                                    <span className="text-[10px] font-medium tracking-tight mt-0.5">Materi</span>
+                                </Link>
+                                <Link
+                                    href="/admin/question"
+                                    className={`flex flex-col items-center justify-center min-w-[56px] py-1 transition-colors ${
+                                        currentPage === "question"
+                                            ? "text-[#c73e3a] font-bold"
+                                            : "text-white/60 hover:text-white"
+                                    }`}
+                                >
+                                    <CheckCircle size={20} />
+                                    <span className="text-[10px] font-medium tracking-tight mt-0.5">Bank Soal</span>
+                                </Link>
+                                <Link
+                                    href="/admin/activity"
+                                    className={`flex flex-col items-center justify-center min-w-[56px] py-1 transition-colors ${
+                                        currentPage === "activity"
+                                            ? "text-[#c73e3a] font-bold"
+                                            : "text-white/60 hover:text-white"
+                                    }`}
+                                >
+                                    <Activity size={20} />
+                                    <span className="text-[10px] font-medium tracking-tight mt-0.5">Aktivitas</span>
+                                </Link>
+                                <button
+                                    onClick={() => setIsMobileMenuOpen(true)}
+                                    className="flex flex-col items-center justify-center min-w-[56px] py-1 text-white/60 hover:text-white transition-colors cursor-pointer"
+                                >
+                                    <Menu size={20} />
+                                    <span className="text-[10px] font-medium tracking-tight mt-0.5">Menu</span>
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <Link
+                                    href="/student/home"
+                                    className={`flex flex-col items-center justify-center min-w-[56px] py-1 transition-colors ${
+                                        currentPage === "home"
+                                            ? "text-[#c73e3a] font-bold"
+                                            : "text-[#79716b] hover:text-[#1e1b18]"
+                                    }`}
+                                >
+                                    <div className="relative">
+                                        <span className="text-[18px] leading-none select-none">⛩️</span>
+                                    </div>
+                                    <span className="text-[10px] font-medium tracking-tight mt-0.5">Beranda</span>
+                                </Link>
+                                <Link
+                                    href="/student/missions"
+                                    className={`flex flex-col items-center justify-center min-w-[56px] py-1 transition-colors ${
+                                        currentPage === "missions"
+                                            ? "text-[#c73e3a] font-bold"
+                                            : "text-[#79716b] hover:text-[#1e1b18]"
+                                    }`}
+                                >
+                                    <Award size={20} className={currentPage === "missions" ? "text-[#c73e3a]" : ""} />
+                                    <span className="text-[10px] font-medium tracking-tight mt-0.5">Journey</span>
+                                </Link>
+                                <Link
+                                    href="/student/kana"
+                                    className={`flex flex-col items-center justify-center min-w-[56px] py-1 transition-colors ${
+                                        currentPage === "kana" || currentPage === "kanji" || currentPage === "vocabulary" || currentPage === "grammar"
+                                            ? "text-[#c73e3a] font-bold"
+                                            : "text-[#79716b] hover:text-[#1e1b18]"
+                                    }`}
+                                >
+                                    <BookOpen size={20} className={currentPage === "kana" || currentPage === "kanji" || currentPage === "vocabulary" || currentPage === "grammar" ? "text-[#c73e3a]" : ""} />
+                                    <span className="text-[10px] font-medium tracking-tight mt-0.5">Materi</span>
+                                </Link>
+                                <Link
+                                    href="/student/quiz"
+                                    className={`flex flex-col items-center justify-center min-w-[56px] py-1 transition-colors ${
+                                        currentPage === "quiz"
+                                            ? "text-[#c73e3a] font-bold"
+                                            : "text-[#79716b] hover:text-[#1e1b18]"
+                                    }`}
+                                >
+                                    <CheckCircle size={20} className={currentPage === "quiz" ? "text-[#c73e3a]" : ""} />
+                                    <span className="text-[10px] font-medium tracking-tight mt-0.5">Latihan</span>
+                                </Link>
+                                <Link
+                                    href="/student/themes"
+                                    className={`flex flex-col items-center justify-center min-w-[56px] py-1 transition-colors ${
+                                        currentPage === "themes"
+                                            ? "text-[#c73e3a] font-bold"
+                                            : "text-[#79716b] hover:text-[#1e1b18]"
+                                    }`}
+                                >
+                                    <Palette size={20} className={currentPage === "themes" ? "text-[#c73e3a]" : ""} />
+                                    <span className="text-[10px] font-medium tracking-tight mt-0.5">Tema</span>
+                                </Link>
+                            </>
+                        )}
+                    </div>
+                </nav>
             </div>
         </div>
     );

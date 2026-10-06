@@ -277,54 +277,92 @@ export default function Quiz({
             : questions[currentQuestion];
 
     return (
-        <div className="max-w-2xl mx-auto space-y-5 sm:space-y-8 pb-12 px-1 sm:px-4">
-            <header className="text-center space-y-2 sm:space-y-4 mb-4 sm:mb-8">
-                <h1 className="font-serif text-xl sm:text-3xl md:text-4xl font-bold sm:font-light">
-                    Latihan Tanpa Batas
-                </h1>
-                <p className="text-[var(--color-ink-light)] max-w-xl mx-auto text-xs sm:text-base">
-                    Kamu bisa mengulang latihan ini berkali-kali! Setiap sesi
-                    akan mengacak 10 pertanyaan dari Kosakata, Kanji, dan Tata
-                    Bahasa.
-                </p>
-            </header>
-
-            <div className="flex justify-between items-center bg-white p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-[#E5E5E5]">
-                <div className="flex items-center gap-2 max-w-[60%]">
-                    <span className="w-2 h-2 rounded-full bg-[var(--color-japan-red)] flex-shrink-0" />
-                    <span className="text-[11px] sm:text-sm font-bold uppercase tracking-wider truncate">
-                        {q.category}
+        <div className="max-w-2xl mx-auto space-y-4 sm:space-y-6 pb-12 px-1 sm:px-4">
+            {/* ── Sub-bar & Status Badge (Stich Mobile Reference) ── */}
+            <div className="flex items-center justify-between gap-2 pt-1">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fbf2ed] text-[#c73e3a] border border-[#efe6e2] shadow-2xs">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#c73e3a] animate-pulse" />
+                    <span className="text-[10px] sm:text-xs tracking-wider font-bold uppercase font-outfit">
+                        PRACTICE HUB • 毎日の練習
                     </span>
                 </div>
-                <div className="text-[11px] sm:text-sm font-mono text-[var(--color-ink-light)]">
-                    {currentQuestion + 1} / {totalQuestions}
+                <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#d0ffd8] text-[#00210d] text-[10px] sm:text-xs font-bold border border-[#bcefc6]">
+                    <span>⚡</span>
+                    <span>+30 XP</span>
                 </div>
             </div>
 
-            <div className="bg-white p-4 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl shadow-lg border border-[#E5E5E5] space-y-4 sm:space-y-8">
-                <h2 className="text-base sm:text-2xl text-center leading-relaxed font-light break-words">
-                    {q.text}
-                </h2>
+            {/* ── Header ── */}
+            <header className="space-y-1 sm:space-y-2 text-left sm:text-center">
+                <h1 className="font-outfit text-xl sm:text-3xl font-bold text-[#1e1b18]">
+                    Latihan Interaktif
+                </h1>
+                <p className="text-xs sm:text-sm text-[#59413f] leading-relaxed">
+                    Pertajam refleks kanji, perbendaharaan kata, dan pemahaman tata bahasa Jepangmu.
+                </p>
+            </header>
 
-                <div className="grid grid-cols-1 gap-2 sm:gap-4">
+            {/* ── Question Card Container ── */}
+            <div className="bg-white p-4 sm:p-7 md:p-9 rounded-2xl sm:rounded-3xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] border border-[#efe6e2] space-y-4 sm:space-y-6">
+                {/* Card Top Meta */}
+                <div className="flex items-center justify-between pb-3 border-b border-[#efe6e2]">
+                    <div className="flex items-center gap-2">
+                        <span className="px-2.5 py-0.5 rounded-md bg-[#fff0ef] text-[#c73e3a] text-[10px] sm:text-xs font-bold border border-[#ffd9dd]">
+                            {q.category}
+                        </span>
+                        <span className="text-[10px] sm:text-xs text-[#79716b] font-medium">
+                            Acak Harian
+                        </span>
+                    </div>
+                    <div className="text-xs sm:text-sm font-mono font-bold text-[#1e1b18]">
+                        Soal {currentQuestion + 1} <span className="text-[#79716b] font-normal">/ {totalQuestions}</span>
+                    </div>
+                </div>
+
+                {/* Progress bar */}
+                <div className="w-full h-1.5 bg-[#f5ece7] rounded-full overflow-hidden">
+                    <motion.div
+                        className="h-full bg-[#c73e3a] rounded-full"
+                        initial={{ width: 0 }}
+                        animate={{ width: `${((currentQuestion + 1) / totalQuestions) * 100}%` }}
+                        transition={{ duration: 0.3 }}
+                    />
+                </div>
+
+                {/* Question Prompt */}
+                <div className="p-4 sm:p-6 rounded-xl bg-[#fbf2ed]/60 border border-[#efe6e2]/80 text-center">
+                    <h2 className="font-outfit text-base sm:text-xl md:text-2xl font-bold text-[#1e1b18] leading-relaxed break-words">
+                        {q.text}
+                    </h2>
+                    {q.explanation && answered && (
+                        <p className="mt-2 text-xs text-[#59413f] italic bg-white/70 p-2 rounded-lg border border-[#efe6e2]">
+                            💡 {q.explanation}
+                        </p>
+                    )}
+                </div>
+
+                {/* Options List */}
+                <div className="grid grid-cols-1 gap-2.5 sm:gap-3">
                     {q.options.map((opt, idx) => {
-                        const normalize = (s: string) =>
-                            (s || "").trim().toLowerCase();
-                        const isCorrect =
-                            normalize(opt) === normalize(q.answer);
-                        const isSelected =
-                            normalize(opt) === normalize(selectedAnswer || "");
+                        const optionLetters = ["A", "B", "C", "D"];
+                        const normalize = (s: string) => (s || "").trim().toLowerCase();
+                        const isCorrect = normalize(opt) === normalize(q.answer);
+                        const isSelected = normalize(opt) === normalize(selectedAnswer || "");
 
-                        let variant =
-                            "border-[#E5E5E5] hover:border-[var(--color-ink)]";
+                        let buttonStyles = "bg-[#fbf2ed]/40 border-[#efe6e2] hover:bg-[#f5ece7] text-[#1e1b18]";
+                        let letterBadgeStyle = "bg-[#efe6e2] text-[#59413f]";
+
                         if (answered) {
-                            if (isCorrect)
-                                variant =
-                                    "border-green-500 bg-green-50 text-green-700 ring-1 ring-green-200";
-                            else if (isSelected)
-                                variant =
-                                    "border-red-400 bg-red-50 text-red-600";
-                            else variant = "border-[#E5E5E5] opacity-50";
+                            if (isCorrect) {
+                                buttonStyles = "bg-[#d0ffd8] border-[#326040] text-[#00210d] ring-1 ring-[#326040]";
+                                letterBadgeStyle = "bg-[#326040] text-white";
+                            } else if (isSelected) {
+                                buttonStyles = "bg-[#fff0ef] border-[#c73e3a] text-[#c73e3a] ring-1 ring-[#c73e3a]";
+                                letterBadgeStyle = "bg-[#c73e3a] text-white";
+                            } else {
+                                buttonStyles = "bg-white border-[#efe6e2] opacity-40 text-[#79716b]";
+                                letterBadgeStyle = "bg-[#efe6e2] text-[#79716b]";
+                            }
                         }
 
                         return (
@@ -332,38 +370,45 @@ export default function Quiz({
                                 key={idx}
                                 onClick={() => handleAnswer(opt)}
                                 disabled={answered}
-                                className={`w-full p-3 sm:p-5 rounded-xl sm:rounded-2xl border-2 text-left transition-all duration-200 flex justify-between items-center gap-2 cursor-pointer ${variant}`}
+                                className={`w-full min-h-[50px] p-3 sm:p-4 rounded-xl sm:rounded-2xl border transition-all duration-200 flex items-center justify-between gap-3 text-left cursor-pointer active:scale-[0.99] ${buttonStyles}`}
                             >
-                                <span className="font-medium text-xs sm:text-base break-words">
-                                    {opt}
-                                </span>
+                                <div className="flex items-center gap-3 min-w-0">
+                                    <span className={`w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 ${letterBadgeStyle}`}>
+                                        {optionLetters[idx] || (idx + 1)}
+                                    </span>
+                                    <span className="font-semibold text-xs sm:text-base break-words">
+                                        {opt}
+                                    </span>
+                                </div>
+
                                 {answered && isCorrect && (
-                                    <CheckCircle2
-                                        size={16}
-                                        className="text-green-500 flex-shrink-0"
-                                    />
+                                    <div className="flex items-center gap-1 text-[#326040] text-xs font-bold shrink-0">
+                                        <span className="hidden sm:inline">Tepat!</span>
+                                        <CheckCircle2 size={18} className="text-[#326040]" />
+                                    </div>
                                 )}
                                 {answered && isSelected && !isCorrect && (
-                                    <XCircle
-                                        size={16}
-                                        className="text-red-500 flex-shrink-0"
-                                    />
+                                    <div className="flex items-center gap-1 text-[#c73e3a] text-xs font-bold shrink-0">
+                                        <span className="hidden sm:inline">Kurang Tepat</span>
+                                        <XCircle size={18} className="text-[#c73e3a]" />
+                                    </div>
                                 )}
                             </button>
                         );
                     })}
                 </div>
 
+                {/* Next Button */}
                 {answered && (
                     <motion.button
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         onClick={nextQuestion}
-                        className="w-full py-2.5 sm:py-4 rounded-xl bg-[var(--color-ink)] text-white font-bold flex items-center justify-center gap-2 hover:bg-black text-xs sm:text-base"
+                        className="w-full min-h-[46px] py-3 rounded-xl bg-[#c73e3a] hover:bg-[#a52525] text-white font-bold flex items-center justify-center gap-2 text-xs sm:text-sm shadow-[0_2px_8px_rgba(199,62,58,0.25)] transition-all cursor-pointer active:scale-95"
                     >
-                        {currentQuestion === totalQuestions - 1
-                            ? "Selesaikan"
-                            : "Soal Berikutnya"}{" "}
+                        <span>
+                            {currentQuestion === totalQuestions - 1 ? "Selesaikan Latihan" : "Soal Berikutnya"}
+                        </span>
                         <ChevronRight size={16} />
                     </motion.button>
                 )}
