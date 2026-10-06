@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+<html lang="id" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Noto+Serif+JP:wght@500;700&amp;family=Outfit:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;700&family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+* { font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; }
+h1, h2, h3, .font-heading, .heading { font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif !important; }
+.font-display { font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif !important; }
+.jp, .font-jp, [lang="ja"], .kanji-text, .kana-text { font-family: 'Noto Serif JP', 'Plus Jakarta Sans', serif !important; }
+body { font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important; }
+
+@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-background": "#1e1b18", "on-secondary": "#ffffff", "primary-fixed-dim": "#ffb3ad", "on-secondary-fixed": "#3e0313", "error-container": "#ffdad6", "on-primary-fixed": "#410003", "on-primary-container": "#fff0ef", "on-error": "#ffffff", "on-tertiary": "#ffffff", "primary-container": "#c73e3a", "surface-container-lowest": "#ffffff", "outline-variant": "#e1bfbb", "surface-container-high": "#efe6e2", "on-error-container": "#93000a", "on-tertiary-container": "#d0ffd8", "error": "#ba1a1a", "tertiary-fixed": "#bcefc6", "tertiary": "#326040", "primary-fixed": "#ffdad6", "on-surface-variant": "#59413f", "outline": "#8d706e", "background": "#fff8f5", "secondary-container": "#fe9dac", "on-secondary-fixed-variant": "#762f3d", "on-primary-fixed-variant": "#8e1217", "inverse-on-surface": "#f8efea", "surface-container": "#f5ece7", "secondary-fixed-dim": "#ffb2bc", "tertiary-container": "#4b7957", "inverse-primary": "#ffb3ad", "primary": "#a52525", "on-tertiary-fixed-variant": "#225031", "tertiary-fixed-dim": "#a0d2ab", "surface-dim": "#e1d8d4", "on-secondary-container": "#79313f", "secondary": "#944654", "on-surface": "#1e1b18", "on-primary": "#ffffff", "surface-container-highest": "#e9e1dc", "surface": "#fff8f5", "surface-container-low": "#fbf2ed", "surface-variant": "#e9e1dc", "surface-bright": "#fff8f5", "inverse-surface": "#34302c", "surface-tint": "#b02d2b", "secondary-fixed": "#ffd9dd", "on-tertiary-fixed": "#00210d" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter": "1.5rem", "space-md": "1rem", "gutter-mobile": "1rem", "margin": "3rem", "space-xl": "2.5rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "space-lg": "1.5rem", "margin-mobile": "1.25rem" }, "fontFamily": { "label-sm": ["Plus Jakarta Sans"], "headline-md": ["Outfit", "Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-lg": ["Outfit", "Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "headline-sm": ["Outfit", "Plus Jakarta Sans"], "display-lg-mobile": ["Outfit", "Plus Jakarta Sans"], "display-lg": ["Outfit", "Plus Jakarta Sans"] }, "fontSize": { "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "30px", "fontWeight": "400" }], "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }], "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-lg": ["56px", { "lineHeight": "68px", "letterSpacing": "-0.02em", "fontWeight": "600" }] } } } }</script><style id="typography-override">
+body, button, input, select, textarea { font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; }
+h1, h2, h3, .font-heading, .heading, .font-headline-lg, .font-headline-md, .font-headline-sm, .font-display-lg, .font-display-lg-mobile { font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif !important; }
+.font-display { font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif !important; }
+.jp, .font-jp, [lang="ja"], .kanji-text, .kana-text { font-family: 'Noto Serif JP', 'Plus Jakarta Sans', serif !important; }
+.font-body-lg, .font-body-md, .font-body-sm, .font-label-lg, .font-label-md, .font-label-sm { font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important; }
+</style></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/85 backdrop-blur-md shadow-[0_1px_8px_rgba(44,40,37,0.04)]"><div class="h-20 max-w-[1200px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="BENKYOU Japanese Hanko Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1URFsEyX1CuxXHS1p-1gq_e83TOsER8hCw7L0VycI2JSRcfiwAzNRHzCpSYXcS4nwqxpO1nCfdkdmvZ0VyDmYwbL1bw7CWcbv4TFvhj2fuCc3eWzD9wfYfdPkfrpYDd_nLP-M8fJVk4S8k_sVmwg2bKjixtaX5Vq6qMItuDJRkh9mJKeSBcZ7JTxB0QyFV4o4Gj4XY_eHhJVOuaFknNFFlccOuqcYa-ltOMA8NN5JuLn1awOkeJNQPnc916"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight ml-space-xs font-heading">BENKYOU</span></div><nav class="hidden md:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold"><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="program" href="#">Program</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="modul" href="#">Modul</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="metode" href="#">Metode</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="testimoni" href="#">Testimoni</a></nav><div class="flex items-center gap-space-sm"><a class="font-label-lg text-label-lg text-on-surface px-space-md py-space-sm hover:text-primary transition-colors" data-path="masuk" href="#">Masuk</a><a class="font-label-lg text-label-lg bg-primary text-on-primary rounded px-space-md py-space-sm hover:bg-primary-container transition-colors shadow-[0_2px_8px_rgba(44,40,37,0.06)]" data-path="daftar" href="#">Daftar</a><img alt="Profile" class="w-8 h-8 rounded-full object-cover ml-space-xs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLV13uk1A9zBbnxStRECICeG1si_r6ZxU6PlXHj0T6yLzPbVqTPaoV6KJVorA24d8DOA2MdwrIkcOcn0HzkvXzDWqzY1lCw9nlzfMTRFPWvFPe2eEykjO3i6dABeI3-lBdifd_eyqDqh7fCDzLk3TRkc1yxHFlZQIQKjd5WG2yTSFdsPgEHnp6w5SP8tUP7dpZdlFncjQVhkR_r4Tys41uEIQEU64iOQviysdQ3dBBYV-4xhUen5uZAQ"/></div></div></header><main class="w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- 1. Announcement Bar -->
+<aside class="w-full bg-surface-container py-space-xs px-margin-mobile md:px-margin text-center">
+<div class="max-w-[1200px] mx-auto flex items-center justify-center gap-space-xs">
+<span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<p class="font-label-md text-label-md text-on-surface-variant tracking-wide">
+<span class="text-primary font-medium">🌸 Pendaftaran Gelombang Baru Cohort JLPT 2026 Dibuka</span> — Mulai Gratis Sekarang. Tempat terbatas.
+      </p>
+</div>
+</aside>
+<!-- 2. Hero Section -->
+<section class="relative w-full overflow-hidden bg-background py-space-xl md:py-24">
+<!-- Atmospheric Kanji Watermarks -->
+<div class="kanji-text absolute -top-12 -right-10 select-none pointer-events-none text-surface-container-high opacity-40 text-[160px] md:text-[240px] leading-none [writing-mode:vertical-rl]">
+      勉強
+    </div>
+<div class="kanji-text absolute top-1/2 -left-8 select-none pointer-events-none text-surface-container-high opacity-30 text-[120px] md:text-[180px] leading-none">
+      道
+    </div>
+<div class="kanji-text absolute bottom-4 right-1/4 select-none pointer-events-none text-surface-container-high opacity-25 text-[100px] md:text-[140px] leading-none">
+      桜
+    </div>
+<div class="relative max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Text Column -->
+<div class="lg:col-span-7 flex flex-col items-start">
+<div class="inline-flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-full shadow-sm mb-space-lg">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider font-semibold">Gratis &amp; Interaktif • <span class="kana-text">日本語を学ぼう</span></span>
+</div>
+<h1 class="font-headline-lg text-headline-lg md:font-display-lg md:text-display-lg text-on-surface font-normal tracking-tight max-w-2xl font-heading">
+            Kuasai Bahasa Jepang dengan <span class="italic text-primary">Keanggunan Budaya</span> &amp; Gamifikasi Nyata.
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-space-lg max-w-xl">
+            Dari goresan Hiragana pertama hingga sertifikasi JLPT N1. Metode terstruktur, flashcard spaced repetition, audio penutur asli Tokyo, dan evolusi reputasi dari Kohai menjadi Shogun.
+          </p>
+<div class="flex flex-wrap items-center gap-space-md mt-space-xl w-full sm:w-auto">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs bg-primary text-on-primary font-label-lg text-label-lg px-space-lg py-space-md rounded shadow-md hover:bg-primary-container transition-all duration-200" href="#program">
+<span class="">Mulai Belajar Sekarang</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs bg-surface-container-lowest text-on-surface font-label-lg text-label-lg px-space-lg py-space-md rounded shadow-sm hover:bg-surface-container transition-all duration-200" id="btn-video">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span class="">Tonton Video Pengenalan (2 Menit)</span>
+</button>
+</div>
+<!-- Trust Badges Bar -->
+<div class="flex flex-wrap items-center gap-space-lg pt-space-xl mt-space-xl">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-bold">18,400+</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Siswa Berkelanjutan</p>
+</div>
+</div>
+<div class="h-8 w-px bg-surface-container-high hidden sm:block"></div>
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-tertiary text-[22px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-bold">98.4%</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Kelulusan Ujian JLPT</p>
+</div>
+</div>
+<div class="h-8 w-px bg-surface-container-high hidden sm:block"></div>
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px]" style="font-variation-settings: 'FILL' 1;">record_voice_over</span>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-bold">NHK Accent</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Audio Asli Standar Tokyo</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Graphic Visual Column -->
+<div class="lg:col-span-5 relative mt-space-xl lg:mt-0">
+<div class="relative mx-auto max-w-md bg-surface-container-lowest rounded-xl shadow-xl p-space-lg overflow-hidden">
+<!-- Header bar with Kanji Card -->
+<div class="flex items-center justify-between pb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-error-container"></span>
+<span class="w-3 h-3 rounded-full bg-surface-container-high"></span>
+<span class="w-3 h-3 rounded-full bg-tertiary-fixed"></span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase">Latihan Hari Ini • Genkouyoushi</span>
+</div>
+<!-- Calligraphic interactive card specimen -->
+<div class="relative bg-surface-container-low rounded-lg p-space-xl flex flex-col items-center justify-center text-center my-space-sm shadow-inner">
+<span class="absolute top-space-sm left-space-sm font-label-sm text-label-sm bg-surface-container-lowest text-tertiary px-space-xs py-0.5 rounded font-semibold">JLPT N5</span>
+<span class="absolute top-space-sm right-space-sm font-label-sm text-label-sm text-on-surface-variant">4 Goresan (Kakusuu)</span>
+<!-- Traditional Stroke Watermark Grid -->
+<div class="w-36 h-36 relative flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full text-surface-container-high" fill="none" viewbox="0 0 100 100">
+<path d="M 0 50 L 100 50 M 50 0 L 50 100" stroke="currentColor" stroke-dasharray="2,2" stroke-width="0.75"></path>
+<rect height="96" stroke="currentColor" stroke-width="0.5" width="96" x="2" y="2"></rect>
+</svg>
+<span class="kanji-text text-[88px] leading-none text-on-surface select-none font-medium">木</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-space-md font-heading">Ki • Pohon / Kayu</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Onyomi: <span class="kana-text">モク</span> (moku), <span class="kana-text">ボク</span> (boku) • Kunyomi: <span class="kana-text">き</span> (ki)</p>
+<!-- Audio Player micro-bar -->
+<div class="mt-space-md flex items-center gap-space-sm bg-surface-container-lowest px-space-md py-space-xs rounded-full shadow-sm">
+<button class="text-primary hover:text-primary-container transition-colors flex items-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">volume_up</span>
+</button>
+<div class="w-24 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-2/3"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">0:01 / 0:02</span>
+</div>
+</div>
+<!-- Floating Progress Badge attached -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md mt-space-md shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">workspace_premium</span>
+</div>
+<div>
+<h2 class="font-label-md text-label-md text-on-surface font-semibold font-heading">Tingkatan: Kohai Mahir</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">720 XP menuju Rank Senpai</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-tertiary/10 text-tertiary px-space-sm py-1 rounded font-bold">Lv. 4</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Section: Program Belajar (Interactive Tabs) -->
+<section class="w-full bg-surface-container-low py-space-xl md:py-24" id="program">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="text-center max-w-2xl mx-auto mb-space-xl">
+<span class="font-label-md text-label-md uppercase tracking-widest text-primary font-bold">Jalur Pencapaian &amp; Kurikulum</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-space-xs font-heading">Kurikulum Bertingkat Sesuai Standar JLPT</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm">
+          Pilih titik awal Anda. Dari dasar pengucapan aksara hingga kefasihan membaca teks sastra dan berita koran Asahi Shimbun.
+        </p>
+<!-- Tabs Navigation -->
+<div class="inline-flex p-1 bg-surface-container-high rounded-full mt-space-lg shadow-inner gap-1">
+<button class="px-space-md py-space-xs rounded-full font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm transition-all duration-150" id="tab-kohai" onclick="switchTrack('kohai')">
+            🌱 Pemula / Kohai
+          </button>
+<button class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all duration-150" id="tab-senpai" onclick="switchTrack('senpai')">
+            ⚡ Menengah / Senpai
+          </button>
+<button class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all duration-150" id="tab-samurai" onclick="switchTrack('samurai')">
+            🏯 Mahir / Samurai
+          </button>
+</div>
+</div>
+<!-- Tab Content Area -->
+<!-- Track 1: Kohai (Default) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-md" id="content-kohai">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-7 flex flex-col">
+<div class="flex items-center gap-space-sm mb-space-sm">
+<span class="font-label-sm text-label-sm bg-tertiary/10 text-tertiary px-space-sm py-0.5 rounded font-bold">Level Fondasi: JLPT N5 - N4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Estimasi Waktu: 3 - 6 Bulan (15 Mins/Hari)</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-heading">Fondasi Bahasa: Aksara Kana &amp; Percakapan Harian</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm">
+              Fokus mendalam pada penguasaan 46 Hiragana, 46 Katakana, 150 Kanji esensial, serta pola tata bahasa partikel dasar (<span class="kana-text">は</span>, <span class="kana-text">が</span>, <span class="kana-text">を</span>, <span class="kana-text">に</span>, <span class="kana-text">で</span>) untuk komunikasi sehari-hari di Jepang tanpa rasa ragu.
+            </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md mt-space-lg">
+<div class="bg-surface-container-low p-space-md rounded">
+<p class="font-label-md text-label-md text-primary font-semibold">Modul Utama</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">46 Hiragana, 46 Katakana, Dakuten, &amp; Handakuten dengan stroke order video.</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded">
+<p class="font-label-md text-label-md text-tertiary font-semibold">Target Kanji</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">150 Kanji esensial (Angka, Tanggal, Arah, Keluarga, Alam sekitar).</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded">
+<p class="font-label-md text-label-md text-secondary font-semibold">Tata Bahasa</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">Bentuk Sopan (~Desu, ~Masu), Kalimat Tanya, Bentuk Lampau, Keinginan (~Tai).</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded">
+<p class="font-label-md text-label-md text-on-surface font-semibold">Milestone Kelulusan</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">Mampu memperkenalkan diri, memesan di Izakaya, dan lolos simulasi JLPT N5.</p>
+</div>
+</div>
+<div class="mt-space-xl">
+<a class="inline-flex items-center gap-space-xs text-primary font-label-lg text-label-lg hover:underline" href="#">
+<span class="">Lihat Silabus Lengkap Kohai</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="lg:col-span-5 bg-surface-container-high rounded-xl p-space-lg flex flex-col justify-between h-full">
+<div class="flex items-center justify-between pb-space-md">
+<span class="font-label-md text-label-md text-on-surface font-bold font-heading">Ringkasan Materi N5</span>
+<span class="material-symbols-outlined text-primary">menu_book</span>
+</div>
+<div class="space-y-space-sm my-space-md">
+<div class="flex items-center justify-between font-body-sm text-body-sm bg-surface-container-lowest p-space-sm rounded shadow-sm">
+<span class="text-on-surface">Unit 1: Hiragana &amp; Salam Dasar</span>
+<span class="text-tertiary font-semibold">100% Selesai</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm bg-surface-container-lowest p-space-sm rounded shadow-sm">
+<span class="text-on-surface">Unit 2: Katakana &amp; Kosakata Serapan</span>
+<span class="text-tertiary font-semibold">100% Selesai</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm bg-surface-container-lowest p-space-sm rounded shadow-sm">
+<span class="text-on-surface">Unit 3: Partikel <span class="kana-text">は</span> &amp; <span class="kana-text">を</span> (Struktur SPO)</span>
+<span class="text-primary font-semibold">Sedang Dipelajari</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm bg-surface-container-low p-space-sm rounded text-on-surface-variant">
+<span class="">Unit 4: Kalimat Tanya &amp; Angka Jam</span>
+<span class="">Terkunci</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded mt-space-sm text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Kelayakan Sertifikasi</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold font-heading">Lulus Ujian Simulasi N5</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Track 2: Senpai (Hidden Initially) -->
+<div class="hidden bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-md" id="content-senpai">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-7 flex flex-col">
+<div class="flex items-center gap-space-sm mb-space-sm">
+<span class="font-label-sm text-label-sm bg-secondary/10 text-secondary px-space-sm py-0.5 rounded font-bold">Level Menengah: JLPT N3</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Estimasi Waktu: 6 - 9 Bulan</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-heading">Kefasihan Nyata: Membaca Manga, Menonton Drama &amp; Logika Sintaksis</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm">
+              Jembatan antara percakapan santai dan profesional. Kuasai bentuk pasif, kausatif, pengandaian kompleks (~tara, ~nara, ~ba), serta 650 Kanji untuk konsumsi konten asli tanpa bantuan subtitle.
+            </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md mt-space-lg">
+<div class="bg-surface-container-low p-space-md rounded">
+<p class="font-label-md text-label-md text-primary font-semibold">Modul Utama</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">Studi Dokoku, Nuansa Sinonim, Kalimat Kompleks bertingkat dua klausa.</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded">
+<p class="font-label-md text-label-md text-tertiary font-semibold">Target Kanji</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">650+ Kanji kombinasi majemuk (Jukugo) dan bacaan irregular.</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded">
+<p class="font-label-md text-label-md text-secondary font-semibold">Tata Bahasa</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">Keigo Dasar (Sonkeigo &amp; Kenjougo), Bentuk Pasif-Kausatif, ~Wake da.</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded">
+<p class="font-label-md text-label-md text-on-surface font-semibold">Milestone Kelulusan</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">Dapat mengikuti wawancara kerja paruh waktu dan lulus sertifikasi resmi N3.</p>
+</div>
+</div>
+<div class="mt-space-xl">
+<a class="inline-flex items-center gap-space-xs text-primary font-label-lg text-label-lg hover:underline" href="#">
+<span class="">Lihat Silabus Lengkap Senpai</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="lg:col-span-5 bg-surface-container-high rounded-xl p-space-lg flex flex-col justify-between h-full">
+<div class="flex items-center justify-between pb-space-md">
+<span class="font-label-md text-label-md text-on-surface font-bold font-heading">Fokus Keterampilan N3</span>
+<span class="material-symbols-outlined text-secondary">psychology</span>
+</div>
+<div class="space-y-space-sm my-space-md">
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface">Dokkai: Memahami Opini &amp; Esai Pendek</span>
+<span class="text-secondary font-semibold">12 Kasus</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface">Choukai: Percakapan Cepat Kehidupan Kantor</span>
+<span class="text-secondary font-semibold">40 Audio Track</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface">Kosakata Idiom &amp; Onomatopoeia</span>
+<span class="text-secondary font-semibold">280 Kata</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded mt-space-sm text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Tolak Ukur</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold font-heading">Percakapan Spontan Natural</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Track 3: Samurai (Hidden Initially) -->
+<div class="hidden bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-md" id="content-samurai">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-7 flex flex-col">
+<div class="flex items-center gap-space-sm mb-space-sm">
+<span class="font-label-sm text-label-sm bg-primary/10 text-primary px-space-sm py-0.5 rounded font-bold">Level Tertinggi: JLPT N2 - N1</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Estimasi Waktu: 9 - 14 Bulan</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-heading">Penguasaan Mutlak: Bahasa Bisnis, Keigo Tingkat Tinggi &amp; Jurnal Ilmiah</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm">
+              Tingkat kemahiran profesional penuh. Sanggup bernegosiasi bisnis, memahami editorial politik, esai filsafat, serta menguasai 2000+ Joyo Kanji standar kementerian pendidikan Jepang.
+            </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md mt-space-lg">
+<div class="bg-surface-container-low p-space-md rounded">
+<p class="font-label-md text-label-md text-primary font-semibold">Modul Utama</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">Keigo Bisnis Eksekutif, Penulisan Email Formal, Analisis Jurnal Ekonomi.</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded">
+<p class="font-label-md text-label-md text-tertiary font-semibold">Target Kanji</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">2.136 Joyo Kanji lengkap beserta variasi kunyomi langka.</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded">
+<p class="font-label-md text-label-md text-secondary font-semibold">Tata Bahasa</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">Bentuk sastra klasik (~zarugoto, ~ni taenai, ~wo kawakiri ni).</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded">
+<p class="font-label-md text-label-md text-on-surface font-semibold">Milestone Kelulusan</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">Karier korporasi multinasional Jepang &amp; Gelar Shogun BENKYOU.</p>
+</div>
+</div>
+<div class="mt-space-xl">
+<a class="inline-flex items-center gap-space-xs text-primary font-label-lg text-label-lg hover:underline" href="#">
+<span class="">Lihat Silabus Lengkap Samurai</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="lg:col-span-5 bg-surface-container-high rounded-xl p-space-lg flex flex-col justify-between h-full">
+<div class="flex items-center justify-between pb-space-md">
+<span class="font-label-md text-label-md text-on-surface font-bold font-heading">Kapabilitas Tertinggi N1</span>
+<span class="material-symbols-outlined text-primary">military_tech</span>
+</div>
+<div class="space-y-space-sm my-space-md">
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface">Negosiasi Bisnis &amp; Dokumen Kontrak</span>
+<span class="text-primary font-semibold">Advanced</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface">Membaca Berita Nikkei &amp; Asahi Shimbun</span>
+<span class="text-primary font-semibold">Tingkat Penutur Asli</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface">Simulasi JLPT N1 dengan Bank Soal Riil</span>
+<span class="text-primary font-semibold">Score 160+/180</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded mt-space-sm text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Gelar Tertinggi</span>
+<span class="font-headline-sm text-headline-sm text-primary font-semibold font-heading">Taraf Profesional Sempurna</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Section: Modul Pembelajaran (4 Main Feature Cards) -->
+<section class="w-full bg-background py-space-xl md:py-24" id="modul">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md">
+<div>
+<span class="font-label-md text-label-md uppercase tracking-widest text-primary font-bold">Modul Pembelajaran Mandiri</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-space-xs font-heading">Empat Pilar Fondasi Bahasa Jepang</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+          Masing-masing modul didesain interaktif dengan pendekatan sensory learning: visual goresan kuas, sentuhan audio murni, dan logika spaced-repetition.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- Card 1: Huruf Kana -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center text-primary mb-space-md group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="kana-text text-headline-md font-bold">あ</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Fondasi Menulis</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-space-xs font-heading">Huruf Kana (<span class="kanji-text">仮名</span>)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+              Animasi urutan goresan stroke-order untuk Hiragana &amp; Katakana. Dilengkapi panduan pelafalan intonasi presisi penutur asli.
+            </p>
+</div>
+<div class="pt-space-lg mt-space-md">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mb-space-xs">
+<span class="">Kelengkapan Aksara</span>
+<span class="font-semibold text-on-surface">92 Karakter</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-full rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Card 2: Kanji -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center text-tertiary mb-space-md group-hover:bg-tertiary group-hover:text-on-tertiary transition-colors">
+<span class="kanji-text text-headline-md font-bold">漢</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Visual Simbologi</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-space-xs font-heading">Kamus Kanji (<span class="kanji-text">漢字</span>)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+              2.000+ Kanji Joyo lengkap dengan radikal (bushu), mnemonik visual bercerita, Onyomi, Kunyomi, dan contoh kosakata nyata.
+            </p>
+</div>
+<div class="pt-space-lg mt-space-md">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mb-space-xs">
+<span class="">Tersedia Dalam Indeks</span>
+<span class="font-semibold text-on-surface">N5 s/d N1</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-4/5 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Card 3: Kosakata -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center text-secondary mb-space-md group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="kanji-text text-headline-md font-bold">語</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Spaced Repetition</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-space-xs font-heading">Kosakata (<span class="kanji-text">単語</span>)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+              Flashcard interaktif 3D Flip didukung algoritma SM-2. Mengulang kata tepat di detik sebelum memori otak melupakannya.
+            </p>
+</div>
+<div class="pt-space-lg mt-space-md">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mb-space-xs">
+<span class="">Bank Kosakata</span>
+<span class="font-semibold text-on-surface">8.500+ Kata</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-3/4 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Card 4: Tata Bahasa -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center text-on-surface mb-space-md group-hover:bg-inverse-surface group-hover:text-inverse-on-surface transition-colors">
+<span class="kanji-text text-headline-md font-bold">文</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Konstruksi Pola</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-space-xs font-heading">Tata Bahasa (<span class="kanji-text">文法</span>)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+              Dekonstruksi rumus kalimat logis, analisis partikel konteks, perbedaan nuansa serupa (contoh: ~kara vs ~node), dan latihan soal.
+            </p>
+</div>
+<div class="pt-space-lg mt-space-md">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mb-space-xs">
+<span class="">Pola Kalimat Terurai</span>
+<span class="font-semibold text-on-surface">450 Pola</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-on-surface h-full w-full rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Section: Metode Belajar (4 Core Pillars) -->
+<section class="w-full bg-surface-container-low py-space-xl md:py-24" id="metode">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="text-center max-w-2xl mx-auto mb-space-xl">
+<span class="font-label-md text-label-md uppercase tracking-widest text-primary font-bold">Metode Belajar Teruji</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-space-xs font-heading">Menggabungkan Disiplin Tradisional &amp; Teknologi Kognitif</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm">
+          Kami menolak hafalan buta tanpa rasa. Belajar bahasa Jepang membutuhkan kebiasaan harian (*shūkan*) yang menyenangkan dan bermakna.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Pillar 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-sm flex gap-space-md">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[26px]">hearing</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="font-label-sm text-label-sm text-primary font-bold">Pilar 01</span>
+<span class="text-on-surface-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Natural Intonation</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-heading">Visual &amp; Audio Interaktif Penutur Asli</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+              Setiap suku kata direkam oleh voice artist asal Tokyo dengan pitch-accent notation yang jelas. Anda mendengarkan aksen bahasa standar tanpa distorsi robotik AI yang datar.
+            </p>
+</div>
+</div>
+<!-- Pillar 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-sm flex gap-space-md">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[26px]">shield</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="font-label-sm text-label-sm text-tertiary font-bold">Pilar 02</span>
+<span class="text-on-surface-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Gamification</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-heading">Gamifikasi &amp; Perjalanan Gelar Shogun</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+              Kumpulkan XP, pertahankan streak harian tanpa putus, raih lencana Bushido, dan tingkatkan kasta Anda dari Kohai (pemula), Ronin, Senpai, Samurai hingga gelar tertinggi: Shogun.
+            </p>
+</div>
+</div>
+<!-- Pillar 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-sm flex gap-space-md">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[26px]">account_tree</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold">Pilar 03</span>
+<span class="text-on-surface-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Roadmap JLPT</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-heading">Progres Modular Sesuai Standar JLPT</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+              Kurikulum terstruktur mengacu langsung pada Japanese Language Proficiency Test. Selesaikan setiap unit kecil dalam 10-15 menit waktu luang komuter Anda setiap hari.
+            </p>
+</div>
+</div>
+<!-- Pillar 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-sm flex gap-space-md">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[26px]">edit_note</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Pilar 04</span>
+<span class="text-on-surface-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Reflective Journal</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-heading">Catatan Personal &amp; Jurnal Belajar</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+              Simpan pola kalimat favorit, catat idiom yang baru didengar dari serial anime, dan tulis refleksi mini harian (*nikki*) untuk melatih ekspresi pemikiran asli dalam aksara Jepang.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Section: Testimoni Siswa -->
+<section class="w-full bg-background py-space-xl md:py-24" id="testimoni">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="text-center max-w-xl mx-auto mb-space-xl">
+<span class="font-label-md text-label-md uppercase tracking-widest text-primary font-bold">Kisah Keberhasilan</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-space-xs font-heading">Cerita Mereka yang Telah Berhasil Melangkah ke Jepang</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm">
+          Lebih dari 18.000 pembelajar telah membuktikan efektivitas metode terstruktur BENKYOU.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Testimonial 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-1 text-primary mb-space-md">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              "Sebelumnya saya belajar acak dari video YouTube dan menyerah di hafalan Katakana. Di BENKYOU, kurikulumnya runtut dan tidak membuat stres. Dalam 5 bulan saya berhasil lulus JLPT N5 dengan skor hampir sempurna!"
+            </p>
+</div>
+<div class="flex items-center gap-space-md pt-space-lg mt-space-md">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait photo of a young Indonesian professional woman smiling warmly in front of minimalist bright background wearing beige linen shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_OkNfaRTknCFXTfkyJ7ipDP5VgZpEGMlFjvOlTLyQVbMDL7oMygkV5nP_rdGJAue4_cp55pKzQCMtJn8ZICF6C9AHtE_LATri9LUbJiibFcwCZgKhvO-WvAp5nGBoYsLOJgb845WWhqbYZDZ9Ob92yu-rxsoTJnRetId6rsLHl5zlgaLjSszWvHVfamZNjFANGEHe450gBCI3frRhQMlVX7b0GgTmVGj5tOZu-Bw3pX7scOltF8KZrg"/>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold">Anisa Rahmadani</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Lulus JLPT N5 • Penerima Beasiswa MEXT 2024</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-1 text-primary mb-space-md">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              "Fitur kamus Kanji dan mnemonik visualnya adalah penyelamat sejati. Menghafal 600 Kanji untuk JLPT N3 terasa seperti petualangan cerita budaya, bukan paksaan akademik. Sangat direkomendasikan untuk pekerja sibuk."
+            </p>
+</div>
+<div class="flex items-center gap-space-md pt-space-lg mt-space-md">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Close up portrait of a young Asian man software engineer wearing glasses and navy shirt with soft neutral background lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO1pw27oyIUzlHL0JSOsUJ84Rbxk1aWj0pZoSQiDnXkIopUbYnqheIWwjBaAOOSMl65AynSq9jWOhSAa9HpIWQx0q4arvASn6X30Zlmh_YfSpbkm4pe4lDZ28xRIz4fg_24Cksra3n7L8GqnCmbw_BhUm5PGBZ45syQGhAQ8ludyO5gB1s97LYL-D6kSDJByVvp7I982xmgmBfCuRCfRDHnrLGjRSsCc6rRQEFjvWuJyksf3lfDHcPiQ"/>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold">Dimas Prasetyo</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Lulus JLPT N3 • Software Engineer di Osaka</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-1 text-primary mb-space-md">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              "Desain webnya sangat tenang dan bernuansa Jepang asli. Tidak ada iklan norak. Modul audionya sangat membantu mengasah pendengaran untuk tes Choukai yang selama ini jadi momok terbesar saya."
+            </p>
+</div>
+<div class="flex items-center gap-space-md pt-space-lg mt-space-md">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Professional headshot of an Indonesian young woman wearing modest green hijab in an architectural interior setting with soft diffused light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMuGLtf5ya_ZpjgxFyd4wuNQkkG1GZTHtJVlDP7nSeMi7o0F-mTApUQF2USeINVvFMX63k9Jm_VdE-KpuuU7fEQP-TZRP4ai3jVTDEKX3D6xhqTpdUSm-vajhhpbEnJ_lBK2Wx0TTl91NCq68rXwQl8OIPhLA1FYfYuFUgeEBIFtfqFGAgslar1FUoYkorV1_zfATIBqH91gY1teB-7rTP9qXqZbyxXkrVlNjVnAXaPYMSdpxjjRxfLA"/>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold">Fathia Utami</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Lulus JLPT N2 • Translator &amp; Interpreter</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. Final Call-to-Action Banner -->
+<section class="w-full bg-surface-container-highest py-space-xl md:py-24 relative overflow-hidden">
+<!-- Traditional torii stylized background stamp -->
+<div class="kanji-text absolute -right-12 -bottom-16 text-surface-container-high opacity-30 select-none pointer-events-none text-[220px]">
+      鳥居
+    </div>
+<div class="relative max-w-[1200px] mx-auto px-margin-mobile md:px-margin text-center">
+<div class="max-w-2xl mx-auto">
+<span class="inline-block px-space-md py-space-xs rounded-full bg-primary/10 text-primary font-label-md text-label-md font-bold uppercase tracking-wider mb-space-md">
+          Langkah Pertama Dimulai Hari Ini
+        </span>
+<h2 class="font-headline-lg text-headline-lg md:font-display-lg md:text-display-lg text-on-surface font-normal font-heading">
+          Siap Memulai Langkah Pertamamu Menuju Jepang?
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-space-md">
+          Bergabung bersama ribuan Kohai lainnya. Akses seluruh modul pengenalan huruf Kana, 100 audio kosakata dasar, dan uji penempatan level gratis tanpa kartu kredit.
+        </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-space-md mt-space-xl">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs bg-primary text-on-primary font-label-lg text-label-lg px-space-xl py-space-md rounded shadow-md hover:bg-primary-container transition-colors" href="#">
+<span class="">Daftar Sekarang — Gratis</span>
+<span class="material-symbols-outlined text-[18px]">east</span>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs bg-surface-container-lowest text-on-surface font-label-lg text-label-lg px-space-lg py-space-md rounded shadow-sm hover:bg-surface-container transition-colors" href="#modul">
+<span class="">Jelajahi Modul Belajar</span>
+</a>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-space-md">
+          ✓ Tanpa syarat kartu kredit • ✓ Akses seumur hidup untuk modul dasar Kana • ✓ Belajar sesuai kecepatanmu
+        </p>
+</div>
+</div>
+</section>
+</div>
+<script>
+  function switchTrack(track) {
+    const tabs = ['kohai', 'senpai', 'samurai'];
+    tabs.forEach(t => {
+      const btn = document.getElementById('tab-' + t);
+      const content = document.getElementById('content-' + t);
+      if (t === track) {
+        btn.classList.remove('text-on-surface-variant');
+        btn.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+        content.classList.remove('hidden');
+      } else {
+        btn.classList.add('text-on-surface-variant');
+        btn.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+        content.classList.add('hidden');
+      }
+    });
+  }
+
+  // Smooth scroll helper for internal anchors
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+</script></main><footer class="w-full bg-surface-container-low shadow-[0_-1px_8px_rgba(44,40,37,0.03)] py-space-xl"><div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><img alt="BENKYOU Japanese Hanko Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1URFsEyX1CuxXHS1p-1gq_e83TOsER8hCw7L0VycI2JSRcfiwAzNRHzCpSYXcS4nwqxpO1nCfdkdmvZ0VyDmYwbL1bw7CWcbv4TFvhj2fuCc3eWzD9wfYfdPkfrpYDd_nLP-M8fJVk4S8k_sVmwg2bKjixtaX5Vq6qMItuDJRkh9mJKeSBcZ7JTxB0QyFV4o4Gj4XY_eHhJVOuaFknNFFlccOuqcYa-ltOMA8NN5JuLn1awOkeJNQPnc916"/><span class="font-headline-sm text-headline-sm text-on-surface font-heading">BENKYOU</span></div><p class="font-body-sm text-body-sm text-on-surface-variant text-center md:text-left">Belajar Bahasa &amp; Budaya Jepang dengan ketenangan dan ketelitian otentik.</p><div class="font-label-sm text-label-sm text-on-surface-variant">© 2024 BENKYOU. Seluruh hak cipta dilindungi.</div></div></footer></body></html>

@@ -1,0 +1,1573 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary": "#ffffff", "on-background": "#1e1b18", "secondary-fixed": "#ffd9dd", "primary-fixed-dim": "#ffb3ad", "tertiary": "#326040", "background": "#fff8f5", "primary": "#a52525", "surface-container-lowest": "#ffffff", "on-tertiary-fixed": "#00210d", "on-tertiary-container": "#d0ffd8", "on-secondary": "#ffffff", "surface-container": "#f5ece7", "on-error-container": "#93000a", "on-primary-fixed": "#410003", "tertiary-container": "#4b7957", "on-error": "#ffffff", "surface-dim": "#e1d8d4", "tertiary-fixed-dim": "#a0d2ab", "on-secondary-fixed-variant": "#762f3d", "primary-fixed": "#ffdad6", "surface-bright": "#fff8f5", "outline": "#8d706e", "inverse-surface": "#34302c", "surface-container-low": "#fbf2ed", "error": "#ba1a1a", "surface-container-highest": "#e9e1dc", "inverse-on-surface": "#f8efea", "on-tertiary-fixed-variant": "#225031", "on-primary-container": "#fff0ef", "secondary-fixed-dim": "#ffb2bc", "surface": "#fff8f5", "secondary": "#944654", "primary-container": "#c73e3a", "surface-variant": "#e9e1dc", "tertiary-fixed": "#bcefc6", "on-surface-variant": "#59413f", "on-surface": "#1e1b18", "on-primary-fixed-variant": "#8e1217", "surface-container-high": "#efe6e2", "inverse-primary": "#ffb3ad", "on-tertiary": "#ffffff", "on-secondary-fixed": "#3e0313", "on-secondary-container": "#79313f", "surface-tint": "#b02d2b", "outline-variant": "#e1bfbb", "error-container": "#ffdad6", "secondary-container": "#fe9dac" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-xl": "2.5rem", "margin": "3rem", "space-md": "1rem", "space-sm": "0.5rem", "margin-mobile": "1.25rem", "gutter-mobile": "1rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "gutter": "1.5rem" }, "fontFamily": { "headline-sm": [ "Noto Serif" ], "headline-lg": [ "Noto Serif" ], "label-lg": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "headline-md": [ "Noto Serif" ], "display-lg-mobile": [ "Noto Serif" ], "label-md": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "body-lg": [ "Plus Jakarta Sans" ], "display-lg": [ "Noto Serif" ] }, "fontSize": { "headline-sm": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "500" } ], "label-lg": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" } ], "body-md": [ "15px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-md": [ "24px", { "lineHeight": "32px", "fontWeight": "500" } ], "display-lg-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "body-sm": [ "13px", { "lineHeight": "20px", "fontWeight": "400" } ], "body-lg": [ "18px", { "lineHeight": "30px", "fontWeight": "400" } ], "display-lg": [ "56px", { "lineHeight": "68px", "letterSpacing": "-0.02em", "fontWeight": "400" } ] } } } };</script><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style>body{font-family:'Plus Jakarta Sans','Inter',-apple-system,sans-serif!important;}h1,h2,h3,h4{font-family:'Outfit','Plus Jakarta Sans',sans-serif!important;}</style></head><body class="bg-surface text-on-surface antialiased" style="font-family: &quot;Plus Jakarta Sans&quot;, Inter, -apple-system, sans-serif !important;"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-low z-40 flex flex-col justify-between overflow-y-auto"><div class="p-space-lg"><div class="flex items-center gap-space-sm mb-space-xl"><div class="w-9 h-9 rounded-lg bg-primary-container text-on-primary flex items-center justify-center shadow-[0_2px_8px_rgba(44,40,37,0.08)]"><span class="material-symbols-outlined text-[20px]">temple_buddhist</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">BENKYOU</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-1">Sensei Backoffice</span></div></div><nav class="space-y-space-md" data-active-classes="bg-surface-container text-primary font-label-md font-semibold"><div class="space-y-space-xs"><p class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-space-xs">Ikhtisar</p><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg transition-colors bg-surface-container text-primary font-label-md font-semibold" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">dashboard</span><span class="">Ringkasan</span></a></div><div class="space-y-space-xs"><p class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-space-xs">Kelola Pembelajaran</p><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="manajemen-materi" href="#"><span class="material-symbols-outlined text-[18px]">menu_book</span><span class="">Manajemen Materi</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="bank-soal-quiz" href="#"><span class="material-symbols-outlined text-[18px]">quiz</span><span class="">Bank Soal &amp; Quiz</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="manajemen-level-journey" href="#"><span class="material-symbols-outlined text-[18px]">alt_route</span><span class="">Level &amp; Journey</span></a></div><div class="space-y-space-xs"><p class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-space-xs">Pengguna &amp; Prestasi</p><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="manajemen-siswa" href="#"><span class="material-symbols-outlined text-[18px]">group</span><span class="">Manajemen Siswa</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="manajemen-sertifikat" href="#"><span class="material-symbols-outlined text-[18px]">workspace_premium</span><span class="">Manajemen Sertifikat</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="pengaturan-misi-tema" href="#"><span class="material-symbols-outlined text-[18px]">military_tech</span><span class="">Misi &amp; Tema</span></a></div><div class="space-y-space-xs"><p class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-space-xs">Sistem &amp; CMS</p><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="cms-landing-page" href="#"><span class="material-symbols-outlined text-[18px]">web</span><span class="">CMS Landing Page</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="pengaturan-sistem" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span class="">Pengaturan Sistem</span></a></div></nav></div><div class="p-space-lg mt-auto bg-surface-container/60"><div class="flex items-center gap-space-sm"><span class="w-2.5 h-2.5 rounded-full bg-tertiary inline-block animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Sistem Stabil (JLPT N5-N1 Engine)</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 z-30 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-1 max-w-lg"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span><input class="w-full bg-surface-container-low pl-10 pr-4 py-2 rounded-lg text-body-sm font-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container transition-colors" placeholder="Cari materi, kanji, ID siswa, atau catatan ujian..." type="text"></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-2.5 py-1 rounded-lg bg-surface-container text-tertiary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">verified</span><span class="">Master Sensei</span></div><button aria-label="Notifications" class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors relative" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary"></span></button><div class="flex items-center gap-space-sm pl-space-xs"><div class="text-right hidden sm:block"><p class="font-label-md text-label-md text-on-surface leading-tight">Kenjiro Sato</p><p class="font-label-sm text-label-sm text-on-surface-variant leading-none">Chief Curriculum Head</p></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-16 bg-surface"><div class="flex flex-col w-full">
+<!-- Top Command & Module Navigation Bar -->
+<div class="bg-surface-container-low px-space-lg py-space-md shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span class="">BENKYOU</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="">Sensei Backoffice</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold" id="breadcrumb-current">Ikhtisar (Ringkasan)</span>
+</div>
+<div class="flex items-center gap-space-sm mt-1">
+<span class="inline-block w-2 h-2 rounded-full bg-primary-container"></span>
+<h1 class="font-headline-md text-headline-md text-on-surface" id="module-title">Pusat Kendali Kurikulum &amp; Siswa</h1>
+<span class="px-2 py-0.5 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Akademi Musim Semi 2025</span>
+</div>
+</div>
+<!-- Quick Action Buttons -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="flex items-center gap-space-xs px-3.5 py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-colors" onclick="switchTab('manajemen-materi'); openMateriModal();" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span class="">Tambah Materi</span>
+</button>
+<button class="flex items-center gap-space-xs px-3.5 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors" onclick="switchTab('bank-soal-quiz')" type="button">
+<span class="material-symbols-outlined text-[18px]">quiz</span>
+<span class="">Buat Quiz</span>
+</button>
+<button class="flex items-center gap-space-xs px-3.5 py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors" onclick="openBroadcastModal()" type="button">
+<span class="material-symbols-outlined text-[18px]">campaign</span>
+<span class="">Broadcast Pengumuman</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Module Tabs Bar -->
+<div class="mt-space-md pt-space-xs overflow-x-auto">
+<div class="flex items-center gap-space-xs min-w-max pb-1" id="tab-nav-container">
+<button class="tab-btn active-tab flex items-center gap-2 px-3.5 py-2 rounded-lg font-label-md text-label-md transition-colors bg-primary-container text-on-primary shadow-sm" data-tab="overview" onclick="switchTab('overview')">
+<span class="material-symbols-outlined text-[18px]">space_dashboard</span>
+<span class="">Ringkasan</span>
+</button>
+<button class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg font-label-md text-label-md transition-colors bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="manajemen-materi" onclick="switchTab('manajemen-materi')">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span class="">Materi &amp; Kanji</span>
+</button>
+<button class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg font-label-md text-label-md transition-colors bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="bank-soal-quiz" onclick="switchTab('bank-soal-quiz')">
+<span class="material-symbols-outlined text-[18px]">assignment_turned_in</span>
+<span class="">Bank Soal &amp; Quiz</span>
+</button>
+<button class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg font-label-md text-label-md transition-colors bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="manajemen-level-journey" onclick="switchTab('manajemen-level-journey')">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+<span class="">Level &amp; Journey</span>
+</button>
+<button class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg font-label-md text-label-md transition-colors bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="manajemen-siswa" onclick="switchTab('manajemen-siswa')">
+<span class="material-symbols-outlined text-[18px]">school</span>
+<span class="">Direktori Siswa</span>
+</button>
+<button class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg font-label-md text-label-md transition-colors bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="manajemen-sertifikat" onclick="switchTab('manajemen-sertifikat')">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+<span class="">Sertifikat Hanko</span>
+</button>
+<button class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg font-label-md text-label-md transition-colors bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="pengaturan-misi-tema" onclick="switchTab('pengaturan-misi-tema')">
+<span class="material-symbols-outlined text-[18px]">military_tech</span>
+<span class="">Misi &amp; Tema</span>
+</button>
+<button class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg font-label-md text-label-md transition-colors bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="cms-landing-page" onclick="switchTab('cms-landing-page')">
+<span class="material-symbols-outlined text-[18px]">web</span>
+<span class="">CMS Landing</span>
+</button>
+<button class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg font-label-md text-label-md transition-colors bg-surface-container text-on-surface hover:bg-surface-container-high" data-tab="pengaturan-sistem" onclick="switchTab('pengaturan-sistem')">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="">Sistem &amp; API</span>
+</button>
+</div>
+</div>
+</div>
+<div class="p-space-lg w-full max-w-7xl mx-auto space-y-space-lg">
+<!-- ========================================================================= -->
+<!-- MODULE 1: RINGKASAN (OVERVIEW) -->
+<!-- ========================================================================= -->
+<div class="module-pane space-y-space-lg" id="module-overview">
+<!-- 4 Stat Metric Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Siswa Aktif</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+</div>
+</div>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface">1,482</span>
+<span class="px-2 py-0.5 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">+14.8%</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Cohort JLPT N5 - N1 aktif bulan ini</p>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Retensi 30 Hari</span>
+<span class="font-label-sm text-label-sm font-semibold text-tertiary">91.2%</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Materi Terbit</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">library_books</span>
+</div>
+</div>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface">348</span>
+<span class="px-2 py-0.5 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">Modul</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Kana (46), Kanji (210), Bunpou (92)</p>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Dalam Draft</span>
+<span class="font-label-sm text-label-sm font-semibold text-secondary">18 Modul</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Quiz Selesai Hari Ini</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+</div>
+</div>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface">1,290</span>
+<span class="px-2 py-0.5 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">82.4% Akurasi</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Puncak pukul 20:00 JST (18:00 WIB)</p>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Rerata Durasi</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">11.4 Menit</span>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Sertifikat Kelulusan</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+</div>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface">426</span>
+<span class="px-2 py-0.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">N5 - N2</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Otentikasi Stempel Hanko Digital</p>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Menunggu Validasi</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">3 Pengajuan</span>
+</div>
+</div>
+</div>
+<!-- Activity Visualizer & Real-time Feeds -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+<!-- 7-Day Student Activity & Heatmap Chart (2 Cols) -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary">Analisis Performa</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Live Sync</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Intensitas Belajar 7 Hari Terakhir</h2>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-primary-container"></span><span class="">Quiz</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-tertiary-container"></span><span class="">Materi Kanji</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-surface-container-highest"></span><span class="">Listening</span></div>
+</div>
+</div>
+<!-- Inline SVG Visual Bar & Line Trend -->
+<div class="w-full bg-surface-container-low p-space-md rounded-xl">
+<svg aria-label="Aktivitas Belajar" class="w-full h-48 overflow-visible" viewBox="0 0 700 220">
+<defs>
+<linearGradient id="barGradientRed" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#c73e3a"></stop>
+<stop offset="100%" stop-color="#e1bfbb"></stop>
+</linearGradient>
+<linearGradient id="barGradientGreen" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#4b7957"></stop>
+<stop offset="100%" stop-color="#bcefc6"></stop>
+</linearGradient>
+</defs>
+<!-- Grid lines -->
+<line stroke="#e9e1dc" stroke-dasharray="4,4" x1="40" x2="680" y1="20" y2="20"></line>
+<line stroke="#e9e1dc" stroke-dasharray="4,4" x1="40" x2="680" y1="65" y2="65"></line>
+<line stroke="#e9e1dc" stroke-dasharray="4,4" x1="40" x2="680" y1="110" y2="110"></line>
+<line stroke="#e9e1dc" stroke-dasharray="4,4" x1="40" x2="680" y1="155" y2="155"></line>
+<line stroke="#8d706e" stroke-opacity="0.3" x1="40" x2="680" y1="200" y2="200"></line>
+<!-- Y-axis Labels -->
+<text class="text-[11px] fill-stone-500 font-sans" text-anchor="end" x="32" y="24">1500</text>
+<text class="text-[11px] fill-stone-500 font-sans" text-anchor="end" x="32" y="69">1000</text>
+<text class="text-[11px] fill-stone-500 font-sans" text-anchor="end" x="32" y="114">500</text>
+<text class="text-[11px] fill-stone-500 font-sans" text-anchor="end" x="32" y="159">200</text>
+<!-- Day 1: Sen (Mon) -->
+<rect fill="url(#barGradientRed)" height="130" rx="3" width="22" x="75" y="70"></rect>
+<rect fill="url(#barGradientGreen)" height="105" rx="3" width="22" x="101" y="95"></rect>
+<text class="text-[12px] fill-stone-600 font-sans" text-anchor="middle" x="99" y="215">Sen</text>
+<!-- Day 2: Sel (Tue) -->
+<rect fill="url(#barGradientRed)" height="145" rx="3" width="22" x="160" y="55"></rect>
+<rect fill="url(#barGradientGreen)" height="120" rx="3" width="22" x="186" y="80"></rect>
+<text class="text-[12px] fill-stone-600 font-sans" text-anchor="middle" x="184" y="215">Sel</text>
+<!-- Day 3: Rab (Wed) -->
+<rect fill="url(#barGradientRed)" height="140" rx="3" width="22" x="245" y="60"></rect>
+<rect fill="url(#barGradientGreen)" height="90" rx="3" width="22" x="271" y="110"></rect>
+<text class="text-[12px] fill-stone-600 font-sans" text-anchor="middle" x="269" y="215">Rab</text>
+<!-- Day 4: Kam (Thu) -->
+<rect fill="url(#barGradientRed)" height="155" rx="3" width="22" x="330" y="45"></rect>
+<rect fill="url(#barGradientGreen)" height="130" rx="3" width="22" x="356" y="70"></rect>
+<text class="text-[12px] fill-stone-600 font-sans" text-anchor="middle" x="354" y="215">Kam</text>
+<!-- Day 5: Jum (Fri) -->
+<rect fill="url(#barGradientRed)" height="160" rx="3" width="22" x="415" y="40"></rect>
+<rect fill="url(#barGradientGreen)" height="150" rx="3" width="22" x="441" y="50"></rect>
+<text class="text-[12px] fill-stone-600 font-sans" text-anchor="middle" x="439" y="215">Jum</text>
+<!-- Day 6: Sab (Sat) - Peak -->
+<rect fill="url(#barGradientRed)" height="178" rx="3" width="22" x="500" y="22"></rect>
+<rect fill="url(#barGradientGreen)" height="165" rx="3" width="22" x="526" y="35"></rect>
+<text class="text-[12px] font-bold fill-primary font-sans" text-anchor="middle" x="524" y="215">Sab ★</text>
+<!-- Day 7: Min (Sun) -->
+<rect fill="url(#barGradientRed)" height="170" rx="3" width="22" x="585" y="30"></rect>
+<rect fill="url(#barGradientGreen)" height="158" rx="3" width="22" x="611" y="42"></rect>
+<text class="text-[12px] font-bold fill-stone-600 font-sans" text-anchor="middle" x="609" y="215">Min</text>
+<!-- Trend overlay dotted line -->
+<polyline fill="none" points="86,75 171,60 256,65 341,48 426,42 511,24 596,33" stroke="#944654" stroke-width="2.5"></polyline>
+</svg>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between flex-wrap gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+<span class="">Jam Belajar Terfavorit: <strong>19:30 - 21:30 WIB</strong> (Sepulang kerja/kuliah)</span>
+</span>
+<span class="text-tertiary font-label-md text-label-md">Tingkat Retensi Mingguan: 88.6%</span>
+</div>
+</div>
+<!-- Real-time Activity Feed & Sensei Alerts (1 Col) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Aktivitas Terkini</h3>
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary animate-ping"></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Log otomatis sistem dan notifikasi kelas</p>
+<div class="space-y-space-md">
+<div class="flex items-start gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">school</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface"><span class="font-semibold">5 Siswa baru</span> terdaftar di Cohort JLPT N4 Bunpou Mastery.</p>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3 menit lalu</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface"><span class="font-semibold">Sensei Kenji</span> memperbarui 4 soal Kanji N3 (JLPT Choukai).</p>
+<span class="font-label-sm text-label-sm text-on-surface-variant">28 menit lalu</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">workspace_premium</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface"><span class="font-semibold">Alya Rahma</span> menyelesaikan Ujian Akhir N5 dengan skor 94/100.</p>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1 jam lalu • Sertifikat dicetak</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">cloud_sync</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface"><span class="font-semibold">Backup Kamus Kanji</span> selesai diproses (2,136 Karakter Aman).</p>
+<span class="font-label-sm text-label-sm text-on-surface-variant">4 jam lalu</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Server Response: 48ms</span>
+<button class="font-label-sm text-label-sm text-primary font-semibold hover:underline" onclick="switchTab('manajemen-siswa')">Semua Log →</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODULE 2: MANAJEMEN MATERI & EDITOR KANJI -->
+<!-- ========================================================================= -->
+<div class="module-pane hidden space-y-space-lg" id="module-manajemen-materi">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Manajemen Materi Pembelajaran</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Kelola silabus Hiragana, Katakana, Kanji Jouyou, Tata Bahasa (Bunpou), dan Kosakata.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-4 py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors shadow-sm" onclick="openMateriModal()">
+<span class="material-symbols-outlined text-[18px]">post_add</span>
+<span class="">Buat Materi Baru</span>
+</button>
+</div>
+</div>
+<!-- Filter Pills Bar -->
+<div class="flex items-center gap-space-xs flex-wrap mb-space-md">
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm">Semua (2,710)</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm">Kana (46)</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm">Kanji (2,136)</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm">Tata Bahasa / 文法 (180)</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm">Kosakata / 語彙 (348)</button>
+<div class="h-4 w-px bg-outline-variant mx-1"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tingkat:</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">N5</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">N4</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">N3</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">N2</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">N1</span>
+</div>
+<!-- Material Rich Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-4 rounded-l-lg">ID Materi</th>
+<th class="py-3 px-4">Karakter &amp; Judul Silabus</th>
+<th class="py-3 px-4">Kategori</th>
+<th class="py-3 px-4">JLPT Tier</th>
+<th class="py-3 px-4">Goresan / Stroke</th>
+<th class="py-3 px-4">Status</th>
+<th class="py-3 px-4">Terakhir Diperbarui</th>
+<th class="py-3 px-4 text-right rounded-r-lg">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-sm text-body-sm text-on-surface">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-mono text-on-surface-variant">MAT-KJ-0104</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<span class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center font-headline-sm text-headline-sm text-primary">日</span>
+<div>
+<p class="font-semibold text-on-surface">Matahari / Hari (HI, NICHI)</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant font-mono">Onyomi: ニチ, ジツ • Kunyomi: ひ, -び</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Kanji Dasar</span></td>
+<td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold font-label-sm text-label-sm">JLPT N5</span></td>
+<td class="py-3 px-4 font-mono text-on-surface-variant">4 Goresan</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Terbit
+                  </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">Hari ini, 09:20</td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg" onclick="openMateriModal('MAT-KJ-0104')" title="Sunting Materi">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg" title="Pratinjau Siswa">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error hover:bg-surface-container rounded-lg" title="Hapus">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-mono text-on-surface-variant">MAT-BP-0052</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<span class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center font-headline-sm text-headline-sm text-secondary">〜てから</span>
+</div>
+</td>
+<td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Tata Bahasa</span></td>
+<td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold font-label-sm text-label-sm">JLPT N5</span></td>
+<td class="py-3 px-4 font-mono text-on-surface-variant">-</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Terbit
+                  </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">Kemarin, 14:15</td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg" onclick="openMateriModal('MAT-BP-0052')">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error hover:bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-mono text-on-surface-variant">MAT-KJ-0889</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<span class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center font-headline-sm text-headline-sm text-primary">探</span>
+<div>
+<p class="font-semibold text-on-surface">Mencari / Menyelidiki (SAGASU, TAN)</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant font-mono">Onyomi: タン • Kunyomi: さが-す, さぐ-る</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Kanji Menengah</span></td>
+<td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold font-label-sm text-label-sm">JLPT N3</span></td>
+<td class="py-3 px-4 font-mono text-on-surface-variant">11 Goresan</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Draft Review
+                  </span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">12 Mei 2025</td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg" onclick="openMateriModal('MAT-KJ-0889')">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error hover:bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODULE 3: BANK SOAL & QUIZ BUILDER -->
+<!-- ========================================================================= -->
+<div class="module-pane hidden space-y-space-lg" id="module-bank-soal-quiz">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+<!-- Question Pool Left (2 cols) -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Pool Bank Soal Ujian</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Total 1,100 butir soal terkurasi sesuai standar Ujian Resmi JLPT.</p>
+</div>
+<button class="px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span class="">Filter Tingkat &amp; Tipe</span>
+</button>
+</div>
+<!-- Type Distribution Pills -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+<div class="p-space-sm bg-surface-container-low rounded-lg text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Pilihan Ganda</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">620 Soal</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Ketik Romaji/Kana</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">240 Soal</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Audio Choukai (聴解)</span>
+<span class="font-headline-sm text-headline-sm text-primary">150 Soal</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Baca Dokkai (読解)</span>
+<span class="font-headline-sm text-headline-sm text-tertiary">90 Soal</span>
+</div>
+</div>
+<!-- Question Items Pool List -->
+<div class="space-y-space-sm">
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] mt-0.5 cursor-grab">drag_indicator</span>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">Q-JLPT-092</span>
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm">Choukai Audio</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">N5 Level • 10 Poin</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-medium">Suara pengumuman di stasiun: 「次は新宿、新宿です。」 Apa tujuan kereta selanjutnya?</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Kunci Jawaban: A (Shinjuku) • Rata-rata Ketepatan: 89.4%</p>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded bg-primary-container text-on-primary font-label-sm text-label-sm hover:bg-primary transition-colors shrink-0">
+                + Tambah ke Kuis
+              </button>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] mt-0.5 cursor-grab">drag_indicator</span>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">Q-JLPT-041</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm">Partikel (Joshi)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">N5 Level • 5 Poin</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-medium">田中さん____図書館で日本語を勉強します。 (Isi partikel yang tepat)</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Kunci Jawaban: は (wa) / で (de) • Rata-rata Ketepatan: 92.1%</p>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded bg-primary-container text-on-primary font-label-sm text-label-sm hover:bg-primary transition-colors shrink-0">
+                + Tambah ke Kuis
+              </button>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] mt-0.5 cursor-grab">drag_indicator</span>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">Q-JLPT-118</span>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">Kanji Reading</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">N4 Level • 10 Poin</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-medium">「今週の<ruby>金曜日<rt>きんようび</rt></ruby>」 Apa arti kata yang digarisbawahi?</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Kunci Jawaban: Hari Jumat minggu ini • Rata-rata Ketepatan: 84.0%</p>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded bg-primary-container text-on-primary font-label-sm text-label-sm hover:bg-primary transition-colors shrink-0">
+                + Tambah ke Kuis
+              </button>
+</div>
+</div>
+</div>
+<!-- Quiz Builder Form Card Right (1 col) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Parameter Paket Quiz</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm">Live Builder</span>
+</div>
+<div class="space-y-space-sm">
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">Nama Ujian / Quiz</label>
+<input class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-container" type="text" value="Tryout Evaluasi Mandiri JLPT N5 - Modul 1">
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">Batas Waktu</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" type="number" value="15">
+<span class="absolute right-3 top-2 font-label-sm text-label-sm text-on-surface-variant">Menit</span>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">Passing Grade</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" type="number" value="80">
+<span class="absolute right-3 top-2 font-label-sm text-label-sm text-on-surface-variant">% Skor</span>
+</div>
+</div>
+</div>
+<div class="pt-2 space-y-2">
+<label class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low cursor-pointer">
+<span class="font-body-sm text-body-sm text-on-surface">Acak Urutan Soal (Shuffle)</span>
+<input checked="" class="accent-primary w-4 h-4 rounded" type="checkbox">
+</label>
+<label class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low cursor-pointer">
+<span class="font-body-sm text-body-sm text-on-surface">Kunci Jawaban Setelah Selesai</span>
+<input checked="" class="accent-primary w-4 h-4 rounded" type="checkbox">
+</label>
+<label class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low cursor-pointer">
+<span class="font-body-sm text-body-sm text-on-surface">Wajib Lulus untuk Lanjut Bab</span>
+<input checked="" class="accent-primary w-4 h-4 rounded" type="checkbox">
+</label>
+</div>
+<div class="pt-2">
+<p class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider mb-2">Soal Terpilih (3 Soal • 25 Poin)</p>
+<div class="space-y-1.5 text-body-sm font-body-sm">
+<div class="flex items-center justify-between p-2 rounded bg-surface-container">
+<span class="">1. Q-JLPT-092 (Choukai)</span>
+<span class="font-mono text-primary">10 Pts</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container">
+<span class="">2. Q-JLPT-041 (Partikel)</span>
+<span class="font-mono text-primary">5 Pts</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container">
+<span class="">3. Q-JLPT-118 (Kanji)</span>
+<span class="font-mono text-primary">10 Pts</span>
+</div>
+</div>
+</div>
+<button class="w-full py-2.5 mt-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+<span class="">Simpan &amp; Rilis Paket Quiz</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODULE 4: MANAJEMEN LEVEL & JOURNEY (PATH NODE EDITOR) -->
+<!-- ========================================================================= -->
+<div class="module-pane hidden space-y-space-lg" id="module-manajemen-level-journey">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Peta Belajar &amp; Pohon Perjalanan (Journey Nodes)</span>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">5 Tingkat Jalur Aktif</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Hierarki alur gamifikasi dari pemula (Kohai) hingga mahir (Shogun JLPT N1).</p>
+</div>
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_location_alt</span>
+<span class="">+ Tambah Node Level Baru</span>
+</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Visual Node Pathway Canvas (8 Cols) -->
+<div class="lg:col-span-8 bg-surface-container-low p-space-lg rounded-xl relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Jalur Kemajuan Siswa (Prerequisite Chain)</span>
+<span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">lock_open</span> Aliran Terverifikasi
+              </span>
+</div>
+<!-- Vertical Nodes Stack with Washi Connectors -->
+<div class="space-y-space-md relative pl-6">
+<!-- Continuous bamboo branch connector line -->
+<div class="absolute left-10 top-6 bottom-6 w-1 bg-outline-variant/60 rounded"></div>
+<!-- Node 1: Kohai -->
+<div class="relative flex items-center gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm border-l-4 border-l-primary">
+<div class="w-9 h-9 rounded-full bg-primary-fixed text-on-primary-fixed font-bold flex items-center justify-center text-label-md z-10 shrink-0">
+                  1
+                </div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Level 1: Kohai (後輩)</h4>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">Gratis / Pemula</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hiragana, Katakana, 50 Kosakata Awal, Pengucapan Bersih.</p>
+<div class="mt-2 flex items-center gap-space-md text-label-sm text-on-surface-variant">
+<span class="">⚡ Syarat: 0 XP (Mulai Bebas)</span>
+<span class="">📖 14 Modul Belajar</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+<!-- Node 2: Senpai -->
+<div class="relative flex items-center gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm border-l-4 border-l-primary-container">
+<div class="w-9 h-9 rounded-full bg-primary-container text-on-primary font-bold flex items-center justify-center text-label-md z-10 shrink-0">
+                  2
+                </div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Level 2: Senpai (先輩) - JLPT N5 Fondasi</h4>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">Level Inti</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">100 Kanji N5, Partikel Dasar (は, が, を, に, で), Pola Kalimat Sopan (Desu/Masu).</p>
+<div class="mt-2 flex items-center gap-space-md text-label-sm text-on-surface-variant">
+<span class="">⚡ Syarat: 1,200 XP + Ujian Kana Lulus</span>
+<span class="">📖 28 Modul Belajar</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+<!-- Node 3: Samurai -->
+<div class="relative flex items-center gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm border-l-4 border-l-secondary">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold flex items-center justify-center text-label-md z-10 shrink-0">
+                  3
+                </div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Level 3: Samurai (侍) - JLPT N4 Percakapan</h4>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">Level Menengah</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">300 Kanji N4, Bentuk Te, Nai, Ta, Percakapan Sehari-hari, Listening Toko.</p>
+<div class="mt-2 flex items-center gap-space-md text-label-sm text-on-surface-variant">
+<span class="">⚡ Syarat: 3,500 XP + Sertifikat N5</span>
+<span class="">📖 42 Modul Belajar</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+<!-- Node 4: Sensei -->
+<div class="relative flex items-center gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm border-l-4 border-l-tertiary">
+<div class="w-9 h-9 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-bold flex items-center justify-center text-label-md z-10 shrink-0">
+                  4
+                </div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Level 4: Sensei (先生) - JLPT N3 Menengah Atas</h4>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">Akademik</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">650 Kanji, Keigo Bisnis Ringan, Membaca Berita NHK Easy.</p>
+<div class="mt-2 flex items-center gap-space-md text-label-sm text-on-surface-variant">
+<span class="">⚡ Syarat: 7,000 XP + Ujian Akhir N4</span>
+<span class="">📖 50 Modul Belajar</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+<!-- Node 5: Shogun -->
+<div class="relative flex items-center gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm border-l-4 border-l-inverse-surface">
+<div class="w-9 h-9 rounded-full bg-inverse-surface text-inverse-on-surface font-bold flex items-center justify-center text-label-md z-10 shrink-0">
+                  5
+                </div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Level 5: Shogun (将軍) - JLPT N2/N1 Mahir</h4>
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm">Mahir &amp; Profesional</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Artikel Opini Asli, Nuansa Kompleks, Dokkai Panjang, Ujian Simulasi Asli.</p>
+<div class="mt-2 flex items-center gap-space-md text-label-sm text-on-surface-variant">
+<span class="">⚡ Syarat: 14,000 XP + Sertifikat N3</span>
+<span class="">📖 64 Modul Belajar</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Node Config Panel (4 Cols) -->
+<div class="lg:col-span-4 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Konfigurasi Parameter Node</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sunting batas XP dan syarat kunci untuk Level 2 (Senpai).</p>
+<div class="space-y-space-sm pt-2">
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">Nama Gelar Tingkat</label>
+<input class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" type="text" value="Senpai (先輩) - Fondasi N5">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">XP Threshold Buka Kunci</label>
+<input class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" type="number" value="1200">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">Lencana Khusus (Badge Reward)</label>
+<div class="flex items-center gap-2 p-2 rounded bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[22px]">military_tech</span>
+<span class="font-body-sm text-body-sm text-on-surface">Lencana Gerbang Torii N5</span>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">Akses Tema Eksklusif</label>
+<select class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none">
+<option selected="">Matcha Zen Sanctuary</option>
+<option>Sakura Blossom Garden</option>
+<option>Tokyo Neon Midnight</option>
+</select>
+</div>
+<button class="w-full py-2.5 mt-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors">
+                Perbarui Node Alur
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODULE 5: MANAJEMEN SISWA (STUDENT DIRECTORY) -->
+<!-- ========================================================================= -->
+<div class="module-pane hidden space-y-space-lg" id="module-manajemen-siswa">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Direktori &amp; Kemajuan Siswa</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Pantau perkembangan belajar, streak hari berturut-turut, XP, dan riwayat skor.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-3.5 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span class="">Ekspor Data CSV</span>
+</button>
+</div>
+</div>
+<!-- Student Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-4 rounded-l-lg">Siswa</th>
+<th class="py-3 px-4">Email Terdaftar</th>
+<th class="py-3 px-4">Level Perjalanan</th>
+<th class="py-3 px-4">Streak Harian</th>
+<th class="py-3 px-4">Total XP</th>
+<th class="py-3 px-4">Status Akun</th>
+<th class="py-3 px-4 text-right rounded-r-lg">Rapor Belajar</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-sm text-body-sm text-on-surface">
+<!-- Student 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary-container text-on-primary font-semibold flex items-center justify-center font-label-md text-label-md">
+                      AR
+                    </div>
+<div>
+<p class="font-semibold text-on-surface">Alya Rahmadhani</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">@alyarahma</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-4 font-mono text-on-surface-variant">alya.r@univ-japan.id</td>
+<td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold font-label-sm text-label-sm">Senpai (N5)</span></td>
+<td class="py-3 px-4"><span class="text-primary font-semibold">🔥 24 Hari</span></td>
+<td class="py-3 px-4 font-mono font-semibold text-on-surface">4,280 XP</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Aktif
+                  </span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="px-3 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold transition-colors" onclick="openRaporModal('Alya Rahmadhani', 'Senpai (N5)', '4,280 XP', '94%')">
+                    Buka Rapor
+                  </button>
+</td>
+</tr>
+<!-- Student 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-tertiary text-on-tertiary font-semibold flex items-center justify-center font-label-md text-label-md">
+                      BP
+                    </div>
+<div>
+<p class="font-semibold text-on-surface">Bima Pratama</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">@bimapratama</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-4 font-mono text-on-surface-variant">bima.pratama@tech.co.id</td>
+<td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold font-label-sm text-label-sm">Samurai (N4)</span></td>
+<td class="py-3 px-4"><span class="text-primary font-semibold">🔥 14 Hari</span></td>
+<td class="py-3 px-4 font-mono font-semibold text-on-surface">6,120 XP</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Aktif
+                  </span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="px-3 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold transition-colors" onclick="openRaporModal('Bima Pratama', 'Samurai (N4)', '6,120 XP', '88%')">
+                    Buka Rapor
+                  </button>
+</td>
+</tr>
+<!-- Student 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-secondary text-on-secondary font-semibold flex items-center justify-center font-label-md text-label-md">
+                      DW
+                    </div>
+<div>
+<p class="font-semibold text-on-surface">Dinda Wulandari</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">@dindawulan</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-4 font-mono text-on-surface-variant">dinda.w@design.id</td>
+<td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold font-label-sm text-label-sm">Kohai (Kana)</span></td>
+<td class="py-3 px-4"><span class="text-on-surface-variant">3 Hari</span></td>
+<td class="py-3 px-4 font-mono font-semibold text-on-surface">820 XP</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">
+                    Cuti Belajar
+                  </span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="px-3 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold transition-colors" onclick="openRaporModal('Dinda Wulandari', 'Kohai (Kana)', '820 XP', '76%')">
+                    Buka Rapor
+                  </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODULE 6: MANAJEMEN SERTIFIKAT (HANKO SEALS) -->
+<!-- ========================================================================= -->
+<div class="module-pane hidden space-y-space-lg" id="module-manajemen-sertifikat">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+<!-- Certificate List (2 Cols) -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Buku Besar Sertifikat (Hanko Ledger)</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Daftar ijazah resmi yang telah divalidasi dengan stempel Sensei dan QR verifikasi publik.</p>
+</div>
+</div>
+<!-- Instant Verification Lookup Test -->
+<div class="p-space-md bg-surface-container-low rounded-xl flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">search_check</span>
+<input class="flex-1 bg-surface-container-lowest px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" placeholder="Masukkan ID Sertifikat untuk Cek Keabsahan (misal: BK-2025-N5-0891)..." type="text">
+<button class="px-3.5 py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md">Cek Otentikasi</button>
+</div>
+<!-- Certificate Items Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase">
+<th class="py-2.5 px-3 rounded-l">No. Registrasi</th>
+<th class="py-2.5 px-3">Nama Penerima</th>
+<th class="py-2.5 px-3">Jenjang</th>
+<th class="py-2.5 px-3">Tanggal Terbit</th>
+<th class="py-2.5 px-3">Status QR</th>
+<th class="py-2.5 px-3 text-right rounded-r">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr>
+<td class="py-3 px-3 font-mono font-semibold text-primary">BK-2025-N5-0891</td>
+<td class="py-3 px-3 font-semibold text-on-surface">Alya Rahmadhani</td>
+<td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-surface-container font-semibold">JLPT N5 Fondasi</span></td>
+<td class="py-3 px-3 text-on-surface-variant">14 Mei 2025</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">Valid &amp; QR Aktif</span>
+</td>
+<td class="py-3 px-3 text-right">
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">download</span></button>
+<button class="p-1 text-on-surface-variant hover:text-error"><span class="material-symbols-outlined text-[18px]">block</span></button>
+</td>
+</tr>
+<tr>
+<td class="py-3 px-3 font-mono font-semibold text-primary">BK-2025-N5-0890</td>
+<td class="py-3 px-3 font-semibold text-on-surface">Reza Mahardika</td>
+<td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-surface-container font-semibold">JLPT N5 Fondasi</span></td>
+<td class="py-3 px-3 text-on-surface-variant">12 Mei 2025</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">Valid &amp; QR Aktif</span>
+</td>
+<td class="py-3 px-3 text-right">
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[18px]">download</span></button>
+<button class="p-1 text-on-surface-variant hover:text-error"><span class="material-symbols-outlined text-[18px]">block</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Hanko Certificate Template Designer Preview (1 Col) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Pratinjau Desain Sertifikat</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Simulasi sertifikat washi dengan stempel tinta merah (Hanko Inkan).</p>
+<!-- Hanko Mockup Card -->
+<div class="p-space-lg rounded-xl bg-[#fffcf7] shadow-inner relative overflow-hidden">
+<!-- Japanese Hanko Stamp Stamp Mockup -->
+<div class="absolute right-4 bottom-4 w-16 h-16 rounded border-2 border-primary-container flex flex-col items-center justify-center rotate-6 opacity-85 pointer-events-none">
+<span class="font-headline-sm text-headline-sm text-primary-container leading-none">勉</span>
+<span class="font-label-sm text-label-sm text-primary-container leading-none font-bold">強印</span>
+</div>
+<div class="text-center space-y-2">
+<span class="font-headline-lg text-headline-lg text-primary block leading-none">修了証書</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Sertifikat Kelulusan Ujian</p>
+<div class="py-2">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Diberikan secara terhormat kepada:</p>
+<p class="font-headline-sm text-headline-sm text-on-surface underline decoration-primary decoration-2 underline-offset-4">Alya Rahmadhani</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Telah menyelesaikan kurikulum penuh <strong>JLPT Level N5</strong> dengan predikat Sangat Memuaskan (Nilai Akhir 94.0).
+              </p>
+<div class="pt-4 flex items-center justify-between text-left text-on-surface-variant font-label-sm text-label-sm">
+<div>
+<p class="font-semibold text-on-surface">Kenjiro Sato, Sensei</p>
+<p class="">Kepala Dewan Kurikulum</p>
+</div>
+<div class="w-10 h-10 bg-surface-container flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-[24px] text-on-surface">qr_code_2</span>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">brush</span>
+<span class="">Konfigurasi Template &amp; Stempel</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODULE 7: PENGATURAN MISI & TEMA (DAILY QUESTS & THEMES) -->
+<!-- ========================================================================= -->
+<div class="module-pane hidden space-y-space-lg" id="module-pengaturan-misi-tema">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
+<!-- Daily Quest Config Left -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-on-surface">Misi Harian Siswa (Daily Quests)</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">Reset Setiap 00:00 JST</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Atur target harian untuk mempertahankan motivasi dan konsistensi belajar siswa.</p>
+<div class="space-y-space-md pt-2">
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">quiz</span>
+</span>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Selesaikan 2 Sesi Quiz</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Meningkatkan retensi hafalan kosa kata.</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-container-high font-mono font-semibold text-primary text-label-md">+50 XP</span>
+<button class="p-1 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+</span>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Pelajari 10 Kosakata / Kanji Baru</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Buka modul baru atau flashcard review.</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-container-high font-mono font-semibold text-primary text-label-md">+75 XP</span>
+<button class="p-1 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[20px]">edit_calendar</span>
+</span>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Tulis 1 Jurnal Kalimat Bahasa Jepang</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Latihan menulis mandiri dengan koreksi AI.</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-container-high font-mono font-semibold text-primary text-label-md">+100 XP</span>
+<button class="p-1 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+</div>
+</div>
+<button class="w-full py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md">
+              + Tambah Aturan Misi Spesial Acara
+            </button>
+</div>
+</div>
+<!-- Theme Unlock Matrix Right -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-on-surface">Matriks Buka Kunci Tema Visual</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">4 Tema Estetika</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sesuaikan tema visual aplikasi yang dapat dibuka oleh siswa berdasarkan pencapaian level.</p>
+<div class="space-y-space-sm pt-2">
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-700">🌸</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Sakura Spring (Musim Semi)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Terbuka untuk semua (Default Kohai N5)</p>
+</div>
+</div>
+<span class="px-2.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">Aktif Default</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-800">🍵</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Matcha Zen Kyoto</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Terbuka di Senpai Level (N4 • 2,000 XP)</p>
+</div>
+</div>
+<span class="px-2.5 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Terkunci N4</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-800">🗻</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Mount Fuji Dawn</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Terbuka di Samurai Level (N3 • 5,000 XP)</p>
+</div>
+</div>
+<span class="px-2.5 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Terkunci N3</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-stone-900 flex items-center justify-center text-amber-300">🌙</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Tokyo Midnight Dark Mode</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Terbuka di Shogun Level (N2/N1 • 12,000 XP)</p>
+</div>
+</div>
+<span class="px-2.5 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Terkunci N2</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODULE 8: CMS LANDING PAGE -->
+<!-- ========================================================================= -->
+<div class="module-pane hidden space-y-space-lg" id="module-cms-landing-page">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">CMS &amp; Kontrol Tampilan Landing Page Publik</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Perbarui teks hero, cuplikan modul unggulan, testimoni kelulusan, dan daftar FAQ.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-3.5 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+<span class="">Pratinjau Live Website</span>
+</button>
+<button class="px-4 py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span class="">Simpan Perubahan Landing Page</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
+<!-- Hero Section Editor -->
+<div class="space-y-space-md p-space-md bg-surface-container-low rounded-xl">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">1. Bagian Hero (Utama)</h3>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">Aktif</span>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">Badge Teks Atas</label>
+<input class="w-full bg-surface-container-lowest px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" type="text" value="🏮 Platform Pembelajaran Bahasa Jepang #1 Berbasis Gamifikasi Tradisional">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">Headline Utama</label>
+<textarea class="w-full bg-surface-container-lowest px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" rows="2">Kuasai Bahasa Jepang dengan Keanggunan Budaya &amp; Gamifikasi Nyata</textarea>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">Sub-headline Penjelas</label>
+<textarea class="w-full bg-surface-container-lowest px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" rows="3">Dari nol huruf Kana hingga lulus JLPT N1. Metode pembelajaran terstruktur dengan dukungan stempel Hanko resmi, audio penutur asli Tokyo, dan kurikulum Sensei bersertifikasi.</textarea>
+</div>
+</div>
+<!-- Testimonial & FAQ Manager -->
+<div class="space-y-space-md p-space-md bg-surface-container-low rounded-xl">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">2. Testimoni Siswa Lulus</h3>
+<button class="font-label-sm text-label-sm text-primary font-semibold">+ Tambah Testimoni</button>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded-lg flex items-start justify-between gap-3">
+<div>
+<p class="font-semibold text-on-surface font-body-sm text-body-sm">Alya R. (Lulus N5 Skor 172/180)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">"Sistem goresan kanjinya sangat membantu mengingat radikal. Belajar jadi tidak membosankan!"</p>
+</div>
+<span class="text-amber-500 font-label-sm text-label-sm shrink-0">★★★★★</span>
+</div>
+<div class="pt-2">
+<div class="flex items-center justify-between mb-2">
+<h4 class="font-label-lg text-label-lg text-on-surface">3. Butir FAQ (Tanya Jawab)</h4>
+<button class="font-label-sm text-label-sm text-primary font-semibold">+ Tambah Baris FAQ</button>
+</div>
+<div class="space-y-2">
+<div class="p-space-sm bg-surface-container-lowest rounded-lg">
+<p class="font-semibold text-on-surface font-body-sm text-body-sm">Q: Apakah sertifikat BENKYOU diakui secara resmi?</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">A: Ya, sertifikat dilengkapi nomor registrasi ledger dan stempel digital Hanko yang dapat divalidasi publik.</p>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded-lg">
+<p class="font-semibold text-on-surface font-body-sm text-body-sm">Q: Apakah materi cocok untuk pemula tanpa dasar?</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">A: Sangat cocok. Level Kohai dirancang khusus dari nol huruf Hiragana &amp; Katakana.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODULE 9: PENGATURAN SISTEM & API -->
+<!-- ========================================================================= -->
+<div class="module-pane hidden space-y-space-lg" id="module-pengaturan-sistem">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Pengaturan Sistem &amp; Konfigurasi Server</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Konfigurasi operasional platform, integrasi Text-to-Speech (TTS), email notifikasi, dan status pendaftaran.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- General Platform Config -->
+<div class="space-y-space-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Umum &amp; Akses Siswa</h3>
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">Nama Platform Aplikasi</label>
+<input class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" type="text" value="BENKYOU Sensei Learning Engine">
+</div>
+<div class="pt-2">
+<label class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low cursor-pointer">
+<div>
+<span class="block font-body-md text-body-md font-medium text-on-surface">Pendaftaran Siswa Baru (Open Cohort)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Jika dimatikan, halaman pendaftaran publik dialihkan ke daftar tunggu.</span>
+</div>
+<input checked="" class="accent-primary w-5 h-5 rounded" type="checkbox">
+</label>
+</div>
+<div class="pt-1">
+<label class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low cursor-pointer">
+<div>
+<span class="block font-body-md text-body-md font-medium text-on-surface">Mode Perawatan / Maintenance Mode</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Hanya akun administrator yang dapat mengakses saat aktif.</span>
+</div>
+<input class="accent-primary w-5 h-5 rounded" type="checkbox">
+</label>
+</div>
+</div>
+<!-- API & Audio TTS Config -->
+<div class="space-y-space-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Suara Jepang TTS &amp; Kunci API</h3>
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">Penyedia Web Speech Voice</label>
+<select class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none">
+<option selected="">Google Japanese (ja-JP) - Natural Pitch</option>
+<option>Microsoft Ayumi - Natural Japanese (Japan)</option>
+<option>OpenAI Whisper TTS - Shimmer (JP Accent)</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">API Secret Key (JLPT Validation Gateway)</label>
+<input class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm font-mono text-on-surface focus:outline-none" type="password" value="bk_live_99482710398201928472910">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-1">Email Notifikasi SMTP</label>
+<input class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" type="email" value="sensei-notifications@benkyou.ac.jp">
+</div>
+<div class="pt-3">
+<button class="w-full py-2.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="">Simpan Seluruh Pengaturan Sistem</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODAL 1: INTERACTIVE JAPANESE MATERIAL EDITOR (SLIDE-OVER / MODAL) -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-4" id="materi-modal">
+<div class="bg-surface-container-lowest rounded-xl shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-space-lg space-y-space-md">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+<div>
+<span class="font-label-sm text-label-sm text-primary font-semibold uppercase tracking-wider">Editor Materi Jepang Interaktif</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Sunting Karakter Kanji &amp; Tata Bahasa</h3>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg" onclick="closeMateriModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Karakter Utama (Kanji/Kana)</label>
+<input class="w-full text-center font-headline-lg text-headline-lg bg-surface-container-low p-2 rounded-lg text-primary focus:outline-none" id="edit-kanji" type="text" value="日">
+</div>
+<div class="md:col-span-2 space-y-2">
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Judul &amp; Arti Materi</label>
+<input class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" id="edit-title" type="text" value="Matahari / Hari (HI, NICHI)">
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Onyomi (Katakana)</label>
+<input class="w-full bg-surface-container-low px-3 py-1.5 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" type="text" value="ニチ, ジツ">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Kunyomi (Hiragana)</label>
+<input class="w-full bg-surface-container-low px-3 py-1.5 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" type="text" value="ひ, -び, -か">
+</div>
+</div>
+</div>
+</div>
+<!-- Furigana Syntax Helper Palette -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between flex-wrap gap-2">
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface-variant">Bantuan Sintaks:</span>
+<button class="px-2 py-1 rounded bg-surface-container-lowest hover:bg-surface-container text-on-surface font-mono font-label-sm text-label-sm" onclick="insertSyntax('[ruby]漢字|かんじ[/ruby]')">
+            [ruby]Furigana[/ruby]
+          </button>
+<button class="px-2 py-1 rounded bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-sm text-label-sm" onclick="insertSyntax('【例文】')">
+            Contoh Kalimat (例文)
+          </button>
+<button class="px-2 py-1 rounded bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-sm text-label-sm" onclick="insertSyntax('「会話」')">
+            Tanda Petik Jepang「」
+          </button>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="">Karakter Cepat:</span>
+<button class="px-1.5 py-0.5 rounded bg-surface-container hover:bg-surface-container-high" onclick="insertSyntax('あ')">あ</button>
+<button class="px-1.5 py-0.5 rounded bg-surface-container hover:bg-surface-container-high" onclick="insertSyntax('漢')">漢</button>
+<button class="px-1.5 py-0.5 rounded bg-surface-container hover:bg-surface-container-high" onclick="insertSyntax('語')">語</button>
+<button class="px-1.5 py-0.5 rounded bg-surface-container hover:bg-surface-container-high" onclick="insertSyntax('々')">々</button>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Penjelasan &amp; Konteks Penggunaan</label>
+<textarea class="w-full bg-surface-container-low p-3 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none leading-relaxed" id="edit-body" rows="4">Kanji 日 menggambarkan bentuk matahari bulat dengan garis tengah. Kanji ini sangat mendasar dalam JLPT N5 dan digunakan untuk membentuk nama negara Jepang (日本 - Nihon), nama hari (日曜日 - Nichiyoubi), serta hitungan tanggal.</textarea>
+</div>
+<div class="flex items-center justify-between pt-space-sm border-t border-surface-container">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tersimpan otomatis sebagai draft lokal</span>
+<div class="flex items-center gap-space-sm">
+<button class="px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md" onclick="closeMateriModal()">Batal</button>
+<button class="px-4 py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors" onclick="saveMateriAction()">Simpan &amp; Publikasikan</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODAL 2: STUDENT RAPOR BELAJAR MODAL -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-4" id="rapor-modal">
+<div class="bg-surface-container-lowest rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-space-lg space-y-space-md">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-headline-sm">
+            学
+          </div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface" id="rapor-student-name">Alya Rahmadhani</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant" id="rapor-student-level">Senpai (N5) • 4,280 XP</p>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg" onclick="closeRaporModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="grid grid-cols-3 gap-space-sm text-center">
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Akurasi Rata-rata</span>
+<span class="font-headline-sm text-headline-sm text-primary" id="rapor-accuracy">94.0%</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Quiz Diselesaikan</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">42 Sesi</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Kesiapan JLPT</span>
+<span class="font-headline-sm text-headline-sm text-tertiary">Siap Ujian</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface mb-2">Riwayat Ujian &amp; Quiz Terakhir</h4>
+<div class="space-y-2 text-body-sm font-body-sm">
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<p class="font-semibold text-on-surface">Ujian Evaluasi Menyeluruh JLPT N5</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">14 Mei 2025 • Durasi 45 Menit</p>
+</div>
+<span class="px-2.5 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-bold font-mono">94 / 100</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<p class="font-semibold text-on-surface">Quiz Cepat: Partikel &amp; Kata Kerja Bentuk Te</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">11 Mei 2025 • Durasi 12 Menit</p>
+</div>
+<span class="px-2.5 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-bold font-mono">100 / 100</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<p class="font-semibold text-on-surface">Listening Drill: Percakapan Stasiun &amp; Toko</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">08 Mei 2025 • Durasi 18 Menit</p>
+</div>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-bold font-mono">88 / 100</span>
+</div>
+</div>
+</div>
+<div class="pt-space-sm flex justify-end">
+<button class="px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md" onclick="closeRaporModal()">Tutup Rapor</button>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- MODAL 3: BROADCAST PENGUMUMAN MODAL -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-4" id="broadcast-modal">
+<div class="bg-surface-container-lowest rounded-xl shadow-xl w-full max-w-lg p-space-lg space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs border-b border-surface-container">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">📢 Broadcast Pengumuman Siswa</h3>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface rounded-lg" onclick="closeBroadcastModal()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="space-y-space-sm">
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Target Audiens Cohort</label>
+<select class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none">
+<option>Semua Siswa Terdaftar (1,482 Siswa)</option>
+<option>Khusus Cohort JLPT N5</option>
+<option>Khusus Cohort JLPT N4</option>
+<option>Siswa dengan Streak &gt; 10 Hari</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Judul Pengumuman</label>
+<input class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" placeholder="Contoh: Jadwal Tryout Akbar JLPT Juli 2025 Resmi Dibuka!" type="text">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Isi Pesan Siaran</label>
+<textarea class="w-full bg-surface-container-low px-3 py-2 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" placeholder="Tuliskan pesan yang akan muncul di notifikasi dan push alert aplikasi siswa..." rows="3"></textarea>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors flex items-center justify-center gap-2" onclick="submitBroadcast()">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span class="">Kirim Notifikasi Massal Sekarang</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Client-side Interactive Orchestrator Script -->
+<script>
+    // Tab switching orchestrator mapping all 9 modules
+    const moduleTitles = {
+      'overview': 'Pusat Kendali Kurikulum & Siswa',
+      'manajemen-materi': 'Katalog Materi Silabus & Editor Kanji',
+      'bank-soal-quiz': 'Penyusun Soal & Parameter Quiz Mandiri',
+      'manajemen-level-journey': 'Peta Belajar & Pohon Perjalanan Gamifikasi',
+      'manajemen-siswa': 'Direktori Siswa & Catatan Akademik',
+      'manajemen-sertifikat': 'Buku Besar Sertifikat Resmi & Hanko',
+      'pengaturan-misi-tema': 'Aturan Misi Harian & Matriks Tema Estetika',
+      'cms-landing-page': 'Manajemen Konten Publik Halaman Utama',
+      'pengaturan-sistem': 'Konfigurasi Sistem, API & Suara Audio'
+    };
+
+    const breadcrumbs = {
+      'overview': 'Ikhtisar (Ringkasan)',
+      'manajemen-materi': 'Manajemen Materi',
+      'bank-soal-quiz': 'Bank Soal & Quiz',
+      'manajemen-level-journey': 'Level & Journey',
+      'manajemen-siswa': 'Manajemen Siswa',
+      'manajemen-sertifikat': 'Manajemen Sertifikat',
+      'pengaturan-misi-tema': 'Misi & Tema',
+      'cms-landing-page': 'CMS Landing Page',
+      'pengaturan-sistem': 'Pengaturan Sistem'
+    };
+
+    function switchTab(tabId) {
+      // Hide all pane sections
+      document.querySelectorAll('.module-pane').forEach(el => {
+        el.classList.add('hidden');
+      });
+
+      // Show selected module pane
+      const targetPane = document.getElementById('module-' + tabId);
+      if (targetPane) {
+        targetPane.classList.remove('hidden');
+      }
+
+      // Update Tab Navigation Active Styles
+      document.querySelectorAll('#tab-nav-container .tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-tab') === tabId) {
+          btn.classList.add('bg-primary-container', 'text-on-primary', 'shadow-sm');
+          btn.classList.remove('bg-surface-container', 'text-on-surface', 'hover:bg-surface-container-high');
+        } else {
+          btn.classList.remove('bg-primary-container', 'text-on-primary', 'shadow-sm');
+          btn.classList.add('bg-surface-container', 'text-on-surface', 'hover:bg-surface-container-high');
+        }
+      });
+
+      // Update titles and breadcrumbs
+      const titleElem = document.getElementById('module-title');
+      if (titleElem && moduleTitles[tabId]) {
+        titleElem.textContent = moduleTitles[tabId];
+      }
+
+      const breadcrumbElem = document.getElementById('breadcrumb-current');
+      if (breadcrumbElem && breadcrumbs[tabId]) {
+        breadcrumbElem.textContent = breadcrumbs[tabId];
+      }
+
+      // Sync shell sidebar links if available
+      document.querySelectorAll('aside nav a[data-path]').forEach(link => {
+        if (link.getAttribute('data-path') === tabId) {
+          link.classList.add('bg-surface-container', 'text-primary', 'font-semibold');
+          link.classList.remove('text-on-surface-variant');
+        } else {
+          link.classList.remove('bg-surface-container', 'text-primary', 'font-semibold');
+          link.classList.add('text-on-surface-variant');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Modal Control Functions
+    function openMateriModal(id) {
+      const modal = document.getElementById('materi-modal');
+      if (id === 'MAT-BP-0052') {
+        document.getElementById('edit-kanji').value = '〜てから';
+        document.getElementById('edit-title').value = 'Tata Bahasa: Setelah melakukan V1...';
+        document.getElementById('edit-body').value = 'Pola kalimat 〜てから digunakan untuk menyatakan urutan dua aktivitas yang berurutan secara tegas.';
+      } else if (id === 'MAT-KJ-0889') {
+        document.getElementById('edit-kanji').value = '探';
+        document.getElementById('edit-title').value = 'Mencari / Menyelidiki (SAGASU)';
+        document.getElementById('edit-body').value = 'Kanji N3 berunsur tangan (radikal tehen) dan pohon. Memiliki goresan rapi sejumlah 11 goresan.';
+      } else {
+        document.getElementById('edit-kanji').value = '日';
+        document.getElementById('edit-title').value = 'Matahari / Hari (HI, NICHI)';
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeMateriModal() {
+      document.getElementById('materi-modal').classList.add('hidden');
+    }
+
+    function insertSyntax(snippet) {
+      const textarea = document.getElementById('edit-body');
+      textarea.value += ' ' + snippet;
+      textarea.focus();
+    }
+
+    function saveMateriAction() {
+      alert('Perubahan materi berhasil disimpan dan sinkronisasi ke modul siswa!');
+      closeMateriModal();
+    }
+
+    function openRaporModal(name, level, xp, accuracy) {
+      document.getElementById('rapor-student-name').textContent = name;
+      document.getElementById('rapor-student-level').textContent = level + ' • ' + xp;
+      document.getElementById('rapor-accuracy').textContent = accuracy;
+      document.getElementById('rapor-modal').classList.remove('hidden');
+    }
+
+    function closeRaporModal() {
+      document.getElementById('rapor-modal').classList.add('hidden');
+    }
+
+    function openBroadcastModal() {
+      document.getElementById('broadcast-modal').classList.remove('hidden');
+    }
+
+    function closeBroadcastModal() {
+      document.getElementById('broadcast-modal').classList.add('hidden');
+    }
+
+    function submitBroadcast() {
+      alert('📢 Broadcast sukses terkirim ke seluruh perangkat siswa aktif!');
+      closeBroadcastModal();
+    }
+
+    // Wire up Shell Sidebar clicks if user clicks native shell sidebar links
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('aside nav a[data-path]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const path = link.getAttribute('data-path');
+          if (path) {
+            switchTab(path);
+          }
+        });
+      });
+
+      // Default active tab state initialization
+      switchTab('overview');
+    });
+  </script>
+</div></main></div>
+
+</body></html>

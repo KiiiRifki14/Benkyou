@@ -1,0 +1,170 @@
+{
+  "version": 3,
+  "skills": {
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "645b891da1edbae76ab79c7b088d4e73397464f8396edaf773c0e01971ce75d6",
+      "installedAt": "2026-06-06T00:36:39.279Z",
+      "updatedAt": "2026-06-19T14:46:39.540Z"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/anthropics/skills.git",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "skillFolderHash": "93f53fd1c0352d3d7ec17b8f73d7351bf76f4821e55d123c9d2abc2c53ba48e4",
+      "pluginName": "example-skills",
+      "installedAt": "2026-06-06T01:07:04.745Z",
+      "updatedAt": "2026-06-19T14:45:39.399Z"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "skillFolderHash": "6b526d013e28073246a36f99b529bc43745d30832ecfa8217b359c34f260ca6b",
+      "installedAt": "2026-06-19T14:32:48.048Z",
+      "updatedAt": "2026-06-19T14:45:45.635Z"
+    },
+    "grill-with-docs": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/engineering/grill-with-docs/SKILL.md",
+      "skillFolderHash": "559d4de044394b86af53a5cedd2d3a689770088c3c5361646c91f5d7ea59f78a",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-06-19T14:39:29.401Z",
+      "updatedAt": "2026-06-19T14:39:29.401Z"
+    },
+    "agent-browser": {
+      "source": "vercel-labs/agent-browser",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
+      "skillPath": "skills/agent-browser/SKILL.md",
+      "skillFolderHash": "69ce2932d46901fc0cc0e6244055b51e7325d806604eedf89093d50c2041a575",
+      "pluginName": "agent-browser",
+      "installedAt": "2026-06-19T14:45:50.621Z",
+      "updatedAt": "2026-06-19T14:45:50.621Z"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "skillFolderHash": "3116f3e62dbd02b44a598b1aa690d2a8938e8f89",
+      "installedAt": "2026-06-19T14:46:00.438Z",
+      "updatedAt": "2026-09-17T10:44:34.648Z"
+    },
+    "azure-ai": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": "skills/azure-ai/SKILL.md",
+      "skillFolderHash": "09d7b1f982b731532ffaef107f3cd9a922464ca8812093f454852a7668cfcfd6",
+      "installedAt": "2026-06-19T14:46:11.538Z",
+      "updatedAt": "2026-06-19T14:46:11.538Z"
+    },
+    "security-audit": {
+      "source": "netresearch/security-audit-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/netresearch/security-audit-skill.git",
+      "skillPath": "skills/security-audit/SKILL.md",
+      "skillFolderHash": "35b4909ff04942a9c73ada1ef092be41d7cb37cd",
+      "pluginName": "security-audit",
+      "installedAt": "2026-08-20T06:42:44.594Z",
+      "updatedAt": "2026-08-20T06:42:44.594Z"
+    },
+    "web-app-security-audit": {
+      "source": "ahmedhamadto/software-forge",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/ahmedhamadto/software-forge.git",
+      "skillPath": "skills/web-app-security-audit/SKILL.md",
+      "skillFolderHash": "e4310991e64acb43d47b7636b9f1781fa2742b2a",
+      "installedAt": "2026-08-20T06:43:11.992Z",
+      "updatedAt": "2026-08-20T06:43:11.992Z"
+    },
+    "tailwind-design-system": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/wshobson/agents.git",
+      "skillPath": "plugins/frontend-mobile-development/skills/tailwind-design-system/SKILL.md",
+      "skillFolderHash": "a2164c2d9785aada08dfe3f5e792657c9acafc52",
+      "installedAt": "2026-09-17T10:37:55.018Z",
+      "updatedAt": "2026-09-17T10:44:43.889Z"
+    },
+    "antislop": {
+      "source": "miqdadbadjuber/anti-slop",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/miqdadbadjuber/anti-slop.git",
+      "skillPath": "skills/antislop/SKILL.md",
+      "skillFolderHash": "8dfab7e017954b77bcea226d28fc4ec652e35132",
+      "installedAt": "2026-09-21T01:06:48.802Z",
+      "updatedAt": "2026-09-21T01:06:48.802Z"
+    },
+    "antislop-code": {
+      "source": "miqdadbadjuber/anti-slop",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/miqdadbadjuber/anti-slop.git",
+      "skillPath": "skills/antislop-code/SKILL.md",
+      "skillFolderHash": "cb31602ea8956c739abda138d41e99d66791b008",
+      "installedAt": "2026-09-21T01:06:48.806Z",
+      "updatedAt": "2026-09-21T01:06:48.806Z"
+    },
+    "antislop-copywriting": {
+      "source": "miqdadbadjuber/anti-slop",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/miqdadbadjuber/anti-slop.git",
+      "skillPath": "skills/antislop-copywriting/SKILL.md",
+      "skillFolderHash": "3668009c8a37fbe86daa123d1f997f2532e82443",
+      "installedAt": "2026-09-21T01:06:48.808Z",
+      "updatedAt": "2026-09-21T01:06:48.808Z"
+    },
+    "antislop-human": {
+      "source": "miqdadbadjuber/anti-slop",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/miqdadbadjuber/anti-slop.git",
+      "skillPath": "skills/antislop-human/SKILL.md",
+      "skillFolderHash": "77f4256e0ce4b36ebc164890bf71e8e34ce2d45e",
+      "installedAt": "2026-09-21T01:06:48.810Z",
+      "updatedAt": "2026-09-21T01:06:48.810Z"
+    },
+    "antislop-layoutmobile": {
+      "source": "miqdadbadjuber/anti-slop",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/miqdadbadjuber/anti-slop.git",
+      "skillPath": "skills/antislop-layoutmobile/SKILL.md",
+      "skillFolderHash": "99afc77657f0d0ad51131e6b685e27913b1342fd",
+      "installedAt": "2026-09-21T01:06:48.813Z",
+      "updatedAt": "2026-09-21T01:06:48.813Z"
+    },
+    "antislop-ui": {
+      "source": "miqdadbadjuber/anti-slop",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/miqdadbadjuber/anti-slop.git",
+      "skillPath": "skills/antislop-ui/SKILL.md",
+      "skillFolderHash": "d2fb2eebe99d74f4cab2d216b78dd5dee735b9a0",
+      "installedAt": "2026-09-21T01:06:48.815Z",
+      "updatedAt": "2026-09-21T01:06:48.815Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "cline",
+    "codex",
+    "cursor",
+    "droid",
+    "gemini-cli",
+    "github-copilot",
+    "kilo",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed"
+  ]
+}

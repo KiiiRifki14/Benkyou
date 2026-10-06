@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"outline-variant":"#e1bfbb","on-background":"#1e1b18","background":"#fff8f5","surface-container-highest":"#e9e1dc","on-secondary-container":"#79313f","on-surface":"#1e1b18","on-secondary-fixed-variant":"#762f3d","on-secondary-fixed":"#3e0313","secondary-fixed-dim":"#ffb2bc","outline":"#8d706e","surface-container-low":"#fbf2ed","on-secondary":"#ffffff","on-primary":"#ffffff","on-primary-fixed":"#410003","primary-fixed-dim":"#ffb3ad","on-primary-container":"#fff0ef","on-error":"#ffffff","surface-bright":"#fff8f5","surface-container-lowest":"#ffffff","on-tertiary":"#ffffff","tertiary-fixed":"#bcefc6","error-container":"#ffdad6","surface-dim":"#e1d8d4","tertiary":"#326040","secondary-container":"#fe9dac","on-error-container":"#93000a","on-primary-fixed-variant":"#8e1217","inverse-surface":"#34302c","secondary":"#944654","primary":"#a52525","tertiary-container":"#4b7957","surface-container-high":"#efe6e2","surface-variant":"#e9e1dc","surface-tint":"#b02d2b","tertiary-fixed-dim":"#a0d2ab","primary-fixed":"#ffdad6","error":"#ba1a1a","inverse-on-surface":"#f8efea","on-tertiary-fixed":"#00210d","inverse-primary":"#ffb3ad","secondary-fixed":"#ffd9dd","on-tertiary-container":"#d0ffd8","primary-container":"#c73e3a","on-tertiary-fixed-variant":"#225031","on-surface-variant":"#59413f","surface":"#fff8f5","surface-container":"#f5ece7"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"margin-mobile":"1.25rem","margin":"3rem","space-xl":"2.5rem","gutter":"1.5rem","space-lg":"1.5rem","space-xs":"0.25rem","space-md":"1rem","space-sm":"0.5rem","gutter-mobile":"1rem"},"fontFamily":{"headline-md":["Noto Serif"],"headline-lg":["Noto Serif"],"body-lg":["Plus Jakarta Sans"],"display-lg-mobile":["Noto Serif"],"headline-sm":["Noto Serif"],"label-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"display-lg":["Noto Serif"],"body-sm":["Plus Jakarta Sans"]},"fontSize":{"headline-md":["24px",{"lineHeight":"32px","fontWeight":"500"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.01em","fontWeight":"500"}],"body-lg":["18px",{"lineHeight":"30px","fontWeight":"400"}],"display-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.01em","fontWeight":"400"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.06em","fontWeight":"500"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"600"}],"display-lg":["56px",{"lineHeight":"68px","letterSpacing":"-0.02em","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-low z-50 flex flex-col justify-between py-6 px-4 shadow-[0_1px_8px_rgba(0,0,0,0.04)] overflow-y-auto"><div class="flex flex-col gap-6"><div class="flex items-center gap-3 px-3"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container font-headline-sm text-headline-sm">勉</div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-wide text-on-surface font-semibold">BENKYOU</span><span class="font-label-sm text-label-sm text-on-surface-variant tracking-widest uppercase">Nihongo Academy</span></div></div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><a aria-current="page" class="flex items-center gap-3 px-3 py-2.5 transition-colors bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]" data-path="beranda" href="#"><span class="material-symbols-outlined text-[20px]">cottage</span><span>Beranda</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="journey" href="#"><span class="material-symbols-outlined text-[20px]">explore</span><span>Journey (Peta)</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="materi-dan-quiz" href="#"><span class="material-symbols-outlined text-[20px]">menu_book</span><span>Materi &amp; Quiz</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="latihan-menulis" href="#"><span class="material-symbols-outlined text-[20px]">draw</span><span>Latihan Menulis</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="flashcard" href="#"><span class="material-symbols-outlined text-[20px]">style</span><span>Flashcard</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="kamus" href="#"><span class="material-symbols-outlined text-[20px]">translate</span><span>Kamus</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="komunitas" href="#"><span class="material-symbols-outlined text-[20px]">forum</span><span>Komunitas</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="misi-dan-prestasi" href="#"><span class="material-symbols-outlined text-[20px]">military_tech</span><span>Misi &amp; Prestasi</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="sertifikasi" href="#"><span class="material-symbols-outlined text-[20px]">verified</span><span>Sertifikasi</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="tema-aplikasi" href="#"><span class="material-symbols-outlined text-[20px]">palette</span><span>Tema Aplikasi</span></a></nav></div><div class="mt-6 p-4 rounded-lg bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex flex-col gap-2"><div class="flex items-center justify-between text-on-surface font-label-md text-label-md"><span>Target Harian</span><span class="text-tertiary font-semibold">80%</span></div><div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden"><div class="h-full bg-tertiary-container rounded-full w-4/5"></div></div><span class="font-label-sm text-label-sm text-on-surface-variant">4 dari 5 target selesai</span></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl z-40 flex items-center justify-between px-8 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-4"><div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-low"><span class="material-symbols-outlined text-primary text-[20px]">local_fire_department</span><span class="font-label-md text-label-md font-semibold text-on-surface">14 Hari Streak</span></div><div class="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-surface-container-low"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-tertiary text-[18px]">workspace_premium</span><span class="font-label-md text-label-md font-semibold text-on-surface">Senpai N4</span></div><div class="w-24 h-2 bg-surface-container-highest rounded-full overflow-hidden"><div class="h-full bg-primary-container rounded-full w-3/5"></div></div><span class="font-label-sm text-label-sm text-on-surface-variant">1,420 / 2,000 XP</span></div></div><div class="flex items-center gap-4"><button class="w-9 h-9 rounded-lg bg-surface-container-low hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors" title="Ganti Tema" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button><button class="w-9 h-9 rounded-lg bg-surface-container-low hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors" title="Notifikasi" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><div class="flex items-center gap-3 pl-2"><div class="flex flex-col text-right"><span class="font-label-md text-label-md font-semibold text-on-surface">Kenjiro Sato</span><span class="font-label-sm text-label-sm text-on-surface-variant">N4 Student</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Top View Navigation Strip -->
+<div class="sticky top-16 z-30 bg-surface/95 backdrop-blur-md px-8 py-3.5 shadow-sm flex items-center justify-between border-b border-surface-container-highest">
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+<button class="tab-trigger flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-label-md text-label-md transition-all bg-primary-container text-on-primary-container shadow-sm" id="tab-btn-beranda" onclick="switchTab('beranda')">
+<span class="material-symbols-outlined text-[17px]">dashboard</span>
+<span>Ringkasan</span>
+</button>
+<button class="tab-trigger flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" id="tab-btn-journey" onclick="switchTab('journey')">
+<span class="material-symbols-outlined text-[17px]">timeline</span>
+<span>Journey (N4)</span>
+</button>
+<button class="tab-trigger flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" id="tab-btn-materi" onclick="switchTab('materi')">
+<span class="material-symbols-outlined text-[17px]">menu_book</span>
+<span>Materi &amp; Quiz</span>
+</button>
+<button class="tab-trigger flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" id="tab-btn-menulis" onclick="switchTab('menulis')">
+<span class="material-symbols-outlined text-[17px]">edit_note</span>
+<span>Genkouyoushi</span>
+</button>
+<button class="tab-trigger flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" id="tab-btn-flashcard" onclick="switchTab('flashcard')">
+<span class="material-symbols-outlined text-[17px]">style</span>
+<span>SRS Flashcard</span>
+</button>
+<button class="tab-trigger flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" id="tab-btn-kamus" onclick="switchTab('kamus')">
+<span class="material-symbols-outlined text-[17px]">translate</span>
+<span>Kamus</span>
+</button>
+<button class="tab-trigger flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" id="tab-btn-komunitas" onclick="switchTab('komunitas')">
+<span class="material-symbols-outlined text-[17px]">forum</span>
+<span>Komunitas</span>
+</button>
+<button class="tab-trigger flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" id="tab-btn-prestasi" onclick="switchTab('prestasi')">
+<span class="material-symbols-outlined text-[17px]">military_tech</span>
+<span>Prestasi &amp; Tema</span>
+</button>
+<button class="tab-trigger flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" id="tab-btn-sertifikat" onclick="switchTab('sertifikat')">
+<span class="material-symbols-outlined text-[17px]">verified</span>
+<span>Sertifikasi</span>
+</button>
+</div>
+<div class="hidden xl:flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Modus Belajar:</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+        Fokus Aktif
+      </span>
+</div>
+</div>
+<div class="px-8 py-8 space-y-12">
+<!-- ========================================== -->
+<!-- SECTION 1: BERANDA / RINGKASAN UTAMA -->
+<!-- ========================================== -->
+<section class="tab-content block space-y-8" id="view-beranda">
+<!-- Hero Greeting & Japanese Banner -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-8 shadow-sm">
+<div class="absolute -right-8 -bottom-10 select-none pointer-events-none opacity-5 text-on-surface font-headline-lg text-[180px] leading-none">
+          日本語
+        </div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+<div class="space-y-3 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-semibold tracking-wide">
+<span>🌸</span>
+<span>GOHAN TO NIHONGO • SEMESTER GANJIL</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+              Konnichiwa, Kenjiro! <span class="text-on-surface-variant font-normal text-headline-md tracking-normal">(こんにちは、けんじろう)</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Hari ini momentum yang sangat bagus. Anda telah menyelesaikan 85% persiapan kosakata N4 minggu ini. Tetap konsisten dan capai level berikutnya!
+            </p>
+<div class="pt-2 flex flex-wrap items-center gap-3">
+<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-sm hover:opacity-90 transition-all" onclick="switchTab('journey')">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span>Lanjut Belajar (Node N4.3)</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-surface-container-high text-on-surface font-label-lg text-label-lg hover:bg-surface-container-highest transition-all" onclick="switchTab('materi')">
+<span class="material-symbols-outlined text-[18px]">quiz</span>
+<span>Kerjakan Quiz Harian</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-surface-container text-tertiary font-label-lg text-label-lg hover:bg-tertiary-fixed hover:text-on-tertiary-fixed transition-all" id="quick-claim-btn" onclick="triggerClaim()">
+<span class="material-symbols-outlined text-[18px]">redeem</span>
+<span>Klaim Hadiah Misi</span>
+</button>
+</div>
+</div>
+<!-- Level & Streak Stat Pods -->
+<div class="flex flex-col sm:flex-row lg:flex-col gap-4 min-w-[280px]">
+<!-- Rank & XP Card -->
+<div class="p-4 rounded-xl bg-surface-container-low shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Pangkat Akademik</span>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">JLPT N4</span>
+</div>
+<div class="flex items-baseline justify-between">
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">Senpai (Level 14)</div>
+<div class="font-label-sm text-label-sm text-tertiary font-semibold">+650 XP tersisa</div>
+</div>
+<div class="space-y-1">
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary-container rounded-full transition-all duration-700" style="width: 81.4%;"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>2,850 XP</span>
+<span>3,500 XP</span>
+</div>
+</div>
+</div>
+<!-- Streak Fire Pod -->
+<div class="p-4 rounded-xl bg-surface-container-low shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">local_fire_department</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight font-bold">14 Hari</div>
+<div class="font-label-sm text-label-sm text-tertiary font-semibold">Api Terjaga! 4 Hari ke Hanko Perak</div>
+</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Section: Daily Missions & Progress Overview -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Missions Module (2 cols) -->
+<div class="lg:col-span-2 p-6 rounded-xl bg-surface-container-lowest shadow-sm space-y-5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">assignment_turned_in</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Misi Harian Santri (今日の課題)</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Diperbarui setiap pukul 00:00 WIB</span>
+</div>
+<div class="space-y-3.5">
+<!-- Mission 1: Complete -->
+<div class="p-4 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all hover:bg-surface-container">
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold">Selesaikan 1 Sesi Flashcard (20 Kata)</h3>
+<span class="px-2 py-0.2 rounded bg-tertiary/10 text-tertiary font-label-sm text-label-sm font-semibold">100% Selesai</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pengulangan berkala kosakata SRS N4 pagi hari.</p>
+</div>
+</div>
+<button class="shrink-0 px-4 py-2 rounded bg-primary-container text-on-primary-container font-label-md text-label-md font-semibold hover:opacity-90 shadow-sm transition-all flex items-center gap-1.5 self-end sm:self-center" onclick="claimMissionReward(this)">
+<span class="material-symbols-outlined text-[16px]">celebration</span>
+<span>Klaim 50 XP</span>
+</button>
+</div>
+<!-- Mission 2: In-Progress -->
+<div class="p-4 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all hover:bg-surface-container">
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0 mt-0.5 font-label-md text-label-md font-bold">
+                  3/5
+                </div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold">Tulis 5 Kanji dengan Akurasi &gt;85%</h3>
+<span class="px-2 py-0.2 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">Progres: 60%</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Latihan goresan pada kisi Genkouyoushi.</p>
+</div>
+</div>
+<button class="shrink-0 px-4 py-2 rounded bg-surface-container-highest text-on-surface font-label-md text-label-md font-semibold hover:bg-surface-container transition-all self-end sm:self-center" onclick="switchTab('menulis')">
+                Lanjutkan
+              </button>
+</div>
+<!-- Mission 3: Not Started -->
+<div class="p-4 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all hover:bg-surface-container">
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0 mt-0.5 font-label-md text-label-md">
+                  0/10
+                </div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold">Kuis Tata Bahasa Partikel (10 Soal)</h3>
+<span class="px-2 py-0.2 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">Belum Mulai</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Uji pemahaman partikel は, を, に, で.</p>
+</div>
+</div>
+<button class="shrink-0 px-4 py-2 rounded bg-surface-container-highest text-on-surface font-label-md text-label-md font-semibold hover:bg-surface-container transition-all self-end sm:self-center" onclick="switchTab('materi')">
+                Mulai
+              </button>
+</div>
+</div>
+</div>
+<!-- Weekly Focus & Hanko Stamp Seal Card -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between space-y-6">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Presensi Kaligrafi</span>
+<div class="w-7 h-7 rounded-sm bg-primary/10 flex items-center justify-center text-primary font-serif font-bold text-[13px]">
+                印
+              </div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Target Mingguan N4</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Selesaikan 4 modul lagi sebelum ujian simulasi bulanan pada 28 Februari.</p>
+</div>
+<!-- Mini Bamboo / Calendar tracker -->
+<div class="grid grid-cols-7 gap-2 pt-2 text-center">
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sen</span>
+<div class="w-8 h-8 mx-auto rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center text-[12px] font-bold">✓</div>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sel</span>
+<div class="w-8 h-8 mx-auto rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center text-[12px] font-bold">✓</div>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Rab</span>
+<div class="w-8 h-8 mx-auto rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center text-[12px] font-bold">✓</div>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Kam</span>
+<div class="w-8 h-8 mx-auto rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center text-[12px] font-bold">✓</div>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-primary font-bold">Jum</span>
+<div class="w-8 h-8 mx-auto rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-[12px] font-bold shadow-sm">14</div>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sab</span>
+<div class="w-8 h-8 mx-auto rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-[12px]">15</div>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Min</span>
+<div class="w-8 h-8 mx-auto rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-[12px]">16</div>
+</div>
+</div>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-low flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">auto_stories</span>
+<div class="text-body-sm font-body-sm text-on-surface">
+<span class="font-semibold text-on-surface">Pepatah Hari Ini:</span><br/>
+<span class="italic text-on-surface-variant">"Nana korobi ya oki" (Tujuh kali jatuh, delapan kali bangkit).</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 2: JOURNEY (PETA PETUALANGAN BELAJAR) -->
+<!-- ========================================== -->
+<section class="tab-content hidden space-y-8" id="view-journey">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider font-semibold">
+<span>🗺️</span> Peta Petualangan (学習マップ)
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Alur Kurikulum dari Pemula ke Mahir</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Jelajahi setiap pos pembelajaran terstruktur sesuai standar JLPT resmi.</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1.5 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">Tingkat Sekarang: N4 Intermediate</span>
+</div>
+</div>
+<!-- Interactive Node Pathway -->
+<div class="p-8 rounded-xl bg-surface-container-lowest shadow-sm relative overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 relative z-10">
+<!-- Node 1: Hiragana (Completed) -->
+<div class="flex flex-col items-center text-center p-5 rounded-xl bg-surface-container-low transition-transform hover:-translate-y-1">
+<div class="w-14 h-14 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center mb-3 shadow-sm relative">
+<span class="material-symbols-outlined text-[28px]">check_circle</span>
+<span class="absolute -top-1 -right-1 text-sm">⭐</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-tertiary/10 text-tertiary font-label-sm text-label-sm font-semibold mb-1">100% Tuntas</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Node 1: Hiragana</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Seion, Dakuon &amp; Yoon lengkap (46 karakter).</p>
+</div>
+<!-- Node 2: Katakana (Completed) -->
+<div class="flex flex-col items-center text-center p-5 rounded-xl bg-surface-container-low transition-transform hover:-translate-y-1">
+<div class="w-14 h-14 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center mb-3 shadow-sm relative">
+<span class="material-symbols-outlined text-[28px]">check_circle</span>
+<span class="absolute -top-1 -right-1 text-sm">⭐</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-tertiary/10 text-tertiary font-label-sm text-label-sm font-semibold mb-1">100% Tuntas</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Node 2: Katakana</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kosakata serapan gairaigo &amp; tanda vokal panjang.</p>
+</div>
+<!-- Node 3: Dasar JLPT N5 (Completed) -->
+<div class="flex flex-col items-center text-center p-5 rounded-xl bg-surface-container-low transition-transform hover:-translate-y-1">
+<div class="w-14 h-14 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center mb-3 shadow-sm relative">
+<span class="material-symbols-outlined text-[28px]">check_circle</span>
+<span class="absolute -top-1 -right-1 text-sm">⭐</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-tertiary/10 text-tertiary font-label-sm text-label-sm font-semibold mb-1">100% Tuntas</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Node 3: Partikel N5</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Dasar partikel は, を, に, で &amp; 100 Kanji pokok.</p>
+</div>
+<!-- Node 4: JLPT N4 (In Progress / Active Ring) -->
+<div class="flex flex-col items-center text-center p-5 rounded-xl bg-surface-container-high transition-transform hover:-translate-y-1 relative ring-2 ring-primary">
+<div class="absolute -top-3 px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-semibold">
+              POS SAAT INI
+            </div>
+<div class="w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center mb-3 shadow-md animate-pulse">
+<span class="material-symbols-outlined text-[28px]">local_library</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-label-sm text-label-sm font-semibold mb-1">68% Progres</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Node 4: Kata Kerja N4</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bentuk -Te, -Nai, Kemampuan, &amp; Pengandaian -Tara.</p>
+</div>
+<!-- Node 5: JLPT N3 (Locked) -->
+<div class="flex flex-col items-center text-center p-5 rounded-xl bg-surface-container-low opacity-60">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-[26px]">lock</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold mb-1">Terkunci</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Node 5: Keigo N3</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sonkeigo, Kenjougo &amp; Bahasa formal percakapan bisnis.</p>
+</div>
+</div>
+<!-- Node Detail Preview Card: Node N4.3 -->
+<div class="mt-8 p-6 rounded-xl bg-surface-container flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded bg-primary-container text-on-primary-container font-label-sm text-label-sm font-semibold">Target Hari Ini: Node N4.3</span>
+<span class="text-tertiary font-label-md text-label-md font-bold">+120 XP Hadiah</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Bentuk Perintah &amp; Larangan (-Nasai / -Na / -Tekudasai)</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+<strong class="text-on-surface">Catatan Sensei (先生のメモ):</strong> "Perhatikan intonasi tegas namun sopan dalam percakapan kerja. Penggunaan akhiran <em>-nasai</em> biasa dipakai oleh orang tua kepada anak atau guru kepada murid, bukan ke atasan."
+            </p>
+</div>
+<button class="shrink-0 px-6 py-3 rounded bg-primary-container text-on-primary-container font-label-lg text-label-lg font-semibold hover:opacity-95 shadow-sm transition-all flex items-center gap-2" onclick="switchTab('materi')">
+<span>Mulai Sesi Ini</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 3: MATERI & QUIZ INTERAKTIF -->
+<!-- ========================================== -->
+<section class="tab-content hidden space-y-8" id="view-materi">
+<div>
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider font-semibold">
+<span>📖</span> Modul Pembelajaran Aktif
+        </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Materi Bacaan Furigana &amp; Kuis Partikel</h2>
+</div>
+<!-- Category Filter Pills -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+<button class="px-4 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md font-semibold">Semua</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md">Hiragana</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md">Katakana</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md">Kanji</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md">Tata Bahasa</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md">Kosakata</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md">Percakapan (Choukai)</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Material Reader Card -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm space-y-6">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Bacaan Kafe &amp; Kehidupan Sehari-hari</span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-highest transition-colors" id="romaji-toggle" onclick="toggleRomaji()">
+                Romaji: Aktif
+              </button>
+<button class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary hover:bg-surface-container-highest transition-colors" onclick="playSampleAudio()" title="Dengarkan Pelafalan">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+</div>
+<!-- Japanese Rich Text Furigana Box -->
+<div class="p-6 rounded-lg bg-surface-container-low space-y-3">
+<div class="text-2xl leading-loose font-normal text-on-surface">
+<ruby>日本語<rt class="text-xs text-on-surface-variant font-sans">にほんご</rt></ruby>を
+              <ruby>勉強<rt class="text-xs text-on-surface-variant font-sans">べんきょう</rt></ruby>します。
+              そして、<ruby>毎朝<rt class="text-xs text-on-surface-variant font-sans">まいあさ</rt></ruby>
+<ruby>喫茶店<rt class="text-xs text-on-surface-variant font-sans">きっさてん</rt></ruby>で
+              <ruby>珈琲<rt class="text-xs text-on-surface-variant font-sans">コーヒー</rt></ruby>を
+              <ruby>飲<rt class="text-xs text-on-surface-variant font-sans">の</rt></ruby>みます。
+            </div>
+<div class="font-body-sm text-body-sm text-on-surface-variant italic" id="romaji-display">
+              "Nihongo o benkyou shimasu. Soshite, maiasa kissaten de koohii o nomimasu."
+            </div>
+<div class="font-body-md text-body-md text-on-surface font-medium pt-1">
+              Arti: "Saya belajar bahasa Jepang. Lalu, setiap pagi saya minum kopi di kafe."
+            </div>
+</div>
+<!-- Grammar Explanation Box -->
+<div class="p-4 rounded-lg bg-surface-container space-y-2">
+<div class="flex items-center gap-2 text-tertiary font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+<span>Poin Tata Bahasa (文法解説)</span>
+</div>
+<ul class="font-body-sm text-body-sm text-on-surface-variant space-y-1 list-disc pl-5">
+<li><strong>Partikel を (wo/o):</strong> Menandai objek langsung penderita tindakan (minum kopi, belajar bahasa).</li>
+<li><strong>Partikel で (de):</strong> Menunjukkan tempat dilakukannya sebuah aksi dinamis (di kafe / 喫茶店で).</li>
+</ul>
+</div>
+</div>
+<!-- Interactive Quiz Card -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm space-y-6">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Latihan Kilat Partikel</span>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">Kuis #14</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Pilihlah partikel yang tepat untuk melengkapi kalimat:</h3>
+<div class="mt-4 p-5 rounded-lg bg-surface-container-low text-center">
+<span class="text-xl font-medium text-on-surface">毎朝、パン <span class="px-4 py-1 rounded bg-surface-container-highest font-bold text-primary underline decoration-2" id="quiz-blank">___</span> 食べます。</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 italic">(Maiasa, pan ___ tabemasu - "Setiap pagi, saya makan roti.")</p>
+</div>
+</div>
+<!-- Answer Tiles -->
+<div class="grid grid-cols-2 gap-3.5" id="quiz-options">
+<button class="quiz-btn p-4 rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-all flex items-center justify-between group" onclick="handleQuizAnswer('A', this)">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded bg-surface-container-highest flex items-center justify-center font-bold text-on-surface font-label-md text-label-md">A</span>
+<span class="text-xl font-bold text-on-surface">を (wo)</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">check_circle</span>
+</button>
+<button class="quiz-btn p-4 rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-all flex items-center justify-between group" onclick="handleQuizAnswer('B', this)">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded bg-surface-container-highest flex items-center justify-center font-bold text-on-surface font-label-md text-label-md">B</span>
+<span class="text-xl font-bold text-on-surface">に (ni)</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">check_circle</span>
+</button>
+<button class="quiz-btn p-4 rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-all flex items-center justify-between group" onclick="handleQuizAnswer('C', this)">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded bg-surface-container-highest flex items-center justify-center font-bold text-on-surface font-label-md text-label-md">C</span>
+<span class="text-xl font-bold text-on-surface">で (de)</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">check_circle</span>
+</button>
+<button class="quiz-btn p-4 rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-all flex items-center justify-between group" onclick="handleQuizAnswer('D', this)">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded bg-surface-container-highest flex items-center justify-center font-bold text-on-surface font-label-md text-label-md">D</span>
+<span class="text-xl font-bold text-on-surface">が (ga)</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">check_circle</span>
+</button>
+</div>
+<!-- Feedback notification banner (hidden by default) -->
+<div class="hidden p-4 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-between" id="quiz-feedback">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+<div>
+<span class="font-bold font-label-lg text-label-lg">Seikai! (正解 / Benar!)</span>
+<p class="font-body-sm text-body-sm">Roti adalah objek langsung dari kata kerja makan (食べます).</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded bg-tertiary text-on-tertiary font-label-md text-label-md font-bold">+25 XP</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 4: LATIHAN MENULIS (GENKOUYOUSHI) -->
+<!-- ========================================== -->
+<section class="tab-content hidden space-y-8" id="view-menulis">
+<div>
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider font-semibold">
+<span>🖌️</span> Lembar Kaligrafi Tradisional (原稿用紙)
+        </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Simulasi Goresan Kuas Kanji &amp; Evaluasi Presisi</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Target Info & Stroke Steps (1 col) -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm space-y-6">
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Target Karakter</span>
+<div class="flex items-baseline gap-3">
+<h3 class="font-headline-lg text-headline-lg text-on-surface text-5xl">木</h3>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant font-medium">Ki / Moku (Pohon)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Level JLPT N5 • 4 Goresan (Strokes) • Radikal Dasar</p>
+</div>
+<!-- Stroke Order Step Diagrams -->
+<div class="space-y-3">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Urutan Goresan Resmi (筆順):</span>
+<div class="grid grid-cols-4 gap-2">
+<div class="p-2 rounded bg-surface-container-low text-center">
+<span class="text-xs text-on-surface-variant font-bold">Langkah 1</span>
+<div class="text-lg font-bold text-primary mt-1">一</div>
+<span class="text-[10px] text-on-surface-variant">Mendatar</span>
+</div>
+<div class="p-2 rounded bg-surface-container-low text-center">
+<span class="text-xs text-on-surface-variant font-bold">Langkah 2</span>
+<div class="text-lg font-bold text-primary mt-1">十</div>
+<span class="text-[10px] text-on-surface-variant">Tegak lurus</span>
+</div>
+<div class="p-2 rounded bg-surface-container-low text-center">
+<span class="text-xs text-on-surface-variant font-bold">Langkah 3</span>
+<div class="text-lg font-bold text-primary mt-1">木(kiri)</div>
+<span class="text-[10px] text-on-surface-variant">Sapuan kiri</span>
+</div>
+<div class="p-2 rounded bg-surface-container-low text-center">
+<span class="text-xs text-on-surface-variant font-bold">Langkah 4</span>
+<div class="text-lg font-bold text-primary mt-1">木</div>
+<span class="text-[10px] text-on-surface-variant">Sapuan kanan</span>
+</div>
+</div>
+</div>
+<!-- Live Accuracy Meter -->
+<div class="p-4 rounded-lg bg-surface-container space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Skor Presisi AI:</span>
+<span class="font-label-md text-label-md font-bold text-tertiary" id="canvas-accuracy">94% Sempurna</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-tertiary rounded-full transition-all duration-500" id="accuracy-bar" style="width: 94%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-1">
+              "Keseimbangan sudut sapuan kiri dan kanan telah memenuhi kaidah kaligrafi Kaisho."
+            </p>
+</div>
+</div>
+<!-- Canvas Area (2 cols) -->
+<div class="lg:col-span-2 p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">draw</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Kanvas Kotak Garis Bantu (原稿用紙)</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 rounded bg-surface-container font-label-sm text-label-sm text-on-surface hover:bg-surface-container-high transition-colors" id="btn-guide" onclick="toggleCanvasGuide()">
+                Garis Bantu: Nyala
+              </button>
+<button class="px-3 py-1 rounded bg-surface-container font-label-sm text-label-sm text-on-surface hover:bg-surface-container-high transition-colors flex items-center gap-1" onclick="clearCanvas()">
+<span class="material-symbols-outlined text-[14px]">refresh</span>
+<span>Bersihkan</span>
+</button>
+</div>
+</div>
+<!-- Genkouyoushi Interactive Drawing Simulation Board -->
+<div class="relative w-full aspect-square max-w-[420px] mx-auto rounded-lg bg-[#FAF7F0] shadow-inner border border-surface-container-highest overflow-hidden flex items-center justify-center select-none cursor-crosshair" id="genkou-box">
+<!-- 2x2 Dotted Guidelines -->
+<div class="absolute inset-0 pointer-events-none transition-opacity duration-300" id="grid-lines">
+<div class="absolute inset-x-0 top-1/2 border-b border-dashed border-outline-variant opacity-60"></div>
+<div class="absolute inset-y-0 left-1/2 border-r border-dashed border-outline-variant opacity-60"></div>
+<!-- Diagonal helper lines -->
+<div class="absolute inset-0 bg-[radial-gradient(#8d706e_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
+</div>
+<!-- Pre-drawn Sumi Ink Vector Simulation -->
+<svg class="w-full h-full p-8 transition-all duration-300" id="kanji-svg-drawing" viewbox="0 0 200 200">
+<!-- Watermark sample guide -->
+<text fill="#2C2825" font-family="'Noto Serif', serif" font-size="140" opacity="0.12" text-anchor="middle" x="50%" y="65%">木</text>
+<!-- Drawn brush strokes simulation -->
+<path class="transition-all duration-300" d="M 40 85 Q 100 80 160 85" fill="none" id="stroke-1" stroke="#2C2825" stroke-linecap="round" stroke-width="12"></path>
+<path class="transition-all duration-300" d="M 100 35 L 100 165" fill="none" id="stroke-2" stroke="#2C2825" stroke-linecap="round" stroke-width="14"></path>
+<path class="transition-all duration-300" d="M 100 85 Q 70 120 45 150" fill="none" id="stroke-3" stroke="#2C2825" stroke-linecap="round" stroke-width="12"></path>
+<path class="transition-all duration-300" d="M 100 85 Q 130 120 155 150" fill="none" id="stroke-4" stroke="#2C2825" stroke-linecap="round" stroke-width="12"></path>
+</svg>
+</div>
+<!-- Bottom Action Bar -->
+<div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+<div class="flex items-center gap-2">
+<button class="px-3.5 py-1.5 rounded bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="undoStroke()">
+                Undo Goresan
+              </button>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Goresan: 4 / 4 Lengkap</span>
+</div>
+<button class="px-5 py-2 rounded bg-primary-container text-on-primary-container font-label-md text-label-md font-semibold hover:opacity-90 shadow-sm transition-all flex items-center gap-2" onclick="evaluateAccuracy()">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Uji Akurasi AI (採点)</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 5: FLASHCARD (SRS) -->
+<!-- ========================================== -->
+<section class="tab-content hidden space-y-8" id="view-flashcard">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider font-semibold">
+<span>🎴</span> Spaced Repetition System (SRS)
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Kartu Hafalan Pengulangan Cerdas</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Algoritma otomatis menyesuaikan interval berdasarkan daya ingat Anda.</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sesi Hari Ini: <strong>12 / 20 Kartu</strong></span>
+<div class="w-32 h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 60%;"></div>
+</div>
+</div>
+</div>
+<!-- 3D Flip Card Container -->
+<div class="max-w-2xl mx-auto w-full">
+<div class="cursor-pointer min-h-[340px] rounded-xl bg-surface-container-lowest p-8 shadow-sm flex flex-col justify-between text-center transition-all duration-500 hover:shadow-md border border-surface-container-high relative overflow-hidden" id="flashcard-element" onclick="flipFlashcard()">
+<!-- Card Front / Back Indicator -->
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">touch_app</span> Klik untuk membalik
+            </span>
+<span class="px-2 py-0.5 rounded bg-surface-container font-semibold" id="card-side-tag">SISI DEPAN</span>
+</div>
+<!-- Dynamic Face Content -->
+<div class="space-y-4 my-auto" id="flashcard-front">
+<div class="text-on-surface-variant font-body-lg text-body-lg">さくら</div>
+<div class="font-headline-lg text-headline-lg text-7xl text-on-surface font-normal">桜</div>
+<button class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" onclick="event.stopPropagation(); playSampleAudio();">
+<span class="material-symbols-outlined text-[16px]">volume_up</span>
+<span>Dengarkan Pelafalan</span>
+</button>
+</div>
+<div class="hidden space-y-4 my-auto" id="flashcard-back">
+<div class="font-headline-md text-headline-md text-primary font-bold">sakura</div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Bunga Sakura (Cherry Blossom)</div>
+<div class="p-3 rounded bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm max-w-md mx-auto">
+<strong>Contoh Kalimat:</strong><br/>
+              春になると、桜が美しく咲きます。<br/>
+<span class="italic text-xs">(Haru ni naru to, sakura ga utsukushiku sakimasu - Saat musim semi tiba, bunga sakura mekar dengan indahnya.)</span>
+</div>
+</div>
+<div class="text-xs text-on-surface-variant">
+            Level JLPT N4 • Kosakata Musim
+          </div>
+</div>
+<!-- Spaced Repetition Rating Buttons -->
+<div class="mt-6 grid grid-cols-3 gap-4">
+<button class="py-3 px-4 rounded-lg bg-error-container text-on-error-container hover:opacity-90 transition-all font-label-md text-label-md font-semibold text-center flex flex-col items-center gap-0.5" onclick="rateFlashcard('lupa')">
+<span>[ Lupa ]</span>
+<span class="text-[11px] font-normal opacity-80">Ulangi dlm 10 menit</span>
+</button>
+<button class="py-3 px-4 rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-all font-label-md text-label-md font-semibold text-center flex flex-col items-center gap-0.5" onclick="rateFlashcard('ragu')">
+<span>[ Ragu ]</span>
+<span class="text-[11px] font-normal opacity-80">Ulangi besok (1 hari)</span>
+</button>
+<button class="py-3 px-4 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed hover:opacity-90 transition-all font-label-md text-label-md font-semibold text-center flex flex-col items-center gap-0.5" onclick="rateFlashcard('ingat')">
+<span>[ Ingat ]</span>
+<span class="text-[11px] font-normal opacity-80">Ulangi dlm 4 hari</span>
+</button>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 6: KAMUS CEPAT JEPANG-INDONESIA -->
+<!-- ========================================== -->
+<section class="tab-content hidden space-y-8" id="view-kamus">
+<div>
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider font-semibold">
+<span>📚</span> Kamus Interaktif Cepat (辞書)
+        </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Pencarian Kanji, Romaji, Kana &amp; Bahasa Indonesia</h2>
+</div>
+<!-- Search Input Bar -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm space-y-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-3.5 text-on-surface-variant text-[22px]">search</span>
+<input class="w-full pl-12 pr-4 py-3 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant focus:bg-surface focus:outline-none focus:ring-1 focus:ring-primary transition-all font-body-md text-body-md" id="dictionary-input" onkeyup="filterDictionary()" placeholder="Ketik Kanji, Romaji (cth: sensei), Hiragana, atau Bahasa Indonesia..." type="text"/>
+</div>
+<div class="flex items-center gap-2 text-xs font-label-sm text-label-sm text-on-surface-variant">
+<span>Filter Cepat:</span>
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface">Semua</button>
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface">Kata Benda</button>
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface">Kata Kerja</button>
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface">Sifat (-i / -na)</button>
+</div>
+</div>
+<!-- Dictionary Results -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="dict-results">
+<!-- Entry 1 -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex items-start justify-between gap-4">
+<div class="space-y-1.5">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-bold text-on-surface">先生</span>
+<span class="text-on-surface-variant font-label-md text-label-md">せんせい • sensei</span>
+<span class="px-2 py-0.2 rounded bg-surface-container text-on-surface-variant text-[11px]">N5</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">Guru, pengajar, mentor, dokter (panggilan hormat).</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">"Benkyou no sensei wa totemo shinsetsu desu."</p>
+</div>
+<button class="p-2 text-amber-600 hover:scale-110 transition-transform" onclick="toggleFavorite(this)" title="Simpan Kosakata">
+<span class="material-symbols-outlined text-[22px]">star</span>
+</button>
+</div>
+<!-- Entry 2 -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex items-start justify-between gap-4">
+<div class="space-y-1.5">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-bold text-on-surface">約束</span>
+<span class="text-on-surface-variant font-label-md text-label-md">やくそく • yakusoku</span>
+<span class="px-2 py-0.2 rounded bg-surface-container text-on-surface-variant text-[11px]">N4</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">Janji, perjanjian, kesepakatan waktu temu.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">"Tomodachi to yakusoku ga arimasu."</p>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-amber-600 hover:scale-110 transition-transform" onclick="toggleFavorite(this)" title="Simpan Kosakata">
+<span class="material-symbols-outlined text-[22px]">star_border</span>
+</button>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 7: KOMUNITAS & DISKUSI -->
+<!-- ========================================== -->
+<section class="tab-content hidden space-y-8" id="view-komunitas">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider font-semibold">
+<span>💬</span> Ruang Diskusi Santri (掲示板)
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Komunitas Belajar &amp; Bimbingan Sensei</h2>
+</div>
+<button class="px-4 py-2 rounded bg-primary-container text-on-primary-container font-label-md text-label-md font-semibold hover:opacity-90 flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add_comment</span>
+<span>Buat Pertanyaan Baru</span>
+</button>
+</div>
+<!-- Topic Filter Chips -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+<button class="px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-semibold">Semua Topik</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Tips Grammar</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">JLPT Prep N4/N3</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Budaya Jepang</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Tanya Sensei</button>
+</div>
+<!-- Forum Thread Post -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm space-y-5">
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">
+              KS
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Kenjiro Sato</span>
+<span class="px-2 py-0.2 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">Murid N4</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Diposting 2 jam yang lalu • Topik: Tips Grammar</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">more_horiz</span>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Perbedaan penggunaan partikel に (ni) dan で (de) untuk penunjuk tempat?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Konbanwa minna-san! Saya sering bingung saat menggunakan kalimat keberadaan dan kegiatan. Kapan persisnya kita harus menggunakan <strong>に</strong> daripada <strong>で</strong> saat menyebutkan suatu lokasi seperti stasiun atau kamar?
+          </p>
+</div>
+<!-- Threaded Reply from Sensei -->
+<div class="p-4 rounded-lg bg-surface-container-low space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center text-xs font-bold">師</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Tanaka Sensei (Instruktur JLPT)</span>
+<span class="px-2 py-0.2 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">Jawaban Terverifikasi</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1 jam yang lalu</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+            Halo Kenjiro! Kuncinya terletak pada <em>sifat kata kerjanya</em>:
+            <br/>1) Gunakan <strong>に (ni)</strong> untuk kata kerja keberadaan statis seperti <em>imasu</em> (ada orang/hewan) atau <em>arimasu</em> (ada benda mati). Contoh: 部屋<strong>に</strong>本があります。
+            <br/>2) Gunakan <strong>で (de)</strong> untuk tempat berlangsungnya aksi aktif (makan, belajar, bekerja). Contoh: 部屋<strong>で</strong>勉強します。
+          </p>
+</div>
+<div class="flex items-center gap-6 pt-2 font-label-sm text-label-sm text-on-surface-variant">
+<button class="flex items-center gap-1.5 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+<span>12 Suka</span>
+</button>
+<button class="flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">chat_bubble</span>
+<span>4 Balasan</span>
+</button>
+<button class="flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Bagikan</span>
+</button>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 8: MISI, PRESTASI & TEMA APLIKASI -->
+<!-- ========================================== -->
+<section class="tab-content hidden space-y-10" id="view-prestasi">
+<div>
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider font-semibold">
+<span>🎖️</span> Pencapaian &amp; Personalisasi
+        </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Koleksi Lencana Penghargaan &amp; Tema Washi</h2>
+</div>
+<!-- Tiered Badges Showcase -->
+<div class="space-y-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Lencana Kehormatan Akademik</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Badge 1: Unlocked -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex items-center gap-4">
+<div class="w-14 h-14 rounded-xl bg-primary-fixed text-primary flex items-center justify-center text-3xl shrink-0">
+              🎖️
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-label-lg text-label-lg font-bold text-on-surface">Pejuang 14 Hari</h4>
+<span class="px-2 py-0.2 rounded bg-tertiary-fixed text-on-tertiary-fixed text-[11px] font-semibold">Terbuka</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Mempertahankan streak belajar tanpa henti selama 2 minggu penuh.</p>
+</div>
+</div>
+<!-- Badge 2: Unlocked -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex items-center gap-4">
+<div class="w-14 h-14 rounded-xl bg-secondary-fixed text-secondary flex items-center justify-center text-3xl shrink-0">
+              🌸
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-label-lg text-label-lg font-bold text-on-surface">Ahli Kanji N5</h4>
+<span class="px-2 py-0.2 rounded bg-tertiary-fixed text-on-tertiary-fixed text-[11px] font-semibold">Terbuka</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Menguasai 150 Kanji dasar berserta On'yomi dan Kun'yomi.</p>
+</div>
+</div>
+<!-- Badge 3: Locked -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex items-center gap-4 opacity-60">
+<div class="w-14 h-14 rounded-xl bg-surface-container-high text-on-surface-variant flex items-center justify-center text-3xl shrink-0">
+              ⚔️
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-label-lg text-label-lg font-bold text-on-surface">Master Bushido</h4>
+<span class="px-2 py-0.2 rounded bg-surface-container-highest text-on-surface-variant text-[11px] font-semibold">Terkunci</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Lulus Ujian Simulasi Lengkap JLPT N3 dengan nilai di atas 85%.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Unlockable Theme Rewards Section -->
+<div class="space-y-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Tema Antarmuka (Aplikasi Washi)</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+<!-- Theme 1 -->
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm space-y-3 ring-2 ring-primary">
+<div class="h-20 rounded-lg bg-[#FBF9F4] border border-surface-container-highest flex items-center justify-center">
+<span class="text-xs font-serif font-bold text-[#2C2825]">和紙 原文</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<div class="font-label-md text-label-md font-bold text-on-surface">Washi Original</div>
+<div class="text-[11px] text-tertiary font-semibold">Aktif Digunakan</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+</div>
+</div>
+<!-- Theme 2 -->
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm space-y-3">
+<div class="h-20 rounded-lg bg-[#FFF2F4] border border-surface-container-highest flex items-center justify-center">
+<span class="text-xs font-serif font-bold text-[#944654]">桜の春</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<div class="font-label-md text-label-md font-bold text-on-surface">Sakura Spring</div>
+<div class="text-[11px] text-on-surface-variant">Terbuka</div>
+</div>
+<button class="px-2.5 py-1 rounded bg-surface-container font-label-sm text-label-sm hover:bg-surface-container-high">Pasang</button>
+</div>
+</div>
+<!-- Theme 3 -->
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm space-y-3">
+<div class="h-20 rounded-lg bg-[#F2F7F2] border border-surface-container-highest flex items-center justify-center">
+<span class="text-xs font-serif font-bold text-[#326040]">抹茶禅</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<div class="font-label-md text-label-md font-bold text-on-surface">Matcha Zen</div>
+<div class="text-[11px] text-on-surface-variant">Terbuka</div>
+</div>
+<button class="px-2.5 py-1 rounded bg-surface-container font-label-sm text-label-sm hover:bg-surface-container-high">Pasang</button>
+</div>
+</div>
+<!-- Theme 4: Locked -->
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm space-y-3 opacity-60">
+<div class="h-20 rounded-lg bg-[#1F2430] border border-surface-container-highest flex items-center justify-center">
+<span class="text-xs font-serif font-bold text-[#C7D0E0]">藍色の夜</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<div class="font-label-md text-label-md font-bold text-on-surface">Indigo Night</div>
+<div class="text-[11px] text-on-surface-variant">Butuh Level 18</div>
+</div>
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</div>
+</div>
+<!-- Theme 5: Locked -->
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm space-y-3 opacity-60">
+<div class="h-20 rounded-lg bg-[#EAF0F6] border border-surface-container-highest flex items-center justify-center">
+<span class="text-xs font-serif font-bold text-[#3B5266]">富士山</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<div class="font-label-md text-label-md font-bold text-on-surface">Mount Fuji</div>
+<div class="text-[11px] text-on-surface-variant">Butuh 30d Streak</div>
+</div>
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 9: SERTIFIKASI RESMI BENKYOU -->
+<!-- ========================================== -->
+<section class="tab-content hidden space-y-8" id="view-sertifikat">
+<div>
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider font-semibold">
+<span>📜</span> Transkrip &amp; Kredensial Resmi
+        </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Sertifikat Kelulusan Standar Akademik</h2>
+</div>
+<!-- High-Class Certificate Parchment Card -->
+<div class="max-w-3xl mx-auto p-10 rounded-2xl bg-surface-container-lowest shadow-md relative overflow-hidden border border-surface-container-high">
+<!-- Certificate Traditional Washi Border Effect -->
+<div class="p-8 rounded-xl bg-surface-container-low/60 border border-outline-variant space-y-8 relative">
+<!-- Top Certificate Heading -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-container text-on-primary-container font-headline-sm text-headline-sm flex items-center justify-center font-bold">
+                勉
+              </div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">BENKYOU NIHONGO ACADEMY</span>
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">日本文学術修了証</div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Nomor Dokumen Verifikasi:</span>
+<div class="font-mono text-xs font-bold text-on-surface">BKY-2025-N5-884920</div>
+</div>
+</div>
+<!-- Recipient Name & Details -->
+<div class="text-center py-6 space-y-3">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Sertifikat Diberikan Kepada:</span>
+<h3 class="font-headline-lg text-headline-lg text-4xl text-on-surface font-serif font-bold">Kenjiro Sato</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg mx-auto">
+              Telah berhasil menyelesaikan seluruh kurikulum dan evaluasi kompetensi bahasa Jepang setara standar JLPT dengan hasil memuaskan:
+            </p>
+<div class="inline-block px-4 py-1.5 rounded-full bg-surface-container font-label-lg text-label-lg font-bold text-on-surface">
+              Tingkat Dasar Lanjutan (JLPT N5 Equivalency • Nilai 94/100)
+            </div>
+</div>
+<!-- Bottom Signatures, Issue Date & Red Hanko Stamp -->
+<div class="pt-6 border-t border-surface-container-highest flex items-end justify-between">
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tanggal Penerbitan:</span>
+<div class="font-label-md text-label-md font-bold text-on-surface">18 Februari 2025</div>
+<span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Tercatat pada Ledger Akademik Digital
+              </span>
+</div>
+<!-- Traditional Hanko Red Seal Stamp Box -->
+<div class="relative w-16 h-16 rounded-md border-2 border-primary text-primary flex items-center justify-center select-none shadow-sm rotate-6 bg-primary-container/10">
+<div class="font-serif font-bold text-xl leading-none tracking-tighter text-center">
+                勉強<br/>印証
+              </div>
+</div>
+</div>
+</div>
+<!-- Certificate Action Buttons -->
+<div class="mt-8 flex flex-wrap items-center justify-end gap-3">
+<button class="px-5 py-2.5 rounded bg-primary-container text-on-primary-container font-label-md text-label-md font-semibold hover:opacity-90 transition-all flex items-center gap-2 shadow-sm" onclick="alert('Mengunduh dokumen PDF resmi bertanda tangan digital...')">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Unduh PDF Resmi</span>
+</button>
+<button class="px-4 py-2.5 rounded bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold hover:bg-surface-container-highest transition-all flex items-center gap-2" onclick="alert('Tautan kredensial telah disalin ke papan klip!')">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Bagikan Sertifikat</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<script>
+  // Tab Navigation Controller
+  function switchTab(targetTab) {
+    // Hide all tab contents
+    document.querySelectorAll('.tab-content').forEach(el => {
+      el.classList.add('hidden');
+      el.classList.remove('block');
+    });
+
+    // Reset button states
+    document.querySelectorAll('.tab-trigger').forEach(btn => {
+      btn.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow-sm');
+      btn.classList.add('text-on-surface-variant', 'hover:text-on-surface', 'hover:bg-surface-container');
+    });
+
+    // Activate current tab content
+    const activeView = document.getElementById('view-' + targetTab);
+    if (activeView) {
+      activeView.classList.remove('hidden');
+      activeView.classList.add('block');
+    }
+
+    // Activate current button
+    const activeBtn = document.getElementById('tab-btn-' + targetTab);
+    if (activeBtn) {
+      activeBtn.classList.remove('text-on-surface-variant', 'hover:text-on-surface', 'hover:bg-surface-container');
+      activeBtn.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow-sm');
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Interactive Flashcard Flip
+  let isCardFlipped = false;
+  function flipFlashcard() {
+    isCardFlipped = !isCardFlipped;
+    const front = document.getElementById('flashcard-front');
+    const back = document.getElementById('flashcard-back');
+    const tag = document.getElementById('card-side-tag');
+
+    if (isCardFlipped) {
+      front.classList.add('hidden');
+      back.classList.remove('hidden');
+      tag.innerText = 'SISI BELAKANG';
+    } else {
+      back.classList.add('hidden');
+      front.classList.remove('hidden');
+      tag.innerText = 'SISI DEPAN';
+    }
+  }
+
+  function rateFlashcard(type) {
+    const feedbackMsg = type === 'lupa' ? 'Kartu dijadwalkan ulang dalam 10 menit.' : (type === 'ragu' ? 'Kartu akan ditinjau kembali besok.' : 'Hebat! Kartu ditunda hingga 4 hari ke depan.');
+    alert(feedbackMsg);
+    // Reset view
+    isCardFlipped = true;
+    flipFlashcard();
+  }
+
+  // Interactive Quiz Answer Selection
+  function handleQuizAnswer(choice, btnElement) {
+    const feedback = document.getElementById('quiz-feedback');
+    const blank = document.getElementById('quiz-blank');
+
+    if (choice === 'A') {
+      blank.innerText = 'を';
+      btnElement.classList.add('bg-tertiary-fixed', 'text-on-tertiary-fixed');
+      feedback.classList.remove('hidden');
+    } else {
+      alert('Kurang tepat. Coba perhatikan lagi objek penderita dari kata kerja tabemasu!');
+    }
+  }
+
+  // Romaji Toggle
+  let romajiActive = true;
+  function toggleRomaji() {
+    romajiActive = !romajiActive;
+    const disp = document.getElementById('romaji-display');
+    const btn = document.getElementById('romaji-toggle');
+    if (romajiActive) {
+      disp.classList.remove('hidden');
+      btn.innerText = 'Romaji: Aktif';
+    } else {
+      disp.classList.add('hidden');
+      btn.innerText = 'Romaji: Nonaktif';
+    }
+  }
+
+  function playSampleAudio() {
+    // Audio trigger feedback animation
+    const speech = new SpeechSynthesisUtterance('桜。毎朝パンを食べます。');
+    speech.lang = 'ja-JP';
+    window.speechSynthesis.speak(speech);
+  }
+
+  // Canvas Actions
+  let guideVisible = true;
+  function toggleCanvasGuide() {
+    guideVisible = !guideVisible;
+    const lines = document.getElementById('grid-lines');
+    const btn = document.getElementById('btn-guide');
+    if (guideVisible) {
+      lines.classList.remove('opacity-0');
+      btn.innerText = 'Garis Bantu: Nyala';
+    } else {
+      lines.classList.add('opacity-0');
+      btn.innerText = 'Garis Bantu: Mati';
+    }
+  }
+
+  function clearCanvas() {
+    document.querySelectorAll('#kanji-svg-drawing path').forEach(p => {
+      p.style.opacity = '0';
+    });
+    document.getElementById('canvas-accuracy').innerText = '0%';
+    document.getElementById('accuracy-bar').style.width = '0%';
+  }
+
+  function undoStroke() {
+    const paths = Array.from(document.querySelectorAll('#kanji-svg-drawing path')).reverse();
+    for (let p of paths) {
+      if (p.style.opacity !== '0') {
+        p.style.opacity = '0';
+        break;
+      }
+    }
+  }
+
+  function evaluateAccuracy() {
+    document.querySelectorAll('#kanji-svg-drawing path').forEach(p => {
+      p.style.opacity = '1';
+    });
+    document.getElementById('canvas-accuracy').innerText = '96% Presisi!';
+    document.getElementById('accuracy-bar').style.width = '96%';
+    alert('Analisis Kuas Selesai: Presisi Sapuan 96%! Bonus +30 XP diberikan.');
+  }
+
+  // Dictionary Search Filter
+  function filterDictionary() {
+    const query = document.getElementById('dictionary-input').value.toLowerCase();
+    const cards = document.querySelectorAll('#dict-results > div');
+    cards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      if (text.includes(query)) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  function toggleFavorite(btn) {
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (icon.innerText === 'star') {
+      icon.innerText = 'star_border';
+      btn.classList.remove('text-amber-600');
+      btn.classList.add('text-on-surface-variant');
+    } else {
+      icon.innerText = 'star';
+      btn.classList.add('text-amber-600');
+      btn.classList.remove('text-on-surface-variant');
+    }
+  }
+
+  // Missions Claim Action
+  function claimMissionReward(btn) {
+    btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span> Berhasil Diklaim!';
+    btn.classList.remove('bg-primary-container', 'text-on-primary-container');
+    btn.classList.add('bg-tertiary-fixed', 'text-on-tertiary-fixed');
+    btn.disabled = true;
+    alert('Selamat! 50 XP berhasil ditambahkan ke saldo akun Anda.');
+  }
+
+  function triggerClaim() {
+    const btn = document.getElementById('quick-claim-btn');
+    btn.innerText = 'Semua Hadiah Diklaim!';
+    alert('Seluruh reward harian berhasil dikreditkan ke profil Anda.');
+  }
+</script></main></div></body></html>

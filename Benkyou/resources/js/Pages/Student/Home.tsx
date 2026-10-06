@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import { Link, usePage } from "@inertiajs/react";
 import {
@@ -11,101 +11,109 @@ import {
     ArrowRight,
     Flame,
     Star,
+    Play,
+    CheckCircle2,
+    Sparkles,
+    Volume2,
+    Trophy,
+    Award,
+    Clock,
 } from "lucide-react";
 import Layout from "@/Components/Layout";
 
 interface Feature {
     href: string;
     title: string;
+    kanjiTag: string;
     description: string;
     iconType: string;
     color: string;
-    bgGradient: string;
-    hoverBorder: string;
-    jpChar?: string;
+    tagBg: string;
+    borderHover: string;
 }
 
 const features: Feature[] = [
     {
+        href: "/student/missions",
+        title: "Journey (Peta Belajar)",
+        kanjiTag: "冒険",
+        description: "Jalur petualangan belajar terstruktur dari level pemula hingga mahir.",
+        iconType: "journey",
+        color: "text-[#c73e3a]",
+        tagBg: "bg-[#fff0ef] text-[#c73e3a]",
+        borderHover: "hover:border-[#c73e3a]/40",
+    },
+    {
         href: "/student/kana",
         title: "Huruf Kana",
-        description: "Hiragana & Katakana — fondasi pertama yang paling penting~",
+        kanjiTag: "仮名",
+        description: "Latihan interaktif Hiragana & Katakana beserta stroke order.",
         iconType: "kana",
-        color: "text-[var(--color-japan-red)]",
-        bgGradient: "from-rose-50 to-red-50",
-        hoverBorder: "hover:border-[var(--color-sakura)]",
-        jpChar: "あ",
+        color: "text-[#c73e3a]",
+        tagBg: "bg-[#fff0ef] text-[#c73e3a]",
+        borderHover: "hover:border-[#c73e3a]/40",
     },
     {
         href: "/student/kanji",
-        title: "Kanji",
-        description: "Karakter cantik yang bikin kamu kelihatan keren banget!",
+        title: "Karakter Kanji",
+        kanjiTag: "漢字",
+        description: "Koleksi Kanji JLPT N5 - N1 lengkap dengan makna, onyomi, & kunyomi.",
         iconType: "kanji",
-        color: "text-amber-600",
-        bgGradient: "from-amber-50 to-orange-50",
-        hoverBorder: "hover:border-amber-300",
-        jpChar: "漢",
+        color: "text-[#944654]",
+        tagBg: "bg-[#ffd9dd] text-[#79313f]",
+        borderHover: "hover:border-[#944654]/40",
     },
     {
         href: "/student/vocabulary",
-        title: "Kosakata",
-        description: "Kata-kata yang sering muncul di anime & J-Pop favorit~",
+        title: "Kosakata (Kotoba)",
+        kanjiTag: "単語",
+        description: "Perkaya perbendaharaan kata dengan contoh kalimat dan audio pengucapan.",
         iconType: "vocab",
-        color: "text-[var(--color-matcha-dark)]",
-        bgGradient: "from-emerald-50 to-teal-50",
-        hoverBorder: "hover:border-[var(--color-matcha)]",
+        color: "text-[#326040]",
+        tagBg: "bg-[#d0ffd8] text-[#00210d]",
+        borderHover: "hover:border-[#326040]/40",
     },
     {
         href: "/student/grammar",
-        title: "Tata Bahasa",
-        description: "Racik kalimatmu sendiri — kayak bikin resep rahasia~",
+        title: "Tata Bahasa (Bunpou)",
+        kanjiTag: "文法",
+        description: "Panduan pola kalimat, partikel penting, dan rumus tata bahasa Jepang.",
         iconType: "grammar",
-        color: "text-blue-600",
-        bgGradient: "from-blue-50 to-indigo-50",
-        hoverBorder: "hover:border-blue-300",
+        color: "text-[#0082b2]",
+        tagBg: "bg-[#e0f4ff] text-[#0082b2]",
+        borderHover: "hover:border-[#0082b2]/40",
     },
     {
         href: "/student/quiz",
-        title: "Latihan Seru",
-        description: "Kuis acak setiap sesi — nggak bakal bosen!",
+        title: "Latihan & Quiz",
+        kanjiTag: "練習",
+        description: "Evaluasi harian acak untuk menguji kecepatan dan ketepatan pemahaman.",
         iconType: "quiz",
-        color: "text-purple-600",
-        bgGradient: "from-purple-50 to-violet-50",
-        hoverBorder: "hover:border-purple-300",
-    },
-    {
-        href: "/student/missions",
-        title: "My Journey",
-        description: "Dari Kohai sampai Shogun — petualangan seru dimulai!",
-        iconType: "journey",
-        color: "text-[var(--color-japan-red)]",
-        bgGradient: "from-rose-50 to-pink-50",
-        hoverBorder: "hover:border-[var(--color-japan-red)]/40",
+        color: "text-[#79313f]",
+        tagBg: "bg-[#ffd9dd] text-[#79313f]",
+        borderHover: "hover:border-[#79313f]/40",
     },
     {
         href: "/student/notes",
         title: "Catatan Belajar",
-        description: "Jurnal pribadi untuk menulis catatan, ide, atau cerita belajarmu~",
+        kanjiTag: "筆記",
+        description: "Catatan penting, rangkuman, dan tips berharga dari para Sensei.",
         iconType: "notes",
-        color: "text-teal-600",
-        bgGradient: "from-teal-50 to-cyan-50",
-        hoverBorder: "hover:border-teal-300",
+        color: "text-[#59413f]",
+        tagBg: "bg-[#f5ece7] text-[#1e1b18]",
+        borderHover: "hover:border-[#59413f]/40",
+    },
+    {
+        href: "/student/themes",
+        title: "Koleksi Tema",
+        kanjiTag: "装飾",
+        description: "Buka palet visual eksklusif bertema musim Jepang sebagai hadiah misi.",
+        iconType: "themes",
+        color: "text-[#c73e3a]",
+        tagBg: "bg-[#fff0ef] text-[#c73e3a]",
+        borderHover: "hover:border-[#c73e3a]/40",
     },
 ];
-
-function FeatureIcon({ type, color, jpChar }: { type: string; color: string; jpChar?: string }) {
-    if (type === "kana" || type === "kanji") {
-        return <span className={`font-jp text-lg sm:text-2xl font-bold ${color}`}>{jpChar}</span>;
-    }
-    const iconMap: Record<string, React.ReactNode> = {
-        vocab:   <List className={`w-4 h-4 sm:w-5 sm:h-5 ${color}`} />,
-        grammar: <BookOpen className={`w-4 h-4 sm:w-5 sm:h-5 ${color}`} />,
-        quiz:    <HelpCircle className={`w-4 h-4 sm:w-5 sm:h-5 ${color}`} />,
-        journey: <Compass className={`w-4 h-4 sm:w-5 sm:h-5 ${color}`} />,
-        notes:   <StickyNote className={`w-4 h-4 sm:w-5 sm:h-5 ${color}`} />,
-    };
-    return <>{iconMap[type] ?? <PenTool className={`w-4 h-4 sm:w-5 sm:h-5 ${color}`} />}</>;
-}
 
 interface HomeProps {
     stats?: {
@@ -120,143 +128,245 @@ export default function Home({ stats }: HomeProps) {
     const streak = stats?.streak ?? 1;
     const passedMissions = stats?.passedMissions ?? 0;
 
+    const [dailyMissions, setDailyMissions] = useState([
+        { id: 1, title: "Selesaikan 1 Modul Kana", xp: "+50 XP", done: true },
+        { id: 2, title: "Kerjakan 1 Sesi Quiz Harian", xp: "+80 XP", done: false },
+        { id: 3, title: "Hafalkan 5 Kosakata Baru", xp: "+60 XP", done: false },
+    ]);
+
+    const playAudio = () => {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance("さくら");
+            utterance.lang = "ja-JP";
+            window.speechSynthesis.speak(utterance);
+        }
+    };
+
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-5 sm:space-y-8 pb-12"
+            transition={{ duration: 0.4 }}
+            className="space-y-6 sm:space-y-8"
         >
-            {/* ── Welcome Hero ── */}
-            <div className="relative bg-gradient-to-br from-[var(--color-ink)] to-gray-800 text-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-10 overflow-hidden shadow-sm">
-                {/* Decorative kanji watermarks */}
-                <div className="absolute -right-4 -top-4 font-jp text-[4rem] sm:text-[7rem] md:text-[10rem] font-bold opacity-[0.05] select-none pointer-events-none leading-none">
-                    日本
-                </div>
-                <div className="absolute right-20 bottom-3 font-jp text-[2.5rem] sm:text-[4rem] md:text-[5rem] font-bold opacity-[0.03] select-none pointer-events-none leading-none">
-                    語
+            {/* ── 1. Washi Editorial Hero Banner ── */}
+            <div className="relative overflow-hidden rounded-2xl bg-white border border-[#efe6e2] p-6 sm:p-8 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+                {/* Background Subtle Watermark */}
+                <div className="absolute -right-6 -bottom-10 select-none pointer-events-none opacity-[0.03] text-[#1e1b18] font-jp text-[140px] sm:text-[200px] leading-none font-bold">
+                    日本語
                 </div>
 
-                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
-                    <div className="space-y-1.5 sm:space-y-2.5">
-                        <div className="flex items-center gap-1.5">
-                            <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-sakura)] animate-pulse" />
-                            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-400">
-                                Dashboard Belajar
-                            </span>
+                <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                    <div className="space-y-3 max-w-2xl">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fbf2ed] text-[#c73e3a] text-xs font-bold tracking-wide border border-[#efe6e2]">
+                            <span>🌸</span>
+                            <span>NIHONGO ACADEMY • PROGRAM BELAJAR AKTIF</span>
                         </div>
-                        <h1 className="font-fredoka text-xl sm:text-2xl md:text-4xl font-bold leading-tight">
-                            Hai,{" "}
-                            <span className="text-[var(--color-sakura)]">
-                                {user ? user.name : "Teman Belajar"}
-                            </span>{" "}
-                            ✨
+                        <h1 className="font-outfit text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1e1b18] tracking-tight">
+                            Konnichiwa, {user ? user.name : "Gakusei"}! <span className="font-jp text-lg sm:text-2xl font-normal text-[#79716b]">(こんにちは)</span>
                         </h1>
-                        <p className="text-gray-300 text-xs sm:text-sm md:text-base max-w-md leading-relaxed">
-                            Selamat datang di Benkyou! Yuk lanjut belajar bahasa Jepang hari ini! 🌸
+                        <p className="text-sm sm:text-base text-[#59413f] leading-relaxed">
+                            Momentum yang sangat baik untuk belajar hari ini. Teruskan semangat latihan membaca, menulis, dan perbanyak kosakata untuk mencapai level berikutnya!
                         </p>
+                        <div className="pt-2 flex flex-wrap items-center gap-3">
+                            <Link
+                                href="/student/missions"
+                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#c73e3a] hover:bg-[#a52525] text-white font-semibold text-sm shadow-[0_2px_8px_rgba(199,62,58,0.25)] transition-all"
+                            >
+                                <Play size={16} className="fill-white" />
+                                <span>Lanjut Belajar (Journey)</span>
+                            </Link>
+                            <Link
+                                href="/student/quiz"
+                                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#f5ece7] hover:bg-[#efe6e2] text-[#1e1b18] font-semibold text-sm border border-[#efe6e2] transition-colors"
+                            >
+                                <HelpCircle size={16} />
+                                <span>Kerjakan Quiz</span>
+                            </Link>
+                        </div>
                     </div>
 
-                    {/* Quick stats */}
-                    <div className="flex flex-row gap-2 sm:gap-3 shrink-0">
-                        <div className="bg-white/10 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 text-center border border-white/10 min-w-[70px] sm:min-w-[90px] flex-1 sm:flex-initial">
-                            <Flame size={16} className="text-orange-400 mx-auto mb-0.5 sm:mb-1" />
-                            <p className="text-sm sm:text-lg font-bold font-fredoka">{streak}</p>
-                            <p className="text-[8px] sm:text-[9px] text-gray-400 uppercase tracking-widest">Hari Belajar</p>
+                    {/* Stat Cards Pods */}
+                    <div className="flex flex-row lg:flex-col gap-3 min-w-[240px] sm:min-w-[270px]">
+                        {/* Streak Card */}
+                        <div className="flex-1 p-3.5 sm:p-4 rounded-xl bg-[#fbf2ed] border border-[#efe6e2] shadow-xs flex items-center justify-between">
+                            <div>
+                                <p className="text-[10px] font-bold uppercase tracking-wider text-[#79716b]">Keaktifan Belajar</p>
+                                <p className="font-outfit text-xl font-bold text-[#1e1b18]">{streak} Hari Streak</p>
+                                <p className="text-[10px] text-[#4b7957] font-semibold">🔥 Konsisten Aktif</p>
+                            </div>
+                            <div className="w-10 h-10 rounded-xl bg-[#fff0ef] border border-[#ffd9dd] flex items-center justify-center text-[#c73e3a] shrink-0">
+                                <Flame size={22} className="fill-[#c73e3a]" />
+                            </div>
                         </div>
-                        <div className="bg-white/10 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 text-center border border-white/10 min-w-[70px] sm:min-w-[90px] flex-1 sm:flex-initial">
-                            <Star size={16} className="text-yellow-400 mx-auto mb-0.5 sm:mb-1" />
-                            <p className="text-sm sm:text-lg font-bold font-fredoka">{passedMissions}</p>
-                            <p className="text-[8px] sm:text-[9px] text-gray-400 uppercase tracking-widest">Misi Tuntas</p>
+
+                        {/* Misi Tuntas Card */}
+                        <div className="flex-1 p-3.5 sm:p-4 rounded-xl bg-[#fbf2ed] border border-[#efe6e2] shadow-xs flex items-center justify-between">
+                            <div>
+                                <p className="text-[10px] font-bold uppercase tracking-wider text-[#79716b]">Pencapaian Misi</p>
+                                <p className="font-outfit text-xl font-bold text-[#1e1b18]">{passedMissions} Misi Tuntas</p>
+                                <p className="text-[10px] text-[#326040] font-semibold">✨ Level Kohai • N5</p>
+                            </div>
+                            <div className="w-10 h-10 rounded-xl bg-[#d0ffd8] border border-[#bcefc6] flex items-center justify-center text-[#326040] shrink-0">
+                                <Trophy size={20} />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* ── Feature Grid ── */}
-            <section className="space-y-3 sm:space-y-4">
-                <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-5 sm:h-6 rounded-full bg-[var(--color-japan-red)]" />
-                    <h2 className="font-serif text-base sm:text-xl font-medium text-[var(--color-ink)]">
-                        Pilih Materi Belajar
-                    </h2>
+            {/* ── 2. Daily Missions Checklist & Word of the Day Grid ── */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
+                {/* Daily Quest Section */}
+                <div className="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 border border-[#efe6e2] shadow-[0_1px_8px_rgba(0,0,0,0.04)] space-y-4">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <div className="w-2 h-5 rounded-full bg-[#c73e3a]" />
+                            <h2 className="font-outfit text-base sm:text-lg font-bold text-[#1e1b18]">
+                                Target & Misi Harian
+                            </h2>
+                        </div>
+                        <span className="text-xs font-semibold text-[#4b7957] bg-[#d0ffd8] px-2.5 py-0.5 rounded-full">
+                            1/3 Selesai
+                        </span>
+                    </div>
+
+                    <div className="space-y-2.5">
+                        {dailyMissions.map((mission) => (
+                            <div
+                                key={mission.id}
+                                className={`flex items-center justify-between p-3 rounded-xl border transition-all ${
+                                    mission.done
+                                        ? "bg-[#f5ece7]/60 border-[#efe6e2] text-[#79716b]"
+                                        : "bg-white border-[#efe6e2] hover:border-[#c73e3a]/40 shadow-xs"
+                                }`}
+                            >
+                                <div className="flex items-center gap-3 min-w-0">
+                                    <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
+                                        mission.done ? "bg-[#4b7957] text-white" : "border-2 border-[#e9e1dc]"
+                                    }`}>
+                                        {mission.done && <CheckCircle2 size={15} />}
+                                    </div>
+                                    <span className={`text-xs sm:text-sm font-semibold truncate ${mission.done ? "line-through text-[#79716b]" : "text-[#1e1b18]"}`}>
+                                        {mission.title}
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-2 shrink-0">
+                                    <span className="text-[11px] font-bold text-[#c73e3a] bg-[#fff0ef] px-2 py-0.5 rounded-md">
+                                        {mission.xp}
+                                    </span>
+                                    {!mission.done && (
+                                        <Link
+                                            href="/student/quiz"
+                                            className="text-[11px] font-bold text-[#1e1b18] hover:text-[#c73e3a] bg-[#f5ece7] hover:bg-[#efe6e2] px-2.5 py-1 rounded-md transition-colors"
+                                        >
+                                            Mulai
+                                        </Link>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 sm:gap-4">
+                {/* Word of the Day Card */}
+                <div className="bg-[#1e1b18] text-white rounded-2xl p-5 sm:p-6 border border-[#1e1b18] shadow-[0_1px_8px_rgba(0,0,0,0.06)] relative overflow-hidden flex flex-col justify-between">
+                    <div className="absolute -right-4 -bottom-6 font-jp text-[9rem] opacity-[0.05] select-none pointer-events-none leading-none font-bold">
+                        桜
+                    </div>
+
+                    <div className="relative z-10 space-y-3">
+                        <div className="flex items-center justify-between">
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-[#d47a88] bg-white/10 px-2.5 py-0.5 rounded-full">
+                                Kata Hari Ini (今日の一言)
+                            </span>
+                            <button
+                                onClick={playAudio}
+                                className="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+                                title="Dengarkan Audio"
+                            >
+                                <Volume2 size={15} />
+                            </button>
+                        </div>
+
+                        <div className="pt-2">
+                            <div className="flex items-baseline gap-3">
+                                <span className="font-jp text-4xl sm:text-5xl font-bold leading-none">桜</span>
+                                <div>
+                                    <p className="font-outfit text-base font-bold text-[#f4c2c2]">sakura</p>
+                                    <p className="text-xs text-white/70">Bunga sakura Jepang</p>
+                                </div>
+                            </div>
+                            <div className="mt-3 p-2.5 rounded-lg bg-white/5 border border-white/10">
+                                <p className="text-xs text-white/90 font-jp">桜がとても綺麗ですね。</p>
+                                <p className="text-[10px] text-white/60 italic mt-0.5">Bunga sakura sangat indah, ya.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="relative z-10 pt-4 mt-auto">
+                        <Link
+                            href="/student/vocabulary"
+                            className="w-full py-2 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-center text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                        >
+                            <span>Buka Kamus Kosakata</span>
+                            <ArrowRight size={13} />
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            {/* ── 3. Bento Grid: Modul Pembelajaran Utama ── */}
+            <section className="space-y-4">
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-5 rounded-full bg-[#c73e3a]" />
+                        <h2 className="font-outfit text-base sm:text-lg font-bold text-[#1e1b18]">
+                            Pilih Modul Pembelajaran
+                        </h2>
+                    </div>
+                    <span className="text-xs text-[#79716b]">8 Modul Tersedia</span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {features.map((feature, idx) => (
                         <motion.div
                             key={feature.href}
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.05, duration: 0.35 }}
+                            transition={{ delay: idx * 0.04, duration: 0.3 }}
                         >
                             <Link
                                 href={feature.href}
-                                className={`group bg-white p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border-2 border-transparent ${feature.hoverBorder} hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden h-full flex flex-col justify-between`}
+                                className={`group bg-white p-5 rounded-2xl border border-[#efe6e2] ${feature.borderHover} hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 h-full flex flex-col justify-between relative overflow-hidden`}
                             >
-                                {/* Gradient tint on hover */}
-                                <div className={`absolute inset-0 bg-gradient-to-br ${feature.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl sm:rounded-3xl`} />
-
-                                <div className="relative z-10 flex-1 flex flex-col justify-between">
-                                    <div>
-                                        {/* Icon */}
-                                        <div className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-br ${feature.bgGradient} border border-white flex items-center justify-center mb-2.5 sm:mb-3.5 shadow-sm group-hover:scale-105 transition-transform duration-300`}>
-                                            <FeatureIcon type={feature.iconType} color={feature.color} jpChar={feature.jpChar} />
+                                <div className="space-y-3">
+                                    <div className="flex items-center justify-between">
+                                        <span className={`text-[11px] font-bold px-2 py-0.5 rounded-md ${feature.tagBg} font-jp`}>
+                                            {feature.kanjiTag}
+                                        </span>
+                                        <div className="w-7 h-7 rounded-lg bg-[#fbf2ed] flex items-center justify-center text-[#79716b] group-hover:text-[#c73e3a] group-hover:bg-[#fff0ef] transition-colors">
+                                            <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                                         </div>
+                                    </div>
 
-                                        {/* Text */}
-                                        <h3 className="font-bold text-xs sm:text-base text-[var(--color-ink)] mb-0.5 sm:mb-1 group-hover:text-[var(--color-ink)] transition-colors leading-tight">
+                                    <div>
+                                        <h3 className="font-outfit font-bold text-sm sm:text-base text-[#1e1b18] group-hover:text-[#c73e3a] transition-colors leading-tight mb-1">
                                             {feature.title}
                                         </h3>
-                                        <p className="text-[var(--color-ink-light)] text-[10px] sm:text-xs leading-snug line-clamp-2">
+                                        <p className="text-xs text-[#79716b] leading-relaxed line-clamp-2">
                                             {feature.description}
                                         </p>
                                     </div>
+                                </div>
 
-                                    {/* Arrow */}
-                                    <div className="mt-2.5 sm:mt-3 flex items-center gap-1 text-[10px] sm:text-xs font-bold opacity-80 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ color: feature.color.includes('japan-red') ? 'var(--color-japan-red)' : undefined }}>
-                                        <span className={feature.color}>Mulai</span>
-                                        <ArrowRight size={12} className={`${feature.color} group-hover:translate-x-0.5 transition-transform`} />
-                                    </div>
+                                <div className="mt-4 pt-3 border-t border-[#f5ece7] flex items-center justify-between text-[11px] font-semibold text-[#59413f]">
+                                    <span>Pelajari Modul</span>
+                                    <span className="text-[#c73e3a] font-bold group-hover:underline">Buka &rarr;</span>
                                 </div>
                             </Link>
                         </motion.div>
                     ))}
-                </div>
-            </section>
-
-            {/* ── Word of the Day ── */}
-            <section className="bg-[var(--color-ink)] text-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 relative overflow-hidden">
-                <div className="absolute -right-6 -top-6 font-jp text-[8rem] sm:text-[12rem] opacity-[0.05] select-none pointer-events-none leading-none font-bold">
-                    桜
-                </div>
-                <div className="relative z-10">
-                    <div className="flex items-center gap-2 mb-3 sm:mb-5">
-                        <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-md sm:rounded-lg bg-[var(--color-japan-red)] flex items-center justify-center">
-                            <Star size={11} className="text-white fill-white" />
-                        </div>
-                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-400">
-                            Kata Hari Ini
-                        </span>
-                    </div>
-                    <div className="flex flex-col sm:flex-row sm:items-end gap-2 sm:gap-8 mb-4 sm:mb-6">
-                        <span className="font-jp text-4xl sm:text-6xl md:text-7xl font-bold leading-none">桜</span>
-                        <div className="pb-0.5 sm:pb-1">
-                            <span className="text-lg sm:text-2xl text-[var(--color-sakura)] block font-fredoka font-bold">
-                                sakura
-                            </span>
-                            <span className="text-xs sm:text-base text-gray-400">
-                                bunga sakura 🌸
-                            </span>
-                        </div>
-                    </div>
-                    <Link
-                        href="/student/vocabulary"
-                        className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-white text-[var(--color-ink)] font-bold text-xs sm:text-sm hover:bg-[var(--color-washi)] transition-colors"
-                    >
-                        Lihat Lebih Banyak Kata
-                        <ArrowRight size={14} />
-                    </Link>
                 </div>
             </section>
         </motion.div>
