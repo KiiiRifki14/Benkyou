@@ -10,6 +10,9 @@ import {
     ShieldCheck,
     ChevronRight,
     Sparkles,
+    BookOpen,
+    CheckCircle,
+    Activity,
 } from "lucide-react";
 import { usePage, Link } from "@inertiajs/react";
 
